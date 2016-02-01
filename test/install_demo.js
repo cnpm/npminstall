@@ -12,6 +12,7 @@
  * Module dependencies.
  */
 
+require('debug').enable('npminstall:*');
 const path = require('path');
 const co = require('co');
 const npminstall = require('../');
@@ -28,7 +29,7 @@ co(function*() {
     // ],
     // registry, default is https://registry.npmjs.org
     registry: 'https://registry.npm.taobao.org',
-    debug: true,
+    // debug: false,
     // storeDir: root + '.npminstall',
   });
 }).catch(function(err) {
