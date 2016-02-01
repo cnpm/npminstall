@@ -33,5 +33,7 @@ co(function*() {
     // storeDir: root + '.npminstall',
   });
 }).catch(function(err) {
+  console.error(err);
   console.error(err.stack);
+  process.exit(1);
 });

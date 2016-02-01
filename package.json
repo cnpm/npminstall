@@ -28,7 +28,7 @@
     "eslint": "1",
     "istanbul": "*",
     "mocha": "*",
-    "rimraf": "^2.5.1"
+    "rimraf": "2"
   },
   "homepage": "https://github.com/cnpm/npminstall",
   "repository": {
