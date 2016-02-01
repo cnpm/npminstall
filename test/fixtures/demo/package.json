@@ -1,0 +1,13 @@
+{
+  "name": "demo",
+  "dependencies": {
+    "debug": "~2.2.0",
+    "mz": "latest",
+    "urllib": "2",
+    "utility": "1.6.0",
+    "pedding": "*"
+  },
+  "devDependencies": {
+    "co": "^4.6.0"
+  }
+}

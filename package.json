@@ -1,0 +1,51 @@
+{
+  "name": "npminstall",
+  "version": "1.0.0",
+  "description": "Let npm install fast and easy",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "mocha -r co-mocha -t 60000 test/*.test.js",
+    "test-cov": "istanbul cover _mocha -- -r co-mocha -t 60000 test/*.test.js",
+    "test-local": "npm_registry=https://registry.npm.taobao.org mocha -r co-mocha -t 60000 test/*.test.js",
+    "lint": "eslint lib test",
+    "ci": "npm run lint && npm run test-cov",
+    "autod": "autod -w --prefix '~'"
+  },
+  "dependencies": {
+    "debug": "~2.2.0",
+    "mz": "~2.3.0",
+    "tar": "~2.2.1",
+    "urllib": "~2.7.0",
+    "utility": "~1.6.0"
+  },
+  "devDependencies": {
+    "autod": "*",
+    "co": "4",
+    "co-mocha": "1",
+    "eslint": "1",
+    "istanbul": "*",
+    "mocha": "*",
+    "rimraf": "^2.5.1"
+  },
+  "homepage": "https://github.com/cnpm/npminstall",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cnpm/npminstall.git",
+    "web": "https://github.com/cnpm/npminstall"
+  },
+  "bugs": {
+    "url": "https://github.com/cnpm/npminstall/issues",
+    "email": "m@fengmk2.com"
+  },
+  "keywords": [
+    "npminstall"
+  ],
+  "engines": {
+    "node": ">=4.2.3"
+  },
+  "author": "fengmk2 <m@fengmk2.com> (http://fengmk2.com)",
+  "license": "MIT"
+}
