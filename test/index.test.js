@@ -37,10 +37,25 @@ describe('test/index.test.js', function() {
     yield npminstall({
       root: tmp,
       pkgs: [
+        { name: '@rstacruz/tap-spec', version: '~4.1.1' },
         { name: 'mocha' },
         { name: 'pedding', version: 1 },
       ],
     });
+  });
+
+  it('should npminstall not exists package throw error', function*() {
+    try {
+      yield npminstall({
+        root: tmp,
+        pkgs: [
+          { name: 'mocha1111' },
+        ],
+      });
+      throw new Error('should not run this');
+    } catch (err) {
+      assert(/response 404 status/.test(err.message));
+    }
   });
 
   it('should npminstall demo project', function*() {
