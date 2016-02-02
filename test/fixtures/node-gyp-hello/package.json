@@ -1,0 +1,7 @@
+{
+  "name": "node-gyp-hello",
+  "version": "1.0.0",
+  "scripts": {
+    "postinstall": "node test.js"
+  }
+}

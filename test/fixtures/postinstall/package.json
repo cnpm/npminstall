@@ -1,0 +1,13 @@
+{
+  "name": "postinstall-demo",
+  "version": "1.0.0",
+  "scripts": {
+    "preinstall": "./preinstall.sh",
+    "install": "node index.js install",
+    "postinstall": "node index.js postinstall"
+  },
+  "dependencies": {
+    "utility": "1.6.0",
+    "bignum": "*"
+  }
+}

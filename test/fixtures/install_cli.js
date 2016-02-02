@@ -12,7 +12,7 @@
  * Module dependencies.
  */
 
-// require('debug').enable('npminstall:*');
+require('debug').enable('npminstall:*');
 const co = require('co');
 const npminstall = require('../../');
 
@@ -20,7 +20,7 @@ co(function*() {
   yield npminstall({
     root: process.cwd(),
     // registry, default is https://registry.npmjs.org
-    registry: 'https://registry.npm.taobao.org',
+    registry: process.env.npm_registry || 'https://registry.npm.taobao.org',
   });
 }).catch(function(err) {
   console.error(err);
