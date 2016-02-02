@@ -26,13 +26,8 @@ describe('test/index.test.js', function() {
     rimraf.sync(tmp);
   }
 
-  beforeEach(function() {
-    cleanup();
-  });
-
-  afterEach(function() {
-    cleanup();
-  });
+  beforeEach(cleanup);
+  afterEach(cleanup);
 
   it('should npminstall with options.pkgs', function*() {
     yield npminstall({
