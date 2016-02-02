@@ -6,20 +6,12 @@
   "dependencies": {
     "debug": "~2.2.0",
     "mz": "latest",
-    "urllib": "2",
-    "utility": "1.6.0",
-    "pedding": "*",
     "koa": "^1.1.2",
     "express": "4",
     "@rstacruz/tap-spec": ">=4.1.1"
   },
   "devDependencies": {
     "co": "^4.6.0",
-    "autod": "*",
-    "co-mocha": "1",
-    "eslint": "1",
-    "istanbul": "*",
-    "mocha": "*",
     "rimraf": "2"
   }
 }

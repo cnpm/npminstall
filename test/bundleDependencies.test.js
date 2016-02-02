@@ -17,6 +17,7 @@ const path = require('path');
 const rimraf = require('rimraf');
 const fs = require('mz/fs');
 const readJSON = require('../lib/utils').readJSON;
+const mkdirp = require('../lib/utils').mkdirp;
 const npminstall = require('../');
 
 describe('test/bundleDependencies.test.js', function() {
@@ -26,7 +27,10 @@ describe('test/bundleDependencies.test.js', function() {
     rimraf.sync(tmp);
   }
 
-  beforeEach(cleanup);
+  beforeEach(function*() {
+    cleanup();
+    yield mkdirp(tmp);
+  });
   afterEach(cleanup);
 
   it('should install node-pre-gyp@0.6.19', function*() {

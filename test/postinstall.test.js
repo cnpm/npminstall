@@ -19,7 +19,7 @@ const fs = require('fs');
 const readJSON = require('../lib/utils').readJSON;
 const npminstall = require('..');
 
-describe.only('test/postinstall.test.js', () => {
+describe('test/postinstall.test.js', () => {
 
   describe('postinstall', function() {
     const root = path.join(__dirname, 'fixtures', 'postinstall');

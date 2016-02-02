@@ -17,6 +17,7 @@ const fs = require('fs');
 const path = require('path');
 const rimraf = require('rimraf');
 const npminstall = require('../');
+const mkdirp = require('../lib/utils').mkdirp;
 
 describe('test/index.test.js', function() {
 
@@ -26,7 +27,10 @@ describe('test/index.test.js', function() {
     rimraf.sync(tmp);
   }
 
-  beforeEach(cleanup);
+  beforeEach(function*() {
+    cleanup();
+    yield mkdirp(tmp);
+  });
   afterEach(cleanup);
 
   it('should npminstall with options.pkgs', function*() {
@@ -47,18 +51,15 @@ describe('test/index.test.js', function() {
     yield npminstall({
       root: demodir,
     });
-    // utility version should be 1.6.0
-    const pkgfile = path.join(demodir, 'node_modules', 'utility', 'package.json');
+    const pkgfile = path.join(demodir, 'node_modules', 'koa', 'package.json');
     let pkg = JSON.parse(fs.readFileSync(pkgfile));
-    assert.equal(pkg.name, 'utility');
-    assert.equal(pkg.version, '1.6.0');
+    assert.equal(pkg.name, 'koa');
 
     // install again should be faster
     yield npminstall({
       root: demodir,
     });
     pkg = JSON.parse(fs.readFileSync(pkgfile));
-    assert.equal(pkg.name, 'utility');
-    assert.equal(pkg.version, '1.6.0');
+    assert.equal(pkg.name, 'koa');
   });
 });
