@@ -1,0 +1,10 @@
+{
+  "name": "bin",
+  "version": "1.0.0",
+  "scripts": {
+    "postinstall": "yo --version"
+  },
+  "dependencies": {
+    "yo": "1.6.0"
+  }
+}

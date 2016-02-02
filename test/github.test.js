@@ -19,7 +19,7 @@ const fs = require('mz/fs');
 const readJSON = require('../lib/utils').readJSON;
 const npminstall = require('../');
 
-describe.only('test/github.test.js', function() {
+describe('test/github.test.js', function() {
   const root = path.join(__dirname, 'fixtures', 'github');
 
   function cleanup() {
