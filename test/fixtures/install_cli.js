@@ -12,15 +12,22 @@
  * Module dependencies.
  */
 
-require('debug').enable('npminstall:*');
+require('debug').enable('npminstall:index');
 const co = require('co');
 const npminstall = require('../../');
+
+const name = process.argv[2];
+const pkgs = [];
+if (name) {
+  pkgs.push({ name });
+}
 
 co(function*() {
   yield npminstall({
     root: process.cwd(),
     // registry, default is https://registry.npmjs.org
     registry: process.env.npm_registry || 'https://registry.npm.taobao.org',
+    pkgs,
   });
 }).catch(function(err) {
   console.error(err);

@@ -15,10 +15,12 @@
     "autod": "autod -w --prefix '~'"
   },
   "dependencies": {
+    "chalk": "^1.1.1",
     "debug": "~2.2.0",
     "ms": "~0.7.1",
     "mz": "~2.3.0",
     "node-gyp": "~3.2.1",
+    "npm-package-arg": "~4.1.0",
     "tar": "~2.2.1",
     "urllib": "~2.7.1",
     "utility": "~1.6.0"
