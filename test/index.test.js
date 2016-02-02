@@ -40,6 +40,7 @@ describe('test/index.test.js', function() {
         { name: '@rstacruz/tap-spec', version: '~4.1.1' },
         { name: 'mocha' },
         { name: 'pedding', version: 1 },
+        { name: 'dat' },
       ],
     });
   });

@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /**
  * Copyright(c) cnpm and other contributors.
  * MIT Licensed
@@ -12,13 +14,12 @@
  * Module dependencies.
  */
 
-require('debug').enable('npminstall:index');
 const co = require('co');
-const npminstall = require('../../');
+const npminstall = require('../');
 
-const name = process.argv[2];
+const names = process.argv.slice(2);
 const pkgs = [];
-if (name) {
+for (const name of names) {
   pkgs.push({ name });
 }
 

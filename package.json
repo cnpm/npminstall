@@ -1,11 +1,15 @@
 {
   "name": "npminstall",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "Let npm install fast and easy",
   "main": "lib/index.js",
   "files": [
-    "lib"
+    "lib",
+    "bin"
   ],
+  "bin": {
+    "npminstall": "bin/install.js"
+  },
   "scripts": {
     "test": "mocha -r co-mocha -t 60000 test/*.test.js",
     "test-cov": "istanbul cover _mocha -- -r co-mocha -t 60000 test/*.test.js",
@@ -15,7 +19,8 @@
     "autod": "autod -w --prefix '~'"
   },
   "dependencies": {
-    "chalk": "^1.1.1",
+    "await-event": "~1.0.0",
+    "chalk": "~1.1.1",
     "debug": "~2.2.0",
     "ms": "~0.7.1",
     "mz": "~2.3.0",
