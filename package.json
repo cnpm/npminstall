@@ -1,6 +1,6 @@
 {
   "name": "npminstall",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Let npm install fast and easy",
   "main": "lib/index.js",
   "files": [
@@ -21,6 +21,7 @@
   "dependencies": {
     "await-event": "~1.0.0",
     "chalk": "~1.1.1",
+    "co": "~4.6.0",
     "debug": "~2.2.0",
     "ms": "~0.7.1",
     "mz": "~2.3.0",
@@ -32,7 +33,6 @@
   },
   "devDependencies": {
     "autod": "*",
-    "co": "4",
     "co-mocha": "1",
     "eslint": "1",
     "eslint-config-egg": "~1.0.3",
