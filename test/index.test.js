@@ -61,7 +61,6 @@ describe('test/index.test.js', function() {
 
   it('should npminstall demo project', function*() {
     const demodir = path.join(__dirname, 'fixtures', 'demo');
-    rimraf.sync(path.join(demodir, '.npminstall'));
     rimraf.sync(path.join(demodir, 'node_modules'));
 
     yield npminstall({

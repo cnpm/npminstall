@@ -38,7 +38,7 @@ describe('test/github.test.js', function() {
     assert.equal(pkg.name, 'pedding');
 
     // only urllib dir exists
-    const dirs = yield fs.readdir(path.join(root, '.npminstall'));
+    const dirs = yield fs.readdir(path.join(root, 'node_modules/.npminstall'));
     assert.deepEqual(dirs, [ 'pedding' ]);
   });
 });

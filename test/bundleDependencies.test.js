@@ -45,7 +45,7 @@ describe('test/bundleDependencies.test.js', function() {
     assert.equal(pkg.version, '0.6.19');
 
     // only node-pre-gyp dir exists
-    const dirs = yield fs.readdir(path.join(tmp, '.npminstall'));
+    const dirs = yield fs.readdir(path.join(tmp, 'node_modules/.npminstall'));
     assert.deepEqual(dirs, [ 'node-pre-gyp' ]);
   });
 });
