@@ -41,6 +41,7 @@ describe('test/cleanup.test.js', function() {
         ],
       });
     } catch (_) {
+      // ignore
     }
 
     let dirs = yield fs.readdir(path.join(tmp, 'node_modules/.npminstall/install-error'));

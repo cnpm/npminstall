@@ -20,7 +20,6 @@ const npa = require('npm-package-arg');
 const names = process.argv.slice(2);
 const pkgs = [];
 
-//
 for (const name of names) {
   const p = npa(name);
   pkgs.push({ name: p.name, version: p.spec });
