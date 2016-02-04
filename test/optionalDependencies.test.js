@@ -3,7 +3,7 @@
  * MIT Licensed
  *
  * Authors:
- *   fengmk2 <m@fengmk2.com> (http://fengmk2.com)
+ *   dead_horse <dead_horse@qq.com>
  */
 
 'use strict';
@@ -44,7 +44,7 @@ describe('test/optionalDependnecies.test.js', function() {
     });
     const pkg = yield readJSON(path.join(tmp, 'node_modules/koa-redis/package.json'));
     assert(pkg.optionalDependencies.hiredis);
-    // only node-pre-gyp dir exists
+
     const dirs = yield fs.readdir(path.join(tmp, 'node_modules/koa-redis/node_modules'));
     assert(dirs.indexOf('hiredis') >= 0);
   });
@@ -53,7 +53,7 @@ describe('test/optionalDependnecies.test.js', function() {
     yield npminstall({
       root: root,
     });
-    // only node-pre-gyp dir exists
+
     const dirs = yield fs.readdir(path.join(root, 'node_modules'));
     assert.equal(dirs.indexOf('@dead_horse/not-exist'), -1);
   });
