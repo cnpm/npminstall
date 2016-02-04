@@ -2,6 +2,7 @@
 
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
+[![appveyor build status][appveyor-image]][appveyor-url]
 [![Test coverage][codecov-image]][codecov-url]
 [![David deps][david-image]][david-url]
 [![npm download][download-image]][download-url]
@@ -10,6 +11,8 @@
 [npm-url]: https://npmjs.org/package/npminstall
 [travis-image]: https://img.shields.io/travis/cnpm/npminstall.svg?style=flat-square
 [travis-url]: https://travis-ci.org/cnpm/npminstall
+[appveyor-image]: https://ci.appveyor.com/api/projects/status/9x637qe09ivo8g2h?svg=true
+[appveyor-url]: https://ci.appveyor.com/project/fengmk2/npminstall
 [codecov-image]: https://codecov.io/github/cnpm/npminstall/coverage.svg?branch=master
 [codecov-url]: https://codecov.io/github/cnpm/npminstall?branch=master
 [david-image]: https://img.shields.io/david/cnpm/npminstall.svg?style=flat-square
