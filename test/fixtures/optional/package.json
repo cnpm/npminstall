@@ -1,0 +1,11 @@
+{
+  "name": "optional",
+  "version": "1.0.0",
+  "dependencies": {
+    "koa": "1"
+  },
+  "optionalDependnecies": {
+    "co": "",
+    "@dead_horse/not-exist": ""
+  }
+}
