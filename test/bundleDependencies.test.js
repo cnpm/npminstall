@@ -17,7 +17,7 @@ const path = require('path');
 const rimraf = require('rimraf');
 const fs = require('mz/fs');
 const readJSON = require('../lib/utils').readJSON;
-const mkdirp = require('../lib/utils').mkdirp;
+const mkdirp = require('mkdirp');
 const npminstall = require('../');
 
 describe('test/bundleDependencies.test.js', function() {
@@ -27,9 +27,9 @@ describe('test/bundleDependencies.test.js', function() {
     rimraf.sync(tmp);
   }
 
-  beforeEach(function*() {
+  beforeEach(function() {
     cleanup();
-    yield mkdirp(tmp);
+    mkdirp.sync(tmp);
   });
   afterEach(cleanup);
 
@@ -45,7 +45,19 @@ describe('test/bundleDependencies.test.js', function() {
     assert.equal(pkg.version, '0.6.19');
 
     // only node-pre-gyp dir exists
-    const dirs = yield fs.readdir(path.join(tmp, '.npminstall'));
+    const dirs = yield fs.readdir(path.join(tmp, 'node_modules/.npminstall'));
     assert.deepEqual(dirs, [ 'node-pre-gyp' ]);
+  });
+
+  it('should link bundleDependencies bin', function*() {
+    yield npminstall({
+      root: tmp,
+      pkgs: [{
+        name: 'fsevents',
+        version: '1.0.6',
+      }],
+    });
+    const bins = yield fs.readdir(path.join(tmp, 'node_modules/fsevents/node_modules/.bin'));
+    assert.deepEqual(bins, ['node-pre-gyp']);
   });
 });

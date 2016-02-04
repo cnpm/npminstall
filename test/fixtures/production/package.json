@@ -1,0 +1,13 @@
+{
+  "name": "production",
+  "version": "1.0.0",
+  "dependencies": {
+    "koa": "*"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  },
+  "optionalDependnecies": {
+    "should": "*"
+  }
+}

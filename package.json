@@ -22,11 +22,14 @@
     "await-event": "~1.0.0",
     "chalk": "~1.1.1",
     "co": "~4.6.0",
+    "co-parallel": "~1.0.0",
     "debug": "~2.2.0",
+    "mkdirp": "~0.5.1",
     "ms": "~0.7.1",
     "mz": "~2.3.0",
     "node-gyp": "~3.2.1",
     "npm-package-arg": "~4.1.0",
+    "rimraf": "~2.5.1",
     "tar": "~2.2.1",
     "urllib": "~2.7.1",
     "utility": "~1.6.0"
@@ -37,8 +40,7 @@
     "eslint": "1",
     "eslint-config-egg": "~1.0.3",
     "istanbul": "*",
-    "mocha": "*",
-    "rimraf": "2"
+    "mocha": "*"
   },
   "homepage": "https://github.com/cnpm/npminstall",
   "repository": {

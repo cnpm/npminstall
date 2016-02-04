@@ -23,7 +23,6 @@ describe('test/bin.test.js', () => {
   const root = path.join(__dirname, 'fixtures', 'bin');
 
   function cleanup() {
-    rimraf.sync(path.join(root, '.npminstall'));
     rimraf.sync(path.join(root, 'node_modules'));
   }
 
