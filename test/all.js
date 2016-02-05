@@ -30,9 +30,13 @@ const names = [
   'gulp',
   'forever',
   'grunt', 'less',
-  // 'yo', need bin
+  'yo',
   'lodash', 'bluebird', 'async', 'commander',
   'q', 'request', 'debug', 'mkdirp', 'underscore', 'chalk', 'colors',
+  'webpack',
+  'antd',
+  'cnpm',
+  'pnpm',
 ];
 
 co(function*() {
