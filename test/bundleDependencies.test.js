@@ -49,15 +49,18 @@ describe('test/bundleDependencies.test.js', function() {
     assert.deepEqual(dirs, [ 'node-pre-gyp' ]);
   });
 
-  it('should link bundleDependencies bin', function*() {
-    yield npminstall({
-      root: tmp,
-      pkgs: [{
-        name: 'fsevents',
-        version: '1.0.6',
-      }],
+  if (process.platform !== 'win32') {
+    // fsevents not support windows
+    it('should link bundleDependencies bin', function*() {
+      yield npminstall({
+        root: tmp,
+        pkgs: [{
+          name: 'fsevents',
+          version: '1.0.6',
+        }],
+      });
+      const bins = yield fs.readdir(path.join(tmp, 'node_modules/fsevents/node_modules/.bin'));
+      assert.deepEqual(bins, ['node-pre-gyp']);
     });
-    const bins = yield fs.readdir(path.join(tmp, 'node_modules/fsevents/node_modules/.bin'));
-    assert.deepEqual(bins, ['node-pre-gyp']);
-  });
+  }
 });
