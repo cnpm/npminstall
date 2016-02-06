@@ -12,7 +12,7 @@
   },
   "scripts": {
     "test": "mocha -r co-mocha -t 120000 test/*.test.js",
-    "test-cov": "istanbul cover _mocha -- -r co-mocha -t 120000 test/*.test.js",
+    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- -r co-mocha -t 120000 test/*.test.js",
     "test-local": "npm_registry=https://registry.npm.taobao.org mocha -r co-mocha -t 60000 test/*.test.js",
     "lint": "eslint lib test",
     "ci": "npm run lint && npm run test-cov",
