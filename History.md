@@ -1,4 +1,14 @@
 
+0.2.0 / 2016-02-06
+==================
+
+  * test: add codecov for appveyor
+  * fix: use cmd-shim for Windows linkBin
+  * test: add more packages on test/all.js
+  * feat: runScript support Windows
+  * test: add appveyor ci
+  * refactor: tzgfile do not store on dist
+
 0.1.0 / 2016-02-04
 ==================
 
