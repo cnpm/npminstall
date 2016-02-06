@@ -11,8 +11,8 @@
     "npminstall": "bin/install.js"
   },
   "scripts": {
-    "test": "mocha -r co-mocha -t 60000 test/*.test.js",
-    "test-cov": "istanbul cover _mocha -- -r co-mocha -t 60000 test/*.test.js",
+    "test": "mocha -r co-mocha -t 120000 test/*.test.js",
+    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- -r co-mocha -t 120000 test/*.test.js",
     "test-local": "npm_registry=https://registry.npm.taobao.org mocha -r co-mocha -t 60000 test/*.test.js",
     "lint": "eslint lib test",
     "ci": "npm run lint && npm run test-cov",
@@ -21,6 +21,7 @@
   "dependencies": {
     "await-event": "~1.0.0",
     "chalk": "~1.1.1",
+    "cmd-shim": "~2.0.1",
     "co": "~4.6.0",
     "co-parallel": "~1.0.0",
     "debug": "~2.2.0",
@@ -30,6 +31,7 @@
     "node-gyp": "~3.2.1",
     "npm-package-arg": "~4.1.0",
     "rimraf": "~2.5.1",
+    "runscript": "~1.0.0",
     "tar": "~2.2.1",
     "urllib": "~2.7.1",
     "utility": "~1.6.0"

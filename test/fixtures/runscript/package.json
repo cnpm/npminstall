@@ -1,0 +1,10 @@
+{
+  "name": "runscript",
+  "dependencies": {
+    "pedding": "*"
+  },
+  "scripts": {
+    "preinstall": "echo 'preinstall'",
+    "postinstall": "node -e 'console.log(process.versions)'"
+  }
+}

@@ -25,7 +25,6 @@ describe('test/postinstall.test.js', () => {
     const root = path.join(__dirname, 'fixtures', 'postinstall');
 
     function cleanup() {
-      rimraf.sync(path.join(root, '.npminstall'));
       rimraf.sync(path.join(root, 'node_modules'));
     }
 

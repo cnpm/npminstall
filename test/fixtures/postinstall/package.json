@@ -2,7 +2,7 @@
   "name": "postinstall-demo",
   "version": "1.0.0",
   "scripts": {
-    "preinstall": "./preinstall.sh",
+    "preinstall": "node index.js preinstall",
     "install": "node index.js install",
     "postinstall": "node index.js postinstall"
   },
