@@ -1,0 +1,10 @@
+{
+  "name": "standardtest",
+  "scripts": {
+    "postinstall": "standard && mocha index.js"
+  },
+  "devDependencies": {
+    "mocha": "^2.3.4",
+    "standard": "^6.0.3"
+  }
+}

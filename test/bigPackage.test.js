@@ -17,28 +17,33 @@ const rimraf = require('rimraf');
 const npminstall = require('../');
 
 describe('test/bigPackage.test.js', () => {
-  const names = [
-    'spmtest',
-    'spmwebpacktest',
-  ];
-  if (process.platform !== 'win32') {
-    names.forEach(name => {
-      describe(name, () => {
-        const root = path.join(__dirname, 'fixtures', name);
+  function testcase(name) {
+    describe(name, () => {
+      const root = path.join(__dirname, 'fixtures', name);
 
-        function cleanup() {
-          rimraf.sync(path.join(root, 'node_modules'));
-        }
+      function cleanup() {
+        rimraf.sync(path.join(root, 'node_modules'));
+      }
 
-        beforeEach(cleanup);
-        afterEach(cleanup);
+      beforeEach(cleanup);
+      afterEach(cleanup);
 
-        it('should install success', function*() {
-          yield npminstall({
-            root: root,
-          });
+      it('should install success', function*() {
+        yield npminstall({
+          root: root,
         });
       });
     });
   }
+
+  if (process.platform !== 'win32') {
+    [
+      'spmtest',
+      'spmwebpacktest',
+    ].forEach(testcase);
+  }
+
+  [
+    'standardtest',
+  ].forEach(testcase);
 });
