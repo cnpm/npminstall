@@ -1,0 +1,9 @@
+{
+  "name": "spmwebpacktest",
+  "dependencies": {
+    "spm-webpack": "1.0.2"
+  },
+  "scripts": {
+    "postinstall": "spm-webpack -h"
+  }
+}

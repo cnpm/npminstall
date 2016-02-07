@@ -1,0 +1,9 @@
+{
+  "name": "spmtest",
+  "dependencies": {
+    "spm": "3"
+  },
+  "scripts": {
+    "postinstall": "spm --help"
+  }
+}
