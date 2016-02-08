@@ -1,4 +1,10 @@
 
+0.3.0 / 2016-02-08
+==================
+
+  * fix: add retry when GET request throw ECONNRESET error
+  * feat: add peerDependencies validate
+
 0.2.0 / 2016-02-06
 ==================
 
