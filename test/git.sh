@@ -60,13 +60,14 @@ git clone https://github.com/etsy/statsd.git --depth=1
 cd statsd
 ../bin/install.js
 ../bin/install.js nodeunit
-npm test
+npm test || exit $?
 cd ..
 rm -rf statsd
 
 git clone https://github.com/less/less.js.git --depth=1
 cd less.js
 ../bin/install.js
+../bin/install.js grunt-cli
 npm test || exit $?
 cd ..
 rm -rf less.js
@@ -88,6 +89,6 @@ rm -rf npminstall
 git clone https://github.com/rstacruz/pnpm.git --depth=1
 cd pnpm
 ../bin/install.js
-npm test || exit $?
+npm test
 cd ..
 rm -rf pnpm

@@ -8,7 +8,5 @@ node_js:
 script:
   - 'npm run ci'
   - 'node test/all.js'
-  - 'rm -f .eslint*'
-  - 'npm_registry=https://registry.npmjs.com sh test/git.sh'
 after_script:
   - 'npm i codecov && ./node_modules/.bin/codecov'

@@ -2,9 +2,10 @@
   "name": "optional",
   "version": "1.0.0",
   "dependencies": {
-    "koa": "1"
+    "koa": "1",
+    "less": "~2.6.0"
   },
-  "optionalDependnecies": {
+  "optionalDependencies": {
     "co": "",
     "@dead_horse/not-exist": ""
   }
