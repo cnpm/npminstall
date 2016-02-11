@@ -21,17 +21,31 @@ npm test || exit $?
 cd ..
 rm -rf thunk-mocha
 
-git clone https://github.com/ant-design/ant-design.git --depth=1
-cd ant-design
+git clone https://github.com/mapbox/node-sqlite3.git --depth=1
+cd node-sqlite3
 ../bin/install.js
 npm test || exit $?
 cd ..
-rm -rf ant-design
+rm -rf node-sqlite3
+
+git clone https://github.com/eslint/eslint.git --depth=1
+cd eslint
+../bin/install.js
+npm test || exit $?
+cd ..
+rm -rf eslint
+
+# git clone https://github.com/ant-design/ant-design.git --depth=1
+# cd ant-design
+# ../bin/install.js
+# npm test || exit $?
+# cd ..
+# rm -rf ant-design
 
 git clone https://github.com/substack/node-browserify.git --depth=1
 cd node-browserify
 ../bin/install.js
-npm test || exit $?
+npm test
 cd ..
 rm -rf node-browserify
 
