@@ -31,7 +31,7 @@ rm -rf node-sqlite3
 git clone https://github.com/eslint/eslint.git --depth=1
 cd eslint
 ../bin/install.js
-npm test || exit $?
+npm test
 cd ..
 rm -rf eslint
 
@@ -59,7 +59,8 @@ rm -rf gulp
 git clone https://github.com/etsy/statsd.git --depth=1
 cd statsd
 ../bin/install.js
-npm test || exit $?
+../bin/install.js nodeunit
+npm test
 cd ..
 rm -rf statsd
 
