@@ -56,7 +56,7 @@ co(function*() {
 
 Two rules:
 
-- The latest version of modules will link at root's `node_modules`.
+- The latest version of modules will link at `options.storeDir`'s `node_modules`.
 - Module's dependencies will link at module's `node_modules`.
 
 e.g.:
@@ -66,6 +66,7 @@ e.g.:
 - b@1.0.0: `{ "dependencies": { "c": "1.0.0" } }`
 
 ```bash
+app/package.json
 app/node_modules/.npminstall/a/1.0.0
 app/node_modules/.npminstall/a/1.0.0/node_modules/c@ -> ../../../c/2.0.0
 app/node_modules/.npminstall/a/1.0.0/node_modules/b@ -> ../../../b/1.0.0
@@ -74,9 +75,11 @@ app/node_modules/.npminstall/b/1.0.0/node_modules/c@ -> ../../../c/1.0.0
 app/node_modules/.npminstall/c/1.0.0
 app/node_modules/.npminstall/c/2.0.0
 app/node_modules/a@ -> .npminstall/a/1.0.0
-app/node_modules/b@ -> .npminstall/b/1.0.0
-app/node_modules/c@ -> .npminstall/c/2.0.0
+app/node_modules/.npminstall/node_modules/b@ -> ../b/1.0.0 (latest version)
+app/node_modules/.npminstall/node_modules/c@ -> ../c/2.0.0 (latest version)
 ```
+
+`a@1.0.0` is root package, won't create link at `app/node_modules/.npminstall/node_modules/a@`.
 
 ## License
 
