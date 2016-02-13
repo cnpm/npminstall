@@ -18,6 +18,7 @@ const path = require('path');
 const rimraf = require('rimraf');
 const npminstall = require('../');
 const mkdirp = require('../lib/utils').mkdirp;
+const readJSON = require('../lib/utils').readJSON;
 
 describe('test/index.test.js', function() {
 
@@ -76,5 +77,25 @@ describe('test/index.test.js', function() {
     });
     pkg = JSON.parse(fs.readFileSync(pkgfile));
     assert.equal(pkg.name, 'koa');
+  });
+
+  it('should relink exists link file work', function*() {
+    yield npminstall({
+      root: tmp,
+      pkgs: [
+        { name: 'pedding', version: '0' },
+      ],
+    });
+    const v0 = yield readJSON(path.join(tmp, 'node_modules', 'pedding', 'package.json'));
+    assert.equal(v0.version[0], '0');
+
+    yield npminstall({
+      root: tmp,
+      pkgs: [
+        { name: 'pedding', version: '1' },
+      ],
+    });
+    const v1 = yield readJSON(path.join(tmp, 'node_modules', 'pedding', 'package.json'));
+    assert.equal(v1.version[0], '1');
   });
 });

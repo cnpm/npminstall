@@ -4,6 +4,7 @@
  *
  * Authors:
  *   dead_horse <dead_horse@qq.com>
+ *   fengmk2 <m@fengmk2.com> (http://fengmk2.com)
  */
 
 'use strict';
@@ -20,7 +21,7 @@ const readJSON = require('../lib/utils').readJSON;
 const mkdirp = require('mkdirp');
 const npminstall = require('../');
 
-describe('test/optionalDependnecies.test.js', function() {
+describe('test/optionalDependencies.test.js', function() {
   const tmp = path.join(__dirname, 'fixtures', 'tmp');
   const root = path.join(__dirname, 'fixtures', 'optional');
 
@@ -35,7 +36,7 @@ describe('test/optionalDependnecies.test.js', function() {
   });
   afterEach(cleanup);
 
-  it('should install optionalDependnecies', function*() {
+  it('should install optionalDependencies', function*() {
     yield npminstall({
       root: tmp,
       pkgs: [
@@ -56,5 +57,11 @@ describe('test/optionalDependnecies.test.js', function() {
 
     const dirs = yield fs.readdir(path.join(root, 'node_modules'));
     assert.equal(dirs.indexOf('@dead_horse/not-exist'), -1);
+
+    // less should exists
+    const pkg = yield readJSON(path.join(root, 'node_modules/less/package.json'));
+    assert(pkg.optionalDependencies.mkdirp);
+    const pkg2 = yield readJSON(path.join(root, 'node_modules/less/node_modules/mkdirp/package.json'));
+    assert.equal(pkg2.name, 'mkdirp');
   });
 });

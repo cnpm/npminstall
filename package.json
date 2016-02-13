@@ -11,9 +11,9 @@
     "npminstall": "bin/install.js"
   },
   "scripts": {
-    "test": "mocha -r co-mocha -t 120000 test/*.test.js",
-    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- -r co-mocha -t 120000 test/*.test.js",
-    "test-local": "npm_registry=https://registry.npm.taobao.org mocha -r co-mocha -t 60000 test/*.test.js",
+    "test": "mocha -r thunk-mocha -t 120000 test/*.test.js",
+    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- -r thunk-mocha -t 120000 test/*.test.js",
+    "test-local": "npm_registry=https://registry.npm.taobao.org mocha -r thunk-mocha -t 60000 test/*.test.js",
     "lint": "eslint lib test",
     "ci": "npm run lint && npm run test-cov",
     "autod": "autod -w --prefix '~'"
@@ -32,18 +32,18 @@
     "npm-package-arg": "~4.1.0",
     "rimraf": "~2.5.1",
     "runscript": "~1.0.0",
-    "semver": "^5.1.0",
+    "semver": "~5.1.0",
     "tar": "~2.2.1",
     "urllib": "~2.7.1",
     "utility": "~1.6.0"
   },
   "devDependencies": {
     "autod": "*",
-    "co-mocha": "1",
     "eslint": "1",
-    "eslint-config-egg": "~1.0.3",
+    "eslint-config-egg": "1",
     "istanbul": "*",
-    "mocha": "*"
+    "mocha": "2",
+    "thunk-mocha": "1"
   },
   "homepage": "https://github.com/cnpm/npminstall",
   "repository": {
