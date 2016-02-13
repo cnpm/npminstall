@@ -16,3 +16,4 @@ coverage/
 .npminstall
 .preinstall*
 .postisntall*
+.tmp
