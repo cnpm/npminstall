@@ -1,4 +1,17 @@
 
+0.4.0 / 2016-02-14
+==================
+
+  * refactor: link latest version to .npminstall/node_modules
+  * test: add more projects to test/git.sh
+  * test: add relink exists file test case
+  * fix: optionalDependencies typo
+  * fix: relink exists link file should work
+  * fix: ignore hosted type package
+  * fix: ignore cleanup error
+  * test: add more project test case
+  * feat: link every module latest version to root node_modules
+
 0.3.0 / 2016-02-08
 ==================
 
