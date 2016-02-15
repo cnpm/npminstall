@@ -1,4 +1,11 @@
 
+0.5.0 / 2016-02-15
+==================
+
+  * feat: add download packages count
+  * refactor: add OPERADRIVER_CDNURL env
+  * feat: add download speed
+
 0.4.0 / 2016-02-14
 ==================
 
