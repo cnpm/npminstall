@@ -20,11 +20,13 @@
   },
   "dependencies": {
     "await-event": "~1.0.0",
+    "bytes": "~2.2.0",
     "chalk": "~1.1.1",
     "cmd-shim": "~2.0.1",
     "co": "~4.6.0",
     "co-parallel": "~1.0.0",
     "debug": "~2.2.0",
+    "destroy": "~1.0.4",
     "mkdirp": "~0.5.1",
     "ms": "~0.7.1",
     "mz": "~2.3.0",
@@ -42,6 +44,7 @@
     "eslint": "1",
     "eslint-config-egg": "1",
     "istanbul": "*",
+    "mm": "1",
     "mocha": "2",
     "thunk-mocha": "1"
   },
