@@ -1,4 +1,11 @@
 
+0.5.1 / 2016-02-16
+==================
+
+  * fix: make sure link latest version parent dir exists
+  * feat: support process.env.NODE_ENV and add --version command
+  * fix: only remove done file when install error
+
 0.5.0 / 2016-02-15
 ==================
 
