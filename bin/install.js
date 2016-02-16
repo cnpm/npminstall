@@ -31,7 +31,12 @@ for (const name of names) {
 
 const root = process.cwd();
 const registry = process.env.npm_registry || 'https://registry.npm.taobao.org';
-const production = process.argv.indexOf('--production') > 0;
+const production = process.argv.indexOf('--production') > 0 || process.env.NODE_ENV === 'production';
+
+if (process.argv.indexOf('-v') > 0 || process.argv.indexOf('--version') > 0) {
+  console.log('v%s', require('../package.json').version);
+  process.exit(0);
+}
 
 co(function*() {
   yield npminstall({
