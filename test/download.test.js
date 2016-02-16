@@ -55,10 +55,11 @@ describe('test/download.test.js', () => {
           pkgs: [
             { name: 'pedding' },
           ],
+          production: true,
         });
         throw new Error('should not run this');
       } catch (err) {
-        assert(/response 404 status/.test(err.message));
+        assert(/response 404 status/.test(err.message), err.message);
       }
     });
 
@@ -81,10 +82,11 @@ describe('test/download.test.js', () => {
           pkgs: [
             { name: 'pedding' },
           ],
+          cacheDir: '',
         });
         throw new Error('should not run this');
       } catch (err) {
-        assert(/status: 206 error, should be 200/.test(err.message));
+        assert(/status: 206 error, should be 200/.test(err.message), err.message);
       }
     });
   });

@@ -32,6 +32,7 @@ for (const name of names) {
 const root = process.cwd();
 const registry = process.env.npm_registry || 'https://registry.npm.taobao.org';
 const production = process.argv.indexOf('--production') > 0 || process.env.NODE_ENV === 'production';
+const cacheDir = process.argv.indexOf('--no-cache') > 0 ? '' : null;
 
 if (process.argv.indexOf('-v') > 0 || process.argv.indexOf('--version') > 0) {
   console.log('v%s', require('../package.json').version);
@@ -44,6 +45,7 @@ co(function*() {
     registry,
     pkgs,
     production,
+    cacheDir,
   });
 }).catch(function(err) {
   console.error(err);

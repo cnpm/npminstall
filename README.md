@@ -81,6 +81,21 @@ app/node_modules/.npminstall/node_modules/c@ -> ../c/2.0.0 (latest version)
 
 `a@1.0.0` is root package, won't create link at `app/node_modules/.npminstall/node_modules/a@`.
 
+## Benchmarks
+
+- npminstall@0.6.0
+- pnpm@0.18.0
+- npm@2.14.12
+
+cli | real | user | sys
+--- | ---  | ---  | ---
+npminstall | 0m13.805s | 0m10.060s | 0m4.956s
+npminstall with cache | 0m12.285s | 0m9.077s | 0m4.443s
+npminstall --no-cache | 0m13.583s | 0m9.579s | 0m4.423s
+pnpm | 0m16.323s | 0m13.132s | 0m5.014s
+npm | 0m45.721s | 0m31.606s | 0m9.842s
+npm with cache | 0m30.427s | 0m26.670s | 0m7.821s
+
 ## License
 
 [MIT](LICENSE)
