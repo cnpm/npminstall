@@ -1,4 +1,12 @@
 
+0.6.0 / 2016-02-17
+==================
+
+  * test: fix mock download error tests
+  * benchmark: add npminstall with cache
+  * test: download from orginal cdn on travis ci env
+  * feat: add local cache dir to store tarball files
+
 0.5.1 / 2016-02-16
 ==================
 
