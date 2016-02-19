@@ -4,6 +4,7 @@
  *
  * Authors:
  *   fengmk2 <m@fengmk2.com> (http://fengmk2.com)
+ *   dead_horse <dead_horse@qq.com>
  */
 
 'use strict';
@@ -19,7 +20,7 @@ const fs = require('mz/fs');
 const readJSON = require('../lib/utils').readJSON;
 const npminstall = require('../');
 
-describe('test/github.test.js', function() {
+describe('test/remote.test.js', function() {
   const root = path.join(__dirname, 'fixtures', 'github');
 
   function cleanup() {
@@ -30,15 +31,17 @@ describe('test/github.test.js', function() {
   beforeEach(cleanup);
   afterEach(cleanup);
 
-  it('should install ignore github repo', function*() {
+  it('should install with remote url', function*() {
     yield npminstall({
       root: root,
     });
-    const pkg = yield readJSON(path.join(root, 'node_modules', 'pedding', 'package.json'));
+    let pkg = yield readJSON(path.join(root, 'node_modules', 'pedding', 'package.json'));
     assert.equal(pkg.name, 'pedding');
 
-    // only urllib dir exists
+    pkg = yield readJSON(path.join(root, 'node_modules', 'taffydb', 'package.json'));
+    assert.equal(pkg.name, 'taffydb');
+
     const dirs = yield fs.readdir(path.join(root, 'node_modules/.npminstall'));
-    assert.deepEqual(dirs, [ 'pedding' ]);
+    assert.deepEqual(dirs.sort(), [ '.tmp', 'pedding', 'taffydb' ].sort());
   });
 });
