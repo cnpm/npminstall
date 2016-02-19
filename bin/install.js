@@ -26,7 +26,7 @@ for (const name of names) {
     continue;
   }
   const p = npa(name);
-  pkgs.push({ name: p.name, version: p.spec });
+  pkgs.push({ name: p.name, version: p.rawSpec });
 }
 
 const root = process.cwd();
