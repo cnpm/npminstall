@@ -16,7 +16,6 @@ const assert = require('assert');
 const path = require('path');
 const rimraf = require('rimraf');
 const mkdirp = require('mkdirp');
-const fs = require('mz/fs');
 const readJSON = require('../lib/utils').readJSON;
 const npminstall = require('../');
 
