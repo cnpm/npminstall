@@ -144,7 +144,7 @@ describe('test/installLocal.test.js', function() {
     }
   });
 
-  it('should install local folder without package.json error', function*() {
+  it('should install local tarball without package.json error', function*() {
     try {
       yield npminstall({
         root: root,
@@ -172,7 +172,7 @@ describe('test/installLocal.test.js', function() {
     }
   });
 
-  it('should install local folder without package name error', function*() {
+  it('should install local tarball without package name error', function*() {
     try {
       yield npminstall({
         root: root,
