@@ -20,7 +20,7 @@ const fs = require('mz/fs');
 const readJSON = require('../lib/utils').readJSON;
 const npminstall = require('../');
 
-describe('test/remote.test.js', function() {
+describe('test/installRemote.test.js', function() {
   const root = path.join(__dirname, 'fixtures', 'github');
 
   function cleanup() {

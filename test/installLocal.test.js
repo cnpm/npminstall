@@ -26,9 +26,7 @@ describe('test/installLocal.test.js', function() {
     rimraf.sync(path.join(root, 'node_modules'));
   }
 
-  beforeEach(function() {
-    cleanup();
-  });
+  beforeEach(cleanup);
   afterEach(cleanup);
 
   it('should install local folder ok', function*() {
