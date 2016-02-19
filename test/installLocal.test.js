@@ -41,6 +41,9 @@ describe('test/installLocal.test.js', function() {
   });
 
   it('should install local link folder ok', function*() {
+    if (process.platform === 'win32') {
+      return;
+    }
     yield npminstall({
       root: root,
       pkgs: [
@@ -64,6 +67,9 @@ describe('test/installLocal.test.js', function() {
   });
 
   it('should install local link gzip tarball ok', function*() {
+    if (process.platform === 'win32') {
+      return;
+    }
     yield npminstall({
       root: root,
       pkgs: [
