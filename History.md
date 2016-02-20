@@ -1,4 +1,26 @@
 
+1.0.0 / 2016-02-21
+==================
+
+  * test: add link again test
+  * refactor: try install from https git url first
+  * test: use full path of _mocha
+  * test: travis install git
+  * fix: fix review bugs
+  * chore: lint
+  * fix: download pacakge count
+  * fix: skip link test in win32
+  * feat: support git and hosted
+  * feat: support remote pacakges
+  * fix: uniq by version
+  * test: add missing folder
+  * test: add assert message
+  * test: fix test case description
+  * feat: support install from local folder or tallbars
+  * feat: add total json count
+  * doc: add verbose benchmark histroy
+  * refactor: download npm
+
 0.7.0 / 2016-02-18
 ==================
 
