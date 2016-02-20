@@ -17,6 +17,7 @@
 const co = require('co');
 const npminstall = require('../');
 const npa = require('npm-package-arg');
+const chalk = require('chalk');
 const names = process.argv.slice(2);
 const pkgs = [];
 
@@ -48,7 +49,7 @@ co(function*() {
     cacheDir,
   });
 }).catch(function(err) {
-  console.error(err);
-  console.error(err.stack);
+  console.error(chalk.red(err));
+  console.error(chalk.red(err.stack));
   process.exit(1);
 });

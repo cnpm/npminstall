@@ -6,6 +6,7 @@ node_js:
   - '5'
   - '4'
 script:
+  - 'echo -e "Host bitbucket.org\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config'
   - 'npm run ci'
   - 'node test/all.js'
 after_script:

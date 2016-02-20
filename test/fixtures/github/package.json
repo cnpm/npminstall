@@ -2,6 +2,6 @@
   "name": "remote-demo",
   "dependencies": {
     "pedding": "*",
-    "taffydb": "https://github.com/hegemonic/taffydb/tarball/7d100bcee0e997ee4977e273cdce60bd8933050e"
+    "taffydb": "http://r.cnpmjs.org/taffydb/download/taffydb-2.7.2.tgz"
   }
 }

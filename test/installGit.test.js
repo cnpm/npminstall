@@ -78,7 +78,7 @@ describe('test/installGit.test.js', function() {
     assert(pkg.name, 'pedding');
   });
 
-  it('should install from bitbucket `bitbucket:dead_horse1/pedding`', function*() {
+  it.skip('should install from bitbucket `bitbucket:dead_horse1/pedding`', function*() {
     yield npminstall({
       root: tmp,
       pkgs: [
