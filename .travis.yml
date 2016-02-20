@@ -5,6 +5,8 @@ language: node_js
 node_js:
   - '5'
   - '4'
+before_script:
+  - echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 script:
   - 'npm run ci'
   - 'node test/all.js'

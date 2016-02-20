@@ -113,12 +113,12 @@ cd ..
 rm -rf .tmp
 
 # wait for https://github.com/cnpm/npminstall/issues/11
-# git clone https://github.com/facebook/react.git --depth=1 .tmp
-# cd .tmp
-# ../bin/install.js
-# npm test || exit $?
-# cd ..
-# rm -rf .tmp
+git clone https://github.com/facebook/react.git --depth=1 .tmp
+cd .tmp
+../bin/install.js
+npm test || exit $?
+cd ..
+rm -rf .tmp
 
 git clone https://github.com/gulpjs/gulp.git --depth=1 .tmp
 cd .tmp
