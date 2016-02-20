@@ -40,7 +40,8 @@ describe('test/installGit.test.js', function() {
       ],
     });
     const pkg = yield readJSON(path.join(tmp, 'node_modules/pedding/package.json'));
-    assert(pkg.name, 'pedding');
+    assert.equal(pkg.name, 'pedding');
+    assert(pkg.version !== '0.0.3');
   });
 
   it('should install github repo `node-modules/pedding#0.0.3` ok', function*() {
@@ -51,20 +52,20 @@ describe('test/installGit.test.js', function() {
       ],
     });
     const pkg = yield readJSON(path.join(tmp, 'node_modules/pedding/package.json'));
-    assert(pkg.name, 'pedding');
-    assert(pkg.version, '0.0.3');
+    assert.equal(pkg.name, 'pedding');
+    assert.equal(pkg.version, '0.0.3');
   });
 
-  it('should install from git with ssh `git+ssh://git@github.com:node-modules/pedding.git#0.0.3` ok', function*() {
+  it('should install from git with ssh `git+ssh://git@github.com:node-modules/pedding.git#0.0.2` ok', function*() {
     yield npminstall({
       root: tmp,
       pkgs: [
-        { name: null, version: 'git+ssh://git@github.com:node-modules/pedding.git#0.0.3' },
+        { name: null, version: 'git+ssh://git@github.com:node-modules/pedding.git#0.0.2' },
       ],
     });
     const pkg = yield readJSON(path.join(tmp, 'node_modules/pedding/package.json'));
-    assert(pkg.name, 'pedding');
-    assert(pkg.version, '0.0.3');
+    assert.equal(pkg.name, 'pedding');
+    assert.equal(pkg.version, '0.0.2');
   });
 
   it('should install from git with http `git+https://github.com/node-modules/pedding.git` ok', function*() {
@@ -75,17 +76,19 @@ describe('test/installGit.test.js', function() {
       ],
     });
     const pkg = yield readJSON(path.join(tmp, 'node_modules/pedding/package.json'));
-    assert(pkg.name, 'pedding');
+    assert.equal(pkg.name, 'pedding');
+    assert(pkg.version !== '0.0.3');
   });
 
-  it.skip('should install from bitbucket `bitbucket:dead_horse1/pedding`', function*() {
+  it('should install from bitbucket `bitbucket:node-modules/pedding`', function*() {
     yield npminstall({
       root: tmp,
       pkgs: [
-        { name: null, version: 'bitbucket:dead_horse1/pedding' },
+        { name: null, version: 'bitbucket:node-modules/pedding' },
       ],
     });
     const pkg = yield readJSON(path.join(tmp, 'node_modules/pedding/package.json'));
-    assert(pkg.name, 'pedding');
+    assert.equal(pkg.name, 'pedding');
+    assert(pkg.version !== '0.0.3');
   });
 });
