@@ -92,50 +92,6 @@ describe('test/installLocal.test.js', function() {
     assert.equal(pkg.name, 'pkg');
   });
 
-  it('should install the same tarball ok', function*() {
-    yield npminstall({
-      root: root,
-      pkgs: [
-        { name: null, version: 'file:pkg.tar' },
-      ],
-    });
-    let pkg = yield readJSON(path.join(root, 'node_modules/pkg/package.json'));
-    assert.equal(pkg.name, 'pkg');
-    yield npminstall({
-      root: root,
-      pkgs: [
-        { name: null, version: 'file:pkg.tar' },
-        { name: null, version: 'file:pkg.tar' },
-      ],
-    });
-    pkg = yield readJSON(path.join(root, 'node_modules/pkg/package.json'));
-    assert.equal(pkg.name, 'pkg');
-    const versions = yield fs.readdir(path.join(root, 'node_modules/.npminstall/pkg'));
-    assert.equal(versions.length, 1);
-  });
-
-  it('should install the same local folder ok', function*() {
-    yield npminstall({
-      root: root,
-      pkgs: [
-        { name: null, version: 'file:pkg' },
-      ],
-    });
-    let pkg = yield readJSON(path.join(root, 'node_modules/pkg/package.json'));
-    assert.equal(pkg.name, 'pkg');
-    yield npminstall({
-      root: root,
-      pkgs: [
-        { name: null, version: 'file:pkg' },
-        { name: null, version: 'file:pkg' },
-      ],
-    });
-    pkg = yield readJSON(path.join(root, 'node_modules/pkg/package.json'));
-    assert.equal(pkg.name, 'pkg');
-    const versions = yield fs.readdir(path.join(root, 'node_modules/.npminstall/pkg'));
-    assert.equal(versions.length, 1);
-  });
-
   it('should install local folder without package.json error', function*() {
     try {
       yield npminstall({
@@ -191,4 +147,50 @@ describe('test/installLocal.test.js', function() {
       assert(err.message.match(/package.json must contains name/), err.message);
     }
   });
+
+  if (process.platform !== 'win32') {
+    it('should install the same tarball ok', function*() {
+      yield npminstall({
+        root: root,
+        pkgs: [
+          { name: null, version: 'file:pkg.tar' },
+        ],
+      });
+      let pkg = yield readJSON(path.join(root, 'node_modules/pkg/package.json'));
+      assert.equal(pkg.name, 'pkg');
+      yield npminstall({
+        root: root,
+        pkgs: [
+          { name: null, version: 'file:pkg.tar' },
+          { name: null, version: 'file:pkg.tar' },
+        ],
+      });
+      pkg = yield readJSON(path.join(root, 'node_modules/pkg/package.json'));
+      assert.equal(pkg.name, 'pkg');
+      const versions = yield fs.readdir(path.join(root, 'node_modules/.npminstall/pkg'));
+      assert.equal(versions.length, 1);
+    });
+
+    it('should install the same local folder ok', function*() {
+      yield npminstall({
+        root: root,
+        pkgs: [
+          { name: null, version: 'file:pkg' },
+        ],
+      });
+      let pkg = yield readJSON(path.join(root, 'node_modules/pkg/package.json'));
+      assert.equal(pkg.name, 'pkg');
+      yield npminstall({
+        root: root,
+        pkgs: [
+          { name: null, version: 'file:pkg' },
+          { name: null, version: 'file:pkg' },
+        ],
+      });
+      pkg = yield readJSON(path.join(root, 'node_modules/pkg/package.json'));
+      assert.equal(pkg.name, 'pkg');
+      const versions = yield fs.readdir(path.join(root, 'node_modules/.npminstall/pkg'));
+      assert.equal(versions.length, 1);
+    });
+  }
 });

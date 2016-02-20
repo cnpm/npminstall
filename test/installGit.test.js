@@ -32,6 +32,17 @@ describe('test/installGit.test.js', function() {
   });
   afterEach(cleanup);
 
+  it.skip('should install ikt@git+http://ikt.pm2.io/ikt.git#master', function*() {
+    yield npminstall({
+      root: tmp,
+      pkgs: [
+        { name: 'ikt', version: 'git+http://ikt.pm2.io/ikt.git#master' },
+      ],
+    });
+    const pkg = yield readJSON(path.join(tmp, 'node_modules/ikt/package.json'));
+    assert.equal(pkg.name, 'ikt');
+  });
+
   it('should install github repo `node-modules/pedding` ok', function*() {
     yield npminstall({
       root: tmp,
