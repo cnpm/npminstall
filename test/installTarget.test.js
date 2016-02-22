@@ -31,7 +31,8 @@ describe('test/installTarget.test.js', function() {
     cleanup();
     mkdirp.sync(tmp);
   });
-  // afterEach(cleanup);
+
+  afterEach(cleanup);
 
   it('should install to target dir', function*() {
     yield npminstall({

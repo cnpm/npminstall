@@ -42,6 +42,8 @@ co(function*() {
     // pkgs: [
     //   { name: 'foo', version: '~1.0.0' },
     // ],
+    // install to specific directory, default to root
+    // targetDir: '/home/admin/.global',
     // registry, default is https://registry.npmjs.org
     // registry: 'https://registry.npmjs.org',
     // debug: false,
