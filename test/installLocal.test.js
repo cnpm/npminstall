@@ -40,6 +40,17 @@ describe('test/installLocal.test.js', function() {
     assert.equal(pkg.name, 'pkg');
   });
 
+  it('should install local folder with relative path ok', function*() {
+    yield npminstall({
+      root: root,
+      pkgs: [
+        { name: null, version: './pkg' },
+      ],
+    });
+    const pkg = yield readJSON(path.join(root, 'node_modules/pkg/package.json'));
+    assert.equal(pkg.name, 'pkg');
+  });
+
   it('should install local link folder ok', function*() {
     if (process.platform === 'win32') {
       return;
