@@ -1,9 +1,10 @@
 {
   "name": "peerDependencies-test",
   "dependencies": {
-    "react": "^0.14.0",
     "less-loader": "~2.2.2",
-    "react-datepicker": "0.20.0"
+    "antd": "0.12.4",
+    "react": "0.14.7",
+    "react-dom": "0.14.0"
   },
   "devDependencies": {
     "mocha": "~1.19.0",
