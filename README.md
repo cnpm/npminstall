@@ -68,32 +68,25 @@ e.g.:
 
 ```bash
 app/
-├── package.json
 └── node_modules/
-    ├── .npminstall/
-    │   ├── a/
-    │   │   └── 1.0.0/
-    │   │       ├── package.json
-    │   │       └── node_modules/
-    │   │           ├── b -> ../../../b/1.0.0
-    │   │           └── c -> ../../../c/2.0.0
-    │   ├── b/
-    │   │   └── 1.0.0/
-    │   │       ├── package.json
-    │   │       └── node_modules/
-    │   │           └── c -> ../../../c/1.0.0
-    │   ├── c/
-    │   │   ├── 1.0.0/
-    │   │       └── package.json
-    │   │   └── 2.0.0/
-    │   │       └── package.json
-    │   └── node_modules/
-    │       ├── b -> ../b/1.0.0 (latest version)
-    │       └── c -> ../c/2.0.0 (latest version)
-    └── a -> .npminstall/a/1.0.0
+    ├── .npminstall/
+    │   ├── debug/
+    │   │   └── 2.2.0/
+    │   │       └── debug/
+    │   │           └──  node_modules/
+    │   │               └── ms -> ../../../../ms/0.7.1/ms
+    │   ├── ms/
+    │   │   ├── 0.5.1/
+    │   │   │   └── ms/
+    │   │   └── 0.7.1/
+    │   │       └── ms/
+    │   └── node_modules/
+    │       └── ms -> ../ms/0.7.1/ms
+    ├── debug -> .npminstall/debug/2.2.0/debug
+    └── ms -> .npminstall/ms/0.5.1/ms
 ```
 
-`a@1.0.0` is root package, won't create link at `app/node_modules/.npminstall/node_modules/a@`.
+`debug@1.0.0` is root package, won't create link at `app/node_modules/.npminstall/node_modules/debug@`.
 
 ## Benchmarks
 
