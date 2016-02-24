@@ -1,4 +1,14 @@
 
+1.0.2 / 2016-02-24
+==================
+
+  * feat: support link to specific binDir
+  * fix: use options.cache
+  * fix: local module relative path
+  * fix: try nodeModulePaths to find peerDependencies
+  * chore: add install to specific directory in readme
+  * feat: support install to target dir
+
 1.0.1 / 2016-02-23
 ==================
 
