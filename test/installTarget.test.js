@@ -38,14 +38,22 @@ describe('test/installTarget.test.js', function() {
     yield npminstall({
       root: tmp,
       targetDir: path.join(tmp, 'targetDir'),
+      binDir: path.join(tmp, 'binDir'),
       pkgs: [
         {name: 'koa', version: 'latest'},
+        {name: 'mocha', version: 'latest'},
       ],
     });
 
-    const pkg = yield readJSON(path.join(tmp, 'targetDir/node_modules/koa/package.json'));
+    let pkg = yield readJSON(path.join(tmp, 'targetDir/node_modules/koa/package.json'));
     assert(pkg.name, 'koa');
+    pkg = yield readJSON(path.join(tmp, 'targetDir/node_modules/mocha/package.json'));
+    assert(pkg.name, 'mocha');
     const pkgs = fs.readdirSync(path.join(tmp, 'targetDir/node_modules/.npminstall'));
     assert(pkgs.indexOf('koa') >= 0);
+    assert(pkgs.indexOf('mocha') >= 0);
+    const bins = fs.readdirSync(path.join(tmp, 'binDir'));
+    assert(bins.indexOf('mocha') >= 0);
+    assert(bins.indexOf('_mocha') >= 0);
   });
 });

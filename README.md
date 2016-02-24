@@ -43,7 +43,9 @@ co(function*() {
     //   { name: 'foo', version: '~1.0.0' },
     // ],
     // install to specific directory, default to root
-    // targetDir: '/home/admin/.global',
+    // targetDir: '/home/admin/.global/lib',
+    // link bin to specific directory (for global install)
+    // binDir: '/home/admin/.global/bin',
     // registry, default is https://registry.npmjs.org
     // registry: 'https://registry.npmjs.org',
     // debug: false,
