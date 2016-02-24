@@ -11,4 +11,4 @@ script:
   - 'npm run ci'
   - 'node test/all.js'
 after_script:
-  - 'npm i codecov && ./node_modules/.bin/codecov'
+  - 'npm i codecov && codecov'
