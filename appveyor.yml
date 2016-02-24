@@ -1,4 +1,7 @@
 environment:
+  global:
+    npm_registry: https://registry.npmjs.com
+
   matrix:
     - nodejs_version: "5"
     - nodejs_version: "4"
