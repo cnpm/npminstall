@@ -1,6 +1,6 @@
 sudo: false
 env:
-  - CC=clang CXX=clang++ npm_config_clang=1
+  - CC=clang CXX=clang++ npm_config_clang=1 npm_registry=https://registry.npmjs.com
 language: node_js
 node_js:
   - '5'
@@ -11,4 +11,4 @@ script:
   - 'npm run ci'
   - 'node test/all.js'
 after_script:
-  - 'npm i codecov && ./node_modules/.bin/codecov'
+  - 'npm i codecov && codecov'

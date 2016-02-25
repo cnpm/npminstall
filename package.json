@@ -44,6 +44,7 @@
   },
   "devDependencies": {
     "autod": "*",
+    "coffee": "3",
     "eslint": "1",
     "eslint-config-egg": "1",
     "istanbul": "*",
