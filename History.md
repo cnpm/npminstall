@@ -1,4 +1,11 @@
 
+1.0.3 / 2016-02-25
+==================
+
+  * chore: add different with npm
+  * test: add npm_registry env for ci
+  * feat(bin): support --save, --save-dev and --save-optional
+
 1.0.2 / 2016-02-24
 ==================
 
