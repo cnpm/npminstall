@@ -56,12 +56,22 @@ co(function*() {
 });
 ```
 
+## Different with NPM
+
+This project is inspired by [pnpm](https://github.com/rstacruz/pnpm), and has a similar store structure like pnpm. You can read [pnpm vs npm](https://github.com/rstacruz/pnpm/blob/master/docs/vs-npm.md) to see the different with npm.
+
+### Limitations
+
+- You can't install from [shrinkwrap](https://docs.npmjs.com/cli/shrinkwrap)(and don't want to support for now).
+- Peer dependencies are a little trickier to deal with(see rule 1 below).
+- You can't publish npm modules with bundleDependencies managed by npminstall(because of rule 2 below).
+
 ## `node_modules` directory
 
 Two rules:
 
-- The latest version of modules will link at `options.storeDir`'s `node_modules`.
-- Module's dependencies will link at module's `node_modules`.
+1. The latest version of modules will link at `options.storeDir`'s `node_modules`.
+2. Module's dependencies will link at module's `node_modules`.
 
 e.g.:
 
