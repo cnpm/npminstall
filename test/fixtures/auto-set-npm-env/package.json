@@ -1,0 +1,9 @@
+{
+  "name": "auto-set-npm-env",
+  "scripts": {
+    "postinstall": "node postinstall.js"
+  },
+  "dependencies": {
+    "pedding": "1.0.0"
+  }
+}

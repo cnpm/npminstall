@@ -16,6 +16,7 @@ const assert = require('assert');
 const rimraf = require('rimraf');
 const path = require('path');
 const fs = require('fs');
+const coffee = require('coffee');
 const readJSON = require('../lib/utils').readJSON;
 const npminstall = require('..');
 
@@ -66,4 +67,36 @@ describe('test/postinstall.test.js', () => {
       });
     });
   });
+
+  if (process.platform !== 'win32') {
+    describe('test/installSaveDeps.test.js', () => {
+      const root = path.join(__dirname, 'fixtures', 'auto-set-npm-env');
+
+      beforeEach(() => {
+        rimraf.sync(path.join(root, 'node_modules'));
+      });
+      afterEach(() => {
+        rimraf.sync(path.join(root, 'node_modules'));
+      });
+
+      it('should install --save pedding and update dependencies', done => {
+        coffee.fork(path.join(__dirname, '..', 'bin', 'install.js'), [
+          '--foo_bar_haha=okok',
+        ], {
+          cwd: root,
+        })
+        .debug()
+        .expect('stdout', /\[pedding@1\.0\.0] installed/)
+        .expect('stdout', /npm_foo_bar_haha = okok/)
+        .expect('code', 0)
+        .end(err => {
+          assert(!err, err && err.message);
+          const version = require(path.join(root, 'node_modules', 'pedding', 'package.json')).version;
+          assert(version);
+          assert.equal(version, '1.0.0');
+          done();
+        });
+      });
+    });
+  }
 });
