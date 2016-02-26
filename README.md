@@ -56,6 +56,31 @@ co(function*() {
 });
 ```
 
+## Support Features
+
+- [x] global install (`-g, --global`)
+- [x] postinstall script
+  - [x] support Windows
+- [x] node-gyp
+  - [x] node-pre-gyp
+- [x] bin (yo@1.6.0, fsevents@1.0.6)
+- [x] scoped package
+- [x] bundleDependencies / bundledDependencies (node-pre-gyp@0.6.19, fsevents@1.0.6)
+- [x] optionalDependencies (pm2@1.0.0)
+- [x] peerDependencies (co-defer@1.0.0, co-mocha@1.1.2, estraverse-fb@1.3.1)
+- [x] deprecate message
+- [x] `--production` mode
+- [x] cleanup when install failed
+- all types of npm package
+  - [x] a) a folder containing a program described by a package.json file (`npm install file:eslint-rule`)
+  - [x] b) a gzipped tarball containing (a) (`npm install ./rule.tgz`)
+  - [x] c) a url that resolves to (b) (`npm install https://github.com/indexzero/forever/tarball/v0.5.6`)
+  - [x] d) a <name>@<version> that is published on the registry with (c)
+  - [x] e) a <name>@<tag> (see npm-dist-tag) that points to (d)
+  - [x] f) a <name> that has a "latest" tag satisfying (e)
+  - [x] g) a <git remote url> that resolves to (a) (`npm install git://github.com/timaschew/cogent#fix-redirects`)
+- [x] `save`, `save-dev`, `save-optional`
+
 ## Different with NPM
 
 This project is inspired by [pnpm](https://github.com/rstacruz/pnpm), and has a similar store structure like pnpm. You can read [pnpm vs npm](https://github.com/rstacruz/pnpm/blob/master/docs/vs-npm.md) to see the different with npm.
