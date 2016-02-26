@@ -40,7 +40,8 @@
     "semver": "~5.1.0",
     "tar": "~2.2.1",
     "urllib": "~2.7.1",
-    "utility": "~1.6.0"
+    "utility": "~1.6.0",
+    "minimist": "~1.2.0"
   },
   "devDependencies": {
     "autod": "*",

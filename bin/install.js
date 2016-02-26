@@ -20,30 +20,59 @@ const chalk = require('chalk');
 const path = require('path');
 const execSync = require('child_process').execSync;
 const fs = require('mz/fs');
+const parseArgs = require('minimist');
 const utils = require('../lib/utils');
 const npminstall = require('../');
 
-const names = process.argv.slice(2);
+const argv = parseArgs(process.argv.slice(2), {
+  string: [
+    'root',
+    'registry',
+  ],
+  boolean: [
+    'version',
+    'production',
+    'global',
+    'save',
+    'save-dev',
+    'save-optional',
+  ],
+  alias: {
+    v: 'version',
+    g: 'global',
+  },
+});
+
+if (argv.version) {
+  console.log('v%s', require('../package.json').version);
+  process.exit(0);
+}
+
 const pkgs = [];
 
-for (const name of names) {
-  // ignore --production
-  if (name.indexOf('-') === 0) {
-    continue;
-  }
-  const p = npa(name);
+for (const name of argv._) {
+  const p = npa(String(name));
   pkgs.push({ name: p.name, version: p.rawSpec });
 }
 
-const root = process.cwd();
-const registry = process.env.npm_registry || 'https://registry.npm.taobao.org';
-const production = process.argv.indexOf('--production') > 0 || process.env.NODE_ENV === 'production';
-const cacheDir = process.argv.indexOf('--no-cache') > 0 ? '' : null;
-const isGlobal = process.argv.indexOf('-g') >= 0 || process.argv.indexOf('--global') >= 0;
+const root = argv.root || process.cwd();
+const registry = argv.registry || process.env.npm_registry || 'https://registry.npm.taobao.org';
+const production = argv.production || process.env.NODE_ENV === 'production';
+let cacheDir = argv.cache === false ? '' : null;
+if (production) {
+  cacheDir = '';
+}
 
-if (process.argv.indexOf('-v') > 0 || process.argv.indexOf('--version') > 0) {
-  console.log('v%s', require('../package.json').version);
-  process.exit(0);
+const env = {
+  npm_registry: registry,
+};
+
+// npm cli will auto set options to npm_xx env.
+for (const key in argv) {
+  const value = argv[key];
+  if (value && typeof value === 'string') {
+    env['npm_' + key] = value;
+  }
 }
 
 co(function*() {
@@ -53,22 +82,23 @@ co(function*() {
     pkgs,
     production,
     cacheDir,
+    env,
   };
   // -g install to npm's global prefix
-  if (isGlobal) {
+  if (argv.global) {
     const npmPrefix = getPrefix();
     config.targetDir = path.join(npmPrefix, 'lib');
     config.binDir = path.join(npmPrefix, 'bin');
   }
   yield npminstall(config);
 
-  if (!isGlobal && pkgs.length > 0) {
+  if (!argv.global && pkgs.length > 0) {
     // support --save, --save-dev and --save-optional
-    if (process.argv.indexOf('--save') >= 0) {
+    if (argv.save) {
       yield updateDependencies(root, pkgs, 'dependencies');
-    } else if (process.argv.indexOf('--save-dev') >= 0) {
+    } else if (argv['save-dev']) {
       yield updateDependencies(root, pkgs, 'devDependencies');
-    } else if (process.argv.indexOf('--save-optional') >= 0) {
+    } else if (argv['save-optional']) {
       yield updateDependencies(root, pkgs, 'optionalDependencies');
     }
   }
