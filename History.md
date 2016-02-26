@@ -1,4 +1,11 @@
 
+1.0.6 / 2016-02-27
+==================
+
+  * fix: ignore `Path` env on Windows
+  * fix: auto set npm env just like npm cli does
+  * chore: add support features
+
 1.0.5 / 2016-02-26
 ==================
 
