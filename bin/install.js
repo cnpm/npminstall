@@ -71,7 +71,7 @@ const env = {
 for (const key in argv) {
   const value = argv[key];
   if (value && typeof value === 'string') {
-    env['npm_' + key] = value;
+    env['npm_config_' + key] = value;
   }
 }
 
