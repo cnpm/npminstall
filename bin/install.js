@@ -56,7 +56,7 @@ for (const name of argv._) {
 }
 
 const root = argv.root || process.cwd();
-const registry = argv.registry || process.env.npm_registry || 'https://registry.npm.taobao.org';
+const registry = argv.registry || process.env.npm_registry;
 const production = argv.production || process.env.NODE_ENV === 'production';
 let cacheDir = argv.cache === false ? '' : null;
 if (production) {
