@@ -1,4 +1,9 @@
 
+1.0.8 / 2016-02-29
+==================
+
+  * fix: use registry.npmjs.com by default on bin/install.js
+
 1.0.7 / 2016-02-27
 ==================
 
