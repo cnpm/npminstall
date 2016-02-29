@@ -22,6 +22,7 @@ const execSync = require('child_process').execSync;
 const fs = require('mz/fs');
 const parseArgs = require('minimist');
 const utils = require('../lib/utils');
+const config = require('../lib/config');
 const npminstall = require('../');
 
 const argv = parseArgs(process.argv.slice(2), {
@@ -36,10 +37,12 @@ const argv = parseArgs(process.argv.slice(2), {
     'save',
     'save-dev',
     'save-optional',
+    'china',
   ],
   alias: {
     v: 'version',
     g: 'global',
+    c: 'china',
   },
 });
 
@@ -56,16 +59,30 @@ for (const name of argv._) {
 }
 
 const root = argv.root || process.cwd();
-const registry = argv.registry || process.env.npm_registry;
 const production = argv.production || process.env.NODE_ENV === 'production';
 let cacheDir = argv.cache === false ? '' : null;
 if (production) {
   cacheDir = '';
 }
 
+// if in china, will automatic using chines registry and mirros.
+const inChina = argv.china;
+
+let registry = argv.registry || process.env.npm_registry;
+if (inChina) {
+  registry = registry || config.chineseRegistry;
+}
+// for env.npm_config_registry
+registry = registry || 'https://registry.npmjs.com';
 const env = {
-  npm_registry: registry,
+  npm_config_registry: registry,
 };
+
+if (inChina) {
+  for (const key in config.chineseMirrorEnv) {
+    env[key] = config.chineseMirrorEnv[key];
+  }
+}
 
 // npm cli will auto set options to npm_xx env.
 for (const key in argv) {
