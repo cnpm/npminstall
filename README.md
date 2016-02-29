@@ -22,13 +22,51 @@
 
 Let `npm install` fast and easy.
 
-## Installation
+## Use as Cli
+
+### Install
 
 ```bash
+$ npm install npminstall --g
+```
+
+### Usage
+
+```
+Usage:
+
+  npminstall
+  npminstall <pkg>
+  npminstall <pkg>@<tag>
+  npminstall <pkg>@<version>
+  npminstall <pkg>@<version range>
+  npminstall <folder>
+  npminstall <tarball file>
+  npminstall <tarball url>
+  npminstall <git:// url>
+  npminstall <github username>/<github project>
+
+Can specify one or more: npm install ./foo.tgz bar@stable /some/folder
+If no argument is supplied, installs dependencies from ./package.json.
+
+Options:
+
+  --production: won't install devDependencies
+  --save, --save-dev, --save-optional: save installed dependencies into package.json
+  -g, --global: install devDependencies to global directory which specified in '$ npm config get prefix'
+  -r, --registry: specify custom registry
+  -c, --china: specify in china, will automatically using chinses npm registry and other binary's mirrors
+```
+
+## Use as Lib
+
+### Install
+
+```
 $ npm install npminstall --save
 ```
 
-## Quick start
+### Usage
 
 ```js
 const co = require('co');

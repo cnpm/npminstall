@@ -22,6 +22,7 @@ const execSync = require('child_process').execSync;
 const fs = require('mz/fs');
 const parseArgs = require('minimist');
 const utils = require('../lib/utils');
+const config = require('../lib/config');
 const npminstall = require('../');
 
 const argv = parseArgs(process.argv.slice(2), {
@@ -31,20 +32,56 @@ const argv = parseArgs(process.argv.slice(2), {
   ],
   boolean: [
     'version',
+    'help',
     'production',
     'global',
     'save',
     'save-dev',
     'save-optional',
+    'china',
   ],
   alias: {
     v: 'version',
+    h: 'help',
     g: 'global',
+    c: 'china',
+    r: 'registry',
   },
 });
 
 if (argv.version) {
   console.log('v%s', require('../package.json').version);
+  process.exit(0);
+}
+
+if (argv.help) {
+  console.log(
+`
+Usage:
+
+  npminstall
+  npminstall <pkg>
+  npminstall <pkg>@<tag>
+  npminstall <pkg>@<version>
+  npminstall <pkg>@<version range>
+  npminstall <folder>
+  npminstall <tarball file>
+  npminstall <tarball url>
+  npminstall <git:// url>
+  npminstall <github username>/<github project>
+
+Can specify one or more: npminstall ./foo.tgz bar@stable /some/folder
+If no argument is supplied, installs dependencies from ./package.json.
+
+Options:
+
+  --production: won't install devDependencies
+  --save, --save-dev, --save-optional: save installed dependencies into package.json
+  -g, --global: install devDependencies to global directory which specified in '$npm config get prefix'
+  -r, --registry: specify custom registry
+  -c, --china: specify in china, will automatically using chinses npm registry and other binary's mirrors
+`
+  );
   process.exit(0);
 }
 
@@ -56,16 +93,30 @@ for (const name of argv._) {
 }
 
 const root = argv.root || process.cwd();
-const registry = argv.registry || process.env.npm_registry;
 const production = argv.production || process.env.NODE_ENV === 'production';
 let cacheDir = argv.cache === false ? '' : null;
 if (production) {
   cacheDir = '';
 }
 
+// if in china, will automatic using chines registry and mirros.
+const inChina = argv.china;
+
+let registry = argv.registry || process.env.npm_registry;
+if (inChina) {
+  registry = registry || config.chineseRegistry;
+}
+// for env.npm_config_registry
+registry = registry || 'https://registry.npmjs.com';
 const env = {
-  npm_registry: registry,
+  npm_config_registry: registry,
 };
+
+if (inChina) {
+  for (const key in config.chineseMirrorEnv) {
+    env[key] = config.chineseMirrorEnv[key];
+  }
+}
 
 // npm cli will auto set options to npm_xx env.
 for (const key in argv) {
