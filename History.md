@@ -1,4 +1,10 @@
 
+1.1.0 / 2016-02-29
+==================
+
+  * feat: add --help
+  * refactor: pass mirror env from bin, add --china options
+
 1.0.8 / 2016-02-29
 ==================
 
