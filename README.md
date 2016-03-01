@@ -117,6 +117,7 @@ co(function*() {
   - [x] e) a <name>@<tag> (see npm-dist-tag) that points to (d)
   - [x] f) a <name> that has a "latest" tag satisfying (e)
   - [x] g) a <git remote url> that resolves to (a) (`npm install git://github.com/timaschew/cogent#fix-redirects`)
+- [x] `preinstall`, `install`, `postinstall` scripts
 - [x] `save`, `save-dev`, `save-optional`
 
 ## Different with NPM
@@ -128,6 +129,8 @@ This project is inspired by [pnpm](https://github.com/rstacruz/pnpm), and has a 
 - You can't install from [shrinkwrap](https://docs.npmjs.com/cli/shrinkwrap)(and don't want to support for now).
 - Peer dependencies are a little trickier to deal with(see rule 1 below).
 - You can't publish npm modules with bundleDependencies managed by npminstall(because of rule 2 below).
+- `npminstall` will collect all postinstall scripts, and execute them until all dependencies installed.
+- If last install failed, better to cleanup node_modules directory before retry.
 
 ## `node_modules` directory
 

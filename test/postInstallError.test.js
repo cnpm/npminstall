@@ -16,10 +16,9 @@ const assert = require('assert');
 const path = require('path');
 const rimraf = require('rimraf');
 const mkdirp = require('mkdirp');
-const readJSON = require('../lib/utils').readJSON;
 const npminstall = require('./npminstall');
 
-describe('test/forceSymlink.test.js', function() {
+describe('test/postInstallError.test.js', function() {
   const tmp = path.join(__dirname, 'fixtures', 'tmp');
 
   function cleanup() {
@@ -32,16 +31,19 @@ describe('test/forceSymlink.test.js', function() {
   });
   afterEach(cleanup);
 
-  it('should remove exist module first', function*() {
-    mkdirp.sync(path.join(tmp, 'node_modules/debug'));
-    yield npminstall({
-      root: tmp,
-      pkgs: [
-        { name: 'debug', version: '1.0.0' },
-      ],
-    });
-    const pkg = yield readJSON(path.join(tmp, 'node_modules/debug/package.json'));
-    assert.equal(pkg.name, 'debug');
-    assert.equal(pkg.version, '1.0.0');
+  it('should display error when post install', function*() {
+    let throwError = false;
+    try {
+      yield npminstall({
+        root: tmp,
+        pkgs: [
+          { name: 'install-error', version: '1.0.0' },
+        ],
+      });
+    } catch (err) {
+      assert(err.message.indexOf('post install error, please remove node_modules before retry!') >= 0);
+      throwError = true;
+    }
+    assert.equal(throwError, true);
   });
 });

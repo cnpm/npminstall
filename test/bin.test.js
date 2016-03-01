@@ -17,7 +17,7 @@ const rimraf = require('rimraf');
 const path = require('path');
 const fs = require('fs');
 const readJSON = require('../lib/utils').readJSON;
-const npminstall = require('..');
+const npminstall = require('./npminstall');
 
 describe('test/bin.test.js', () => {
   const root = path.join(__dirname, 'fixtures', 'bin');

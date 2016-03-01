@@ -16,7 +16,7 @@ const assert = require('assert');
 const path = require('path');
 const rimraf = require('rimraf');
 const readJSON = require('../lib/utils').readJSON;
-const npminstall = require('../');
+const npminstall = require('./npminstall');
 const fs = require('mz/fs');
 
 describe('test/installLocal.test.js', function() {
