@@ -170,18 +170,18 @@ app/
 
 ## Benchmarks
 
-- npminstall@0.7.0
+- npminstall@1.2.0
 - pnpm@0.18.0
 - npm@2.14.12
 
 cli | real | user | sys
 --- | ---  | ---  | ---
-npminstall | 0m13.808s | 0m9.679s | 0m4.854s
-npminstall with cache | 0m11.712s | 0m8.769s | 0m4.377s
-npminstall --no-cache | 0m11.778s | 0m9.179s | 0m4.358s
-pnpm | 0m17.991s | 0m13.847s | 0m5.205s
-npm | 0m34.436s | 0m30.282s | 0m9.759s
-npm with cache | 0m36.533s | 0m24.625s | 0m7.562s
+npminstall | 0m10.908s | 0m8.733s | 0m4.282s
+npminstall with cache | 0m8.815s | 0m7.492s | 0m3.644s
+npminstall --no-cache | 0m10.279s | 0m8.255s | 0m3.932s
+pnpm | 0m13.509s | 0m11.650s | 0m4.443s
+npm | 0m28.171s | 0m26.085s | 0m8.219s
+npm with cache | 0m20.939s | 0m19.415s | 0m6.302s
 
 ## License
 

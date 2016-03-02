@@ -1,4 +1,10 @@
 
+1.2.0 / 2016-03-03
+==================
+
+  * feat: record post install scripts' cost
+  * refactor: collect all post install scripts
+
 1.1.1 / 2016-03-01
 ==================
 
