@@ -19,7 +19,7 @@ const rimraf = require('rimraf');
 const mkdirp = require('mkdirp');
 const fs = require('mz/fs');
 const readJSON = require('../lib/utils').readJSON;
-const npminstall = require('../');
+const npminstall = require('./npminstall');
 
 describe('test/installRemote.test.js', function() {
   const root = path.join(__dirname, 'fixtures', 'github');

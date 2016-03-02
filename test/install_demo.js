@@ -15,7 +15,7 @@
 require('debug').enable('npminstall:*');
 const path = require('path');
 const co = require('co');
-const npminstall = require('../');
+const npminstall = require('./npminstall');
 
 co(function*() {
   yield npminstall({

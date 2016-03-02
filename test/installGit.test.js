@@ -17,7 +17,7 @@ const path = require('path');
 const rimraf = require('rimraf');
 const mkdirp = require('mkdirp');
 const readJSON = require('../lib/utils').readJSON;
-const npminstall = require('../');
+const npminstall = require('./npminstall');
 
 describe('test/installGit.test.js', function() {
   const tmp = path.join(__dirname, 'fixtures', 'tmp');

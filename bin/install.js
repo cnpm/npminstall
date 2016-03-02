@@ -18,12 +18,13 @@ const co = require('co');
 const npa = require('npm-package-arg');
 const chalk = require('chalk');
 const path = require('path');
+const util = require('util');
 const execSync = require('child_process').execSync;
 const fs = require('mz/fs');
 const parseArgs = require('minimist');
 const utils = require('../lib/utils');
 const config = require('../lib/config');
-const npminstall = require('../');
+const npminstall = require('..');
 
 const argv = parseArgs(process.argv.slice(2), {
   string: [
@@ -153,6 +154,12 @@ co(function*() {
       yield updateDependencies(root, pkgs, 'optionalDependencies');
     }
   }
+
+  process.on('exit', function(code) {
+    if (code !== 0) {
+      fs.writeFileSync('npminstall-debug.log', util.inspect(config, {depth: 2}));
+    }
+  });
 }).catch(function(err) {
   console.error(chalk.red(err));
   console.error(chalk.red(err.stack));

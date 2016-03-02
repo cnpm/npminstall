@@ -17,9 +17,9 @@ const path = require('path');
 const rimraf = require('rimraf');
 const fs = require('mz/fs');
 const readJSON = require('../lib/utils').readJSON;
-const npminstall = require('../');
+const npminstall = require('./npminstall');
 
-describe('test/link-latest-version.test.js', function() {
+describe('test/linkLatestVersion.test.js', function() {
   const root = path.join(__dirname, 'fixtures', 'link-latest-version');
 
   function cleanup() {

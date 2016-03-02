@@ -16,7 +16,7 @@ const assert = require('assert');
 const path = require('path');
 const rimraf = require('rimraf');
 const fs = require('mz/fs');
-const npminstall = require('../');
+const npminstall = require('./npminstall');
 
 describe('test/production.test.js', function() {
   const root = path.join(__dirname, 'fixtures', 'production');

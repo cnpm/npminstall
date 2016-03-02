@@ -17,7 +17,7 @@ const path = require('path');
 const rimraf = require('rimraf');
 const fs = require('mz/fs');
 const mkdirp = require('mkdirp');
-const npminstall = require('../');
+const npminstall = require('./npminstall');
 
 describe('test/cleanup.test.js', function() {
   const tmp = path.join(__dirname, 'fixtures', 'tmp');
@@ -46,10 +46,8 @@ describe('test/cleanup.test.js', function() {
     }
     assert.equal(throwError, true);
 
-    let exists = yield fs.exists(path.join(tmp, 'node_modules/.npminstall/install-error/.tnpminstall.done'));
+    let exists = yield fs.exists(path.join(tmp, 'node_modules/.npminstall/install-error/1.0.1/install-error'));
     assert.equal(exists, false);
-    exists = yield fs.exists(path.join(tmp, 'node_modules/.npminstall/postinstall-error/.tnpminstall.done'));
-    assert.deepEqual(exists, false);
     const dirs = yield fs.readdir(path.join(tmp, 'node_modules'));
     assert.deepEqual(dirs, ['.npminstall']);
 
@@ -66,7 +64,7 @@ describe('test/cleanup.test.js', function() {
       throwError = true;
     }
     assert.equal(throwError, true);
-    exists = yield fs.exists(path.join(tmp, 'node_modules/.npminstall/install-error/.tnpminstall.done'));
+    exists = yield fs.exists(path.join(tmp, 'node_modules/.npminstall/install-error/1.0.1/install-error'));
     assert.equal(exists, false);
   });
 });

@@ -14,7 +14,7 @@
 
 const path = require('path');
 const rimraf = require('rimraf');
-const npminstall = require('../');
+const npminstall = require('./npminstall');
 
 describe('test/peerDependencies.test.js', function() {
   const root = path.join(__dirname, 'fixtures', 'peerDependencies');

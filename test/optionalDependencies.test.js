@@ -19,7 +19,7 @@ const rimraf = require('rimraf');
 const fs = require('mz/fs');
 const readJSON = require('../lib/utils').readJSON;
 const mkdirp = require('mkdirp');
-const npminstall = require('../');
+const npminstall = require('./npminstall');
 
 describe('test/optionalDependencies.test.js', function() {
   const tmp = path.join(__dirname, 'fixtures', 'tmp');

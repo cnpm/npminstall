@@ -17,7 +17,7 @@
 const co = require('co');
 const path = require('path');
 const rimraf = require('rimraf');
-const npminstall = require('..');
+const npminstall = require('./npminstall');
 
 const names = [
   'express', 'koa', 'browserify',
