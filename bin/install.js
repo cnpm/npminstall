@@ -39,9 +39,16 @@ const argv = parseArgs(process.argv.slice(2), {
     'save',
     'save-dev',
     'save-optional',
+    // Saved dependencies will be configured with an exact version rather than using npm's default semver range operator.
+    'save-exact',
     'china',
   ],
   alias: {
+    // npm install [-S|--save|-D|--save-dev|-O|--save-optional] [-E|--save-exact]
+    S: 'save',
+    D: 'save-dev',
+    O: 'save-optional',
+    E: 'save-exact',
     v: 'version',
     h: 'help',
     g: 'global',
@@ -77,7 +84,7 @@ If no argument is supplied, installs dependencies from ./package.json.
 Options:
 
   --production: won't install devDependencies
-  --save, --save-dev, --save-optional: save installed dependencies into package.json
+  --save, --save-dev, --save-optional, --save-exact: save installed dependencies into package.json
   -g, --global: install devDependencies to global directory which specified in '$npm config get prefix'
   -r, --registry: specify custom registry
   -c, --china: specify in china, will automatically using chinses npm registry and other binary's mirrors
@@ -148,11 +155,11 @@ co(function*() {
   if (!argv.global && pkgs.length > 0) {
     // support --save, --save-dev and --save-optional
     if (argv.save) {
-      yield updateDependencies(root, pkgs, 'dependencies');
+      yield updateDependencies(root, pkgs, 'dependencies', argv['save-exact']);
     } else if (argv['save-dev']) {
-      yield updateDependencies(root, pkgs, 'devDependencies');
+      yield updateDependencies(root, pkgs, 'devDependencies', argv['save-exact']);
     } else if (argv['save-optional']) {
-      yield updateDependencies(root, pkgs, 'optionalDependencies');
+      yield updateDependencies(root, pkgs, 'optionalDependencies', argv['save-exact']);
     }
   }
 
@@ -194,8 +201,8 @@ function getStrictSSL() {
   }
 }
 
-function* updateDependencies(root, pkgs, propName) {
-  const savePrefix = getVersionSavePrefix();
+function* updateDependencies(root, pkgs, propName, saveExact) {
+  const savePrefix = saveExact ? '' : getVersionSavePrefix();
   const pkgFile = path.join(root, 'package.json');
   const pkg = yield utils.readJSON(pkgFile);
   const deps = pkg[propName] = pkg[propName] || {};
