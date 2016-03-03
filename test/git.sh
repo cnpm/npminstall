@@ -1,5 +1,35 @@
 #!/usr/bin/env sh
 
+rm -rf .tmp
+
+git clone https://github.com/webpack/webpack.git --depth=1 .tmp
+cd .tmp
+../bin/install.js
+npm test || exit $?
+cd ..
+rm -rf .tmp
+
+git clone https://github.com/rstacruz/pnpm.git --depth=1 .tmp
+cd .tmp
+../bin/install.js
+npm test || exit $?
+cd ..
+rm -rf .tmp
+
+git clone https://github.com/chaijs/chai.git --depth=1 .tmp
+cd .tmp
+../bin/install.js
+npm test
+cd ..
+rm -rf .tmp
+
+git clone https://github.com/substack/node-browserify.git --depth=1 .tmp
+cd .tmp
+../bin/install.js
+npm test
+cd ..
+rm -rf .tmp
+
 git clone https://github.com/chalk/chalk.git --depth=1 .tmp
 cd .tmp
 ../bin/install.js
@@ -325,12 +355,7 @@ npm test
 cd ..
 rm -rf .tmp
 
-git clone https://github.com/webpack/webpack.git --depth=1 .tmp
-cd .tmp
-../bin/install.js
-npm test
-cd ..
-rm -rf .tmp
+
 
 git clone https://github.com/request/request.git --depth=1 .tmp
 cd .tmp
@@ -346,12 +371,7 @@ npm test
 cd ..
 rm -rf .tmp
 
-git clone https://github.com/rstacruz/pnpm.git --depth=1 .tmp
-cd .tmp
-../bin/install.js
-npm test
-cd ..
-rm -rf .tmp
+
 
 git clone https://github.com/eslint/eslint.git --depth=1 .tmp
 cd .tmp
@@ -360,23 +380,9 @@ npm test
 cd ..
 rm -rf .tmp
 
-# git clone https://github.com/ant-design/ant-design.git --depth=1 .tmp
-# cd .tmp
-# ../bin/install.js
-# npm test || exit $?
-# cd ..
-# rm -rf .tmp
-
-git clone https://github.com/substack/node-browserify.git --depth=1 .tmp
+git clone https://github.com/ant-design/ant-design.git --depth=1 .tmp
 cd .tmp
 ../bin/install.js
-npm test
-cd ..
-rm -rf .tmp
-
-git clone https://github.com/chaijs/chai.git --depth=1 .tmp
-cd .tmp
-../bin/install.js
-npm test
+npm test || exit $?
 cd ..
 rm -rf .tmp
