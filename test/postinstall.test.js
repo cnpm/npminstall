@@ -32,7 +32,7 @@ describe('test/postinstall.test.js', () => {
     beforeEach(cleanup);
     afterEach(cleanup);
 
-    it('should run preinstall, install and postinstall', function*() {
+    it('should run preinstall, install, postinstall and prepublish', function*() {
       yield npminstall({
         root: root,
       });
@@ -46,6 +46,8 @@ describe('test/postinstall.test.js', () => {
       assert.equal(fs.readFileSync(path.join(root, 'node_modules', '.install.txt'), 'utf8'), 'success: install');
       // postinstall pass
       assert.equal(fs.readFileSync(path.join(root, 'node_modules', '.postinstall.txt'), 'utf8'), 'success: postinstall');
+      // prepublish pass
+      assert.equal(fs.readFileSync(path.join(root, 'node_modules', '.prepublish.txt'), 'utf8'), 'success: prepublish');
     });
   });
 

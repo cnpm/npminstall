@@ -4,10 +4,12 @@
   "scripts": {
     "preinstall": "node index.js preinstall",
     "install": "node index.js install",
-    "postinstall": "node index.js postinstall"
+    "postinstall": "node index.js postinstall",
+    "prepublish": "node index.js prepublish"
   },
   "dependencies": {
     "utility": "1.6.0",
-    "bignum": "*"
+    "bignum": "*",
+    "a-dep-b": "*"
   }
 }
