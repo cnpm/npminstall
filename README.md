@@ -96,9 +96,17 @@ co(function*() {
 
 ## Support Features
 
+- [x] all types of npm package
+  - [x] a) a folder containing a program described by a package.json file (`npm install file:eslint-rule`)
+  - [x] b) a gzipped tarball containing (a) (`npm install ./rule.tgz`)
+  - [x] c) a url that resolves to (b) (`npm install https://github.com/indexzero/forever/tarball/v0.5.6`)
+  - [x] d) a <name>@<version> that is published on the registry with (c)
+  - [x] e) a <name>@<tag> (see npm-dist-tag) that points to (d)
+  - [x] f) a <name> that has a "latest" tag satisfying (e)
+  - [x] g) a <git remote url> that resolves to (a) (`npm install git://github.com/timaschew/cogent#fix-redirects`)
+- [x] All platform support
 - [x] global install (`-g, --global`)
-- [x] postinstall script
-  - [x] support Windows
+- [x] `preinstall`, `install`, `postinstall` scripts
 - [x] node-gyp
   - [x] node-pre-gyp
 - [x] bin (yo@1.6.0, fsevents@1.0.6)
@@ -108,16 +116,6 @@ co(function*() {
 - [x] peerDependencies (co-defer@1.0.0, co-mocha@1.1.2, estraverse-fb@1.3.1)
 - [x] deprecate message
 - [x] `--production` mode
-- [x] cleanup when install failed
-- all types of npm package
-  - [x] a) a folder containing a program described by a package.json file (`npm install file:eslint-rule`)
-  - [x] b) a gzipped tarball containing (a) (`npm install ./rule.tgz`)
-  - [x] c) a url that resolves to (b) (`npm install https://github.com/indexzero/forever/tarball/v0.5.6`)
-  - [x] d) a <name>@<version> that is published on the registry with (c)
-  - [x] e) a <name>@<tag> (see npm-dist-tag) that points to (d)
-  - [x] f) a <name> that has a "latest" tag satisfying (e)
-  - [x] g) a <git remote url> that resolves to (a) (`npm install git://github.com/timaschew/cogent#fix-redirects`)
-- [x] `preinstall`, `install`, `postinstall` scripts
 - [x] `save`, `save-dev`, `save-optional`
 
 ## Different with NPM
@@ -141,10 +139,8 @@ Two rules:
 
 e.g.:
 
-- app: `{ "dependencies": { "a": "1.0.0" } }` (root)
-- a@1.0.0: `{ "dependencies": { "c": "2.0.0", "b": "1.0.0" } }`
-- b@1.0.0: `{ "dependencies": { "c": "1.0.0" } }`
-- c@1.0.0 & c@2.0.0: `{ "dependencies": { } }`
+- app: `{ "dependencies": { "debug": "2.2.0", "ms": "0.5.1" } }` (root)
+- debug@2.2.0: `{ "dependencies": { "ms": "0.7.1" } }`
 
 ```bash
 app/
