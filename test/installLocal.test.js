@@ -173,7 +173,7 @@ describe('test/installLocal.test.js', function() {
         root: root,
         pkgs: [
           { name: null, version: 'file:pkg.tar' },
-          { name: null, version: 'file:pkg.tar' },
+          // { name: null, version: 'file:pkg.tar' },
         ],
       });
       pkg = yield readJSON(path.join(root, 'node_modules/pkg/package.json'));
