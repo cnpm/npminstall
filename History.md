@@ -1,4 +1,14 @@
 
+1.2.1 / 2016-03-03
+==================
+
+  * test: fix same tarball test case
+  * fix: add prepublish script after postinstall
+  * test: add pnpm benchmark scripts
+  * feat: support npm_china env
+  * feat: support read strict-ssl from npm config
+  * chore: fix readme
+
 1.2.0 / 2016-03-03
 ==================
 
