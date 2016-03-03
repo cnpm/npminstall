@@ -142,6 +142,7 @@ co(function*() {
     config.targetDir = path.join(npmPrefix, 'lib');
     config.binDir = path.join(npmPrefix, 'bin');
   }
+  config.strictSSL = getStrictSSL();
   yield npminstall(config);
 
   if (!argv.global && pkgs.length > 0) {
@@ -180,6 +181,16 @@ function getVersionSavePrefix() {
   } catch (err) {
     console.error(`exec npm config get save-prefix ERROR: ${err.message}`);
     return '^';
+  }
+}
+
+function getStrictSSL() {
+  try {
+    const strictSSL = execSync('npm config get strict-ssl').toString().trim();
+    return strictSSL !== 'false';
+  } catch (err) {
+    console.error(`exec npm config get strict-ssl ERROR: ${err.message}`);
+    return true;
   }
 }
 
