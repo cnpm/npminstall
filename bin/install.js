@@ -101,7 +101,7 @@ if (production) {
 }
 
 // if in china, will automatic using chines registry and mirros.
-const inChina = argv.china;
+const inChina = argv.china || !!process.env.npm_china;
 
 let registry = argv.registry || process.env.npm_registry;
 if (inChina) {
