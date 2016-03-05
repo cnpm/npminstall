@@ -15,7 +15,17 @@
 const npminstall = require('../');
 const config = require('../lib/config');
 
-module.exports = function* (options) {
+module.exports = function*(options) {
+  formatOptions(options);
+  return yield npminstall(options);
+};
+
+module.exports.installGlobal = function*(options) {
+  formatOptions(options);
+  return yield npminstall.installGlobal(options);
+};
+
+function formatOptions(options) {
   if (process.env.local) {
     options.registry = config.chineseRegistry;
     options.env = options.env || {};
@@ -23,5 +33,4 @@ module.exports = function* (options) {
       options.env[key] = config.chineseMirrorEnv[key];
     }
   }
-  return yield* npminstall(options);
-};
+}

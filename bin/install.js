@@ -25,7 +25,8 @@ const fs = require('mz/fs');
 const parseArgs = require('minimist');
 const utils = require('../lib/utils');
 const config = require('../lib/config');
-const npminstall = require('..');
+const installLocal = require('..').installLocal;
+const installGlobal = require('..').installGlobal;
 
 const argv = parseArgs(process.argv.slice(2), {
   string: [
@@ -146,23 +147,24 @@ co(function*() {
     cacheDir,
     env,
   };
+  config.strictSSL = getStrictSSL();
   // -g install to npm's global prefix
   if (argv.global) {
     const npmPrefix = getPrefix();
     config.targetDir = path.join(npmPrefix, 'lib');
     config.binDir = path.join(npmPrefix, 'bin');
-  }
-  config.strictSSL = getStrictSSL();
-  yield npminstall(config);
-
-  if (!argv.global && pkgs.length > 0) {
-    // support --save, --save-dev and --save-optional
-    if (argv.save) {
-      yield updateDependencies(root, pkgs, 'dependencies', argv['save-exact']);
-    } else if (argv['save-dev']) {
-      yield updateDependencies(root, pkgs, 'devDependencies', argv['save-exact']);
-    } else if (argv['save-optional']) {
-      yield updateDependencies(root, pkgs, 'optionalDependencies', argv['save-exact']);
+    yield installGlobal(config);
+  } else {
+    yield installLocal(config);
+    if (pkgs.length > 0) {
+      // support --save, --save-dev and --save-optional
+      if (argv.save) {
+        yield updateDependencies(root, pkgs, 'dependencies', argv['save-exact']);
+      } else if (argv['save-dev']) {
+        yield updateDependencies(root, pkgs, 'devDependencies', argv['save-exact']);
+      } else if (argv['save-optional']) {
+        yield updateDependencies(root, pkgs, 'optionalDependencies', argv['save-exact']);
+      }
     }
   }
 
