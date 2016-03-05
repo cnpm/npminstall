@@ -14,6 +14,7 @@
  * Module dependencies.
  */
 
+const debug = require('debug')('npminstall:bin:install');
 const co = require('co');
 const npa = require('npm-package-arg');
 const chalk = require('chalk');
@@ -133,6 +134,8 @@ for (const key in argv) {
     env['npm_config_' + key] = value;
   }
 }
+
+debug('argv: %j, env: %j', argv, env);
 
 co(function*() {
   const config = {
