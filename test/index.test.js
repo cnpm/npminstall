@@ -34,44 +34,6 @@ describe('test/index.test.js', function() {
   });
   afterEach(cleanup);
 
-  it('should npminstall with options.targetDir work', function*() {
-    yield npminstall({
-      root: tmp,
-      targetDir: path.join(tmp, 'lib'),
-      binDir: path.join(tmp, 'bin'),
-      pkgs: [
-        { name: 'contributors' },
-      ],
-    });
-
-    assert(yield fs.exists(path.join(tmp, 'bin', 'contributors')));
-    assert(yield fs.exists(path.join(tmp, 'lib', 'node_modules', 'contributors')));
-
-    yield npminstall({
-      root: tmp,
-      targetDir: path.join(tmp, 'lib'),
-      binDir: path.join(tmp, 'bin'),
-      pkgs: [
-        { name: 'contributors' },
-      ],
-    });
-
-    assert(yield fs.exists(path.join(tmp, 'bin', 'contributors')));
-    assert(yield fs.exists(path.join(tmp, 'lib', 'node_modules', 'contributors')));
-
-    yield npminstall({
-      root: tmp,
-      targetDir: path.join(tmp, 'lib'),
-      binDir: path.join(tmp, 'bin'),
-      pkgs: [
-        { name: 'contributors', 'version': '0' },
-      ],
-    });
-
-    assert(yield fs.exists(path.join(tmp, 'bin', 'contributors')));
-    assert(yield fs.exists(path.join(tmp, 'lib', 'node_modules', 'contributors')));
-  });
-
   it('should npminstall with options.pkgs', function*() {
     yield npminstall({
       root: tmp,
