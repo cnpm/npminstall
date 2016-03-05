@@ -1,4 +1,9 @@
 
+1.2.4 / 2016-03-06
+==================
+
+  * fix: global install must reinstall the whole package
+
 1.2.3 / 2016-03-05
 ==================
 
