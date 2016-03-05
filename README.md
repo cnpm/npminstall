@@ -139,30 +139,30 @@ Two rules:
 
 e.g.:
 
-- app: `{ "dependencies": { "debug": "2.2.0", "ms": "0.5.1" } }` (root)
+- app: `{ "dependencies": { "debug": "2.2.0" } }` (root)
 - debug@2.2.0: `{ "dependencies": { "ms": "0.7.1" } }`
 
 ```bash
 app/
+├── package.json
 └── node_modules/
     ├── .npminstall/
     │   ├── debug/
     │   │   └── 2.2.0/
-    │   │       └── debug/
-    │   │           └──  node_modules/
+    │   │       └── debug
+    │   │           ├── package.json
+    │   │           └── node_modules/
     │   │               └── ms -> ../../../../ms/0.7.1/ms
     │   ├── ms/
-    │   │   ├── 0.5.1/
-    │   │   │   └── ms/
     │   │   └── 0.7.1/
-    │   │       └── ms/
+    │   │       └── ms
+    │   │           └── package.json
     │   └── node_modules/
     │       └── ms -> ../ms/0.7.1/ms
-    ├── debug -> .npminstall/debug/2.2.0/debug
-    └── ms -> .npminstall/ms/0.5.1/ms
+    └── debug -> .npminstall/debug/2.2.0/debug
 ```
 
-`debug@1.0.0` is root package, won't create link at `app/node_modules/.npminstall/node_modules/debug@`.
+`debug@2.2.0` is root package, won't create link at `app/node_modules/.npminstall/node_modules/debug@`.
 
 ## Benchmarks
 
