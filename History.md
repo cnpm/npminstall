@@ -1,4 +1,10 @@
 
+1.2.3 / 2016-03-05
+==================
+
+  * test: add test for global install
+  * fix: install package@tag -g should work
+
 1.2.2 / 2016-03-03
 ==================
 
