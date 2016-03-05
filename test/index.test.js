@@ -13,7 +13,7 @@
  */
 
 const assert = require('assert');
-const fs = require('fs');
+const fs = require('mz/fs');
 const path = require('path');
 const rimraf = require('rimraf');
 const npminstall = require('./npminstall');
@@ -33,6 +33,44 @@ describe('test/index.test.js', function() {
     yield mkdirp(tmp);
   });
   afterEach(cleanup);
+
+  it('should npminstall with options.targetDir work', function*() {
+    yield npminstall({
+      root: tmp,
+      targetDir: path.join(tmp, 'lib'),
+      binDir: path.join(tmp, 'bin'),
+      pkgs: [
+        { name: 'contributors' },
+      ],
+    });
+
+    assert(yield fs.exists(path.join(tmp, 'bin', 'contributors')));
+    assert(yield fs.exists(path.join(tmp, 'lib', 'node_modules', 'contributors')));
+
+    yield npminstall({
+      root: tmp,
+      targetDir: path.join(tmp, 'lib'),
+      binDir: path.join(tmp, 'bin'),
+      pkgs: [
+        { name: 'contributors' },
+      ],
+    });
+
+    assert(yield fs.exists(path.join(tmp, 'bin', 'contributors')));
+    assert(yield fs.exists(path.join(tmp, 'lib', 'node_modules', 'contributors')));
+
+    yield npminstall({
+      root: tmp,
+      targetDir: path.join(tmp, 'lib'),
+      binDir: path.join(tmp, 'bin'),
+      pkgs: [
+        { name: 'contributors', 'version': '0' },
+      ],
+    });
+
+    assert(yield fs.exists(path.join(tmp, 'bin', 'contributors')));
+    assert(yield fs.exists(path.join(tmp, 'lib', 'node_modules', 'contributors')));
+  });
 
   it('should npminstall with options.pkgs', function*() {
     yield npminstall({

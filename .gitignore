@@ -17,3 +17,4 @@ coverage/
 .preinstall*
 .postisntall*
 .tmp
+test/fixtures/tmp
