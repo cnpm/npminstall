@@ -98,4 +98,43 @@ describe('test/index.test.js', function() {
     const v1 = yield readJSON(path.join(tmp, 'node_modules', 'pedding', 'package.json'));
     assert.equal(v1.version[0], '1');
   });
+
+  describe('_from, _resolved in package.json', function() {
+    const root = path.join(__dirname, 'fixtures', 'packageMeta');
+
+    function cleanup() {
+      rimraf.sync(path.join(root, 'node_modules'));
+    }
+
+    beforeEach(cleanup);
+    afterEach(cleanup);
+
+    it('should add _from, _resolved to package.json', function*() {
+      yield npminstall({
+        root: root,
+      });
+      // node_modules/.npminstall/node_modules/ms should exists
+      assert(yield fs.exists(path.join(root, 'node_modules', '.npminstall', 'node_modules', 'ms')));
+      // node_modules/.npminstall/node_modules/debug should not exists
+      assert(!(yield fs.exists(path.join(root, 'node_modules', '.npminstall', 'node_modules', 'debug'))));
+      assert(yield fs.exists(path.join(root, 'node_modules', 'pedding')));
+
+      const debugPkg = yield readJSON(path.join(root, 'node_modules', 'debug', 'package.json'));
+      assert.equal(debugPkg._from, 'debug@2.2.0');
+      assert(debugPkg._resolved);
+
+      const aPkg = yield readJSON(path.join(root, 'node_modules', 'a', 'package.json'));
+      assert(/^a@\d+\.\d+\.\d+$/.test(aPkg._from), aPkg._from);
+      assert(aPkg._resolved);
+
+      const peddingPkg = yield readJSON(path.join(root, 'node_modules', 'pedding', 'package.json'));
+      assert.equal(peddingPkg._from, 'pedding@http://registry.cnpmjs.org/pedding/download/pedding-1.0.0.tgz');
+      assert.equal(peddingPkg._resolved, 'http://registry.cnpmjs.org/pedding/download/pedding-1.0.0.tgz');
+
+      const bytesPkg = yield readJSON(path.join(root, 'node_modules', 'bytes', 'package.json'));
+      assert.equal(bytesPkg._from, 'bytes@https://github.com/visionmedia/bytes.js.git');
+      assert(/^https:\/\/github\.com\/visionmedia\/bytes\.js\.git#\w{40}$/.test(bytesPkg._resolved), bytesPkg._resolved);
+    });
+  });
+
 });
