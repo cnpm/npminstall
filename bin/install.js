@@ -122,10 +122,14 @@ const env = {
   npm_config_registry: registry,
 };
 
+let binaryMirrors = {};
+
 if (inChina) {
   for (const key in config.chineseMirrorEnv) {
     env[key] = config.chineseMirrorEnv[key];
   }
+
+  binaryMirrors = require('../lib/prebuild_mirror_config_china.json');
 }
 
 // npm cli will auto set options to npm_xx env.
@@ -146,6 +150,7 @@ co(function*() {
     production,
     cacheDir,
     env,
+    binaryMirrors,
   };
   config.strictSSL = getStrictSSL();
   // -g install to npm's global prefix

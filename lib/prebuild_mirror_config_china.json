@@ -1,0 +1,41 @@
+{
+  "leveldown": {
+    "host": "https://npm.taobao.org/mirrors/leveldown/v{version}"
+  },
+  "leveldown-hyper": {
+    "host": "https://npm.taobao.org/mirrors/leveldown-hyper/v{version}"
+  },
+  "mknod": {
+    "host": "https://npm.taobao.org/mirrors/mknod/v{version}"
+  },
+  "couchbase": {
+    "host": "https://npm.taobao.org/mirrors/couchbase/v{version}"
+  },
+  "sodium-prebuilt": {
+    "host": "https://npm.taobao.org/mirrors/sodium-prebuilt/v{version}"
+  },
+  "utp-native": {
+    "host": "https://npm.taobao.org/mirrors/utp-native/v{version}"
+  },
+  "node-tk5": {
+    "host": "https://npm.taobao.org/mirrors/node-tk5/v{version}"
+  },
+  "fuse-bindings": {
+    "host": "https://npm.taobao.org/mirrors/fuse-bindings/v{version}"
+  },
+  "zmq-prebuilt": {
+    "host": "https://npm.taobao.org/mirrors/zmq-prebuilt/v{version}"
+  },
+  "gl": {
+    "host": "https://npm.taobao.org/mirrors/gl/v{version}"
+  },
+  "hackrf": {
+    "host": "https://npm.taobao.org/mirrors/hackrf/v{version}"
+  },
+  "rabin": {
+    "host": "https://npm.taobao.org/mirrors/rabin/v{version}"
+  },
+  "sqlite3": {
+    "host": "https://npm.taobao.org/mirrors"
+  }
+}
