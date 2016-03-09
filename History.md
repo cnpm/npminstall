@@ -1,4 +1,10 @@
 
+1.3.0 / 2016-03-09
+==================
+
+  * refactor: Get mirrors from https://github.com/cnpm/binary-mirror-config/blob/master/package.json#L43
+  * feat: Auto set China mirror for prebuild binary packages
+
 1.2.5 / 2016-03-07
 ==================
 
