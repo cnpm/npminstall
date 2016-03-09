@@ -25,6 +25,7 @@ const fs = require('mz/fs');
 const parseArgs = require('minimist');
 const utils = require('../lib/utils');
 const config = require('../lib/config');
+const get = require('../lib/get');
 const installLocal = require('..').installLocal;
 const installGlobal = require('..').installGlobal;
 
@@ -122,14 +123,10 @@ const env = {
   npm_config_registry: registry,
 };
 
-let binaryMirrors = {};
-
 if (inChina) {
   for (const key in config.chineseMirrorEnv) {
     env[key] = config.chineseMirrorEnv[key];
   }
-
-  binaryMirrors = require('../lib/prebuild_mirror_config_china.json');
 }
 
 // npm cli will auto set options to npm_xx env.
@@ -143,6 +140,21 @@ for (const key in argv) {
 debug('argv: %j, env: %j', argv, env);
 
 co(function*() {
+  let binaryMirrors = {};
+
+  if (inChina) {
+    const binaryMirrorUrl = registry + '/binary-mirror-config/latest';
+    try {
+      const res = yield get(binaryMirrorUrl, {
+        dataType: 'json',
+        followRedirect: true,
+      });
+      binaryMirrors = res.data.mirrors.china;
+    } catch (err) {
+      debug('Get %s error: %s', binaryMirrorUrl, err);
+    }
+  }
+
   const config = {
     root,
     registry,
