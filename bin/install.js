@@ -152,6 +152,7 @@ co(function*() {
       binaryMirrors = res.data.mirrors.china;
     } catch (err) {
       debug('Get %s error: %s', binaryMirrorUrl, err);
+      binaryMirrors = require('binary-mirror-config/package.json').mirrors.china;
     }
   }
 
