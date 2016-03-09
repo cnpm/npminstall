@@ -41,7 +41,8 @@
     "tar": "~2.2.1",
     "urllib": "~2.7.1",
     "utility": "~1.6.0",
-    "minimist": "~1.2.0"
+    "minimist": "~1.2.0",
+    "binary-mirror-config": "^1.0.1"
   },
   "devDependencies": {
     "autod": "*",
