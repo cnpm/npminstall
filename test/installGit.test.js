@@ -14,7 +14,6 @@
 
 const assert = require('assert');
 const path = require('path');
-const fs = require('fs');
 const rimraf = require('rimraf');
 const mkdirp = require('mkdirp');
 const readJSON = require('../lib/utils').readJSON;
@@ -108,8 +107,8 @@ describe('test/installGit.test.js', function() {
     yield npminstall({
       root: tmp,
       pkgs: [
-        {name: null, version: 'git+https://github.com/mozilla/nunjucks.git#0f8b21b8df7e8e852b2e1889388653b7075f0d09'}
-      ]
+        {name: null, version: 'git+https://github.com/mozilla/nunjucks.git#0f8b21b8df7e8e852b2e1889388653b7075f0d09'},
+      ],
     });
 
     const pkg = yield readJSON(path.join(tmp, 'node_modules/nunjucks/package.json'));
@@ -121,8 +120,8 @@ describe('test/installGit.test.js', function() {
     yield npminstall({
       root: tmp,
       pkgs: [
-        {name: null, version: 'git+https://github.com/mozilla/nunjucks.git#0f8b21b8d'}
-      ]
+        {name: null, version: 'git+https://github.com/mozilla/nunjucks.git#0f8b21b8d'},
+      ],
     });
 
     const pkg = yield readJSON(path.join(tmp, 'node_modules/nunjucks/package.json'));
@@ -131,13 +130,17 @@ describe('test/installGit.test.js', function() {
   });
 
   it('should fail on some strange hash', function*() {
-    yield npminstall({
-      root: tmp,
-      pkgs: [
-        {name: null, version: 'git+https://github.com/mozilla/nunjucks.git#wtf???!!!fail-here,hahaa'}
-      ]
-    });
+    try {
+      yield npminstall({
+        root: tmp,
+        pkgs: [
+          {name: null, version: 'git+https://github.com/mozilla/nunjucks.git#wtf???!!!fail-here,hahaa'},
+        ],
+      });
+    } catch (err) {
+      assert(/Run "sh -c git checkout wtf\?\?\?!!!fail-here,hahaa" error, exit code 1/.test(err.message), err.message);
+    }
 
-    assert(!fs.existsSync(path.join(tmp, 'node_modules/nunjucks/package.json')));
+
   });
 });
