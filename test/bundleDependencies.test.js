@@ -46,7 +46,7 @@ describe('test/bundleDependencies.test.js', function() {
 
     // only node-pre-gyp dir exists
     const dirs = yield fs.readdir(path.join(tmp, 'node_modules/.npminstall'));
-    assert.deepEqual(dirs, [ 'node-pre-gyp' ]);
+    assert.deepEqual(dirs.sort(), [ 'node-pre-gyp', 'node_modules' ].sort());
   });
 
   if (process.platform !== 'win32') {

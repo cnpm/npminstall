@@ -43,8 +43,8 @@ describe('test/linkLatestVersion.test.js', function() {
       'node_modules', '.npminstall', 'node_modules', 'iconv-lite', 'package.json'));
     assert.equal(pkg2.name, 'iconv-lite');
 
-    // debug should not link
+    // debug also need link
     const exists = yield fs.exists(path.join(root, 'node_modules', '.npminstall', 'node_modules', 'debug'));
-    assert(!exists);
+    assert(exists);
   });
 });
