@@ -138,7 +138,7 @@ describe('test/installGit.test.js', function() {
         ],
       });
     } catch (err) {
-      assert(/Run "sh -c git checkout wtf\?\?\?!!!fail-here,hahaa" error, exit code 1/.test(err.message), err.message);
+      assert(/checkout wtf\?\?\?!!!fail-here,hahaa" error/.test(err.message), err.message);
     }
 
 
