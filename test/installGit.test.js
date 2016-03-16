@@ -102,4 +102,45 @@ describe('test/installGit.test.js', function() {
     assert.equal(pkg.name, 'pedding');
     assert(pkg.version !== '0.0.3');
   });
+
+  it('should install from github with commit hash https://github.com/mozilla/nunjucks.git#0f8b21b8df7e8e852b2e1889388653b7075f0d09', function*() {
+    yield npminstall({
+      root: tmp,
+      pkgs: [
+        {name: null, version: 'git+https://github.com/mozilla/nunjucks.git#0f8b21b8df7e8e852b2e1889388653b7075f0d09'},
+      ],
+    });
+
+    const pkg = yield readJSON(path.join(tmp, 'node_modules/nunjucks/package.json'));
+    assert.equal(pkg.name, 'nunjucks');
+    assert.equal(pkg.version, '1.2.0');
+  });
+
+  it('should also ok on https://github.com/mozilla/nunjucks.git#0f8b21b8d', function*() {
+    yield npminstall({
+      root: tmp,
+      pkgs: [
+        {name: null, version: 'git+https://github.com/mozilla/nunjucks.git#0f8b21b8d'},
+      ],
+    });
+
+    const pkg = yield readJSON(path.join(tmp, 'node_modules/nunjucks/package.json'));
+    assert.equal(pkg.name, 'nunjucks');
+    assert.equal(pkg.version, '1.2.0');
+  });
+
+  it('should fail on some strange hash', function*() {
+    try {
+      yield npminstall({
+        root: tmp,
+        pkgs: [
+          {name: null, version: 'git+https://github.com/mozilla/nunjucks.git#wtf???!!!fail-here,hahaa'},
+        ],
+      });
+    } catch (err) {
+      assert(/checkout wtf\?\?\?!!!fail-here,hahaa" error/.test(err.message), err.message);
+    }
+
+
+  });
 });
