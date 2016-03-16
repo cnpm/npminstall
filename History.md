@@ -1,4 +1,9 @@
 
+1.4.0 / 2016-03-16
+==================
+
+  * feat: link root packages to storeDir/node_modules
+
 1.3.2 / 2016-03-12
 ==================
 
