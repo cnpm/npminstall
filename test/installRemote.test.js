@@ -45,7 +45,7 @@ describe('test/installRemote.test.js', function() {
     assert.equal(pkg.name, 'taffydb');
 
     const dirs = yield fs.readdir(path.join(root, 'node_modules/.npminstall'));
-    assert.deepEqual(dirs.sort(), [ '.tmp', 'pedding', 'taffydb' ].sort());
+    assert.deepEqual(dirs.sort(), [ '.tmp', 'pedding', 'taffydb', 'node_modules' ].sort());
   });
 
   it('should install http://r.cnpmjs.org/taffydb/download/taffydb-2.7.2.tgz', function*() {

@@ -115,8 +115,8 @@ describe('test/index.test.js', function() {
       });
       // node_modules/.npminstall/node_modules/ms should exists
       assert(yield fs.exists(path.join(root, 'node_modules', '.npminstall', 'node_modules', 'ms')));
-      // node_modules/.npminstall/node_modules/debug should not exists
-      assert(!(yield fs.exists(path.join(root, 'node_modules', '.npminstall', 'node_modules', 'debug'))));
+      // node_modules/.npminstall/node_modules/debug should exists
+      assert(yield fs.exists(path.join(root, 'node_modules', '.npminstall', 'node_modules', 'debug')));
       assert(yield fs.exists(path.join(root, 'node_modules', 'pedding')));
 
       const debugPkg = yield readJSON(path.join(root, 'node_modules', 'debug', 'package.json'));
