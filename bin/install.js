@@ -169,8 +169,13 @@ co(function*() {
   // -g install to npm's global prefix
   if (argv.global) {
     const npmPrefix = getPrefix();
-    config.targetDir = path.join(npmPrefix, 'lib');
-    config.binDir = path.join(npmPrefix, 'bin');
+    if (process.platform === 'win32') {
+      config.targetDir = npmPrefix;
+      config.binDir = npmPrefix;
+    } else {
+      config.targetDir = path.join(npmPrefix, 'lib');
+      config.binDir = path.join(npmPrefix, 'bin');
+    }
     yield installGlobal(config);
   } else {
     yield installLocal(config);
