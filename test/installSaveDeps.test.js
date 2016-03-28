@@ -116,5 +116,26 @@ if (process.platform !== 'win32') {
         done();
       });
     });
+
+    it('should install from github with commit hash mozilla/nunjucks#0f8b21b8df7e8e852b2e1889388653b7075f0d09 and update dependencies', done => {
+      coffee.fork(npminstall, [
+        '--save',
+        'mozilla/nunjucks#0f8b21b8df7e8e852b2e1889388653b7075f0d09',
+      ], {
+        cwd: tmp,
+      })
+      .expect('stdout', /\[nunjucks@mozilla\/nunjucks#0f8b21b8df7e8e852b2e1889388653b7075f0d09\] installed/)
+      .expect('code', 0)
+      .end(err => {
+        assert(!err, err && err.message);
+        const deps = JSON.parse(fs.readFileSync(path.join(tmp, 'package.json'))).dependencies;
+        assert(deps);
+        assert(deps.nunjucks);
+        assert.equal(typeof deps.nunjucks, 'string');
+        assert.equal(deps.nunjucks, 'mozilla/nunjucks#0f8b21b8df7e8e852b2e1889388653b7075f0d09');
+
+        done();
+      });
+    });
   });
 }
