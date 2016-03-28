@@ -248,7 +248,7 @@ function* updateDependencies(root, pkgs, propName, saveExact) {
   const pkg = yield utils.readJSON(pkgFile);
   const deps = pkg[propName] = pkg[propName] || {};
   for (const item of pkgs) {
-    if (item.type == 'hosted') {
+    if (item.type === 'hosted') {
       deps[item.name] = item.version;
     } else {
       const itemPkg = yield utils.readJSON(path.join(root, 'node_modules', item.name, 'package.json'));
