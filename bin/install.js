@@ -251,5 +251,11 @@ function* updateDependencies(root, pkgs, propName, saveExact) {
     const itemPkg = yield utils.readJSON(path.join(root, 'node_modules', item.name, 'package.json'));
     deps[item.name] = `${savePrefix}${itemPkg.version}`;
   }
+  // sort pkg[propName]
+  const newDeps = {};
+  for (const key of Object.keys(deps).sort()) {
+    newDeps[key] = deps[key];
+  }
+  pkg[propName] = newDeps;
   yield fs.writeFile(pkgFile, JSON.stringify(pkg, null, 2));
 }
