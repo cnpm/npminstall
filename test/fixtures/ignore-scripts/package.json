@@ -1,0 +1,6 @@
+{
+  "name": "ignore-scripts",
+  "dependencies": {
+    "kpg": "./pkg"
+  }
+}
