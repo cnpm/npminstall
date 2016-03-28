@@ -1,4 +1,11 @@
 
+1.5.0 / 2016-03-28
+==================
+
+  * chore: fix eslint
+  * chore: add ignore-scripts in readme
+  * feat: support ignore-scripts
+
 1.4.2 / 2016-03-26
 ==================
 
