@@ -102,7 +102,7 @@ const pkgs = [];
 
 for (const name of argv._) {
   const p = npa(String(name));
-  pkgs.push({ name: p.name, version: p.rawSpec });
+  pkgs.push({ name: p.name, version: p.rawSpec, type: p.type });
 }
 
 const root = argv.root || process.cwd();
@@ -248,8 +248,12 @@ function* updateDependencies(root, pkgs, propName, saveExact) {
   const pkg = yield utils.readJSON(pkgFile);
   const deps = pkg[propName] = pkg[propName] || {};
   for (const item of pkgs) {
-    const itemPkg = yield utils.readJSON(path.join(root, 'node_modules', item.name, 'package.json'));
-    deps[item.name] = `${savePrefix}${itemPkg.version}`;
+    if (item.type === 'hosted') {
+      deps[item.name] = item.version;
+    } else {
+      const itemPkg = yield utils.readJSON(path.join(root, 'node_modules', item.name, 'package.json'));
+      deps[item.name] = `${savePrefix}${itemPkg.version}`;
+    }
   }
   // sort pkg[propName]
   const newDeps = {};
