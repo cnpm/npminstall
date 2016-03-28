@@ -56,6 +56,7 @@ Options:
   -g, --global: install devDependencies to global directory which specified in '$ npm config get prefix'
   -r, --registry: specify custom registry
   -c, --china: specify in china, will automatically using chinses npm registry and other binary's mirrors
+  --ignore-scripts: ignore all preinstall / install and postinstall scripts during the installation
 ```
 
 ## Use as Lib
@@ -88,6 +89,7 @@ co(function*() {
     // registry: 'https://registry.npmjs.org',
     // debug: false,
     // storeDir: root + '.npminstall',
+    // ignoreScripts: true, // ignore pre/post install scripts, default is `false`
   });
 }).catch(function(err) {
   console.error(err.stack);
@@ -117,6 +119,7 @@ co(function*() {
 - [x] deprecate message
 - [x] `--production` mode
 - [x] `save`, `save-dev`, `save-optional`
+- [x] support `ignore-scripts`
 
 ## Different with NPM
 
