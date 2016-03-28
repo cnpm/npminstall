@@ -54,6 +54,27 @@ if (process.platform !== 'win32') {
       });
     });
 
+    it('should install --save pedding and update dependencies and sort', done => {
+      fs.writeFileSync(path.join(tmp, 'package.json'), '{"dependencies":{"zhi":"^0.3.1"}}');
+      coffee.fork(npminstall, [
+        '--save',
+        'pedding',
+      ], {
+        cwd: tmp,
+      })
+      .debug()
+      .expect('stdout', /\[pedding@\*\] installed/)
+      .expect('code', 0)
+      .end(err => {
+        assert(!err, err && err.message);
+
+        const deps = JSON.parse(fs.readFileSync(path.join(tmp, 'package.json'))).dependencies;
+        assert(/\{"pedding":"[\^\~]\d+\.\d+\.\d+","zhi":"\^0.3.1"\}/.test(JSON.stringify(deps)));
+
+        done();
+      });
+    });
+
     it('should install --save-dev pedding and update devDependencies', done => {
       coffee.fork(npminstall, [
         '--save-dev',
