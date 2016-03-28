@@ -1,0 +1,14 @@
+{
+  "name": "pkg",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "preinstall": "echo \"preinstall\" > ./preinstall",
+    "install": "echo \"install\" > ./install",
+    "postinstall": "echo \"postinstall\" > ./postinstall"
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -45,6 +45,7 @@ const argv = parseArgs(process.argv.slice(2), {
     // Saved dependencies will be configured with an exact version rather than using npm's default semver range operator.
     'save-exact',
     'china',
+    'ignore-scripts',
   ],
   alias: {
     // npm install [-S|--save|-D|--save-dev|-O|--save-optional] [-E|--save-exact]
@@ -91,6 +92,7 @@ Options:
   -g, --global: install devDependencies to global directory which specified in '$npm config get prefix'
   -r, --registry: specify custom registry
   -c, --china: specify in china, will automatically using chinses npm registry and other binary's mirrors
+  --ignore-scripts: ignore all preinstall / install and postinstall scripts during the installation
 `
   );
   process.exit(0);
@@ -166,6 +168,7 @@ co(function*() {
     binaryMirrors,
   };
   config.strictSSL = getStrictSSL();
+  config.ignoreScripts = argv['ignore-scripts'] || getIgnoreScripts();
   // -g install to npm's global prefix
   if (argv.global) {
     const npmPrefix = getPrefix();
@@ -226,6 +229,16 @@ function getStrictSSL() {
   } catch (err) {
     console.error(`exec npm config get strict-ssl ERROR: ${err.message}`);
     return true;
+  }
+}
+
+function getIgnoreScripts() {
+  try {
+    const ignoreScripts = execSync('npm config get ignore-scripts').toString().trim();
+    return ignoreScripts === 'true';
+  } catch (err) {
+    console.error(`exec npm config get ignore-scripts ERROR: ${err.message}`);
+    return false;
   }
 }
 
