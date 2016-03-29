@@ -1,4 +1,9 @@
 
+1.5.2 / 2016-03-29
+==================
+
+  * fix: use correct name and version when installing from git
+
 1.5.1 / 2016-03-29
 ==================
 
