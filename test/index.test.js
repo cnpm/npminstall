@@ -133,7 +133,7 @@ describe('test/index.test.js', function() {
 
       const bytesPkg = yield readJSON(path.join(root, 'node_modules', 'bytes', 'package.json'));
       assert.equal(bytesPkg._from, 'bytes@https://github.com/visionmedia/bytes.js.git');
-      assert(/^https:\/\/github\.com\/visionmedia\/bytes\.js\.git#\w{40}$/.test(bytesPkg._resolved), bytesPkg._resolved);
+      assert(/^https:\/\/github\.com\/visionmedia\/bytes\.js\.git#\w+$/.test(bytesPkg._resolved), bytesPkg._resolved);
     });
   });
 
