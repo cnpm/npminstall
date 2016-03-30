@@ -12,6 +12,7 @@
  * Module dependencies.
  */
 
+const os = require('os');
 const assert = require('assert');
 const path = require('path');
 const rimraf = require('rimraf');
@@ -20,16 +21,19 @@ const readJSON = require('../lib/utils').readJSON;
 const npminstall = require('./npminstall');
 
 describe('test/installGit.test.js', function() {
-  const tmp = path.join(__dirname, 'fixtures', 'tmp');
 
+  // here we use a tmp dir for custom testing since `getLastCommitHash` would silently pass
+  // and return **this** repo's commit hash.
+  const tmp = path.join(os.tmpdir(), 'fixtures', 'tmp');
+
+  function prepare() {
+    mkdirp.sync(tmp);
+  }
   function cleanup() {
     rimraf.sync(tmp);
   }
 
-  beforeEach(() => {
-    cleanup();
-    mkdirp.sync(tmp);
-  });
+  beforeEach(prepare);
   afterEach(cleanup);
 
   it.skip('should install ikt@git+http://ikt.pm2.io/ikt.git#master', function*() {
@@ -129,6 +133,18 @@ describe('test/installGit.test.js', function() {
     assert.equal(pkg.version, '1.2.0');
   });
 
+  it('should also ok on https://github.com/gulpjs/gulp#4.0', function*() {
+    yield npminstall({
+      root: tmp,
+      pkgs: [
+        {name: null, version: 'git+https://github.com/gulpjs/gulp.git#4.0'},
+      ],
+    });
+
+    const pkg = yield readJSON(path.join(tmp, 'node_modules/gulp/package.json'));
+    assert.equal(pkg.name, 'gulp');
+  });
+
   it('should fail on some strange hash', function*() {
     try {
       yield npminstall({
@@ -140,7 +156,6 @@ describe('test/installGit.test.js', function() {
     } catch (err) {
       assert(/checkout wtf\?\?\?!!!fail-here,hahaa" error/.test(err.message), err.message);
     }
-
 
   });
 });
