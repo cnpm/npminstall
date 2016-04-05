@@ -137,4 +137,12 @@ describe('test/index.test.js', function() {
     });
   });
 
+  it('should install chromedriver work', function*() {
+    yield npminstall({
+      root: tmp,
+      pkgs: [
+        { name: 'chromedriver' },
+      ],
+    });
+  });
 });
