@@ -20,6 +20,7 @@ const rimraf = require('rimraf');
 const npminstall = require('./npminstall');
 
 const names = [
+  'strongloop',
   'express', 'koa', 'browserify',
   'pm2',
   'grunt-cli',
