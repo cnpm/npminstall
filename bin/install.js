@@ -153,7 +153,7 @@ co(function*() {
       });
       binaryMirrors = res.data.mirrors.china;
     } catch (err) {
-      debug('Get %s error: %s', binaryMirrorUrl, err);
+      console.warn('Get %s error: %s', binaryMirrorUrl, err.stack);
       binaryMirrors = require('binary-mirror-config/package.json').mirrors.china;
     }
   }
