@@ -123,10 +123,6 @@ describe('test/index.test.js', function() {
       assert.equal(debugPkg._from, 'debug@2.2.0');
       assert(debugPkg._resolved);
 
-      const aPkg = yield readJSON(path.join(root, 'node_modules', 'a', 'package.json'));
-      assert(/^a@\d+\.\d+\.\d+$/.test(aPkg._from), aPkg._from);
-      assert(aPkg._resolved);
-
       const peddingPkg = yield readJSON(path.join(root, 'node_modules', 'pedding', 'package.json'));
       assert.equal(peddingPkg._from, 'pedding@http://registry.cnpmjs.org/pedding/download/pedding-1.0.0.tgz');
       assert.equal(peddingPkg._resolved, 'http://registry.cnpmjs.org/pedding/download/pedding-1.0.0.tgz');

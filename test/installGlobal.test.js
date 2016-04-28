@@ -41,15 +41,12 @@ describe('test/installGlobal.test.js', function() {
       pkgs: [
         { name: 'contributors' },
         { version: 'http://registry.npm.taobao.org/pedding/download/pedding-1.0.0.tgz' },
-        { name: 'a' },
         { version: 'http://r.cnpmjs.org/taffydb/download/taffydb-2.7.2.tgz' },
       ],
     });
 
     assert(yield fs.exists(path.join(tmp, 'bin', 'contributors')));
     assert(yield fs.exists(path.join(tmp, 'lib', 'node_modules', 'contributors')));
-    assert(yield fs.exists(path.join(tmp, 'bin', 'a')));
-    assert(yield fs.exists(path.join(tmp, 'lib', 'node_modules', 'a')));
     assert(yield fs.exists(path.join(tmp, 'lib', 'node_modules', 'taffydb')));
     assert(yield fs.exists(path.join(tmp, 'lib', 'node_modules', 'pedding')));
 
