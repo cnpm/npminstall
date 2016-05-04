@@ -49,6 +49,17 @@ describe('test/bundleDependencies.test.js', function() {
     assert.deepEqual(dirs.sort(), [ 'node-pre-gyp', 'node_modules' ].sort());
   });
 
+  it('should install bundleDependencies not exist(nyc@6.4.2)', function*() {
+    yield npminstall({
+      root: tmp,
+      pkgs: [
+        { name: 'nyc', version: '6.4.2' },
+      ],
+    });
+    const exists = fs.existsSync(path.join(tmp, 'node_modules/nyc/node_modules/foreground-child'));
+    assert(exists);
+  });
+
   if (process.platform !== 'win32') {
     // fsevents not support windows
     it('should link bundleDependencies bin', function*() {
