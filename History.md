@@ -1,4 +1,10 @@
 
+1.6.5 / 2016-05-04
+==================
+
+  * fix: add retry to get binary-mirror-config/latest (#77)
+  * fix: install when bundle dependencies not exists (#76)
+
 1.6.4 / 2016-04-28
 ==================
 
