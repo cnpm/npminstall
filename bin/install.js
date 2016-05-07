@@ -25,7 +25,6 @@ const fs = require('mz/fs');
 const parseArgs = require('minimist');
 const utils = require('../lib/utils');
 const config = require('../lib/config');
-const get = require('../lib/get');
 const installLocal = require('..').installLocal;
 const installGlobal = require('..').installGlobal;
 
@@ -145,7 +144,7 @@ co(function*() {
   let binaryMirrors = {};
 
   if (inChina) {
-    binaryMirrors = yield getBinaryMirrors(registry);
+    binaryMirrors = yield utils.getBinaryMirrors(registry);
   }
 
   const config = {
@@ -252,35 +251,4 @@ function* updateDependencies(root, pkgs, propName, saveExact) {
   }
   pkg[propName] = newDeps;
   yield fs.writeFile(pkgFile, JSON.stringify(pkg, null, 2));
-}
-
-function* getBinaryMirrors(registry) {
-  const registries = [ registry ].concat([
-    'https://registry.npm.taobao.org',
-    'https://r.cnpmjs.org',
-    'https://registry.npmjs.org',
-  ]);
-  let lastErr;
-  let binaryMirrors;
-  for (const registry of registries) {
-    const binaryMirrorUrl = registry + '/binary-mirror-config/latest';
-    try {
-      const res = yield get(binaryMirrorUrl, {
-        dataType: 'json',
-        followRedirect: true,
-      });
-      binaryMirrors = res.data.mirrors.china;
-      debug('GET %s => %j', binaryMirrorUrl, binaryMirrors);
-      break;
-    } catch (err) {
-      lastErr = err;
-    }
-  }
-
-  if (!binaryMirrors) {
-    console.warn('Get /binary-mirror-config/latest from %s error: %s', registry, lastErr.stack);
-    binaryMirrors = require('binary-mirror-config/package.json').mirrors.china;
-  }
-
-  return binaryMirrors;
 }
