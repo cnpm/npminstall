@@ -1,0 +1,9 @@
+{
+  "name": "test-os-darwin",
+  "dependencies": {
+    "fsevents": "*"
+  },
+  "scripts": {
+    "postinstall": "node index.js"
+  }
+}

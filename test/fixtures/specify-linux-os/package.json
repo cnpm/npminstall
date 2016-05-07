@@ -1,0 +1,9 @@
+{
+  "name": "test-os-linux",
+  "dependencies": {
+    "test-os-linux": "*"
+  },
+  "scripts": {
+    "postinstall": "node index.js"
+  }
+}
