@@ -4,7 +4,6 @@ env:
 language: node_js
 node_js:
   - '6'
-  - '5'
   - '4'
 before_script:
   - echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config

@@ -60,18 +60,15 @@ describe('test/bundleDependencies.test.js', function() {
     assert(exists);
   });
 
-  if (process.platform !== 'win32') {
-    // fsevents not support windows
-    it('should link bundleDependencies bin', function*() {
-      yield npminstall({
-        root: tmp,
-        pkgs: [{
-          name: 'fsevents',
-          version: '1.0.6',
-        }],
-      });
-      const bins = yield fs.readdir(path.join(tmp, 'node_modules/fsevents/node_modules/.bin'));
-      assert.deepEqual(bins, ['node-pre-gyp']);
+  it('should link bundleDependencies bin', function*() {
+    yield npminstall({
+      root: tmp,
+      pkgs: [{
+        name: 'sqlite3',
+        version: '3.1.3',
+      }],
     });
-  }
+    const bins = yield fs.readdir(path.join(tmp, 'node_modules/sqlite3/node_modules/.bin'));
+    assert.deepEqual(bins, ['node-pre-gyp']);
+  });
 });
