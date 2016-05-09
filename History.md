@@ -1,4 +1,9 @@
 
+1.8.2 / 2016-05-10
+==================
+
+  * fix: utils.forceSymlink precheck dest dir exists (#82)
+
 1.8.1 / 2016-05-08
 ==================
 
