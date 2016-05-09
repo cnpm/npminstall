@@ -38,4 +38,16 @@ describe('test/bin.test.js', () => {
     assert.equal(pkg.version, '1.6.0');
     assert(fs.existsSync(path.join(root, 'node_modules', '.bin', 'yo')));
   });
+
+  it('should create bin folders for scoped pkg', function*() {
+    yield npminstall({
+      root: root,
+      pkgs: [
+        { name: '@bigfunger/decompress-zip' },
+      ],
+    });
+    const pkg = yield readJSON(path.join(root, 'node_modules', '@bigfunger/decompress-zip', 'package.json'));
+    assert.equal(pkg.name, '@bigfunger/decompress-zip');
+    assert(fs.existsSync(path.join(root, 'node_modules', '.bin/@bigfunger', 'decompress-zip')));
+  });
 });
