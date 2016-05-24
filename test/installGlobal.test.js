@@ -40,8 +40,8 @@ describe('test/installGlobal.test.js', function() {
       binDir: path.join(tmp, 'bin'),
       pkgs: [
         { name: 'contributors' },
-        { version: 'http://registry.npm.taobao.org/pedding/download/pedding-1.0.0.tgz' },
-        { version: 'http://r.cnpmjs.org/taffydb/download/taffydb-2.7.2.tgz' },
+        { version: 'https://registry.npm.taobao.org/pedding/download/pedding-1.0.0.tgz' },
+        { version: 'https://registry.npm.taobao.org/taffydb/download/taffydb-2.7.2.tgz' },
       ],
     });
 

@@ -2,6 +2,6 @@
   "name": "remote-demo",
   "dependencies": {
     "pedding": "*",
-    "taffydb": "http://r.cnpmjs.org/taffydb/download/taffydb-2.7.2.tgz"
+    "taffydb": "https://registry.npm.taobao.org/taffydb/download/taffydb-2.7.2.tgz"
   }
 }

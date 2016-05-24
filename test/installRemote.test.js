@@ -48,10 +48,10 @@ describe('test/installRemote.test.js', function() {
     assert.deepEqual(dirs.sort(), [ '.tmp', 'pedding', 'taffydb', 'node_modules' ].sort());
   });
 
-  it('should install http://r.cnpmjs.org/taffydb/download/taffydb-2.7.2.tgz', function*() {
+  it('should install https://registry.npm.taobao.org/taffydb/download/taffydb-2.7.2.tgz', function*() {
     yield npminstall({
       root: tmp,
-      pkgs: [{name: null, version: 'http://r.cnpmjs.org/taffydb/download/taffydb-2.7.2.tgz'}],
+      pkgs: [{name: null, version: 'https://registry.npm.taobao.org/taffydb/download/taffydb-2.7.2.tgz'}],
     });
     const pkg = yield readJSON(path.join(tmp, 'node_modules', 'taffydb', 'package.json'));
     assert.equal(pkg.name, 'taffydb');
