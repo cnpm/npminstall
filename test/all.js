@@ -26,7 +26,6 @@ const names = [
   'grunt-cli',
   'npm', 'karma',
   'bower',
-  'cordova',
   'coffee-script',
   'gulp',
   'forever',
