@@ -69,6 +69,10 @@ describe('test/bundleDependencies.test.js', function() {
       }],
     });
     const bins = yield fs.readdir(path.join(tmp, 'node_modules/sqlite3/node_modules/.bin'));
-    assert.deepEqual(bins, ['node-pre-gyp']);
+    if (process.platform === 'win32') {
+      assert.deepEqual(bins, ['node-pre-gyp', 'node-pre-gyp.cmd']);
+    } else {
+      assert.deepEqual(bins, ['node-pre-gyp']);
+    }
   });
 });
