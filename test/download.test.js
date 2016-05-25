@@ -32,10 +32,9 @@ describe('test/download.test.js', () => {
     yield mkdirp(tmp);
   });
   afterEach(cleanup);
+  afterEach(mm.restore);
 
   describe('mock tarball not exists', () => {
-    afterEach(mm.restore);
-
     it('should throw error when status === 404', function*() {
       const request = urllib.request;
       mm(urllib, 'request', function*(url, options) {
@@ -87,6 +86,81 @@ describe('test/download.test.js', () => {
         throw new Error('should not run this');
       } catch (err) {
         assert(/status: 206 error, should be 200/.test(err.message), err.message);
+      }
+    });
+  });
+
+  describe('mock tarball error', () => {
+    it('should throw sha1 error', function*() {
+      const request = urllib.request;
+      mm(urllib, 'request', function*(url, options) {
+        const result = yield request.call(urllib, url, options);
+        if (!url.endsWith('.tgz')) {
+          // change sha1 to wrong value
+          result.data.dist.shasum = '00098d60307b4ef7240c3d693cb20a9473c111';
+        }
+        return result;
+      });
+
+      try {
+        yield install({
+          root: tmp,
+          pkgs: [
+            { name: 'pedding' },
+          ],
+          production: true,
+        });
+        throw new Error('should not run this');
+      } catch (err) {
+        assert(/sha1:7f5098d60307b4ef7240c3d693cb20a9473c6074 not equal to 00098d60307b4ef7240c3d693cb20a9473c111/.test(err.message), err.message);
+      }
+    });
+
+    it('should throw 500 error', function*() {
+      const request = urllib.request;
+      mm(urllib, 'request', function*(url, options) {
+        const result = yield request.call(urllib, url, options);
+        if (url.endsWith('.tgz')) {
+          result.status = 500;
+        }
+        return result;
+      });
+
+      try {
+        yield install({
+          root: tmp,
+          pkgs: [
+            { name: 'pedding' },
+          ],
+          production: true,
+        });
+        throw new Error('should not run this');
+      } catch (err) {
+        assert(/response 500 status/.test(err.message), err.message);
+      }
+    });
+
+    it('should throw 502 error', function*() {
+      const request = urllib.request;
+      mm(urllib, 'request', function*(url, options) {
+        const result = yield request.call(urllib, url, options);
+        if (url.endsWith('.tgz')) {
+          result.status = 502;
+        }
+        return result;
+      });
+
+      try {
+        yield install({
+          root: tmp,
+          pkgs: [
+            { name: 'pedding' },
+          ],
+          production: true,
+        });
+        throw new Error('should not run this');
+      } catch (err) {
+        assert(/response 502 status/.test(err.message), err.message);
       }
     });
   });

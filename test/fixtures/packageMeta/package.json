@@ -2,7 +2,7 @@
   "name": "packageMeta",
   "dependencies": {
     "debug": "2.2.0",
-    "pedding": "http://registry.cnpmjs.org/pedding/download/pedding-1.0.0.tgz",
+    "pedding": "http://registry.npmjs.org/pedding/-/pedding-1.0.0.tgz",
     "bytes": "https://github.com/visionmedia/bytes.js.git"
   }
 }

@@ -124,8 +124,8 @@ describe('test/index.test.js', function() {
       assert(debugPkg._resolved);
 
       const peddingPkg = yield readJSON(path.join(root, 'node_modules', 'pedding', 'package.json'));
-      assert.equal(peddingPkg._from, 'pedding@http://registry.cnpmjs.org/pedding/download/pedding-1.0.0.tgz');
-      assert.equal(peddingPkg._resolved, 'http://registry.cnpmjs.org/pedding/download/pedding-1.0.0.tgz');
+      assert.equal(peddingPkg._from, 'pedding@http://registry.npmjs.org/pedding/-/pedding-1.0.0.tgz');
+      assert.equal(peddingPkg._resolved, 'http://registry.npmjs.org/pedding/-/pedding-1.0.0.tgz');
 
       const bytesPkg = yield readJSON(path.join(root, 'node_modules', 'bytes', 'package.json'));
       assert.equal(bytesPkg._from, 'bytes@https://github.com/visionmedia/bytes.js.git');
