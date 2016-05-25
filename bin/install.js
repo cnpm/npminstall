@@ -32,6 +32,7 @@ const argv = parseArgs(process.argv.slice(2), {
   string: [
     'root',
     'registry',
+    'prefix',
   ],
   boolean: [
     'version',
@@ -160,7 +161,8 @@ co(function*() {
   config.ignoreScripts = argv['ignore-scripts'] || getIgnoreScripts();
   // -g install to npm's global prefix
   if (argv.global) {
-    const npmPrefix = getPrefix();
+    // support custom prefix for global install
+    const npmPrefix = argv.prefix || getPrefix();
     if (process.platform === 'win32') {
       config.targetDir = npmPrefix;
       config.binDir = npmPrefix;

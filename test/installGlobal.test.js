@@ -16,6 +16,7 @@ const assert = require('assert');
 const fs = require('mz/fs');
 const path = require('path');
 const rimraf = require('rimraf');
+const coffee = require('coffee');
 const installGlobal = require('./npminstall').installGlobal;
 const mkdirp = require('../lib/utils').mkdirp;
 
@@ -75,5 +76,17 @@ describe('test/installGlobal.test.js', function() {
 
     assert(yield fs.exists(path.join(tmp, 'bin', 'contributors')));
     assert(yield fs.exists(path.join(tmp, 'lib', 'node_modules', 'contributors')));
+  });
+
+  it('should install with global prefix', done => {
+    coffee.fork(require.resolve('../bin/install.js'), [
+      `--prefix=${tmp}`,
+      '-g',
+      'pedding',
+    ])
+    .debug()
+    .expect(/All packages installed/)
+    .expect('code', 0)
+    .end(done);
   });
 });
