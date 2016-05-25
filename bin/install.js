@@ -208,7 +208,7 @@ function getVersionSavePrefix() {
   try {
     return execSync('npm config get save-prefix').toString().trim();
   } catch (err) {
-    console.error(`exec npm config get save-prefix ERROR: ${err.message}`);
+    debug(`exec npm config get save-prefix ERROR: ${err.message}`);
     return '^';
   }
 }
@@ -218,7 +218,7 @@ function getStrictSSL() {
     const strictSSL = execSync('npm config get strict-ssl').toString().trim();
     return strictSSL !== 'false';
   } catch (err) {
-    console.error(`exec npm config get strict-ssl ERROR: ${err.message}`);
+    debug(`exec npm config get strict-ssl ERROR: ${err.message}`);
     return true;
   }
 }
@@ -228,7 +228,7 @@ function getIgnoreScripts() {
     const ignoreScripts = execSync('npm config get ignore-scripts').toString().trim();
     return ignoreScripts === 'true';
   } catch (err) {
-    console.error(`exec npm config get ignore-scripts ERROR: ${err.message}`);
+    debug(`exec npm config get ignore-scripts ERROR: ${err.message}`);
     return false;
   }
 }
