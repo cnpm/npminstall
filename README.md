@@ -57,6 +57,7 @@ Options:
   -r, --registry: specify custom registry
   -c, --china: specify in china, will automatically using chinses npm registry and other binary's mirrors
   --ignore-scripts: ignore all preinstall / install and postinstall scripts during the installation
+  --forbidden-licenses: forbit install packages which used these licenses
 ```
 
 ## Use as Lib
@@ -90,6 +91,7 @@ co(function*() {
     // debug: false,
     // storeDir: root + '.npminstall',
     // ignoreScripts: true, // ignore pre/post install scripts, default is `false`
+    // forbiddenLicenses: forbit install packages which used these licenses
   });
 }).catch(function(err) {
   console.error(err.stack);

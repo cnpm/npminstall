@@ -2,8 +2,7 @@
 
 module.exports = {
   write: true,
-  prefix: '~',
-  devprefix: '^',
+  prefix: '^',
   dep: [
     'node-gyp',
   ],

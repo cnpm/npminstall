@@ -33,6 +33,7 @@ const argv = parseArgs(process.argv.slice(2), {
     'root',
     'registry',
     'prefix',
+    'forbidden-licenses',
   ],
   boolean: [
     'version',
@@ -93,6 +94,7 @@ Options:
   -r, --registry: specify custom registry
   -c, --china: specify in china, will automatically using chinses npm registry and other binary's mirrors
   --ignore-scripts: ignore all preinstall / install and postinstall scripts during the installation
+  --forbidden-licenses: forbit install packages which used these licenses
 `
   );
   process.exit(0);
@@ -111,6 +113,9 @@ let cacheDir = argv.cache === false ? '' : null;
 if (production) {
   cacheDir = '';
 }
+
+let forbiddenLicenses = argv['forbidden-licenses'];
+forbiddenLicenses = forbiddenLicenses ? forbiddenLicenses.split(',') : null;
 
 // if in china, will automatic using chines registry and mirros.
 const inChina = argv.china || !!process.env.npm_china;
@@ -156,6 +161,7 @@ co(function*() {
     cacheDir,
     env,
     binaryMirrors,
+    forbiddenLicenses,
   };
   config.strictSSL = getStrictSSL();
   config.ignoreScripts = argv['ignore-scripts'] || getIgnoreScripts();
