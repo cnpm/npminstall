@@ -1,4 +1,10 @@
 
+1.12.0 / 2016-06-26
+==================
+
+  * fix: add npm_execpath env in pre/post install script (#91)
+  * feat: support flow-bin mirror (#87)
+
 1.11.1 / 2016-06-26
 ==================
 
