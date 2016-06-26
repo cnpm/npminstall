@@ -1,16 +1,4 @@
-/**
- * Copyright(c) cnpm and other contributors.
- * MIT Licensed
- *
- * Authors:
- *   dead_horse <dead_horse@qq.com>
- */
-
 'use strict';
-
-/**
- * Module dependencies.
- */
 
 const path = require('path');
 const rimraf = require('rimraf');
@@ -34,8 +22,7 @@ describe('test/license.test.js', () => {
     ], {
       cwd: root,
     })
-    .expect('stderr', /ForbiddenLicenseError/)
-    .expect('stderr', /package forbidden's license\(MIT-v3\.0\) is not allowed/)
+    .expect('stderr', /!!!WARNING!!! license forbidden: package forbidden's license\(MIT-v3\.0\) is not allowed/)
     .end(done);
   });
 

@@ -5,6 +5,7 @@
 [![appveyor build status][appveyor-image]][appveyor-url]
 [![Test coverage][codecov-image]][codecov-url]
 [![David deps][david-image]][david-url]
+[![Known Vulnerabilities][snyk-image]][snyk-url]
 [![npm download][download-image]][download-url]
 
 [npm-image]: https://img.shields.io/npm/v/npminstall.svg?style=flat-square
@@ -13,10 +14,12 @@
 [travis-url]: https://travis-ci.org/cnpm/npminstall
 [appveyor-image]: https://ci.appveyor.com/api/projects/status/9x637qe09ivo8g2h?svg=true
 [appveyor-url]: https://ci.appveyor.com/project/fengmk2/npminstall
-[codecov-image]: https://codecov.io/github/cnpm/npminstall/coverage.svg?branch=master
-[codecov-url]: https://codecov.io/github/cnpm/npminstall?branch=master
+[codecov-image]: https://codecov.io/gh/cnpm/npminstall/branch/master/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/cnpm/npminstall
 [david-image]: https://img.shields.io/david/cnpm/npminstall.svg?style=flat-square
 [david-url]: https://david-dm.org/cnpm/npminstall
+[snyk-image]: https://snyk.io/test/npm/npminstall/badge.svg?style=flat-square
+[snyk-url]: https://snyk.io/test/npm/npminstall
 [download-image]: https://img.shields.io/npm/dm/npminstall.svg?style=flat-square
 [download-url]: https://npmjs.org/package/npminstall
 
