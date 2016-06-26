@@ -117,6 +117,9 @@ registry = registry || 'https://registry.npmjs.com';
 const env = {
   npm_config_registry: registry,
 };
+// https://github.com/npm/npm/blob/2005f4ce11f6cdf142f8a77f4f7ee4996000fb57/lib/utils/lifecycle.js#L67
+env.npm_node_execpath = env.NODE = process.env.NODE || process.execPath;
+env.npm_execpath = require.main.filename;
 
 if (inChina) {
   for (const key in config.chineseMirrorEnv) {
