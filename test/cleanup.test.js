@@ -46,7 +46,7 @@ describe('test/cleanup.test.js', function() {
     }
     assert.equal(throwError, true);
 
-    let exists = yield fs.exists(path.join(tmp, 'node_modules/.npminstall/install-error/1.0.1/install-error'));
+    let exists = yield fs.exists(path.join(tmp, 'node_modules/.npminstall/install-error/1.0.1/install-error/.npminstall.done'));
     assert.equal(exists, false);
     const dirs = yield fs.readdir(path.join(tmp, 'node_modules'));
     assert.deepEqual(dirs, ['.npminstall']);
@@ -64,7 +64,38 @@ describe('test/cleanup.test.js', function() {
       throwError = true;
     }
     assert.equal(throwError, true);
-    exists = yield fs.exists(path.join(tmp, 'node_modules/.npminstall/install-error/1.0.1/install-error'));
+    exists = yield fs.exists(path.join(tmp, 'node_modules/.npminstall/install-error/1.0.1/install-error/.npminstall.done'));
+    assert.equal(exists, false);
+  });
+
+  it('should remove donefile when excute postinstall script failed', function*() {
+    let throwError = false;
+    const pkgs = [{ version: '../postinstall-error', type: 'local' }];
+    try {
+      yield npminstall({
+        root: tmp,
+        pkgs,
+      });
+    } catch (err) {
+      throwError = true;
+    }
+    assert.equal(throwError, true);
+
+    let exists = yield fs.exists(path.join(tmp, 'node_modules/.npminstall/postinstall-error/1.0.0/postinstall-error/.npminstall.done'));
+    assert.equal(exists, false);
+
+    // install again will try to download
+    throwError = false;
+    try {
+      yield npminstall({
+        root: tmp,
+        pkgs,
+      });
+    } catch (err) {
+      throwError = true;
+    }
+    assert.equal(throwError, true);
+    exists = yield fs.exists(path.join(tmp, 'node_modules/.npminstall/postinstall-error/1.0.0/postinstall-error/.npminstall.done'));
     assert.equal(exists, false);
   });
 });

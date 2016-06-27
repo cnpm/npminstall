@@ -1,0 +1,7 @@
+{
+  "name": "postinstall-error",
+  "version": "1.0.0",
+  "scripts": {
+    "install": "exit 1"
+  }
+}
