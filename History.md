@@ -1,4 +1,9 @@
 
+1.13.0 / 2016-07-04
+==================
+
+  * feat: fetch from regsitry when not install from package.json (#94)
+
 1.12.1 / 2016-06-28
 ==================
 
