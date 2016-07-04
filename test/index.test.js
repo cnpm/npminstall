@@ -99,6 +99,37 @@ describe('test/index.test.js', function() {
     assert.equal(v1.version[0], '1');
   });
 
+  it('should request registry when not install from package.json', function*() {
+    yield npminstall({
+      root: tmp,
+      pkgs: [
+        { name: 'koa-onerror', version: '1.2.0' },
+      ],
+    });
+
+    const v1 = yield readJSON(path.join(tmp, 'node_modules', 'koa-onerror', 'package.json'));
+    assert.equal(v1.version, '1.2.0');
+
+    yield npminstall({
+      root: tmp,
+      pkgs: [
+        { name: 'koa-onerror', version: '1' },
+      ],
+    });
+
+    const v2 = yield readJSON(path.join(tmp, 'node_modules', 'koa-onerror', 'package.json'));
+    assert.equal(v2.version, '1.3.1');
+  });
+
+  it('should install chromedriver work', function*() {
+    yield npminstall({
+      root: tmp,
+      pkgs: [
+        { name: 'chromedriver' },
+      ],
+    });
+  });
+
   describe('_from, _resolved in package.json', function() {
     const root = path.join(__dirname, 'fixtures', 'packageMeta');
 
@@ -130,15 +161,6 @@ describe('test/index.test.js', function() {
       const bytesPkg = yield readJSON(path.join(root, 'node_modules', 'bytes', 'package.json'));
       assert.equal(bytesPkg._from, 'bytes@https://github.com/visionmedia/bytes.js.git');
       assert(/^https:\/\/github\.com\/visionmedia\/bytes\.js\.git#\w+$/.test(bytesPkg._resolved), bytesPkg._resolved);
-    });
-  });
-
-  it('should install chromedriver work', function*() {
-    yield npminstall({
-      root: tmp,
-      pkgs: [
-        { name: 'chromedriver' },
-      ],
     });
   });
 });
