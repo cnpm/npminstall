@@ -8,7 +8,8 @@
     "bin"
   ],
   "bin": {
-    "npminstall": "bin/install.js"
+    "npminstall": "bin/install.js",
+    "npmuninstall": "bin/uninstall.js"
   },
   "scripts": {
     "test": "mocha -r thunk-mocha -t 120000 test/*.test.js",

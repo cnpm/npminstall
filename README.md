@@ -35,6 +35,8 @@ $ npm install npminstall --g
 
 ### Usage
 
+#### npminstall
+
 ```
 Usage:
 
@@ -61,6 +63,16 @@ Options:
   -c, --china: specify in china, will automatically using chinses npm registry and other binary's mirrors
   --ignore-scripts: ignore all preinstall / install and postinstall scripts during the installation
   --forbidden-licenses: forbit install packages which used these licenses
+```
+
+#### npmuninstall
+
+```
+Usage:
+
+  npmuninstall <pkg>
+  npmuninstall <pkg>@<version>
+  npmuninstall <pkg>@<version> [<pkg>@<version>]
 ```
 
 ## Use as Lib
@@ -125,6 +137,7 @@ co(function*() {
 - [x] `--production` mode
 - [x] `save`, `save-dev`, `save-optional`
 - [x] support `ignore-scripts`
+- [x] uninstall
 
 ## Different with NPM
 
