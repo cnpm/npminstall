@@ -137,7 +137,7 @@ for (const key in argv) {
 
 debug('argv: %j, env: %j', argv, env);
 
-co(function*() {
+co(function* () {
   let binaryMirrors = {};
 
   if (inChina) {
@@ -184,7 +184,7 @@ co(function*() {
 
   process.on('exit', function(code) {
     if (code !== 0) {
-      fs.writeFileSync('npminstall-debug.log', util.inspect(config, {depth: 2}));
+      fs.writeFileSync('npminstall-debug.log', util.inspect(config, { depth: 2 }));
     }
   });
 }).catch(function(err) {

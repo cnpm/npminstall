@@ -1,16 +1,4 @@
-/**
- * Copyright(c) cnpm and other contributors.
- * MIT Licensed
- *
- * Authors:
- *   fengmk2 <m@fengmk2.com> (http://fengmk2.com)
- */
-
 'use strict';
-
-/**
- * Module dependencies.
- */
 
 const path = require('path');
 const rimraf = require('rimraf');
@@ -26,9 +14,9 @@ describe('test/peerDependencies.test.js', function() {
   beforeEach(cleanup);
   afterEach(cleanup);
 
-  it('should show peerDependencies warning message', function*() {
+  it('should show peerDependencies warning message', function* () {
     yield npminstall({
-      root: root,
+      root,
     });
   });
 });

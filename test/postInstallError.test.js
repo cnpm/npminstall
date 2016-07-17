@@ -1,16 +1,4 @@
-/**
- * Copyright(c) cnpm and other contributors.
- * MIT Licensed
- *
- * Authors:
- *   dead_horse <dead_horse@qq.com>
- */
-
 'use strict';
-
-/**
- * Module dependencies.
- */
 
 const assert = require('assert');
 const path = require('path');
@@ -31,7 +19,7 @@ describe('test/postInstallError.test.js', function() {
   });
   afterEach(cleanup);
 
-  it('should display error when post install', function*() {
+  it('should display error when post install', function* () {
     let throwError = false;
     try {
       yield npminstall({

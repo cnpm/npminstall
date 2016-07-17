@@ -1,23 +1,11 @@
-/**
- * Copyright(c) cnpm and other contributors.
- * MIT Licensed
- *
- * Authors:
- *   fengmk2 <m@fengmk2.com> (http://fengmk2.com)
- */
-
 'use strict';
-
-/**
- * Module dependencies.
- */
 
 require('debug').enable('npminstall:*');
 const path = require('path');
 const co = require('co');
 const npminstall = require('./npminstall');
 
-co(function*() {
+co(function* () {
   yield npminstall({
     // install root dir
     root: path.join(__dirname, 'fixtures', 'demo'),

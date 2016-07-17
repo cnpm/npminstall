@@ -1,16 +1,4 @@
-/**
- * Copyright(c) cnpm and other contributors.
- * MIT Licensed
- *
- * Authors:
- *   fengmk2 <m@fengmk2.com> (http://fengmk2.com)
- */
-
 'use strict';
-
-/**
- * Module dependencies.
- */
 
 const assert = require('assert');
 const path = require('path');
@@ -48,7 +36,7 @@ if (process.platform !== 'win32') {
         assert(deps);
         assert(deps.pedding);
         assert.equal(typeof deps.pedding, 'string');
-        assert(/^[\^\~]{1}\d+\.\d+\.\d+/.test(deps.pedding), deps.pedding);
+        assert(/^[\^~]{1}\d+\.\d+\.\d+/.test(deps.pedding), deps.pedding);
 
         done();
       });
@@ -69,7 +57,7 @@ if (process.platform !== 'win32') {
         assert(!err, err && err.message);
 
         const deps = JSON.parse(fs.readFileSync(path.join(tmp, 'package.json'))).dependencies;
-        assert(/\{"pedding":"[\^\~]\d+\.\d+\.\d+","zhi":"\^0.3.1"\}/.test(JSON.stringify(deps)));
+        assert(/\{"pedding":"[\^~]\d+\.\d+\.\d+","zhi":"\^0.3.1"\}/.test(JSON.stringify(deps)));
 
         done();
       });
@@ -90,7 +78,7 @@ if (process.platform !== 'win32') {
         assert(deps);
         assert(deps.pedding);
         assert.equal(typeof deps.pedding, 'string');
-        assert(/^[\^\~]{1}\d+\.\d+\.\d+/.test(deps.pedding), deps.pedding);
+        assert(/^[\^~]{1}\d+\.\d+\.\d+/.test(deps.pedding), deps.pedding);
 
         done();
       });
@@ -111,7 +99,7 @@ if (process.platform !== 'win32') {
         assert(deps);
         assert(deps.pedding);
         assert.equal(typeof deps.pedding, 'string');
-        assert(/^[\^\~]{1}\d+\.\d+\.\d+/.test(deps.pedding), deps.pedding);
+        assert(/^[\^~]{1}\d+\.\d+\.\d+/.test(deps.pedding), deps.pedding);
 
         done();
       });

@@ -1,16 +1,4 @@
-/**
- * Copyright(c) cnpm and other contributors.
- * MIT Licensed
- *
- * Authors:
- *   fengmk2 <m@fengmk2.com> (http://fengmk2.com)
- */
-
 'use strict';
-
-/**
- * Module dependencies.
- */
 
 const assert = require('assert');
 const path = require('path');
@@ -33,7 +21,7 @@ describe('test/bundleDependencies.test.js', function() {
   });
   afterEach(cleanup);
 
-  it('should install node-pre-gyp@0.6.19', function*() {
+  it('should install node-pre-gyp@0.6.19', function* () {
     yield npminstall({
       root: tmp,
       pkgs: [
@@ -49,7 +37,7 @@ describe('test/bundleDependencies.test.js', function() {
     assert.deepEqual(dirs.sort(), [ 'node-pre-gyp', 'node_modules' ].sort());
   });
 
-  it('should install bundleDependencies not exist(nyc@6.4.2)', function*() {
+  it('should install bundleDependencies not exist(nyc@6.4.2)', function* () {
     yield npminstall({
       root: tmp,
       pkgs: [
@@ -60,7 +48,7 @@ describe('test/bundleDependencies.test.js', function() {
     assert(exists);
   });
 
-  it('should link bundleDependencies bin', function*() {
+  it('should link bundleDependencies bin', function* () {
     yield npminstall({
       root: tmp,
       pkgs: [{
@@ -70,9 +58,9 @@ describe('test/bundleDependencies.test.js', function() {
     });
     const bins = yield fs.readdir(path.join(tmp, 'node_modules/sqlite3/node_modules/.bin'));
     if (process.platform === 'win32') {
-      assert.deepEqual(bins, ['node-pre-gyp', 'node-pre-gyp.cmd']);
+      assert.deepEqual(bins, [ 'node-pre-gyp', 'node-pre-gyp.cmd' ]);
     } else {
-      assert.deepEqual(bins, ['node-pre-gyp']);
+      assert.deepEqual(bins, [ 'node-pre-gyp' ]);
     }
   });
 });

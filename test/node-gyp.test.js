@@ -1,16 +1,4 @@
-/**
- * Copyright(c) cnpm and other contributors.
- * MIT Licensed
- *
- * Authors:
- *   dead_horse <dead_horse@qq.com>
- */
-
 'use strict';
-
-/**
- * Module dependencies.
- */
 
 const fs = require('fs');
 const assert = require('assert');
@@ -32,7 +20,7 @@ describe('test/node-gyp.test.js', function() {
   });
   afterEach(cleanup);
 
-  it('should node-gyp work fine', function*() {
+  it('should node-gyp work fine', function* () {
     try {
       yield npminstall({
         root: tmp,

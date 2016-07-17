@@ -1,16 +1,4 @@
-/**
- * Copyright(c) cnpm and other contributors.
- * MIT Licensed
- *
- * Authors:
- *   dead_horse <dead_horse@qq.com>
- */
-
 'use strict';
-
-/**
- * Module dependencies.
- */
 
 const os = require('os');
 const assert = require('assert');
@@ -36,7 +24,7 @@ describe('test/installGit.test.js', function() {
   beforeEach(prepare);
   afterEach(cleanup);
 
-  it.skip('should install ikt@git+http://ikt.pm2.io/ikt.git#master', function*() {
+  it.skip('should install ikt@git+http://ikt.pm2.io/ikt.git#master', function* () {
     yield npminstall({
       root: tmp,
       pkgs: [
@@ -47,7 +35,7 @@ describe('test/installGit.test.js', function() {
     assert.equal(pkg.name, 'ikt');
   });
 
-  it('should install github repo `node-modules/pedding` ok', function*() {
+  it('should install github repo `node-modules/pedding` ok', function* () {
     yield npminstall({
       root: tmp,
       pkgs: [
@@ -59,7 +47,7 @@ describe('test/installGit.test.js', function() {
     assert(pkg.version !== '0.0.3');
   });
 
-  it('should install github repo `node-modules/pedding#0.0.3` ok', function*() {
+  it('should install github repo `node-modules/pedding#0.0.3` ok', function* () {
     yield npminstall({
       root: tmp,
       pkgs: [
@@ -71,7 +59,7 @@ describe('test/installGit.test.js', function() {
     assert.equal(pkg.version, '0.0.3');
   });
 
-  it('should install from git with ssh `git+ssh://git@github.com:node-modules/pedding.git#0.0.2` ok', function*() {
+  it('should install from git with ssh `git+ssh://git@github.com:node-modules/pedding.git#0.0.2` ok', function* () {
     yield npminstall({
       root: tmp,
       pkgs: [
@@ -83,7 +71,7 @@ describe('test/installGit.test.js', function() {
     assert.equal(pkg.version, '0.0.2');
   });
 
-  it('should install from git with http `git+https://github.com/node-modules/pedding.git` ok', function*() {
+  it('should install from git with http `git+https://github.com/node-modules/pedding.git` ok', function* () {
     yield npminstall({
       root: tmp,
       pkgs: [
@@ -95,7 +83,7 @@ describe('test/installGit.test.js', function() {
     assert(pkg.version !== '0.0.3');
   });
 
-  it('should install from bitbucket `bitbucket:node-modules/pedding`', function*() {
+  it('should install from bitbucket `bitbucket:node-modules/pedding`', function* () {
     yield npminstall({
       root: tmp,
       pkgs: [
@@ -107,11 +95,11 @@ describe('test/installGit.test.js', function() {
     assert(pkg.version !== '0.0.3');
   });
 
-  it('should install from github with commit hash https://github.com/mozilla/nunjucks.git#0f8b21b8df7e8e852b2e1889388653b7075f0d09', function*() {
+  it('should install from github with commit hash https://github.com/mozilla/nunjucks.git#0f8b21b8df7e8e852b2e1889388653b7075f0d09', function* () {
     yield npminstall({
       root: tmp,
       pkgs: [
-        {name: null, version: 'git+https://github.com/mozilla/nunjucks.git#0f8b21b8df7e8e852b2e1889388653b7075f0d09'},
+        { name: null, version: 'git+https://github.com/mozilla/nunjucks.git#0f8b21b8df7e8e852b2e1889388653b7075f0d09' },
       ],
     });
 
@@ -120,11 +108,11 @@ describe('test/installGit.test.js', function() {
     assert.equal(pkg.version, '1.2.0');
   });
 
-  it('should also ok on https://github.com/mozilla/nunjucks.git#0f8b21b8d', function*() {
+  it('should also ok on https://github.com/mozilla/nunjucks.git#0f8b21b8d', function* () {
     yield npminstall({
       root: tmp,
       pkgs: [
-        {name: null, version: 'git+https://github.com/mozilla/nunjucks.git#0f8b21b8d'},
+        { name: null, version: 'git+https://github.com/mozilla/nunjucks.git#0f8b21b8d' },
       ],
     });
 
@@ -133,11 +121,11 @@ describe('test/installGit.test.js', function() {
     assert.equal(pkg.version, '1.2.0');
   });
 
-  it('should also ok on https://github.com/gulpjs/gulp#4.0', function*() {
+  it('should also ok on https://github.com/gulpjs/gulp#4.0', function* () {
     yield npminstall({
       root: tmp,
       pkgs: [
-        {name: null, version: 'git+https://github.com/gulpjs/gulp.git#4.0'},
+        { name: null, version: 'git+https://github.com/gulpjs/gulp.git#4.0' },
       ],
     });
 
@@ -145,12 +133,12 @@ describe('test/installGit.test.js', function() {
     assert.equal(pkg.name, 'gulp');
   });
 
-  it('should fail on some strange hash', function*() {
+  it('should fail on some strange hash', function* () {
     try {
       yield npminstall({
         root: tmp,
         pkgs: [
-          {name: null, version: 'git+https://github.com/mozilla/nunjucks.git#wtf???!!!fail-here,hahaa'},
+          { name: null, version: 'git+https://github.com/mozilla/nunjucks.git#wtf???!!!fail-here,hahaa' },
         ],
       });
     } catch (err) {

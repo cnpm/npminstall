@@ -1,27 +1,15 @@
-/**
- * Copyright(c) cnpm and other contributors.
- * MIT Licensed
- *
- * Authors:
- *   dead_horse <dead_horse@qq.com>
- */
-
 'use strict';
-
-/**
- * Module dependencies.
- */
 
 const npminstall = require('../');
 const config = require('../lib/config');
 const utils = require('../lib/utils');
 
-module.exports = function*(options) {
+module.exports = function* (options) {
   yield formatOptions(options);
   return yield npminstall(options);
 };
 
-module.exports.installGlobal = function*(options) {
+module.exports.installGlobal = function* (options) {
   yield formatOptions(options);
   return yield npminstall.installGlobal(options);
 };

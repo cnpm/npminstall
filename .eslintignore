@@ -1,2 +1,4 @@
-.npminstall/
+.npminstall
 test/fixtures
+coverage
+benchmark

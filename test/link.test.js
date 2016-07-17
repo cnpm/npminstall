@@ -1,16 +1,4 @@
-/**
- * Copyright(c) cnpm and other contributors.
- * MIT Licensed
- *
- * Authors:
- *   dead_horse <dead_horse@qq.com>
- */
-
 'use strict';
-
-/**
- * Module dependencies.
- */
 
 const assert = require('assert');
 const path = require('path');
@@ -32,7 +20,7 @@ describe('test/link.test.js', function() {
   });
   afterEach(cleanup);
 
-  it('should link same path work', function*() {
+  it('should link same path work', function* () {
     const pkg = {
       name: 'linkfoo',
       version: '1.0.0',
