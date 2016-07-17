@@ -1,16 +1,4 @@
-/**
- * Copyright(c) cnpm and other contributors.
- * MIT Licensed
- *
- * Authors:
- *   dead_horse <dead_horse@qq.com>
- */
-
 'use strict';
-
-/**
- * Module dependencies.
- */
 
 const assert = require('assert');
 const path = require('path');
@@ -40,7 +28,7 @@ describe('test/uninstall.test.js', function() {
   afterEach(cleanup);
 
   it('should uninstall ok', done => {
-    coffee.fork(npmuninstall, ['koa', 'pkg@1.0.0'], {
+    coffee.fork(npmuninstall, [ 'koa', 'pkg@1.0.0' ], {
       cwd: root,
       stdio: 'pipe',
     }).end(() => {
@@ -52,7 +40,7 @@ describe('test/uninstall.test.js', function() {
   });
 
   it('should uninstall --save', done => {
-    coffee.fork(npmuninstall, ['pkg@1.0.0', '--save'], {
+    coffee.fork(npmuninstall, [ 'pkg@1.0.0', '--save' ], {
       cwd: root,
       stdio: 'pipe',
     }).end(() => {
@@ -66,7 +54,7 @@ describe('test/uninstall.test.js', function() {
   });
 
   it('should uninstall --save-dev', done => {
-    coffee.fork(npmuninstall, ['pkg@1.0.0', '--save-dev'], {
+    coffee.fork(npmuninstall, [ 'pkg@1.0.0', '--save-dev' ], {
       cwd: root,
       stdio: 'pipe',
     }).end(() => {
@@ -80,7 +68,7 @@ describe('test/uninstall.test.js', function() {
   });
 
   it('should uninstall --save-optional', done => {
-    coffee.fork(npmuninstall, ['pkg@1.0.0', '--save-optional'], {
+    coffee.fork(npmuninstall, [ 'pkg@1.0.0', '--save-optional' ], {
       cwd: root,
       stdio: 'pipe',
     }).end(() => {
@@ -94,7 +82,7 @@ describe('test/uninstall.test.js', function() {
   });
 
   it('should not uninstall when version not match', done => {
-    coffee.fork(npmuninstall, ['pkg@1.0.1', '--save-optional'], {
+    coffee.fork(npmuninstall, [ 'pkg@1.0.1', '--save-optional' ], {
       cwd: root,
       stdio: 'pipe',
     }).end(() => {
@@ -106,7 +94,7 @@ describe('test/uninstall.test.js', function() {
   });
 
   it('should not uninstall when name not match', done => {
-    coffee.fork(npmuninstall, ['pkg1@1.0.0', '--save-optional'], {
+    coffee.fork(npmuninstall, [ 'pkg1@1.0.0', '--save-optional' ], {
       cwd: root,
       stdio: 'pipe',
     }).end(() => {

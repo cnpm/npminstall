@@ -1,17 +1,4 @@
-/**
- * Copyright(c) cnpm and other contributors.
- * MIT Licensed
- *
- * Authors:
- *   dead_horse <dead_horse@qq.com>
- *   fengmk2 <m@fengmk2.com> (http://fengmk2.com)
- */
-
 'use strict';
-
-/**
- * Module dependencies.
- */
 
 const assert = require('assert');
 const path = require('path');
@@ -36,7 +23,7 @@ describe('test/optionalDependencies.test.js', function() {
   });
   afterEach(cleanup);
 
-  it('should install optionalDependencies', function*() {
+  it('should install optionalDependencies', function* () {
     yield npminstall({
       root: tmp,
       pkgs: [
@@ -50,9 +37,9 @@ describe('test/optionalDependencies.test.js', function() {
     assert(dirs.indexOf('hiredis') >= 0);
   });
 
-  it('should ignore optionalDependencies install error', function*() {
+  it('should ignore optionalDependencies install error', function* () {
     yield npminstall({
-      root: root,
+      root,
     });
 
     const dirs = yield fs.readdir(path.join(root, 'node_modules'));

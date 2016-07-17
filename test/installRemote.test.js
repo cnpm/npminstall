@@ -1,17 +1,4 @@
-/**
- * Copyright(c) cnpm and other contributors.
- * MIT Licensed
- *
- * Authors:
- *   fengmk2 <m@fengmk2.com> (http://fengmk2.com)
- *   dead_horse <dead_horse@qq.com>
- */
-
 'use strict';
-
-/**
- * Module dependencies.
- */
 
 const assert = require('assert');
 const path = require('path');
@@ -34,9 +21,9 @@ describe('test/installRemote.test.js', function() {
     rimraf.sync(tmp);
   });
 
-  it('should install with remote url', function*() {
+  it('should install with remote url', function* () {
     yield npminstall({
-      root: root,
+      root,
     });
     let pkg = yield readJSON(path.join(root, 'node_modules', 'pedding', 'package.json'));
     assert.equal(pkg.name, 'pedding');
@@ -48,10 +35,10 @@ describe('test/installRemote.test.js', function() {
     assert.deepEqual(dirs.sort(), [ '.tmp', 'pedding', 'taffydb', 'node_modules' ].sort());
   });
 
-  it('should install https://registry.npm.taobao.org/taffydb/download/taffydb-2.7.2.tgz', function*() {
+  it('should install https://registry.npm.taobao.org/taffydb/download/taffydb-2.7.2.tgz', function* () {
     yield npminstall({
       root: tmp,
-      pkgs: [{name: null, version: 'https://registry.npm.taobao.org/taffydb/download/taffydb-2.7.2.tgz'}],
+      pkgs: [{ name: null, version: 'https://registry.npm.taobao.org/taffydb/download/taffydb-2.7.2.tgz' }],
     });
     const pkg = yield readJSON(path.join(tmp, 'node_modules', 'taffydb', 'package.json'));
     assert.equal(pkg.name, 'taffydb');

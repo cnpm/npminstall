@@ -1,18 +1,4 @@
-/**
- * install top packages
- *
- * Copyright(c) cnpm and other contributors.
- * MIT Licensed
- *
- * Authors:
- *   fengmk2 <m@fengmk2.com> (http://fengmk2.com)
- */
-
 'use strict';
-
-/**
- * Module dependencies.
- */
 
 const co = require('co');
 const path = require('path');
@@ -39,7 +25,7 @@ const names = [
   'pnpm',
 ];
 
-co(function*() {
+co(function* () {
   const root = path.join(__dirname, 'fixtures', 'all');
   const pkgs = names.map(name => {
     return { name };

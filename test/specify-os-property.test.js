@@ -1,16 +1,4 @@
-/**
- * Copyright(c) cnpm and other contributors.
- * MIT Licensed
- *
- * Authors:
- *   dead_horse <dead_horse@qq.com>
- */
-
 'use strict';
-
-/**
- * Module dependencies.
- */
 
 const assert = require('assert');
 const path = require('path');
@@ -29,10 +17,10 @@ describe('test/specify-os-property.test.js', () => {
     beforeEach(cleanup);
     afterEach(cleanup);
 
-    it('should throw error when package.json#os property not match current platform', function*() {
+    it('should throw error when package.json#os property not match current platform', function* () {
       try {
         yield npminstall({
-          root: root,
+          root,
         });
         throw new Error('should not run this');
       } catch (err) {
@@ -52,9 +40,9 @@ describe('test/specify-os-property.test.js', () => {
       beforeEach(cleanup);
       afterEach(cleanup);
 
-      it('should success when package.json#os property match current platform', function*() {
+      it('should success when package.json#os property match current platform', function* () {
         yield npminstall({
-          root: root,
+          root,
         });
       });
     });

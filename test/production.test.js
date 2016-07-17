@@ -1,16 +1,4 @@
-/**
- * Copyright(c) cnpm and other contributors.
- * MIT Licensed
- *
- * Authors:
- *   dead_horse <dead_horse@qq.com>
- */
-
 'use strict';
-
-/**
- * Module dependencies.
- */
 
 const assert = require('assert');
 const path = require('path');
@@ -28,9 +16,9 @@ describe('test/production.test.js', function() {
   beforeEach(cleanup);
   afterEach(cleanup);
 
-  it('should ignore devDependencies when install with production', function*() {
+  it('should ignore devDependencies when install with production', function* () {
     yield npminstall({
-      root: root,
+      root,
       production: true,
     });
 

@@ -50,7 +50,7 @@ for (const name of argv._) {
 
 if (!pkgs.length) help();
 
-co(function*() {
+co(function* () {
   const root = argv.root || process.cwd();
   const config = {
     root,

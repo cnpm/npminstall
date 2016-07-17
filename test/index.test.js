@@ -1,16 +1,4 @@
-/**
- * Copyright(c) cnpm and other contributors.
- * MIT Licensed
- *
- * Authors:
- *   fengmk2 <m@fengmk2.com> (http://fengmk2.com)
- */
-
 'use strict';
-
-/**
- * Module dependencies.
- */
 
 const assert = require('assert');
 const fs = require('mz/fs');
@@ -28,13 +16,13 @@ describe('test/index.test.js', function() {
     rimraf.sync(tmp);
   }
 
-  beforeEach(function*() {
+  beforeEach(function* () {
     cleanup();
     yield mkdirp(tmp);
   });
   afterEach(cleanup);
 
-  it('should npminstall with options.pkgs', function*() {
+  it('should npminstall with options.pkgs', function* () {
     yield npminstall({
       root: tmp,
       pkgs: [
@@ -46,7 +34,7 @@ describe('test/index.test.js', function() {
     });
   });
 
-  it('should npminstall not exists package throw error', function*() {
+  it('should npminstall not exists package throw error', function* () {
     try {
       yield npminstall({
         root: tmp,
@@ -60,7 +48,7 @@ describe('test/index.test.js', function() {
     }
   });
 
-  it('should npminstall demo project', function*() {
+  it('should npminstall demo project', function* () {
     const demodir = path.join(__dirname, 'fixtures', 'demo');
     rimraf.sync(path.join(demodir, 'node_modules'));
 
@@ -79,7 +67,7 @@ describe('test/index.test.js', function() {
     assert.equal(pkg.name, 'koa');
   });
 
-  it('should relink exists link file work', function*() {
+  it('should relink exists link file work', function* () {
     yield npminstall({
       root: tmp,
       pkgs: [
@@ -99,7 +87,7 @@ describe('test/index.test.js', function() {
     assert.equal(v1.version[0], '1');
   });
 
-  it('should request registry when not install from package.json', function*() {
+  it('should request registry when not install from package.json', function* () {
     yield npminstall({
       root: tmp,
       pkgs: [
@@ -121,7 +109,7 @@ describe('test/index.test.js', function() {
     assert.equal(v2.version, '1.3.1');
   });
 
-  it('should install chromedriver work', function*() {
+  it('should install chromedriver work', function* () {
     yield npminstall({
       root: tmp,
       pkgs: [
@@ -140,9 +128,9 @@ describe('test/index.test.js', function() {
     beforeEach(cleanup);
     afterEach(cleanup);
 
-    it('should add _from, _resolved to package.json', function*() {
+    it('should add _from, _resolved to package.json', function* () {
       yield npminstall({
-        root: root,
+        root,
       });
       // node_modules/.npminstall/node_modules/ms should exists
       assert(yield fs.exists(path.join(root, 'node_modules', '.npminstall', 'node_modules', 'ms')));

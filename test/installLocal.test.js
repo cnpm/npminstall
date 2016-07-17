@@ -1,16 +1,4 @@
-/**
- * Copyright(c) cnpm and other contributors.
- * MIT Licensed
- *
- * Authors:
- *   dead_horse <dead_horse@qq.com>
- */
-
 'use strict';
-
-/**
- * Module dependencies.
- */
 
 const assert = require('assert');
 const path = require('path');
@@ -29,9 +17,9 @@ describe('test/installLocal.test.js', function() {
   beforeEach(cleanup);
   afterEach(cleanup);
 
-  it('should install local folder ok', function*() {
+  it('should install local folder ok', function* () {
     yield npminstall({
-      root: root,
+      root,
       pkgs: [
         { name: null, version: 'file:pkg' },
       ],
@@ -40,9 +28,9 @@ describe('test/installLocal.test.js', function() {
     assert.equal(pkg.name, 'pkg');
   });
 
-  it('should install local folder with relative path ok', function*() {
+  it('should install local folder with relative path ok', function* () {
     yield npminstall({
-      root: root,
+      root,
       pkgs: [
         { name: null, version: './pkg' },
       ],
@@ -51,12 +39,12 @@ describe('test/installLocal.test.js', function() {
     assert.equal(pkg.name, 'pkg');
   });
 
-  it('should install local link folder ok', function*() {
+  it('should install local link folder ok', function* () {
     if (process.platform === 'win32') {
       return;
     }
     yield npminstall({
-      root: root,
+      root,
       pkgs: [
         { name: null, version: 'file:pkg-link' },
       ],
@@ -65,9 +53,9 @@ describe('test/installLocal.test.js', function() {
     assert.equal(pkg.name, 'pkg');
   });
 
-  it('should install local gzip tarball ok', function*() {
+  it('should install local gzip tarball ok', function* () {
     yield npminstall({
-      root: root,
+      root,
       pkgs: [
         { name: null, version: 'file:sequelize.tgz' },
       ],
@@ -77,12 +65,12 @@ describe('test/installLocal.test.js', function() {
     assert.equal(pkg.name, 'sequelize');
   });
 
-  it('should install local link gzip tarball ok', function*() {
+  it('should install local link gzip tarball ok', function* () {
     if (process.platform === 'win32') {
       return;
     }
     yield npminstall({
-      root: root,
+      root,
       pkgs: [
         { name: null, version: 'file:sequelize-link.tgz' },
       ],
@@ -92,9 +80,9 @@ describe('test/installLocal.test.js', function() {
     assert.equal(pkg.name, 'sequelize');
   });
 
-  it('should install local naked tarball ok', function*() {
+  it('should install local naked tarball ok', function* () {
     yield npminstall({
-      root: root,
+      root,
       pkgs: [
         { name: null, version: 'file:pkg.tar' },
       ],
@@ -103,10 +91,10 @@ describe('test/installLocal.test.js', function() {
     assert.equal(pkg.name, 'pkg');
   });
 
-  it('should install local folder without package.json error', function*() {
+  it('should install local folder without package.json error', function* () {
     try {
       yield npminstall({
-        root: root,
+        root,
         pkgs: [
           { name: null, version: 'file:not-pkg' },
         ],
@@ -117,10 +105,10 @@ describe('test/installLocal.test.js', function() {
     }
   });
 
-  it('should install local tarball without package.json error', function*() {
+  it('should install local tarball without package.json error', function* () {
     try {
       yield npminstall({
-        root: root,
+        root,
         pkgs: [
           { name: null, version: 'file:not-pkg.tar' },
         ],
@@ -131,10 +119,10 @@ describe('test/installLocal.test.js', function() {
     }
   });
 
-  it('should install local folder without package name error', function*() {
+  it('should install local folder without package name error', function* () {
     try {
       yield npminstall({
-        root: root,
+        root,
         pkgs: [
           { name: null, version: 'file:pkg-without-name' },
         ],
@@ -145,10 +133,10 @@ describe('test/installLocal.test.js', function() {
     }
   });
 
-  it('should install local tarball without package name error', function*() {
+  it('should install local tarball without package name error', function* () {
     try {
       yield npminstall({
-        root: root,
+        root,
         pkgs: [
           { name: null, version: 'file:pkg-without-name.tgz' },
         ],
@@ -160,9 +148,9 @@ describe('test/installLocal.test.js', function() {
   });
 
   if (process.platform !== 'win32') {
-    it('should install the same tarball ok', function*() {
+    it('should install the same tarball ok', function* () {
       yield npminstall({
-        root: root,
+        root,
         pkgs: [
           { name: null, version: 'file:pkg.tar' },
         ],
@@ -170,7 +158,7 @@ describe('test/installLocal.test.js', function() {
       let pkg = yield readJSON(path.join(root, 'node_modules/pkg/package.json'));
       assert.equal(pkg.name, 'pkg');
       yield npminstall({
-        root: root,
+        root,
         pkgs: [
           { name: null, version: 'file:pkg.tar' },
           // { name: null, version: 'file:pkg.tar' },
@@ -182,9 +170,9 @@ describe('test/installLocal.test.js', function() {
       assert.equal(versions.length, 1);
     });
 
-    it('should install the same local folder ok', function*() {
+    it('should install the same local folder ok', function* () {
       yield npminstall({
-        root: root,
+        root,
         pkgs: [
           { name: null, version: 'file:pkg' },
         ],
@@ -192,7 +180,7 @@ describe('test/installLocal.test.js', function() {
       let pkg = yield readJSON(path.join(root, 'node_modules/pkg/package.json'));
       assert.equal(pkg.name, 'pkg');
       yield npminstall({
-        root: root,
+        root,
         pkgs: [
           { name: null, version: 'file:pkg' },
           { name: null, version: 'file:pkg' },

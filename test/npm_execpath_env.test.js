@@ -20,7 +20,7 @@ describe('test/npm_execpath_env.test.js', () => {
   });
   afterEach(cleanup);
 
-  it('should node-gyp work fine', function*() {
+  it('should node-gyp work fine', function* () {
     yield npminstall({
       root: tmp,
       pkgs: [

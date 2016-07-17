@@ -1,16 +1,4 @@
-/**
- * Copyright(c) cnpm and other contributors.
- * MIT Licensed
- *
- * Authors:
- *   dead_horse <dead_horse@qq.com>
- */
-
 'use strict';
-
-/**
- * Module dependencies.
- */
 
 const assert = require('assert');
 const path = require('path');
@@ -32,7 +20,7 @@ describe('test/forceSymlink.test.js', function() {
   });
   afterEach(cleanup);
 
-  it('should remove exist module first', function*() {
+  it('should remove exist module first', function* () {
     mkdirp.sync(path.join(tmp, 'node_modules/debug'));
     yield npminstall({
       root: tmp,

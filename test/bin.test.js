@@ -1,16 +1,4 @@
-/**
- * Copyright(c) cnpm and other contributors.
- * MIT Licensed
- *
- * Authors:
- *   fengmk2 <m@fengmk2.com> (http://fengmk2.com)
- */
-
 'use strict';
-
-/**
- * Module dependencies.
- */
 
 const assert = require('assert');
 const rimraf = require('rimraf');
@@ -29,9 +17,9 @@ describe('test/bin.test.js', () => {
   beforeEach(cleanup);
   afterEach(cleanup);
 
-  it('should create bins after install', function*() {
+  it('should create bins after install', function* () {
     yield npminstall({
-      root: root,
+      root,
     });
     const pkg = yield readJSON(path.join(root, 'node_modules', 'yo', 'package.json'));
     assert.equal(pkg.name, 'yo');
@@ -39,9 +27,9 @@ describe('test/bin.test.js', () => {
     assert(fs.existsSync(path.join(root, 'node_modules', '.bin', 'yo')));
   });
 
-  it('should create bin folders for scoped pkg', function*() {
+  it('should create bin folders for scoped pkg', function* () {
     yield npminstall({
-      root: root,
+      root,
       pkgs: [
         { name: '@bigfunger/decompress-zip' },
       ],

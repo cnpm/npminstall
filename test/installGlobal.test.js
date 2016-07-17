@@ -1,16 +1,4 @@
-/**
- * Copyright(c) cnpm and other contributors.
- * MIT Licensed
- *
- * Authors:
- *   fengmk2 <m@fengmk2.com> (http://fengmk2.com)
- */
-
 'use strict';
-
-/**
- * Module dependencies.
- */
 
 const assert = require('assert');
 const fs = require('mz/fs');
@@ -28,13 +16,13 @@ describe('test/installGlobal.test.js', function() {
     rimraf.sync(tmp);
   }
 
-  beforeEach(function*() {
+  beforeEach(function* () {
     cleanup();
     yield mkdirp(tmp);
   });
   afterEach(cleanup);
 
-  it('should global install work', function*() {
+  it('should global install work', function* () {
     yield installGlobal({
       root: tmp,
       targetDir: path.join(tmp, 'lib'),
@@ -70,7 +58,7 @@ describe('test/installGlobal.test.js', function() {
       targetDir: path.join(tmp, 'lib'),
       binDir: path.join(tmp, 'bin'),
       pkgs: [
-        { name: 'contributors', 'version': '0' },
+        { name: 'contributors', version: '0' },
       ],
     });
 

@@ -1,16 +1,4 @@
-/**
- * Copyright(c) cnpm and other contributors.
- * MIT Licensed
- *
- * Authors:
- *   fengmk2 <m@fengmk2.com> (http://fengmk2.com)
- */
-
 'use strict';
-
-/**
- * Module dependencies.
- */
 
 const assert = require('assert');
 const mm = require('mm');
@@ -27,7 +15,7 @@ describe('test/download.test.js', () => {
     rimraf.sync(tmp);
   }
 
-  beforeEach(function*() {
+  beforeEach(function* () {
     cleanup();
     yield mkdirp(tmp);
   });
@@ -35,9 +23,9 @@ describe('test/download.test.js', () => {
   afterEach(mm.restore);
 
   describe('mock tarball not exists', () => {
-    it('should throw error when status === 404', function*() {
+    it('should throw error when status === 404', function* () {
       const request = urllib.request;
-      mm(urllib, 'request', function*(url, options) {
+      mm(urllib, 'request', function* (url, options) {
         if (url.endsWith('.tgz')) {
           mm.restore();
         }
@@ -62,9 +50,9 @@ describe('test/download.test.js', () => {
       }
     });
 
-    it('should throw error when status === 206', function*() {
+    it('should throw error when status === 206', function* () {
       const request = urllib.request;
-      mm(urllib, 'request', function*(url, options) {
+      mm(urllib, 'request', function* (url, options) {
         if (url.endsWith('.tgz')) {
           mm.restore();
         }
@@ -91,9 +79,9 @@ describe('test/download.test.js', () => {
   });
 
   describe('mock tarball error', () => {
-    it('should throw sha1 error', function*() {
+    it('should throw sha1 error', function* () {
       const request = urllib.request;
-      mm(urllib, 'request', function*(url, options) {
+      mm(urllib, 'request', function* (url, options) {
         const result = yield request.call(urllib, url, options);
         if (!url.endsWith('.tgz')) {
           // change sha1 to wrong value
@@ -116,9 +104,9 @@ describe('test/download.test.js', () => {
       }
     });
 
-    it('should throw 500 error', function*() {
+    it('should throw 500 error', function* () {
       const request = urllib.request;
-      mm(urllib, 'request', function*(url, options) {
+      mm(urllib, 'request', function* (url, options) {
         const result = yield request.call(urllib, url, options);
         if (url.endsWith('.tgz')) {
           result.status = 500;
@@ -140,9 +128,9 @@ describe('test/download.test.js', () => {
       }
     });
 
-    it('should throw 502 error', function*() {
+    it('should throw 502 error', function* () {
       const request = urllib.request;
-      mm(urllib, 'request', function*(url, options) {
+      mm(urllib, 'request', function* (url, options) {
         const result = yield request.call(urllib, url, options);
         if (url.endsWith('.tgz')) {
           result.status = 502;

@@ -1,16 +1,4 @@
-/**
- * Copyright(c) cnpm and other contributors.
- * MIT Licensed
- *
- * Authors:
- *   fengmk2 <m@fengmk2.com> (http://fengmk2.com)
- */
-
 'use strict';
-
-/**
- * Module dependencies.
- */
 
 const path = require('path');
 const rimraf = require('rimraf');
@@ -28,9 +16,9 @@ describe('test/bigPackage.test.js', () => {
       beforeEach(cleanup);
       afterEach(cleanup);
 
-      it('should install success', function*() {
+      it('should install success', function* () {
         yield npminstall({
-          root: root,
+          root,
         });
       });
     });

@@ -1,16 +1,4 @@
-/**
- * Copyright(c) cnpm and other contributors.
- * MIT Licensed
- *
- * Authors:
- *   dead_horse <dead_horse@qq.com>
- */
-
 'use strict';
-
-/**
- * Module dependencies.
- */
 
 const npminstall = require('./npminstall');
 const rimraf = require('rimraf');
@@ -32,7 +20,7 @@ describe('test/linkRoot.test.js', function() {
 
   afterEach(cleanup);
 
-  it('should display error when post install', function*() {
+  it('should display error when post install', function* () {
     yield npminstall({
       root: tmp,
       pkgs: [

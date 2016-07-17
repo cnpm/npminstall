@@ -1,16 +1,4 @@
-/**
- * Copyright(c) cnpm and other contributors.
- * MIT Licensed
- *
- * Authors:
- *   dead_horse <dead_horse@qq.com>
- */
-
 'use strict';
-
-/**
- * Module dependencies.
- */
 
 const assert = require('assert');
 const path = require('path');
@@ -32,7 +20,7 @@ describe('test/cleanup.test.js', function() {
   });
   afterEach(cleanup);
 
-  it('should remove donefile when install failed', function*() {
+  it('should remove donefile when install failed', function* () {
     let throwError = false;
     try {
       yield npminstall({
@@ -49,7 +37,7 @@ describe('test/cleanup.test.js', function() {
     let exists = yield fs.exists(path.join(tmp, 'node_modules/.npminstall/install-error/1.0.1/install-error/.npminstall.done'));
     assert.equal(exists, false);
     const dirs = yield fs.readdir(path.join(tmp, 'node_modules'));
-    assert.deepEqual(dirs, ['.npminstall']);
+    assert.deepEqual(dirs, [ '.npminstall' ]);
 
     // install again will try to download
     throwError = false;
@@ -68,7 +56,7 @@ describe('test/cleanup.test.js', function() {
     assert.equal(exists, false);
   });
 
-  it('should remove donefile when excute postinstall script failed', function*() {
+  it('should remove donefile when excute postinstall script failed', function* () {
     let throwError = false;
     const pkgs = [{ version: '../postinstall-error', type: 'local' }];
     try {

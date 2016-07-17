@@ -1,16 +1,4 @@
-/**
- * Copyright(c) cnpm and other contributors.
- * MIT Licensed
- *
- * Authors:
- *   fengmk2 <m@fengmk2.com> (http://fengmk2.com)
- */
-
 'use strict';
-
-/**
- * Module dependencies.
- */
 
 const assert = require('assert');
 const rimraf = require('rimraf');
@@ -28,9 +16,9 @@ describe('test/runscript.test.js', () => {
   beforeEach(cleanup);
   afterEach(cleanup);
 
-  it('should run preinstall and postinstall', function*() {
+  it('should run preinstall and postinstall', function* () {
     yield npminstall({
-      root: root,
+      root,
     });
     const pkg = yield readJSON(path.join(root, 'node_modules', 'pedding', 'package.json'));
     assert.equal(pkg.name, 'pedding');
