@@ -5,7 +5,6 @@ const path = require('path');
 const rimraf = require('rimraf');
 const readJSON = require('../lib/utils').readJSON;
 const npminstall = require('./npminstall');
-const fs = require('mz/fs');
 
 describe('test/installLocal.test.js', function() {
   const root = path.join(__dirname, 'fixtures', 'local');
@@ -166,8 +165,6 @@ describe('test/installLocal.test.js', function() {
       });
       pkg = yield readJSON(path.join(root, 'node_modules/pkg/package.json'));
       assert.equal(pkg.name, 'pkg');
-      const versions = yield fs.readdir(path.join(root, 'node_modules/.npminstall/pkg'));
-      assert.equal(versions.length, 1);
     });
 
     it('should install the same local folder ok', function* () {
@@ -188,8 +185,6 @@ describe('test/installLocal.test.js', function() {
       });
       pkg = yield readJSON(path.join(root, 'node_modules/pkg/package.json'));
       assert.equal(pkg.name, 'pkg');
-      const versions = yield fs.readdir(path.join(root, 'node_modules/.npminstall/pkg'));
-      assert.equal(versions.length, 1);
     });
   }
 });

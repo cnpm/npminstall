@@ -5,7 +5,7 @@ const mm = require('mm');
 const urllib = require('urllib');
 const rimraf = require('rimraf');
 const path = require('path');
-const install = require('..');
+const install = require('./npminstall');
 const mkdirp = require('../lib/utils').mkdirp;
 
 describe('test/download.test.js', () => {
@@ -80,16 +80,11 @@ describe('test/download.test.js', () => {
 
   describe('mock tarball error', () => {
     it('should throw sha1 error', function* () {
-      const request = urllib.request;
-      mm(urllib, 'request', function* (url, options) {
-        const result = yield request.call(urllib, url, options);
-        if (!url.endsWith('.tgz')) {
-          // change sha1 to wrong value
-          result.data.dist.shasum = '00098d60307b4ef7240c3d693cb20a9473c111';
-        }
-        return result;
-      });
-
+      this.timeout = 15000;
+      const res = yield urllib.request('http://registry.cnpmjs.org/pedding/*', { dataType: 'json' });
+      const pkg = res.data;
+      pkg.dist.shasum = '00098d60307b4ef7240c3d693cb20a9473c111';
+      mm.https.request(/pedding\/\*/, JSON.stringify(pkg));
       try {
         yield install({
           root: tmp,
@@ -105,15 +100,8 @@ describe('test/download.test.js', () => {
     });
 
     it('should throw 500 error', function* () {
-      const request = urllib.request;
-      mm(urllib, 'request', function* (url, options) {
-        const result = yield request.call(urllib, url, options);
-        if (url.endsWith('.tgz')) {
-          result.status = 500;
-        }
-        return result;
-      });
-
+      mm.http.request(/\.tgz/, 'hello', { statusCode: 500 });
+      mm.https.request(/\.tgz/, 'hello', { statusCode: 500 });
       try {
         yield install({
           root: tmp,
@@ -129,14 +117,8 @@ describe('test/download.test.js', () => {
     });
 
     it('should throw 502 error', function* () {
-      const request = urllib.request;
-      mm(urllib, 'request', function* (url, options) {
-        const result = yield request.call(urllib, url, options);
-        if (url.endsWith('.tgz')) {
-          result.status = 502;
-        }
-        return result;
-      });
+      mm.http.request(/\.tgz/, 'hello', { statusCode: 502 });
+      mm.https.request(/\.tgz/, 'hello', { statusCode: 502 });
 
       try {
         yield install({

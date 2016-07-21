@@ -44,7 +44,6 @@ describe('test/postinstall.test.js', () => {
 
     function cleanup() {
       rimraf.sync(path.join(root, 'build'));
-      rimraf.sync(path.join(root, '.npminstall'));
       rimraf.sync(path.join(root, 'node_modules'));
     }
 
