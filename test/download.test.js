@@ -80,7 +80,8 @@ describe('test/download.test.js', () => {
 
   describe('mock tarball error', () => {
     it('should throw sha1 error', function* () {
-      const res = yield urllib.request('https://registry.npm.taobao.org/pedding/*', { dataType: 'json' });
+      this.timeout = 15000;
+      const res = yield urllib.request('http://registry.cnpmjs.org/pedding/*', { dataType: 'json' });
       const pkg = res.data;
       pkg.dist.shasum = '00098d60307b4ef7240c3d693cb20a9473c111';
       mm.https.request(/pedding\/\*/, JSON.stringify(pkg));
