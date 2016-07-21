@@ -100,6 +100,7 @@ describe('test/download.test.js', () => {
     });
 
     it('should throw 500 error', function* () {
+      mm.http.request(/\.tgz/, 'hello', { statusCode: 500 });
       mm.https.request(/\.tgz/, 'hello', { statusCode: 500 });
       try {
         yield install({
@@ -116,6 +117,7 @@ describe('test/download.test.js', () => {
     });
 
     it('should throw 502 error', function* () {
+      mm.http.request(/\.tgz/, 'hello', { statusCode: 502 });
       mm.https.request(/\.tgz/, 'hello', { statusCode: 502 });
 
       try {
