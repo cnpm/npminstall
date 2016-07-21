@@ -104,7 +104,7 @@ co(function*() {
     // registry, default is https://registry.npmjs.org
     // registry: 'https://registry.npmjs.org',
     // debug: false,
-    // storeDir: root + '.npminstall',
+    // storeDir: root + 'node_modules',
     // ignoreScripts: true, // ignore pre/post install scripts, default is `false`
     // forbiddenLicenses: forbit install packages which used these licenses
   });
@@ -166,24 +166,14 @@ e.g.:
 ```bash
 app/
 ├── package.json
-└── node_modules/
-    ├── .npminstall/
-    │   ├── debug/
-    │   │   └── 2.2.0/
-    │   │       └── debug
-    │   │           ├── package.json
-    │   │           └── node_modules/
-    │   │               └── ms -> ../../../../ms/0.7.1/ms
-    │   ├── ms/
-    │   │   └── 0.7.1/
-    │   │       └── ms
-    │   │           └── package.json
-    │   └── node_modules/
-    │       └── ms -> ../ms/0.7.1/ms
-    └── debug -> .npminstall/debug/2.2.0/debug
+└── node_modules
+    ├── .debug@2.2.0
+    │   ├── node_modules
+    │   │   └── ms -> ../../.ms@0.7.1
+    ├── .ms@0.7.1
+    ├── debug -> .debug@2.2.0
+    └── ms -> .ms@0.7.1 # for peerDependencies
 ```
-
-`debug@2.2.0` is root package, won't create link at `app/node_modules/.npminstall/node_modules/debug@`.
 
 ## Benchmarks
 

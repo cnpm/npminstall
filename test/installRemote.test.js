@@ -31,8 +31,8 @@ describe('test/installRemote.test.js', function() {
     pkg = yield readJSON(path.join(root, 'node_modules', 'taffydb', 'package.json'));
     assert.equal(pkg.name, 'taffydb');
 
-    const dirs = yield fs.readdir(path.join(root, 'node_modules/.npminstall'));
-    assert.deepEqual(dirs.sort(), [ '.tmp', 'pedding', 'taffydb', 'node_modules' ].sort());
+    const dirs = yield fs.readdir(path.join(root, 'node_modules'));
+    assert.deepEqual(dirs.sort(), [ '.tmp', 'pedding', 'taffydb', '.pedding@1.0.0', '.taffydb@2.7.2' ].sort());
   });
 
   it('should install https://registry.npm.taobao.org/taffydb/download/taffydb-2.7.2.tgz', function* () {

@@ -28,9 +28,9 @@ describe('test/linkRoot.test.js', function() {
         { name: 'es3ify-loader', version: '0.1.0' },
       ],
     });
-    let pkg = require(path.join(tmp, 'node_modules/.npminstall/node_modules/es3ify/package.json'));
+    let pkg = require(path.join(tmp, 'node_modules/es3ify/package.json'));
     assert.equal(pkg.version, '0.1.2');
-    pkg = require(path.join(tmp, 'node_modules/.npminstall/node_modules/es3ify-loader/package.json'));
+    pkg = require(path.join(tmp, 'node_modules/es3ify-loader/package.json'));
     assert.equal(pkg.version, '0.1.0');
   });
 });

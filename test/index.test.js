@@ -132,11 +132,8 @@ describe('test/index.test.js', function() {
       yield npminstall({
         root,
       });
-      // node_modules/.npminstall/node_modules/ms should exists
-      assert(yield fs.exists(path.join(root, 'node_modules', '.npminstall', 'node_modules', 'ms')));
-      // node_modules/.npminstall/node_modules/debug should exists
-      assert(yield fs.exists(path.join(root, 'node_modules', '.npminstall', 'node_modules', 'debug')));
-      assert(yield fs.exists(path.join(root, 'node_modules', 'pedding')));
+      // node_modules/.debug@2.2.0 should exists
+      assert(yield fs.exists(path.join(root, 'node_modules', '.debug@2.2.0')));
 
       const debugPkg = yield readJSON(path.join(root, 'node_modules', 'debug', 'package.json'));
       assert.equal(debugPkg._from, 'debug@2.2.0');

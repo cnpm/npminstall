@@ -34,10 +34,10 @@ describe('test/cleanup.test.js', function() {
     }
     assert.equal(throwError, true);
 
-    let exists = yield fs.exists(path.join(tmp, 'node_modules/.npminstall/install-error/1.0.1/install-error/.npminstall.done'));
+    let exists = yield fs.exists(path.join(tmp, 'node_modules/.install-error@1.0.1/.npminstall.done'));
     assert.equal(exists, false);
     const dirs = yield fs.readdir(path.join(tmp, 'node_modules'));
-    assert.deepEqual(dirs, [ '.npminstall' ]);
+    assert.deepEqual(dirs, [ '.install-error@1.0.1' ]);
 
     // install again will try to download
     throwError = false;
@@ -52,7 +52,7 @@ describe('test/cleanup.test.js', function() {
       throwError = true;
     }
     assert.equal(throwError, true);
-    exists = yield fs.exists(path.join(tmp, 'node_modules/.npminstall/install-error/1.0.1/install-error/.npminstall.done'));
+    exists = yield fs.exists(path.join(tmp, 'node_modules/.install-error@1.0.1/.npminstall.done'));
     assert.equal(exists, false);
   });
 
@@ -69,7 +69,7 @@ describe('test/cleanup.test.js', function() {
     }
     assert.equal(throwError, true);
 
-    let exists = yield fs.exists(path.join(tmp, 'node_modules/.npminstall/postinstall-error/1.0.0/postinstall-error/.npminstall.done'));
+    let exists = yield fs.exists(path.join(tmp, 'node_modules/.postinstall-error@1.0.0/.npminstall.done'));
     assert.equal(exists, false);
 
     // install again will try to download
@@ -83,7 +83,7 @@ describe('test/cleanup.test.js', function() {
       throwError = true;
     }
     assert.equal(throwError, true);
-    exists = yield fs.exists(path.join(tmp, 'node_modules/.npminstall/postinstall-error/1.0.0/postinstall-error/.npminstall.done'));
+    exists = yield fs.exists(path.join(tmp, 'node_modules/.postinstall-error@1.0.0/.npminstall.done'));
     assert.equal(exists, false);
   });
 });

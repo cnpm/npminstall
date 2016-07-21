@@ -37,7 +37,7 @@ describe('test/installTarget.test.js', function() {
     assert(pkg.name, 'koa');
     pkg = yield readJSON(path.join(tmp, 'targetDir/node_modules/mocha/package.json'));
     assert(pkg.name, 'mocha');
-    const pkgs = fs.readdirSync(path.join(tmp, 'targetDir/node_modules/.npminstall'));
+    const pkgs = fs.readdirSync(path.join(tmp, 'targetDir/node_modules/'));
     assert(pkgs.indexOf('koa') >= 0);
     assert(pkgs.indexOf('mocha') >= 0);
     const bins = fs.readdirSync(path.join(tmp, 'binDir'));
