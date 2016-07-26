@@ -34,11 +34,11 @@ describe('test/installGlobal.test.js', function() {
       ],
     });
 
-    assert(yield fs.exists(path.join(tmp, 'bin', 'contributors')));
-    assert(yield fs.exists(path.join(tmp, 'lib', 'node_modules', 'contributors')));
-    assert(yield fs.exists(path.join(tmp, 'lib', 'node_modules', 'taffydb')));
-    assert(yield fs.exists(path.join(tmp, 'lib', 'node_modules', 'pedding')));
-
+    assert(yield fs.exists(path.join(tmp, 'bin/contributors')));
+    assert(yield fs.exists(path.join(tmp, 'lib/node_modules/contributors')));
+    assert(yield fs.exists(path.join(tmp, 'lib/node_modules/taffydb')));
+    assert(yield fs.exists(path.join(tmp, 'lib/node_modules/pedding')));
+    assert(yield fs.exists(path.join(tmp, 'lib/node_modules/.contributors_npminstall/node_modules')));
     yield installGlobal({
       root: tmp,
       targetDir: path.join(tmp, 'lib'),
@@ -49,9 +49,9 @@ describe('test/installGlobal.test.js', function() {
       ],
     });
 
-    assert(yield fs.exists(path.join(tmp, 'bin', 'contributors')));
-    assert(yield fs.exists(path.join(tmp, 'lib', 'node_modules', 'contributors')));
-    assert(yield fs.exists(path.join(tmp, 'lib', 'node_modules', 'b')));
+    assert(yield fs.exists(path.join(tmp, 'bin/contributors')));
+    assert(yield fs.exists(path.join(tmp, 'lib/node_modules/contributors')));
+    assert(yield fs.exists(path.join(tmp, 'lib/node_modules/b')));
 
     yield installGlobal({
       root: tmp,
@@ -62,8 +62,8 @@ describe('test/installGlobal.test.js', function() {
       ],
     });
 
-    assert(yield fs.exists(path.join(tmp, 'bin', 'contributors')));
-    assert(yield fs.exists(path.join(tmp, 'lib', 'node_modules', 'contributors')));
+    assert(yield fs.exists(path.join(tmp, 'bin/contributors')));
+    assert(yield fs.exists(path.join(tmp, 'lib/node_modules/contributors')));
   });
 
   it('should install with global prefix', done => {
