@@ -1,4 +1,9 @@
 
+2.0.0-beta.2 / 2016-07-26
+==================
+
+  * fix: global storeDir must ends with `node_modules` (#99)
+
 2.0.0-beta.1 / 2016-07-21
 ==================
 
