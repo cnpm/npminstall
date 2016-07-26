@@ -56,7 +56,7 @@ describe('test/cleanup.test.js', function() {
     assert.equal(exists, false);
   });
 
-  it('should remove donefile when excute postinstall script failed', function* () {
+  it('should remove donefile when execute postinstall script failed', function* () {
     let throwError = false;
     const pkgs = [{ version: '../postinstall-error', type: 'local' }];
     try {
