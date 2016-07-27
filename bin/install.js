@@ -12,7 +12,7 @@ const execSync = require('child_process').execSync;
 const fs = require('mz/fs');
 const parseArgs = require('minimist');
 const utils = require('../lib/utils');
-const config = require('../lib/config');
+const globalConfig = require('../lib/config');
 const installLocal = require('..').installLocal;
 const installGlobal = require('..').installGlobal;
 
@@ -22,6 +22,7 @@ const argv = parseArgs(process.argv.slice(2), {
     'registry',
     'prefix',
     'forbidden-licenses',
+    'custom-china-mirror-url',
   ],
   boolean: [
     'version',
@@ -107,10 +108,12 @@ forbiddenLicenses = forbiddenLicenses ? forbiddenLicenses.split(',') : null;
 
 // if in china, will automatic using chines registry and mirros.
 const inChina = argv.china || !!process.env.npm_china;
+// if exists, override default china mirror url
+const customChinaMirrorUrl = argv['custom-china-mirror-url'];
 
 let registry = argv.registry || process.env.npm_registry;
 if (inChina) {
-  registry = registry || config.chineseRegistry;
+  registry = registry || globalConfig.chineseRegistry;
 }
 // for env.npm_config_registry
 registry = registry || 'https://registry.npmjs.com';
@@ -122,8 +125,11 @@ env.npm_node_execpath = env.NODE = process.env.NODE || process.execPath;
 env.npm_execpath = require.main.filename;
 
 if (inChina) {
-  for (const key in config.chineseMirrorEnv) {
-    env[key] = config.chineseMirrorEnv[key];
+  for (const key in globalConfig.chineseMirrorEnv) {
+    env[key] = globalConfig.chineseMirrorEnv[key];
+    if (customChinaMirrorUrl) {
+      env[key] = env[key].replace(globalConfig.chineseMirrorUrl, customChinaMirrorUrl);
+    }
   }
 }
 
@@ -142,6 +148,16 @@ co(function* () {
 
   if (inChina) {
     binaryMirrors = yield utils.getBinaryMirrors(registry);
+    if (customChinaMirrorUrl) {
+      for (const key in binaryMirrors) {
+        const item = binaryMirrors[key];
+        if (item.host) {
+          item.host = item.host.replace(globalConfig.chineseMirrorUrl, customChinaMirrorUrl);
+        }
+      }
+      console.log('Use custom china mirror %j instead of %j',
+        customChinaMirrorUrl, globalConfig.chineseMirrorUrl);
+    }
   }
 
   const config = {

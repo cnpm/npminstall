@@ -5,6 +5,7 @@ const path = require('path');
 const rimraf = require('rimraf');
 const readJSON = require('../lib/utils').readJSON;
 const npminstall = require('./npminstall');
+const coffee = require('coffee');
 
 describe('test/installLocal.test.js', function() {
   const root = path.join(__dirname, 'fixtures', 'local');
@@ -186,5 +187,23 @@ describe('test/installLocal.test.js', function() {
       pkg = yield readJSON(path.join(root, 'node_modules/pkg/package.json'));
       assert.equal(pkg.name, 'pkg');
     });
+
+    if (process.env.npm_china) {
+      it('should install from custom china mirror url work', done => {
+        const cli = require.resolve('../bin/install');
+        coffee.fork(cli, [
+          'phantomjs-prebuilt',
+          '--custom-china-mirror-url=http://cdn.npm.taobao.org/dist',
+        ], {
+          cwd: root,
+        })
+        .coverage(false)
+        .debug()
+        .expect('code', 0)
+        .expect('stdout',
+          /Use custom china mirror "http:\/\/cdn\.npm\.taobao\.org\/dist" instead of "https:\/\/npm\.taobao\.org\/mirrors"/)
+        .end(done);
+      });
+    }
   }
 });
