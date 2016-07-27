@@ -6,6 +6,7 @@ const path = require('path');
 const rimraf = require('rimraf');
 const mkdirp = require('mkdirp');
 const npminstall = require('./npminstall');
+const mm = require('mm');
 
 describe('test/node-gyp.test.js', function() {
   const tmp = path.join(__dirname, 'fixtures', 'tmp');
@@ -19,8 +20,11 @@ describe('test/node-gyp.test.js', function() {
     mkdirp.sync(tmp);
   });
   afterEach(cleanup);
+  afterEach(mm.restore);
 
   it('should node-gyp work fine', function* () {
+    // remove npm's node-gyp path
+    mm(process.env, 'PATH', process.env.PATH.replace('node-gyp-bin', ''));
     try {
       yield npminstall({
         root: tmp,
