@@ -1,4 +1,11 @@
 
+2.0.0-beta.3 / 2016-07-28
+==================
+
+  * fix: ensure always can find node-gyp (#103)
+  * feat: support custom china mirror url (#101)
+  * chore: fix a typo, excute -> execute (#100)
+
 2.0.0-beta.2 / 2016-07-26
 ==================
 
