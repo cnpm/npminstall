@@ -1,4 +1,10 @@
 
+1.14.1 / 2016-07-28
+==================
+
+  * fix: ensure always can find node-gyp (#104)
+  * feat: support custom china mirror url (#102)
+
 1.14.0 / 2016-07-17
 ==================
 
