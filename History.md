@@ -1,4 +1,9 @@
 
+2.0.0-beta.4 / 2016-07-28
+==================
+
+  * fix: add node-gyp-bin to package.json files
+
 2.0.0-beta.3 / 2016-07-28
 ==================
 
