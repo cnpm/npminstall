@@ -13,10 +13,10 @@
     "npmuninstall": "bin/uninstall.js"
   },
   "scripts": {
-    "test": "mocha -r thunk-mocha -t 120000 test/*.test.js",
-    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- -r thunk-mocha -t 120000 test/*.test.js",
-    "test-local": "npm_china=true local=true mocha -r thunk-mocha -t 120000 test/*.test.js",
-    "test-local-cov": "npm_china=true local=true istanbul cover node_modules/mocha/bin/_mocha -- -r thunk-mocha -t 120000 test/*.test.js",
+    "test": "mocha -r thunk-mocha -r intelli-espower-loader -t 120000 test/*.test.js",
+    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- -r thunk-mocha -r intelli-espower-loader -t 120000 test/*.test.js",
+    "test-local": "npm_china=true local=true mocha -r thunk-mocha -r intelli-espower-loader -t 120000 test/*.test.js",
+    "test-local-cov": "npm_china=true local=true istanbul cover node_modules/mocha/bin/_mocha -- -r thunk-mocha -r intelli-espower-loader -t 120000 test/*.test.js",
     "lint": "eslint . --fix",
     "ci": "npm run lint && npm run test-cov",
     "autod": "autod"
@@ -52,9 +52,11 @@
     "coffee": "^3.2.2",
     "eslint": "3",
     "eslint-config-egg": "3",
+    "intelli-espower-loader": "1",
     "istanbul": "*",
     "mm": "^1.5.0",
     "mocha": "2",
+    "power-assert": "1",
     "thunk-mocha": "1"
   },
   "homepage": "https://github.com/cnpm/npminstall",

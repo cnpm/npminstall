@@ -2,7 +2,7 @@
 
 const npminstall = require('./npminstall');
 const rimraf = require('rimraf');
-const assert = require('assert');
+const assert = require('power-assert');
 const path = require('path');
 const mkdirp = require('mkdirp');
 
