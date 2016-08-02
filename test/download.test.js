@@ -1,6 +1,6 @@
 'use strict';
 
-const assert = require('assert');
+const assert = require('power-assert');
 const mm = require('mm');
 const urllib = require('urllib');
 const rimraf = require('rimraf');
@@ -95,7 +95,7 @@ describe('test/download.test.js', () => {
         });
         throw new Error('should not run this');
       } catch (err) {
-        assert(/sha1:7f5098d60307b4ef7240c3d693cb20a9473c6074 not equal to 00098d60307b4ef7240c3d693cb20a9473c111/.test(err.message), err.message);
+        assert(/real sha1:7f5098d60307b4ef7240c3d693cb20a9473c6074 not equal to remote:00098d60307b4ef7240c3d693cb20a9473c111/.test(err.message));
       }
     });
 

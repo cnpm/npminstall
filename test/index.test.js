@@ -1,6 +1,6 @@
 'use strict';
 
-const assert = require('assert');
+const assert = require('power-assert');
 const fs = require('mz/fs');
 const path = require('path');
 const rimraf = require('rimraf');
