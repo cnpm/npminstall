@@ -1,24 +1,11 @@
 
-2.0.0-beta.4 / 2016-07-28
+2.0.0 / 2016-07-28
 ==================
 
   * fix: add node-gyp-bin to package.json files
-
-2.0.0-beta.3 / 2016-07-28
-==================
-
   * fix: ensure always can find node-gyp (#103)
   * feat: support custom china mirror url (#101)
-  * chore: fix a typo, excute -> execute (#100)
-
-2.0.0-beta.2 / 2016-07-26
-==================
-
   * fix: global storeDir must ends with `node_modules` (#99)
-
-2.0.0-beta.1 / 2016-07-21
-==================
-
   * refactor: remove .npminstall (#98)
 
 1.14.0 / 2016-07-17
