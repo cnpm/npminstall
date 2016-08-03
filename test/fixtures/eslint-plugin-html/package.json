@@ -1,0 +1,10 @@
+{
+  "name": "eslint-plugin-html",
+  "scripts": {
+    "lint": "eslint index.js"
+  },
+  "devDependencies": {
+    "eslint": "^2.10.2",
+    "eslint-plugin-html": "^1.3.0"
+  }
+}

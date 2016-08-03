@@ -8,7 +8,7 @@ const readJSON = require('../lib/utils').readJSON;
 const mkdirp = require('mkdirp');
 const npminstall = require('./npminstall');
 
-describe('test/bundleDependencies.test.js', function() {
+describe('test/bundleDependencies.test.js', () => {
   const tmp = path.join(__dirname, 'fixtures', 'tmp');
 
   function cleanup() {
@@ -34,7 +34,7 @@ describe('test/bundleDependencies.test.js', function() {
 
     // only node-pre-gyp dir exists
     const dirs = yield fs.readdir(path.join(tmp, 'node_modules/'));
-    assert.deepEqual(dirs.sort(), [ '.bin', '.node-pre-gyp@0.6.19', 'node-pre-gyp' ].sort());
+    assert.deepEqual(dirs.sort(), [ '.bin', '.0.6.19@node-pre-gyp', 'node-pre-gyp' ].sort());
   });
 
   it('should install bundleDependencies not exist(nyc@6.4.2)', function* () {

@@ -6,7 +6,7 @@ const rimraf = require('rimraf');
 const fs = require('mz/fs');
 const npminstall = require('./npminstall');
 
-describe('test/ignoreScripts.test.js', function() {
+describe('test/ignoreScripts.test.js', () => {
   const root = path.join(__dirname, 'fixtures', 'ignore-scripts');
 
   function cleanup() {
@@ -23,7 +23,7 @@ describe('test/ignoreScripts.test.js', function() {
     });
 
     const dirs = yield fs.readdir(path.join(root, 'node_modules'));
-    assert.deepEqual(dirs, [ '.pkg@1.0.0', 'pkg' ]);
+    assert.deepEqual(dirs, [ '.1.0.0@pkg', 'pkg' ]);
     const files = yield fs.readdir(path.join(root, 'node_modules/pkg'));
     assert.deepEqual(files, [ '.npminstall.done', 'index.js', 'package.json' ]);
   });
