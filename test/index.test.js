@@ -8,8 +8,7 @@ const npminstall = require('./npminstall');
 const mkdirp = require('../lib/utils').mkdirp;
 const readJSON = require('../lib/utils').readJSON;
 
-describe('test/index.test.js', function() {
-
+describe('test/index.test.js', () => {
   const tmp = path.join(__dirname, 'fixtures', 'tmp');
 
   function cleanup() {
@@ -118,7 +117,7 @@ describe('test/index.test.js', function() {
     });
   });
 
-  describe('_from, _resolved in package.json', function() {
+  describe('_from, _resolved in package.json', () => {
     const root = path.join(__dirname, 'fixtures', 'packageMeta');
 
     function cleanup() {
@@ -133,7 +132,7 @@ describe('test/index.test.js', function() {
         root,
       });
       // node_modules/.debug@2.2.0 should exists
-      assert(yield fs.exists(path.join(root, 'node_modules', '.debug@2.2.0')));
+      assert(yield fs.exists(path.join(root, 'node_modules', '.2.2.0@debug')));
 
       const debugPkg = yield readJSON(path.join(root, 'node_modules', 'debug', 'package.json'));
       assert.equal(debugPkg._from, 'debug@2.2.0');

@@ -7,7 +7,7 @@ const fs = require('mz/fs');
 const mkdirp = require('mkdirp');
 const npminstall = require('./npminstall');
 
-describe('test/cleanup.test.js', function() {
+describe('test/cleanup.test.js', () => {
   const tmp = path.join(__dirname, 'fixtures', 'tmp');
 
   function cleanup() {
@@ -32,12 +32,12 @@ describe('test/cleanup.test.js', function() {
     } catch (err) {
       throwError = true;
     }
-    assert.equal(throwError, true);
+    assert(throwError);
 
-    let exists = yield fs.exists(path.join(tmp, 'node_modules/.install-error@1.0.1/.npminstall.done'));
+    let exists = yield fs.exists(path.join(tmp, 'node_modules/.1.0.1@install-error/.npminstall.done'));
     assert.equal(exists, false);
     const dirs = yield fs.readdir(path.join(tmp, 'node_modules'));
-    assert.deepEqual(dirs, [ '.install-error@1.0.1' ]);
+    assert.deepEqual(dirs, [ '.1.0.1@install-error' ]);
 
     // install again will try to download
     throwError = false;
@@ -52,7 +52,7 @@ describe('test/cleanup.test.js', function() {
       throwError = true;
     }
     assert.equal(throwError, true);
-    exists = yield fs.exists(path.join(tmp, 'node_modules/.install-error@1.0.1/.npminstall.done'));
+    exists = yield fs.exists(path.join(tmp, 'node_modules/.1.0.1@install-error/.npminstall.done'));
     assert.equal(exists, false);
   });
 
@@ -69,7 +69,7 @@ describe('test/cleanup.test.js', function() {
     }
     assert.equal(throwError, true);
 
-    let exists = yield fs.exists(path.join(tmp, 'node_modules/.postinstall-error@1.0.0/.npminstall.done'));
+    let exists = yield fs.exists(path.join(tmp, 'node_modules/.1.0.0@postinstall-error/.npminstall.done'));
     assert.equal(exists, false);
 
     // install again will try to download
@@ -83,7 +83,7 @@ describe('test/cleanup.test.js', function() {
       throwError = true;
     }
     assert.equal(throwError, true);
-    exists = yield fs.exists(path.join(tmp, 'node_modules/.postinstall-error@1.0.0/.npminstall.done'));
+    exists = yield fs.exists(path.join(tmp, 'node_modules/.1.0.0@postinstall-error/.npminstall.done'));
     assert.equal(exists, false);
   });
 });
