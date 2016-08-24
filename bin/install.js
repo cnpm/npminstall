@@ -198,14 +198,15 @@ co(function* () {
     }
   }
 
-  process.on('exit', function(code) {
+  process.on('exit', code => {
     if (code !== 0) {
-      fs.writeFileSync('npminstall-debug.log', util.inspect(config, { depth: 2 }));
+      fs.writeFileSync(path.join(root, 'npminstall-debug.log'), util.inspect(config, { depth: 2 }));
     }
   });
-}).catch(function(err) {
-  console.error(chalk.red(err));
+}).catch(err => {
   console.error(chalk.red(err.stack));
+  console.error(chalk.yellow('npminstall version: %s'), require('../package.json').version);
+  console.error(chalk.yellow('npminstall args: %s'), process.argv.join(' '));
   process.exit(1);
 });
 
