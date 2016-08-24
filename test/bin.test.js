@@ -36,6 +36,6 @@ describe('test/bin.test.js', () => {
     });
     const pkg = yield readJSON(path.join(root, 'node_modules', '@bigfunger/decompress-zip', 'package.json'));
     assert.equal(pkg.name, '@bigfunger/decompress-zip');
-    assert(fs.existsSync(path.join(root, 'node_modules', '.bin/@bigfunger', 'decompress-zip')));
+    assert(fs.existsSync(path.join(root, 'node_modules', '.bin', 'decompress-zip')));
   });
 });

@@ -54,8 +54,8 @@
     "eslint-config-egg": "3",
     "intelli-espower-loader": "1",
     "istanbul": "*",
-    "mm": "^1.5.0",
-    "mocha": "2",
+    "mm": "1",
+    "mocha": "3",
     "power-assert": "1",
     "thunk-mocha": "1"
   },
