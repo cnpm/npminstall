@@ -1,4 +1,10 @@
 
+2.1.0 / 2016-08-24
+==================
+
+  * feat: should follow npm install version (#111)
+  * test: ignore eslint-plugin-html.test.js on windows
+
 2.0.2 / 2016-08-03
 ==================
 
