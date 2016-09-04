@@ -5,29 +5,44 @@
 ### ghost
 
 ```bash
-------- npminstall@v2.1.1 -------
+------- npminstall@v2.2.0 -------
 All packages installed (712 packages installed from npm registry, 1 packages installed from remote url, use 29s, speed 1.42MB/s, json 1314(8.55MB), tarball 33.09MB)
 
 real	0m33.015s
 user	0m26.419s
 sys	0m12.173s
 
-------- npminstall@v2.1.1 with cache -------
+------- npminstall@v2.2.0 with cache -------
 All packages installed (712 packages installed from npm registry, 1 packages installed from remote url, use 25s, speed 346.42kB/s, json 1312(8.5MB), tarball 0B)
 
 real	0m27.152s
 user	0m23.850s
 sys	0m10.726s
 
-------- npminstall@v2.1.1 --no-cache -------
+------- npminstall@v2.2.0 --no-cache -------
 All packages installed (712 packages installed from npm registry, 1 packages installed from remote url, use 31s, speed 1.35MB/s, json 1312(8.55MB), tarball 33.09MB)
 
 real	0m33.436s
 user	0m28.358s
 sys	0m12.021s
+
+---------- npm@2.15.9 -----------
+real	1m20.617s
+user	1m11.560s
+sys	0m25.161s
+
+---- npm@2.15.9 with cache ------
+real	1m6.056s
+user	1m1.631s
+sys	0m21.481s
+
+--------- pnpm@0.30.0 -----------
+Error: Protocol "https:" not supported. Expected "http:".
 ```
 
 ## 2016-03-03 01:27 at Home Hangzhou
+
+### cnpmjs.org
 
 ```bash
 ------- npminstall@v1.2.0 -------
@@ -68,6 +83,8 @@ sys	0m6.302s
 ```
 
 ## 2016-02-18 15:36 at Alipay Hangzhou
+
+### cnpmjs.org
 
 ```bash
 ------- npminstall@v0.7.0 -------

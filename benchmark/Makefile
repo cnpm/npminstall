@@ -53,4 +53,4 @@ pnpm:
 	@cd cnpmjs.org && rm -rf node_modules
 	@cd cnpmjs.org && time npm i babel-preset-es2015 browserify chalk debug minimist mkdirp --registry=https://registry.npm.taobao.org
 
-.PHONY: cnpmjs.org, ghost, pnpm
+.PHONY: cnpmjs.org ghost pnpm
