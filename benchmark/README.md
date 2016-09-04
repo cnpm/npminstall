@@ -1,5 +1,32 @@
 # Benchmark History
 
+## 2016-09-04 10:22 at NanJing Airport, under China Mobile 4G network
+
+### ghost
+
+```bash
+------- npminstall@v2.1.1 -------
+All packages installed (712 packages installed from npm registry, 1 packages installed from remote url, use 29s, speed 1.42MB/s, json 1314(8.55MB), tarball 33.09MB)
+
+real	0m33.015s
+user	0m26.419s
+sys	0m12.173s
+
+------- npminstall@v2.1.1 with cache -------
+All packages installed (712 packages installed from npm registry, 1 packages installed from remote url, use 25s, speed 346.42kB/s, json 1312(8.5MB), tarball 0B)
+
+real	0m27.152s
+user	0m23.850s
+sys	0m10.726s
+
+------- npminstall@v2.1.1 --no-cache -------
+All packages installed (712 packages installed from npm registry, 1 packages installed from remote url, use 31s, speed 1.35MB/s, json 1312(8.55MB), tarball 33.09MB)
+
+real	0m33.436s
+user	0m28.358s
+sys	0m12.021s
+```
+
 ## 2016-03-03 01:27 at Home Hangzhou
 
 ```bash
