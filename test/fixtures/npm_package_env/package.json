@@ -1,0 +1,26 @@
+{
+  "name": "npm_package_env_test",
+  "dependencies": {
+    "await-event": "^1.0.0",
+    "binary-mirror-config": "1"
+  },
+  "scripts": {
+    "preinstall": "node save_env.js preinstall",
+    "postinstall": "node save_env.js postinstall"
+  },
+  "engines": {
+    "node": "~0.10.0 || ~0.12.0 || ^4.2.0",
+    "foo": {
+      "bar": [ 1111 ]
+    }
+  },
+  "greenkeeper": {
+    "ignore": [
+      "glob",
+      "mysql",
+      "nodemailer",
+      "pg",
+      "showdown-ghost"
+    ]
+  }
+}

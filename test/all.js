@@ -25,6 +25,11 @@ const names = [
   'pnpm',
 ];
 
+// test ghost install on node v4
+if (/^v4\./.test(process.version)) {
+  names.push('ghost');
+}
+
 co(function* () {
   const root = path.join(__dirname, 'fixtures', 'all');
   const pkgs = names.map(name => {
