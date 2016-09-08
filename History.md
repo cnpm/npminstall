@@ -1,4 +1,12 @@
 
+2.2.0 / 2016-09-08
+==================
+
+  * fix: retry get if registry return 50x (#119)
+  * fix: npm registry scoped permission error (#118)
+  * fix: use normalize-git-url to parse git url (#117)
+  * feat: auto set `npm_package_*` env on run script (#116)
+
 2.1.1 / 2016-09-01
 ==================
 
