@@ -79,7 +79,7 @@ Usage:
 
 ### Install
 
-```
+```bash
 $ npm install npminstall --save
 ```
 
@@ -89,7 +89,7 @@ $ npm install npminstall --save
 const co = require('co');
 const npminstall = require('npminstall');
 
-co(function*() {
+co(function* () {
   yield npminstall({
     // install root dir
     root: process.cwd(),
@@ -108,7 +108,7 @@ co(function*() {
     // ignoreScripts: true, // ignore pre/post install scripts, default is `false`
     // forbiddenLicenses: forbit install packages which used these licenses
   });
-}).catch(function(err) {
+}).catch(err => {
   console.error(err.stack);
 });
 ```
@@ -167,12 +167,12 @@ e.g.:
 app/
 ├── package.json
 └── node_modules
-    ├── .debug@2.2.0
+    ├── .2.2.0@debug
     │   ├── node_modules
-    │   │   └── ms -> ../../.ms@0.7.1
-    ├── .ms@0.7.1
-    ├── debug -> .debug@2.2.0
-    └── ms -> .ms@0.7.1 # for peerDependencies
+    │   │   └── ms -> ../../.0.7.1@ms
+    ├── .0.7.1@ms
+    ├── debug -> .2.2.0@debug
+    └── ms -> .0.7.1@ms # for peerDependencies
 ```
 
 ## Benchmarks
