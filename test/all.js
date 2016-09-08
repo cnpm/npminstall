@@ -23,6 +23,7 @@ const names = [
   'antd',
   'cnpm',
   'pnpm',
+  'firebase',
 ];
 
 // test ghost install on node v4
