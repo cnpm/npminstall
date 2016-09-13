@@ -37,6 +37,29 @@ describe('test/postinstall.test.js', () => {
       // prepublish pass
       assert.equal(fs.readFileSync(path.join(root, 'node_modules', '.prepublish.txt'), 'utf8'), 'success: prepublish');
     });
+
+    it('should not run prepublish with production mode', function* () {
+      yield npminstall({
+        root,
+        production: true
+      });
+      const pkg = yield readJSON(path.join(root, 'node_modules', 'utility', 'package.json'));
+      assert.equal(pkg.name, 'utility');
+      assert.equal(pkg.version, '1.6.0');
+
+      // postinstall pass
+      assert.equal(fs.readFileSync(path.join(root, 'node_modules', '.postinstall.txt'), 'utf8'), 'success: postinstall');
+
+      // prepublish pass
+      let hasFile = false;
+
+      try {
+        hasFile = !!fs.statSync(path.join(root, 'node_modules', '.prepublish.txt'));
+      } catch (err) {
+        // empty
+      }
+      assert.equal(hasFile, false);
+    });
   });
 
   describe('node-gyp', function() {
