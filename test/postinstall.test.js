@@ -37,6 +37,29 @@ describe('test/postinstall.test.js', () => {
       // prepublish pass
       assert.equal(fs.readFileSync(path.join(root, 'node_modules', '.prepublish.txt'), 'utf8'), 'success: prepublish');
     });
+
+    it('should not run prepublish with producion mode', function* () {
+      yield npminstall({
+        root,
+        producion: true
+      });
+      const pkg = yield readJSON(path.join(root, 'node_modules', 'utility', 'package.json'));
+      assert.equal(pkg.name, 'utility');
+      assert.equal(pkg.version, '1.6.0');
+
+      // postinstall pass
+      assert.equal(fs.readFileSync(path.join(root, 'node_modules', '.postinstall.txt'), 'utf8'), 'success: postinstall');
+
+      // prepublish pass
+      let hasFile = false;
+
+      try {
+        hasFile = !!fs.statSync(path.join(root, 'node_modules', '.prepublish.txt'));
+      } catch (err) {
+        // empty
+      }
+      assert.equal(hasFile, false);
+    });
   });
 
   describe('node-gyp', function() {
@@ -68,7 +91,10 @@ describe('test/postinstall.test.js', () => {
         rimraf.sync(path.join(root, 'node_modules'));
       });
 
-      it('should install --save pedding and update dependencies', done => {
+      it('should install --save pedding and update dependencies', function (done) {
+        // it may take a long time
+        this.timeout(8000)
+
         coffee.fork(path.join(__dirname, '..', 'bin', 'install.js'), [
           '--foo_bar_haha=okok',
         ], {
