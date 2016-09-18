@@ -16,7 +16,8 @@ const globalConfig = require('../lib/config');
 const installLocal = require('..').installLocal;
 const installGlobal = require('..').installGlobal;
 
-const argv = parseArgs(process.argv.slice(2), {
+const orignalArgv = process.argv.slice(2);
+const argv = parseArgs(orignalArgv, {
   string: [
     'root',
     'registry',
@@ -119,6 +120,13 @@ if (inChina) {
 registry = registry || 'https://registry.npmjs.com';
 const env = {
   npm_config_registry: registry,
+  // set npm_config_argv
+  // see https://github.com/cnpm/npminstall/issues/121#issuecomment-247836741
+  npm_config_argv: JSON.stringify({
+    remain: [],
+    cooked: orignalArgv,
+    original: orignalArgv,
+  }),
 };
 // https://github.com/npm/npm/blob/2005f4ce11f6cdf142f8a77f4f7ee4996000fb57/lib/utils/lifecycle.js#L67
 env.npm_node_execpath = env.NODE = process.env.NODE || process.execPath;
