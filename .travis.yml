@@ -9,6 +9,7 @@ before_script:
   - echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 script:
   - 'npm run ci'
+  - 'sh test/git-clone-install.sh'
   - 'node test/all.js'
 after_script:
   - 'npm i codecov && codecov'
