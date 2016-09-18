@@ -10,6 +10,7 @@ console.log({
   exists: !!require('utility'),
   path: require.resolve('utility'),
   version: require('utility/package.json').version,
+  npm_config_argv: process.env.npm_config_argv,
 });
 
 let filepath;

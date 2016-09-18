@@ -6,7 +6,7 @@ const path = require('path');
 const fs = require('fs');
 const coffee = require('coffee');
 const readJSON = require('../lib/utils').readJSON;
-const npminstall = require('..');
+const npminstall = require('./npminstall');
 
 describe('test/postinstall.test.js', () => {
 
@@ -41,7 +41,7 @@ describe('test/postinstall.test.js', () => {
     it('should not run prepublish with production mode', function* () {
       yield npminstall({
         root,
-        production: true
+        production: true,
       });
       const pkg = yield readJSON(path.join(root, 'node_modules', 'utility', 'package.json'));
       assert.equal(pkg.name, 'utility');
