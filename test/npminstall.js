@@ -23,4 +23,10 @@ function* formatOptions(options) {
     }
     options.binaryMirrors = yield utils.getBinaryMirrors(options.registry);
   }
+  if (options.customBinaryMirrors) {
+    options.binaryMirrors = options.binaryMirrors || {};
+    for (const key in options.customBinaryMirrors) {
+      options.binaryMirrors[key] = options.customBinaryMirrors[key];
+    }
+  }
 }
