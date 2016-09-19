@@ -24,6 +24,8 @@ const argv = parseArgs(orignalArgv, {
     'prefix',
     'forbidden-licenses',
     'custom-china-mirror-url',
+    // {"http://a.com":"http://b.com"}
+    'tarball-url-mapping',
   ],
   boolean: [
     'version',
@@ -180,6 +182,18 @@ co(function* () {
   };
   config.strictSSL = getStrictSSL();
   config.ignoreScripts = argv['ignore-scripts'] || getIgnoreScripts();
+
+  if (argv['tarball-url-mapping']) {
+    const tarballUrlMapping = JSON.parse(argv['tarball-url-mapping']);
+    config.formatNpmTarbalUrl = function formatNpmTarbalUrl(url) {
+      for (const fromUrl in tarballUrlMapping) {
+        const toUrl = tarballUrlMapping[fromUrl];
+        url = url.replace(fromUrl, toUrl);
+      }
+      return url;
+    };
+  }
+
   // -g install to npm's global prefix
   if (argv.global) {
     // support custom prefix for global install
