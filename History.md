@@ -1,4 +1,9 @@
 
+2.4.0 / 2016-09-20
+==================
+
+  * feat: use npminstall instead of npm install on runscript (#129)
+
 2.3.1 / 2016-09-19
 ==================
 
