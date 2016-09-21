@@ -9,6 +9,7 @@ const path = require('path');
 const fs = require('mz/fs');
 const parseArgs = require('minimist');
 const chalk = require('chalk');
+const execSync = require('child_process').execSync;
 
 const utils = require('../lib/utils');
 const uninstall = require('../lib/uninstall');
@@ -16,10 +17,12 @@ const uninstall = require('../lib/uninstall');
 const argv = parseArgs(process.argv.slice(2), {
   string: [
     'root',
+    'prefix',
   ],
   boolean: [
     'version',
     'help',
+    'global',
     'save',
     'save-dev',
     'save-optional',
@@ -28,6 +31,7 @@ const argv = parseArgs(process.argv.slice(2), {
   alias: {
     v: 'version',
     h: 'help',
+    g: 'global',
     S: 'save',
     D: 'save-dev',
     O: 'save-optional',
@@ -55,9 +59,23 @@ co(function* () {
   const config = {
     root,
     pkgs,
-    ignoreScripts: argv['ignore-scripts'],
+    global: argv.global,
+    targetDir: root,
+    binDir: path.join(root, 'node_modules/.bin'),
   };
-  debug('uninstall in %s with $j', root, pkgs);
+
+  if (argv.global) {
+    // support custom prefix for global install
+    const npmPrefix = argv.prefix || getPrefix();
+    if (process.platform === 'win32') {
+      config.targetDir = npmPrefix;
+      config.binDir = npmPrefix;
+    } else {
+      config.targetDir = path.join(npmPrefix, 'lib');
+      config.binDir = path.join(npmPrefix, 'bin');
+    }
+  }
+  debug('uninstall in %s with pkg: $j, config: %j', root, pkgs, config);
   const uninstalled = yield uninstall(config);
   if (uninstalled.length > 0) {
     // support --save, --save-dev and --save-optional
@@ -100,4 +118,12 @@ Usage:
 `
   );
   process.exit(0);
+}
+
+function getPrefix() {
+  try {
+    return execSync('npm config get prefix').toString().trim();
+  } catch (err) {
+    throw new Error(`exec npm config get prefix ERROR: ${err.message}`);
+  }
 }
