@@ -2,11 +2,11 @@
 
 const assert = require('power-assert');
 const path = require('path');
+const fs = require('fs');
 const rimraf = require('rimraf');
 const coffee = require('coffee');
 const npminstall = path.join(__dirname, '../bin/install.js');
 const npmupdate = path.join(__dirname, '../bin/update.js');
-const fs = require('mz/fs');
 
 describe('test/update.test.js', () => {
   const root = path.join(__dirname, 'fixtures', 'uninstall');
@@ -16,7 +16,8 @@ describe('test/update.test.js', () => {
   }
 
   beforeEach(() => {
-    return coffee.fork(npminstall, [], {
+    cleanup();
+    return coffee.fork(npminstall, {
       cwd: root,
       stdio: 'pipe',
     });
@@ -28,11 +29,11 @@ describe('test/update.test.js', () => {
     coffee.fork(npmupdate, {
       cwd: root,
       stdio: 'pipe',
-    }).end(() => {
-      assert(!fs.existsSync(path.join(path.join(root, 'node_modules/koa'))));
-      assert(!fs.existsSync(path.join(path.join(root, 'node_modules/pkg'))));
-      assert(!fs.existsSync(path.join(path.join(root, 'node_modules/.1.0.0@pkg'))));
-      done();
+    }).end(err => {
+      assert(fs.existsSync(path.join(root, 'node_modules/koa')));
+      assert(fs.existsSync(path.join(root, 'node_modules/pkg')));
+      assert(fs.existsSync(path.join(root, 'node_modules/.1.0.0@pkg')));
+      done(err);
     });
   });
 });
