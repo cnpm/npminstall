@@ -10,7 +10,8 @@
   ],
   "bin": {
     "npminstall": "bin/install.js",
-    "npmuninstall": "bin/uninstall.js"
+    "npmuninstall": "bin/uninstall.js",
+    "npmupdate": "bin/update.js"
   },
   "scripts": {
     "test": "mocha -r thunk-mocha -r intelli-espower-loader -t 120000 test/*.test.js",
