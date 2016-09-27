@@ -7,6 +7,11 @@ node ../bin/install.js
 node ../bin/update.js
 cd ..
 
+git clone https://github.com/ant-design/ant-design-mobile.git
+cd ant-design-mobile
+node ../bin/install.js
+cd ..
+
 git clone https://github.com/mapbox/node-sqlite3.git
 cd node-sqlite3
 node ../bin/install.js
