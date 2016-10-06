@@ -8,19 +8,19 @@ const coffee = require('coffee');
 const npminstall = path.join(__dirname, '../bin/install.js');
 const npmupdate = path.join(__dirname, '../bin/update.js');
 
-describe('test/update.test.js', () => {
-  const root = path.join(__dirname, 'fixtures', 'uninstall');
+describe.only('test/update.test.js', () => {
+  const root = path.join(__dirname, 'fixtures', 'update');
 
   function cleanup() {
     rimraf.sync(path.join(root, 'node_modules'));
   }
 
-  beforeEach(() => {
+  beforeEach(done => {
     cleanup();
-    return coffee.fork(npminstall, {
+    coffee.fork(npminstall, {
       cwd: root,
       stdio: 'pipe',
-    });
+    }).end(done);
   });
 
   afterEach(cleanup);
