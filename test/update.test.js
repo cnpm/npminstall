@@ -9,31 +9,35 @@ const npminstall = path.join(__dirname, '../bin/install.js');
 const npmupdate = path.join(__dirname, '../bin/update.js');
 
 describe('test/update.test.js', () => {
-  const root = path.join(__dirname, 'fixtures', 'uninstall');
+  const root = path.join(__dirname, 'fixtures', 'update');
 
   function cleanup() {
     rimraf.sync(path.join(root, 'node_modules'));
   }
 
-  beforeEach(() => {
+  beforeEach(done => {
     cleanup();
-    return coffee.fork(npminstall, {
+    coffee.fork(npminstall, [], {
       cwd: root,
       stdio: 'pipe',
-    });
+    })
+    .debug()
+    .end(done);
   });
 
   afterEach(cleanup);
 
   it('should uninstall ok', done => {
-    coffee.fork(npmupdate, {
+    coffee.fork(npmupdate, [], {
       cwd: root,
       stdio: 'pipe',
-    }).end(err => {
-      assert(fs.existsSync(path.join(root, 'node_modules/koa')));
+    })
+    .debug()
+    .end(err => {
+      assert(!err);
+      assert(fs.existsSync(path.join(root, 'node_modules/pedding')));
       assert(fs.existsSync(path.join(root, 'node_modules/pkg')));
-      assert(fs.existsSync(path.join(root, 'node_modules/.1.0.0@pkg')));
-      done(err);
+      done();
     });
   });
 });
