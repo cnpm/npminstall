@@ -22,7 +22,7 @@ describe('test/license.test.js', () => {
     ], {
       cwd: root,
     })
-    .expect('stderr', /!!!WARNING!!! license forbidden: package forbidden's license\(MIT-v3\.0\) is not allowed/)
+    .expect('stderr', /package forbidden's license\(MIT-v3\.0\) is not allowed/)
     .end(done);
   });
 
