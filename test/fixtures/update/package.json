@@ -1,0 +1,8 @@
+{
+  "name": "update",
+  "version": "1.0.0",
+  "dependencies": {
+    "pkg": "./pkg",
+    "pedding": "*"
+  }
+}
