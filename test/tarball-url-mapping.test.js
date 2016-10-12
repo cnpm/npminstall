@@ -30,7 +30,7 @@ describe('tarball-url-mapping.test.js', () => {
     ], { cwd: tmp })
       .debug()
       .expect('code', 0)
-      .expect('stdout', /\[pedding@\*\] installed/)
+      .expect('stdout', /pedding@\* installed/)
       .end(done);
   });
 });

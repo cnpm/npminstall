@@ -27,7 +27,7 @@ if (process.platform !== 'win32') {
       ], {
         cwd: tmp,
       })
-      .expect('stdout', /\[pedding@\*\] installed/)
+      .expect('stdout', /pedding@\* installed/)
       .expect('code', 0)
       .end(err => {
         assert(!err, err && err.message);
@@ -51,7 +51,7 @@ if (process.platform !== 'win32') {
         cwd: tmp,
       })
       .debug()
-      .expect('stdout', /\[pedding@\*\] installed/)
+      .expect('stdout', /pedding@\* installed/)
       .expect('code', 0)
       .end(err => {
         assert(!err, err && err.message);
@@ -70,7 +70,7 @@ if (process.platform !== 'win32') {
       ], {
         cwd: tmp,
       })
-      .expect('stdout', /\[pedding@0\] installed/)
+      .expect('stdout', /pedding@0 installed/)
       .expect('code', 0)
       .end(err => {
         assert(!err, err && err.message);
@@ -91,7 +91,7 @@ if (process.platform !== 'win32') {
       ], {
         cwd: tmp,
       })
-      .expect('stdout', /\[pedding@1\] installed/)
+      .expect('stdout', /pedding@1 installed/)
       .expect('code', 0)
       .end(err => {
         assert(!err, err && err.message);
@@ -112,7 +112,7 @@ if (process.platform !== 'win32') {
       ], {
         cwd: tmp,
       })
-      .expect('stdout', /\[nunjucks@mozilla\/nunjucks#0f8b21b8df7e8e852b2e1889388653b7075f0d09\] installed/)
+      .expect('stdout', /nunjucks@mozilla\/nunjucks#0f8b21b8df7e8e852b2e1889388653b7075f0d09 installed/)
       .expect('code', 0)
       .end(err => {
         assert(!err, err && err.message);

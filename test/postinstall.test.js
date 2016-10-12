@@ -98,7 +98,7 @@ describe('test/postinstall.test.js', () => {
           cwd: root,
         })
         .debug()
-        .expect('stdout', /\[pedding@1\.0\.0] installed/)
+        .expect('stdout', /pedding@1\.0\.0 installed/)
         .expect('stdout', /npm_config_foo_bar_haha = okok/)
         .expect('code', 0)
         .end(err => {
