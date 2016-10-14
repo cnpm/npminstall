@@ -30,10 +30,19 @@ Let `npm install` fast and easy.
 ### Install
 
 ```bash
-$ npm install npminstall --g
+$ npm install npminstall -g
 ```
 
 ### Usage
+
+#### In cnpm
+
+It is integrated in [cnpm@4](https://github.com/cnpm/cnpm).
+
+```bash
+$ npm install cnpm -g
+$ cnpm install  // will use npminstall
+```
 
 #### npminstall
 
