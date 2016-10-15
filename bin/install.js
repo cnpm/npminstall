@@ -39,6 +39,7 @@ const argv = parseArgs(orignalArgv, {
     'save-exact',
     'china',
     'ignore-scripts',
+    'detail',
   ],
   alias: {
     // npm install [-S|--save|-D|--save-dev|-O|--save-optional] [-E|--save-exact]
@@ -51,6 +52,7 @@ const argv = parseArgs(orignalArgv, {
     g: 'global',
     c: 'china',
     r: 'registry',
+    d: 'detail',
   },
 });
 
@@ -84,6 +86,7 @@ Options:
   --save, --save-dev, --save-optional, --save-exact: save installed dependencies into package.json
   -g, --global: install devDependencies to global directory which specified in '$npm config get prefix'
   -r, --registry: specify custom registry
+  -d, --detail: show detail log of installation
   -c, --china: specify in china, will automatically using chinses npm registry and other binary's mirrors
   --ignore-scripts: ignore all preinstall / install and postinstall scripts during the installation
   --forbidden-licenses: forbit install packages which used these licenses
