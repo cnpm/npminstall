@@ -386,3 +386,10 @@ cd .tmp
 npm test || exit $?
 cd ..
 rm -rf .tmp
+
+git clone https://github.com/cnodejs/nodeclub.git --depth=1 .tmp
+cd .tmp
+../bin/install.js
+npm test || exit $?
+cd ..
+rm -rf .tmp
