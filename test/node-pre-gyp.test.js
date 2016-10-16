@@ -28,7 +28,7 @@ describe('test/node-pre-gyp.test.js', () => {
       cacheDir: '',
       customBinaryMirrors: {
         sqlite3: {
-          host: 'http://cdn.npm.taobao.org/dist',
+          host: process.env.CI ? 'https://cnpmjs.org/mirrors' : 'http://cdn.npm.taobao.org/dist',
         },
       },
     });
