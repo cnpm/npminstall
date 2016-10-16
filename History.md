@@ -1,4 +1,10 @@
 
+2.8.0 / 2016-10-17
+==================
+
+  * feat: list recently update packages (#144)
+  * fix: should retry on http response timeout (#143)
+
 2.7.0 / 2016-10-12
 ==================
 
