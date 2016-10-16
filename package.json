@@ -46,7 +46,6 @@
     "rimraf": "^2.5.2",
     "runscript": "^1.1.0",
     "semver": "^5.1.0",
-    "sprintf": "^0.1.5",
     "tar": "^2.2.1",
     "urllib": "^2.14.0",
     "utility": "^1.8.0",
