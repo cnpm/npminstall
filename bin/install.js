@@ -16,6 +16,8 @@ const globalConfig = require('../lib/config');
 const installLocal = require('..').installLocal;
 const installGlobal = require('..').installGlobal;
 
+const spinner = utils.spinner();
+
 const orignalArgv = process.argv.slice(2);
 const argv = parseArgs(orignalArgv, {
   string: [
@@ -42,7 +44,7 @@ const argv = parseArgs(orignalArgv, {
     'detail',
   ],
   alias: {
-    // npm install [-S|--save|-D|--save-dev|-O|--save-optional] [-E|--save-exact]
+    // npm install [-S|--save|-D|--save-dev|-O|--save-optional] [-E|--save-exact] [-d|--detail]
     S: 'save',
     D: 'save-dev',
     O: 'save-optional',
@@ -185,6 +187,7 @@ co(function* () {
   };
   config.strictSSL = getStrictSSL();
   config.ignoreScripts = argv['ignore-scripts'] || getIgnoreScripts();
+  config.detail = argv.detail;
 
   if (argv['tarball-url-mapping']) {
     const tarballUrlMapping = JSON.parse(argv['tarball-url-mapping']);
@@ -197,6 +200,9 @@ co(function* () {
     };
   }
 
+  if (!config.detail) {
+    spinner.start();
+  }
   // -g install to npm's global prefix
   if (argv.global) {
     // support custom prefix for global install
@@ -222,6 +228,7 @@ co(function* () {
       }
     }
   }
+  spinner.stop();
 
   process.on('exit', code => {
     if (code !== 0) {
