@@ -31,6 +31,7 @@ describe('test/license.test.js', () => {
       '--forbidden-licenses=mit,sic',
       './allow',
       './none',
+      '-d',
     ], {
       cwd: root,
     })

@@ -26,6 +26,7 @@ describe('tarball-url-mapping.test.js', () => {
         'https://cdn.npm.taobao.org': 'https://tnpm-hz.oss-cn-hangzhou.aliyuncs.com',
         'https://registry.npmjs.com': 'https://registry.npmjs.org',
       }),
+      '-d',
       '--no-cache',
     ], { cwd: tmp })
       .debug()

@@ -23,6 +23,7 @@ if (process.platform !== 'win32') {
     it('should install --save pedding and update dependencies', done => {
       coffee.fork(npminstall, [
         '--save',
+        '-d',
         'pedding',
       ], {
         cwd: tmp,
@@ -46,6 +47,7 @@ if (process.platform !== 'win32') {
       fs.writeFileSync(path.join(tmp, 'package.json'), '{"dependencies":{"zhi":"^0.3.1"}}');
       coffee.fork(npminstall, [
         '--save',
+        '-d',
         'pedding',
       ], {
         cwd: tmp,
@@ -66,6 +68,7 @@ if (process.platform !== 'win32') {
     it('should install --save-dev pedding and update devDependencies', done => {
       coffee.fork(npminstall, [
         '--save-dev',
+        '-d',
         'pedding@0',
       ], {
         cwd: tmp,
@@ -87,6 +90,7 @@ if (process.platform !== 'win32') {
     it('should install --save-optional pedding and update optionalDependencies', done => {
       coffee.fork(npminstall, [
         '--save-optional',
+        '-d',
         'pedding@1',
       ], {
         cwd: tmp,
@@ -108,6 +112,7 @@ if (process.platform !== 'win32') {
     it('should install from github with commit hash mozilla/nunjucks#0f8b21b8df7e8e852b2e1889388653b7075f0d09 and update dependencies', done => {
       coffee.fork(npminstall, [
         '--save',
+        '-d',
         'mozilla/nunjucks#0f8b21b8df7e8e852b2e1889388653b7075f0d09',
       ], {
         cwd: tmp,
