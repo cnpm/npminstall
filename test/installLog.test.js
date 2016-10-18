@@ -4,7 +4,6 @@ const assert = require('power-assert');
 const path = require('path');
 const rimraf = require('rimraf');
 const mkdirp = require('mkdirp');
-const fs = require('mz/fs');
 const coffee = require('coffee');
 const npminstall = path.join(__dirname, '..', 'bin', 'install.js');
 
