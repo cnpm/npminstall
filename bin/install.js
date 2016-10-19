@@ -16,6 +16,8 @@ const globalConfig = require('../lib/config');
 const installLocal = require('..').installLocal;
 const installGlobal = require('..').installGlobal;
 
+const spinner = utils.spinner();
+
 const orignalArgv = process.argv.slice(2);
 const argv = parseArgs(orignalArgv, {
   string: [
@@ -39,9 +41,10 @@ const argv = parseArgs(orignalArgv, {
     'save-exact',
     'china',
     'ignore-scripts',
+    'detail',
   ],
   alias: {
-    // npm install [-S|--save|-D|--save-dev|-O|--save-optional] [-E|--save-exact]
+    // npm install [-S|--save|-D|--save-dev|-O|--save-optional] [-E|--save-exact] [-d|--detail]
     S: 'save',
     D: 'save-dev',
     O: 'save-optional',
@@ -51,6 +54,7 @@ const argv = parseArgs(orignalArgv, {
     g: 'global',
     c: 'china',
     r: 'registry',
+    d: 'detail',
   },
 });
 
@@ -85,6 +89,7 @@ Options:
   -g, --global: install devDependencies to global directory which specified in '$npm config get prefix'
   -r, --registry: specify custom registry
   -c, --china: specify in china, will automatically using chinses npm registry and other binary's mirrors
+  -d, --detail: show detail log of installation
   --ignore-scripts: ignore all preinstall / install and postinstall scripts during the installation
   --forbidden-licenses: forbit install packages which used these licenses
 `
@@ -182,6 +187,7 @@ co(function* () {
   };
   config.strictSSL = getStrictSSL();
   config.ignoreScripts = argv['ignore-scripts'] || getIgnoreScripts();
+  config.detail = argv.detail;
 
   if (argv['tarball-url-mapping']) {
     const tarballUrlMapping = JSON.parse(argv['tarball-url-mapping']);
@@ -194,6 +200,9 @@ co(function* () {
     };
   }
 
+  if (!config.detail) {
+    spinner.start();
+  }
   // -g install to npm's global prefix
   if (argv.global) {
     // support custom prefix for global install
@@ -219,6 +228,7 @@ co(function* () {
       }
     }
   }
+  spinner.stop();
 
   process.on('exit', code => {
     if (code !== 0) {

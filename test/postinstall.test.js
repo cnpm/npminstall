@@ -94,6 +94,7 @@ describe('test/postinstall.test.js', () => {
       it('should install --save pedding and update dependencies', done => {
         coffee.fork(path.join(__dirname, '..', 'bin', 'install.js'), [
           '--foo_bar_haha=okok',
+          '-d',
         ], {
           cwd: root,
         })

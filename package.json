@@ -42,6 +42,7 @@
     "node-uuid": "^1.4.7",
     "normalize-git-url": "^3.0.2",
     "npm-package-arg": "^4.2.0",
+    "ora": "^0.3.0",
     "rimraf": "^2.5.2",
     "runscript": "^1.1.0",
     "semver": "^5.1.0",

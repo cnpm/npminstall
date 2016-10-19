@@ -70,6 +70,7 @@ Options:
   -g, --global: install devDependencies to global directory which specified in '$ npm config get prefix'
   -r, --registry: specify custom registry
   -c, --china: specify in china, will automatically using chinses npm registry and other binary's mirrors
+  -d, --detail: show detail log of installation
   --ignore-scripts: ignore all preinstall / install and postinstall scripts during the installation
   --forbidden-licenses: forbit install packages which used these licenses
 ```
