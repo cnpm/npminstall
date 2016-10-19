@@ -39,6 +39,7 @@
     "ms": "^0.7.1",
     "mz": "^2.4.0",
     "node-gyp": "^3.3.1",
+    "node-homedir": "^0.0.1",
     "node-uuid": "^1.4.7",
     "normalize-git-url": "^3.0.2",
     "npm-package-arg": "^4.2.0",

@@ -11,6 +11,7 @@ const util = require('util');
 const execSync = require('child_process').execSync;
 const fs = require('mz/fs');
 const parseArgs = require('minimist');
+const homedir = require('node-homedir');
 const utils = require('../lib/utils');
 const globalConfig = require('../lib/config');
 const installLocal = require('..').installLocal;
@@ -206,7 +207,11 @@ co(function* () {
   // -g install to npm's global prefix
   if (argv.global) {
     // support custom prefix for global install
-    const npmPrefix = argv.prefix || getPrefix();
+    let npmPrefix = argv.prefix || getPrefix();
+    if (npmPrefix[0] === '~') {
+      // convert '~/foo/path' => '$HOME/foo/path'
+      npmPrefix = homedir() + npmPrefix.substring(1);
+    }
     if (process.platform === 'win32') {
       config.targetDir = npmPrefix;
       config.binDir = npmPrefix;
