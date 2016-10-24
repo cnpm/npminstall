@@ -23,6 +23,7 @@
     "autod": "autod"
   },
   "dependencies": {
+    "agentkeepalive": "^2.2.0",
     "await-event": "^1.0.0",
     "binary-mirror-config": "1",
     "bytes": "^2.4.0",

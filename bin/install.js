@@ -125,7 +125,7 @@ if (inChina) {
   registry = registry || globalConfig.chineseRegistry;
 }
 // for env.npm_config_registry
-registry = registry || 'https://registry.npmjs.com';
+registry = registry || 'https://registry.npmjs.org';
 const env = {
   npm_config_registry: registry,
   // set npm_config_argv
@@ -171,8 +171,6 @@ co(function* () {
           item.host = item.host.replace(globalConfig.chineseMirrorUrl, customChinaMirrorUrl);
         }
       }
-      console.log('Use custom china mirror %j instead of %j',
-        customChinaMirrorUrl, globalConfig.chineseMirrorUrl);
     }
   }
 
