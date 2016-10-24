@@ -1,6 +1,6 @@
 environment:
   global:
-    npm_registry: https://registry.npmjs.com
+    npm_registry: https://registry.npmjs.org
 
   matrix:
     - nodejs_version: "6"

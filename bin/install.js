@@ -125,7 +125,7 @@ if (inChina) {
   registry = registry || globalConfig.chineseRegistry;
 }
 // for env.npm_config_registry
-registry = registry || 'https://registry.npmjs.com';
+registry = registry || 'https://registry.npmjs.org';
 const env = {
   npm_config_registry: registry,
   // set npm_config_argv
