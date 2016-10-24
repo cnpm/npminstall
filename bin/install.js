@@ -171,8 +171,6 @@ co(function* () {
           item.host = item.host.replace(globalConfig.chineseMirrorUrl, customChinaMirrorUrl);
         }
       }
-      console.log('Use custom china mirror %j instead of %j',
-        customChinaMirrorUrl, globalConfig.chineseMirrorUrl);
     }
   }
 
