@@ -3,6 +3,7 @@ env:
   - CC=clang CXX=clang++ npm_config_clang=1 npm_registry=https://registry.npmjs.org
 language: node_js
 node_js:
+  - '7'
   - '6'
   - '4'
 before_script:

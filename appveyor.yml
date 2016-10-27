@@ -3,6 +3,7 @@ environment:
     npm_registry: https://registry.npmjs.org
 
   matrix:
+    - nodejs_version: "7"
     - nodejs_version: "6"
     - nodejs_version: "4"
 
