@@ -1,0 +1,6 @@
+{
+  "name": "gulp-imagemin-demo",
+  "dependencies": {
+    "gulp-imagemin": "3"
+  }
+}
