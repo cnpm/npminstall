@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "node -e 'console.log(process.env.npm_rootpath)'"
+    "postinstall": "node index.js"
   },
   "author": "",
   "license": "ISC"

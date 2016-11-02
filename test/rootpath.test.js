@@ -19,7 +19,7 @@ describe('test/rootpath.test.js', () => {
     return coffee.fork(npminstall, [ '-d' ], { cwd: root })
       .debug()
       .expect('code', 0)
-      .expect('stdout', /test\/fixtures\/rootpath\n/)
+      .expect('stdout', /hello process\.env\.npm_rootpath is true/)
       .end();
   });
 });
