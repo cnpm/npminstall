@@ -16,7 +16,8 @@ describe('test/rootpath.test.js', () => {
   afterEach(cleanup);
 
   it('should run preinstall and postinstall', () => {
-    return coffee.fork(npminstall, [], { cwd: root })
+    return coffee.fork(npminstall, [ '-d' ], { cwd: root })
+      .debug()
       .expect('code', 0)
       .expect('stdout', /test\/fixtures\/rootpath\n/)
       .end();
