@@ -9,7 +9,7 @@ module.exports = function* (options) {
   return yield npminstall(options);
 };
 
-module.exports.installGlobal = function* (options) {
+module.exports.installGlobal = function* installGlobal(options) {
   yield formatOptions(options);
   return yield npminstall.installGlobal(options);
 };
@@ -17,11 +17,11 @@ module.exports.installGlobal = function* (options) {
 function* formatOptions(options) {
   if (process.env.local) {
     options.registry = config.chineseRegistry;
-    options.env = options.env || {};
-    for (const key in config.chineseMirrorEnv) {
-      options.env[key] = config.chineseMirrorEnv[key];
-    }
     options.binaryMirrors = yield utils.getBinaryMirrors(options.registry);
+    options.env = options.env || {};
+    for (const key in options.binaryMirrors.ENVS) {
+      options.env[key] = options.binaryMirrors.ENVS[key];
+    }
   }
   if (options.customBinaryMirrors) {
     options.binaryMirrors = options.binaryMirrors || {};
