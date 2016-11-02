@@ -1,0 +1,11 @@
+{
+  "name": "pkg",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "node -e 'console.log(process.env.npm_rootpath)'"
+  },
+  "author": "",
+  "license": "ISC"
+}

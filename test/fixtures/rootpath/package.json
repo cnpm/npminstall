@@ -1,0 +1,6 @@
+{
+  "name": "rootpath",
+  "dependencies": {
+    "pkg": "./pkg"
+  }
+}
