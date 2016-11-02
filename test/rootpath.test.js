@@ -15,12 +15,10 @@ describe('test/rootpath.test.js', () => {
   beforeEach(cleanup);
   afterEach(cleanup);
 
-  it('should run preinstall and postinstall', done => {
-    coffee.spawn(npminstall, {
-      cwd: root,
-    })
-    .expect('code', 0)
-    .expect('stdout', /test\/fixtures\/rootpath\n$/)
-    .end(done);
+  it('should run preinstall and postinstall', () => {
+    return coffee.fork(npminstall, [], { cwd: root })
+      .expect('code', 0)
+      .expect('stdout', /test\/fixtures\/rootpath\n/)
+      .end();
   });
 });
