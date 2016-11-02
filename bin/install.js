@@ -140,15 +140,6 @@ const env = {
 env.npm_node_execpath = env.NODE = process.env.NODE || process.execPath;
 env.npm_execpath = require.main.filename;
 
-if (inChina) {
-  for (const key in globalConfig.chineseMirrorEnv) {
-    env[key] = globalConfig.chineseMirrorEnv[key];
-    if (customChinaMirrorUrl) {
-      env[key] = env[key].replace(globalConfig.chineseMirrorUrl, customChinaMirrorUrl);
-    }
-  }
-}
-
 // npm cli will auto set options to npm_xx env.
 for (const key in argv) {
   const value = argv[key];
@@ -170,6 +161,14 @@ co(function* () {
         if (item.host) {
           item.host = item.host.replace(globalConfig.chineseMirrorUrl, customChinaMirrorUrl);
         }
+      }
+    }
+
+    // set env
+    for (const key in binaryMirrors.ENVS) {
+      env[key] = binaryMirrors.ENVS[key];
+      if (customChinaMirrorUrl) {
+        env[key] = env[key].replace(globalConfig.chineseMirrorUrl, customChinaMirrorUrl);
       }
     }
   }
