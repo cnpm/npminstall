@@ -1,4 +1,10 @@
 
+2.11.0 / 2016-11-03
+==================
+
+  * feat: add npm_rootpath to env (#160)
+  * refactor: use ENVS from binary-mirror-config (#158)
+
 2.10.0 / 2016-10-27
 ==================
 
