@@ -1,0 +1,11 @@
+{
+  "name": "pkg",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "node index.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
