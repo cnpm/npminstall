@@ -43,4 +43,15 @@ describe('test/installRemote.test.js', () => {
     const pkg = yield readJSON(path.join(tmp, 'node_modules', 'taffydb', 'package.json'));
     assert.equal(pkg.name, 'taffydb');
   });
+
+  it('should install name not match error', function* () {
+    try {
+      yield npminstall({
+        root: tmp,
+        pkgs: [{ name: 'error', version: 'https://registry.npm.taobao.org/taffydb/download/taffydb-2.7.2.tgz' }],
+      });
+    } catch (err) {
+      assert(/Invalid Package, expected error but found taffydb/.test(err.message), err.message);
+    }
+  });
 });

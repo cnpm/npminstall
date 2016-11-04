@@ -146,4 +146,16 @@ describe('test/installGit.test.js', function() {
     }
 
   });
+  it('should fail on some name not match', function* () {
+    try {
+      yield npminstall({
+        root: tmp,
+        pkgs: [
+          { name: 'error', version: 'git+https://github.com/mozilla/nunjucks.git#0f8b21b8d' },
+        ],
+      });
+    } catch (err) {
+      assert(/Invalid Package, expected error but found nunjucks/.test(err.message), err.message);
+    }
+  });
 });

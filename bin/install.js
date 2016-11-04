@@ -225,11 +225,11 @@ co(function* () {
     if (pkgs.length > 0) {
       // support --save, --save-dev and --save-optional
       if (argv.save) {
-        yield updateDependencies(root, pkgs, 'dependencies', argv['save-exact']);
+        yield updateDependencies(root, pkgs, 'dependencies', argv['save-exact'], config.remoteNames);
       } else if (argv['save-dev']) {
-        yield updateDependencies(root, pkgs, 'devDependencies', argv['save-exact']);
+        yield updateDependencies(root, pkgs, 'devDependencies', argv['save-exact'], config.remoteNames);
       } else if (argv['save-optional']) {
-        yield updateDependencies(root, pkgs, 'optionalDependencies', argv['save-exact']);
+        yield updateDependencies(root, pkgs, 'optionalDependencies', argv['save-exact'], config.remoteNames);
       }
     }
   }
@@ -284,14 +284,18 @@ function getIgnoreScripts() {
   }
 }
 
-function* updateDependencies(root, pkgs, propName, saveExact) {
+function* updateDependencies(root, pkgs, propName, saveExact, remoteNames) {
   const savePrefix = saveExact ? '' : getVersionSavePrefix();
   const pkgFile = path.join(root, 'package.json');
   const pkg = yield utils.readJSON(pkgFile);
   const deps = pkg[propName] = pkg[propName] || {};
   for (const item of pkgs) {
-    if (item.type === 'hosted') {
-      deps[item.name] = item.version;
+    if ([ 'remote', 'hosted', 'git' ].indexOf(item.type) >= 0) {
+      // if install from remote or git and don't specified name
+      // get package's name from `remoteNames`
+      item.name
+        ? deps[item.name] = item.version
+        : deps[remoteNames[item.version]] = item.version;
     } else {
       const itemPkg = yield utils.readJSON(path.join(root, 'node_modules', item.name, 'package.json'));
       deps[item.name] = `${savePrefix}${itemPkg.version}`;
