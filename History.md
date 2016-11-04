@@ -1,4 +1,10 @@
 
+2.11.2 / 2016-11-04
+==================
+
+  * feat: display the entire dependencies path when download error
+  * fix: install package from git/remote/hosted with save options
+
 2.11.1 / 2016-11-03
 ==================
 
