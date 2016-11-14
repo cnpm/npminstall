@@ -189,6 +189,10 @@ co(function* () {
   config.strictSSL = getStrictSSL();
   config.ignoreScripts = argv['ignore-scripts'] || getIgnoreScripts();
   config.detail = argv.detail;
+  if (config.production) {
+    // make sure show detail on production install
+    config.detail = true;
+  }
 
   if (argv['tarball-url-mapping']) {
     const tarballUrlMapping = JSON.parse(argv['tarball-url-mapping']);
@@ -221,6 +225,13 @@ co(function* () {
     }
     yield installGlobal(config);
   } else {
+    if (pkgs.length === 0 && config.production) {
+      // warning when `${root}/node_modules` exists
+      const nodeModulesDir = path.join(root, 'node_modules');
+      if (yield fs.exists(nodeModulesDir)) {
+        console.error(chalk.yellow(`npminstall WARN node_modules exists: ${nodeModulesDir}`));
+      }
+    }
     yield installLocal(config);
     if (pkgs.length > 0) {
       // support --save, --save-dev and --save-optional
