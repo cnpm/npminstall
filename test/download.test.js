@@ -81,7 +81,8 @@ describe('test/download.test.js', () => {
   describe('mock tarball error', () => {
     it('should throw sha1 error', function* () {
       this.timeout = 15000;
-      const res = yield urllib.request('https://registry.cnpmjs.org/pedding/latest', { dataType: 'json', timeout: 10000 });
+      const registry = process.env.npm_registry || 'https://registry.cnpmjs.org';
+      const res = yield urllib.request(`${registry}/pedding/1.0.0`, { dataType: 'json', timeout: 10000 });
       const pkg = res.data;
       pkg.dist.shasum = '00098d60307b4ef7240c3d693cb20a9473c111';
       mm.https.request(/pedding\/latest/, JSON.stringify(pkg));
