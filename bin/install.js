@@ -189,8 +189,8 @@ co(function* () {
   config.strictSSL = getStrictSSL();
   config.ignoreScripts = argv['ignore-scripts'] || getIgnoreScripts();
   config.detail = argv.detail;
-  if (config.production) {
-    // make sure show detail on production install
+  if (config.production || argv.global) {
+    // make sure show detail on production install or global install
     config.detail = true;
   }
 

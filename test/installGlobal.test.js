@@ -5,12 +5,17 @@ const fs = require('mz/fs');
 const path = require('path');
 const rimraf = require('rimraf');
 const coffee = require('coffee');
-const installGlobal = require('./npminstall').installGlobal;
 const mkdirp = require('../lib/utils').mkdirp;
 
-describe('test/installGlobal.test.js', function() {
-
+describe('test/installGlobal.test.js', () => {
+  const registry = process.env.npm_registry || 'https://r.cnpmjs.org';
   const tmp = path.join(__dirname, 'fixtures', 'tmp');
+  let binDir = path.join(tmp, 'bin');
+  let libDir = path.join(tmp, 'lib');
+  if (process.platform === 'win32') {
+    binDir = tmp;
+    libDir = tmp;
+  }
 
   function cleanup() {
     rimraf.sync(tmp);
@@ -23,58 +28,76 @@ describe('test/installGlobal.test.js', function() {
   afterEach(cleanup);
 
   it('should global install work', function* () {
-    yield installGlobal({
-      root: tmp,
-      targetDir: path.join(tmp, 'lib'),
-      binDir: path.join(tmp, 'bin'),
-      pkgs: [
-        { name: 'contributors' },
-        { version: 'https://registry.npm.taobao.org/pedding/download/pedding-1.0.0.tgz' },
-        { version: 'https://registry.npm.taobao.org/taffydb/download/taffydb-2.7.2.tgz' },
-      ],
-    });
-
-    assert(yield fs.exists(path.join(tmp, 'bin/contributors')));
-    assert(yield fs.exists(path.join(tmp, 'lib/node_modules/contributors')));
-    assert(yield fs.exists(path.join(tmp, 'lib/node_modules/taffydb')));
-    assert(yield fs.exists(path.join(tmp, 'lib/node_modules/pedding')));
-    assert(yield fs.exists(path.join(tmp, 'lib/node_modules/.contributors_npminstall/node_modules')));
-    yield installGlobal({
-      root: tmp,
-      targetDir: path.join(tmp, 'lib'),
-      binDir: path.join(tmp, 'bin'),
-      pkgs: [
-        { name: 'contributors' },
-        { name: 'b' },
-      ],
-    });
-
-    assert(yield fs.exists(path.join(tmp, 'bin/contributors')));
-    assert(yield fs.exists(path.join(tmp, 'lib/node_modules/contributors')));
-    assert(yield fs.exists(path.join(tmp, 'lib/node_modules/b')));
-
-    yield installGlobal({
-      root: tmp,
-      targetDir: path.join(tmp, 'lib'),
-      binDir: path.join(tmp, 'bin'),
-      pkgs: [
-        { name: 'contributors', version: '0' },
-      ],
-    });
-
-    assert(yield fs.exists(path.join(tmp, 'bin/contributors')));
-    assert(yield fs.exists(path.join(tmp, 'lib/node_modules/contributors')));
-  });
-
-  it('should install with global prefix', done => {
-    coffee.fork(require.resolve('../bin/install.js'), [
+    yield coffee.fork(require.resolve('../bin/install.js'), [
       `--prefix=${tmp}`,
       '-g',
-      'pedding',
+      'contributors',
+      `${registry}/pedding/-/pedding-1.0.0.tgz`,
+      `${registry}/taffydb/-/taffydb-2.7.2.tgz`,
+      `${registry}/egg-bin/-/egg-bin-1.6.0.tgz`,
     ])
     .debug()
     .expect(/All packages installed/)
     .expect('code', 0)
-    .end(done);
+    .end();
+
+    assert(yield fs.exists(path.join(binDir, 'contributors')));
+    assert(yield fs.exists(path.join(binDir, 'egg-bin')));
+    assert(yield fs.exists(path.join(libDir, 'node_modules/contributors')));
+    assert(yield fs.exists(path.join(libDir, 'node_modules/taffydb')));
+    assert(yield fs.exists(path.join(libDir, 'node_modules/pedding')));
+    assert(yield fs.exists(path.join(libDir, 'node_modules/egg-bin')));
+    assert(!(yield fs.exists(path.join(libDir, 'node_modules/.contributors_npminstall/node_modules'))));
+
+    yield coffee.fork(require.resolve('../bin/install.js'), [
+      `--prefix=${tmp}`,
+      '-g',
+      'contributors',
+      'b',
+      `${registry}/egg-bin/-/egg-bin-1.7.0.tgz`,
+    ])
+    .debug()
+    .expect(/All packages installed/)
+    .expect('code', 0)
+    .end();
+
+    assert(yield fs.exists(path.join(binDir, 'contributors')));
+    assert(yield fs.exists(path.join(binDir, 'egg-bin')));
+    assert(yield fs.exists(path.join(binDir, 'mocha')));
+    assert(yield fs.exists(path.join(libDir, 'node_modules/contributors')));
+    assert(yield fs.exists(path.join(libDir, 'node_modules/b')));
+    assert(yield fs.exists(path.join(libDir, 'node_modules/egg-bin')));
+
+    yield coffee.fork(require.resolve('../bin/install.js'), [
+      `--prefix=${tmp}`,
+      '-g',
+      'contributors@0',
+    ])
+    .debug()
+    .expect(/All packages installed/)
+    .expect('code', 0)
+    .end();
+
+    assert(yield fs.exists(path.join(binDir, 'contributors')));
+    assert(yield fs.exists(path.join(libDir, 'node_modules/contributors')));
+  });
+
+  it('should install with global prefix', function* () {
+    yield coffee.fork(require.resolve('../bin/install.js'), [
+      `--prefix=${tmp}`,
+      '-g',
+      'egg-bin',
+    ])
+    .debug()
+    .expect(/Downloading egg-bin to /)
+    .expect(/Installing egg-bin's dependencies to /)
+    .expect(/All packages installed/)
+    .expect('code', 0)
+    .end();
+
+    assert(yield fs.exists(path.join(binDir, 'egg-bin')));
+    assert(yield fs.exists(path.join(binDir, 'mocha')));
+    assert(yield fs.exists(path.join(libDir, 'node_modules/egg-bin')));
+    assert((yield fs.stat(path.join(libDir, 'node_modules/egg-bin'))).isDirectory());
   });
 });
