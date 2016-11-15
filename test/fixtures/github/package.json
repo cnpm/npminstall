@@ -1,7 +1,7 @@
 {
   "name": "remote-demo",
   "dependencies": {
-    "pedding": "*",
+    "pedding": "~1.0.0",
     "taffydb": "https://registry.npm.taobao.org/taffydb/download/taffydb-2.7.2.tgz"
   }
 }
