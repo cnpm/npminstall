@@ -308,8 +308,9 @@ function* updateDependencies(root, pkgs, propName, saveExact, remoteNames) {
         ? deps[item.name] = item.version
         : deps[remoteNames[item.version]] = item.version;
     } else {
-      const itemPkg = yield utils.readJSON(path.join(root, 'node_modules', item.name, 'package.json'));
-      deps[item.name] = `${savePrefix}${itemPkg.version}`;
+      const pkgDir = item.type === 'local' ? item.version : path.join(root, 'node_modules', item.name);
+      const itemPkg = yield utils.readJSON(path.join(pkgDir, 'package.json'));
+      deps[itemPkg.name] = `${savePrefix}${itemPkg.version}`;
     }
   }
   // sort pkg[propName]
