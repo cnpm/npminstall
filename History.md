@@ -1,4 +1,9 @@
 
+2.12.2 / 2016-11-21
+==================
+
+  * fix: install --save from folder should use real pkg info (#168)
+
 2.12.1 / 2016-11-18
 ==================
 
