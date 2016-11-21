@@ -37,7 +37,7 @@ $ npm install npminstall -g
 
 #### In cnpm
 
-It is integrated in [cnpm@4](https://github.com/cnpm/cnpm).
+It is integrated in [cnpm](https://github.com/cnpm/cnpm).
 
 ```bash
 $ npm install cnpm -g
@@ -46,7 +46,7 @@ $ cnpm install  // will use npminstall
 
 #### npminstall
 
-```
+```bash
 Usage:
 
   npminstall
@@ -77,12 +77,20 @@ Options:
 
 #### npmuninstall
 
-```
+```bash
 Usage:
 
   npmuninstall <pkg>
   npmuninstall <pkg>@<version>
   npmuninstall <pkg>@<version> [<pkg>@<version>]
+```
+
+#### npmlink
+
+```bash
+Usage:
+
+  npmlink <folder>
 ```
 
 ## Use as Lib

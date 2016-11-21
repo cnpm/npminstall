@@ -11,7 +11,6 @@ const util = require('util');
 const execSync = require('child_process').execSync;
 const fs = require('mz/fs');
 const parseArgs = require('minimist');
-const homedir = require('node-homedir');
 const utils = require('../lib/utils');
 const globalConfig = require('../lib/config');
 const installLocal = require('..').installLocal;
@@ -105,7 +104,11 @@ for (const name of argv._) {
   pkgs.push({ name: p.name, version: p.rawSpec, type: p.type });
 }
 
-const root = argv.root || process.cwd();
+let root = argv.root || process.cwd();
+if (Array.isArray(root)) {
+  // use last one, e.g.: $ npminstall --root=abc --root=def
+  root = root[root.length - 1];
+}
 const production = argv.production || process.env.NODE_ENV === 'production';
 let cacheDir = argv.cache === false ? '' : null;
 if (production) {
@@ -211,11 +214,7 @@ co(function* () {
   // -g install to npm's global prefix
   if (argv.global) {
     // support custom prefix for global install
-    let npmPrefix = argv.prefix || getPrefix();
-    if (npmPrefix[0] === '~') {
-      // convert '~/foo/path' => '$HOME/foo/path'
-      npmPrefix = homedir() + npmPrefix.substring(1);
-    }
+    const npmPrefix = utils.formatPath(argv.prefix || getPrefix());
     if (process.platform === 'win32') {
       config.targetDir = npmPrefix;
       config.binDir = npmPrefix;
