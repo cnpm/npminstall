@@ -10,6 +10,7 @@
   ],
   "bin": {
     "npminstall": "bin/install.js",
+    "npmlink": "bin/link.js",
     "npmuninstall": "bin/uninstall.js",
     "npmupdate": "bin/update.js"
   },
