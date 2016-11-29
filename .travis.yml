@@ -1,6 +1,12 @@
 sudo: false
 env:
-  - CC=clang CXX=clang++ npm_config_clang=1 npm_registry=https://registry.npmjs.org
+  - CXX=g++-4.8 npm_registry=https://registry.npmjs.org
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
 language: node_js
 node_js:
   - '7'

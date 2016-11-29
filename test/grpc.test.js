@@ -20,11 +20,21 @@ describe('test/grpc.test.js', () => {
   afterEach(cleanup);
   afterEach(mm.restore);
 
-  it('should install success', function* () {
+  it('should install grpc success', function* () {
     yield npminstall({
       root: tmp,
       pkgs: [
         { name: 'grpc' },
+      ],
+      production: true,
+    });
+  });
+
+  it('should install pomjs success', function* () {
+    yield npminstall({
+      root: tmp,
+      pkgs: [
+        { name: 'pomjs' },
       ],
       production: true,
     });
