@@ -214,14 +214,9 @@ co(function* () {
   // -g install to npm's global prefix
   if (argv.global) {
     // support custom prefix for global install
-    const npmPrefix = utils.formatPath(argv.prefix || getPrefix());
-    if (process.platform === 'win32') {
-      config.targetDir = npmPrefix;
-      config.binDir = npmPrefix;
-    } else {
-      config.targetDir = path.join(npmPrefix, 'lib');
-      config.binDir = path.join(npmPrefix, 'bin');
-    }
+    const meta = utils.getGlobalInstallMeta(argv.prefix);
+    config.targetDir = meta.targetDir;
+    config.binDir = meta.binDir;
     yield installGlobal(config);
   } else {
     if (pkgs.length === 0 && config.production) {
@@ -256,14 +251,6 @@ co(function* () {
   console.error(chalk.yellow('npminstall args: %s'), process.argv.join(' '));
   process.exit(1);
 });
-
-function getPrefix() {
-  try {
-    return execSync('npm config get prefix').toString().trim();
-  } catch (err) {
-    throw new Error(`exec npm config get prefix ERROR: ${err.message}`);
-  }
-}
 
 function getVersionSavePrefix() {
   try {
