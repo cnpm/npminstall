@@ -53,6 +53,44 @@ for (const name of argv._) {
 }
 
 co(function* npmlink() {
+  const installArgs = [];
+  for (const arg of orignalArgv) {
+    if (arg.startsWith('--root')) {
+      continue;
+    }
+    if (arg[0] !== '-') {
+      continue;
+    }
+    installArgs.push(arg);
+  }
+
+  if (folders.length === 0) {
+    // link current dir to global
+    const meta = utils.getGlobalInstallMeta(argv.prefix);
+    // 1. npminstall
+    // 2. link CWD to targetDir/node_modules/{name}
+    // 3. link bins to binDir
+    const pkgFile = path.join(root, 'package.json');
+    const pkg = yield utils.readJSON(pkgFile);
+    assert(pkg.name, `package.name not eixsts on ${pkgFile}`);
+    const linkDir = path.join(meta.targetDir, 'node_modules', pkg.name);
+
+    console.info(chalk.gray(`\`$ npminstall ${installArgs.join(' ')}\` on ${root}`));
+    const installBin = path.join(__dirname, 'install.js');
+    yield utils.fork(installBin, installArgs, {
+      cwd: root,
+    });
+    yield utils.forceSymlink(root, linkDir);
+    console.info(`link ${chalk.magenta(linkDir)}@ -> ${root}`);
+    yield bin(root, pkg, linkDir, {
+      console,
+      binDir: meta.binDir,
+      targetDir: root,
+    });
+    return;
+  }
+
+  // link folders to current dir
   const targetDir = path.join(root, 'node_modules');
   for (const folder of folders) {
     // 1. cd folder && npminstall
@@ -63,23 +101,13 @@ co(function* npmlink() {
     assert(pkg.name, `package.name not eixsts on ${pkgFile}`);
     const linkDir = path.join(targetDir, pkg.name);
 
-    console.info(chalk.gray(`Linking ${folder} to ${linkDir}`));
-    const installArgs = [];
-    for (const arg of orignalArgv) {
-      if (arg.startsWith('--root')) {
-        continue;
-      }
-      if (arg[0] !== '-') {
-        continue;
-      }
-      installArgs.push(arg);
-    }
     console.info(chalk.gray(`\`$ npminstall ${installArgs.join(' ')}\` on ${folder}`));
     const installBin = path.join(__dirname, 'install.js');
     yield utils.fork(installBin, installArgs, {
       cwd: folder,
     });
     yield utils.forceSymlink(folder, linkDir);
+    console.info(`link ${chalk.magenta(linkDir)}@ -> ${folder}`);
     yield bin(root, pkg, linkDir, { console });
   }
 }).catch(err => {
