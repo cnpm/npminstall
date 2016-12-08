@@ -39,7 +39,7 @@ describe('test/production.test.js', () => {
     yield coffee.fork(bin, [ '--production' ], { cwd: root })
       .debug()
       .expect('code', 0)
-      .expect('stdout', /koa@\* existed at/)
+      .expect('stdout', /koa@\* is skipped because it already exists at/)
       .expect('stderr', /npminstall WARN node_modules exists: .+?node_modules/)
       .end();
   });
