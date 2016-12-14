@@ -59,7 +59,7 @@ const argv = parseArgs(orignalArgv, {
 });
 
 if (argv.version) {
-  console.log('v%s', require('../package.json').version);
+  console.log(`npminstall v${require('../package.json').version}`);
   process.exit(0);
 }
 
