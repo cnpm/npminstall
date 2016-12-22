@@ -8,6 +8,8 @@ const fs = require('mz/fs');
 const coffee = require('coffee');
 const npminstall = path.join(__dirname, '..', 'bin', 'install.js');
 
+const registry = process.env.npm_china ? 'https://registry.npm.taobao.org' : 'https://registry.npmjs.org';
+
 if (process.platform !== 'win32') {
   describe('test/installSaveDeps.test.js', () => {
     const tmp = path.join(__dirname, 'fixtures', 'tmp');
@@ -110,9 +112,11 @@ if (process.platform !== 'win32') {
     });
 
     it('should install --save from remote without name', done => {
+      const url = `${registry}/taffydb/-/taffydb-2.7.2.tgz`;
+      console.log(url);
       coffee.fork(npminstall, [
         '--save',
-        'https://registry.npm.taobao.org/taffydb/download/taffydb-2.7.2.tgz',
+        url,
       ], {
         cwd: tmp,
       })
@@ -121,15 +125,17 @@ if (process.platform !== 'win32') {
         assert(!err, err && err.message);
         const deps = JSON.parse(fs.readFileSync(path.join(tmp, 'package.json'))).dependencies;
         assert(deps);
-        assert(deps.taffydb === 'https://registry.npm.taobao.org/taffydb/download/taffydb-2.7.2.tgz');
+        assert(deps.taffydb === url);
         done();
       });
     });
 
     it('should install --save from remote with name', done => {
+      const url = `${registry}/taffydb/-/taffydb-2.7.2.tgz`;
+      console.log(url);
       coffee.fork(npminstall, [
         '--save',
-        'taffydb@https://registry.npm.taobao.org/taffydb/download/taffydb-2.7.2.tgz',
+        url,
       ], {
         cwd: tmp,
       })
@@ -138,7 +144,7 @@ if (process.platform !== 'win32') {
         assert(!err, err && err.message);
         const deps = JSON.parse(fs.readFileSync(path.join(tmp, 'package.json'))).dependencies;
         assert(deps);
-        assert(deps.taffydb === 'https://registry.npm.taobao.org/taffydb/download/taffydb-2.7.2.tgz');
+        assert(deps.taffydb === url);
         done();
       });
     });
