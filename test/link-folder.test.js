@@ -24,6 +24,7 @@ describe('test/link-folder.test.js', () => {
       cwd: root,
     })
     .debug()
+    .expect('stderr', /npm_rootpath:.+link\-demo!!!!!/)
     .end();
 
     assert(fs.existsSync(path.join(root, 'node_modules/linked-package')));

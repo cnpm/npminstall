@@ -144,7 +144,7 @@ env.npm_node_execpath = env.NODE = process.env.NODE || process.execPath;
 env.npm_execpath = require.main.filename;
 
 // package's npm script can get root from `env.npm_rootpath`
-env.npm_rootpath = root;
+env.npm_rootpath = process.env.npm_rootpath || root;
 
 // npm cli will auto set options to npm_xx env.
 for (const key in argv) {
