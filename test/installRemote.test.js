@@ -8,6 +8,8 @@ const fs = require('mz/fs');
 const readJSON = require('../lib/utils').readJSON;
 const npminstall = require('./npminstall');
 
+const registry = process.env.npm_china ? 'https://registry.npm.taobao.org' : 'https://registry.npmjs.org';
+
 describe('test/installRemote.test.js', () => {
   const root = path.join(__dirname, 'fixtures', 'github');
   const tmp = path.join(__dirname, 'fixtures', 'tmp');
@@ -35,10 +37,10 @@ describe('test/installRemote.test.js', () => {
     assert.deepEqual(dirs.sort(), [ '.tmp', 'pedding', 'taffydb', '.1.0.0@pedding', '.2.7.2@taffydb' ].sort());
   });
 
-  it('should install https://registry.npm.taobao.org/taffydb/download/taffydb-2.7.2.tgz', function* () {
+  it('should install remote/taffydb/-/taffydb-2.7.2.tgz', function* () {
     yield npminstall({
       root: tmp,
-      pkgs: [{ name: null, version: 'https://registry.npm.taobao.org/taffydb/download/taffydb-2.7.2.tgz' }],
+      pkgs: [{ name: null, version: `${registry}/taffydb/-/taffydb-2.7.2.tgz` }],
     });
     const pkg = yield readJSON(path.join(tmp, 'node_modules', 'taffydb', 'package.json'));
     assert.equal(pkg.name, 'taffydb');
@@ -48,7 +50,7 @@ describe('test/installRemote.test.js', () => {
     try {
       yield npminstall({
         root: tmp,
-        pkgs: [{ name: 'error', version: 'https://registry.npm.taobao.org/taffydb/download/taffydb-2.7.2.tgz' }],
+        pkgs: [{ name: 'error', version: `${registry}/taffydb/-/taffydb-2.7.2.tgz` }],
       });
     } catch (err) {
       assert(/Invalid Package, expected error but found taffydb/.test(err.message), err.message);
