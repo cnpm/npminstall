@@ -92,6 +92,10 @@ co(function* npmlink() {
 
   // link folders to current dir
   const targetDir = path.join(root, 'node_modules');
+  const env = Object.assign({
+    // should keep npm_rootpath be current dir
+    npm_rootpath: root,
+  }, process.env);
   for (const folder of folders) {
     // 1. cd folder && npminstall
     // 2. link folder to CWD/node_modules/{name}
@@ -105,6 +109,7 @@ co(function* npmlink() {
     const installBin = path.join(__dirname, 'install.js');
     yield utils.fork(installBin, installArgs, {
       cwd: folder,
+      env,
     });
     yield utils.forceSymlink(folder, linkDir);
     console.info(`link ${chalk.magenta(linkDir)}@ -> ${folder}`);
