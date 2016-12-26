@@ -1,4 +1,13 @@
 
+2.16.0 / 2016-12-26
+==================
+
+  * test: ci tgz download from orginal npm registry
+  * fix: keep npm_rootpath exits on link cmd
+  * test: use registry env
+  * fix: don't retry to get mirror latest package
+  * deps: upgrade agentkeepalive to 3.0.0 (#177)
+
 2.15.0 / 2016-12-14
 ==================
 
