@@ -25,6 +25,9 @@ const nodeModules = path.join(root, 'node_modules');
 console.log('[npmupdate] removing %s', nodeModules);
 rimraf.sync(nodeModules);
 console.log('[npmupdate] reinstall on %s', root);
+
+// make sure install ignore all package names
+process.env.NPMINSTALL_BY_UPDATE = 'true';
 require('./install');
 
 function help() {

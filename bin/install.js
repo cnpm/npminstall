@@ -99,6 +99,11 @@ Options:
 
 const pkgs = [];
 
+if (process.env.NPMINSTALL_BY_UPDATE) {
+  // ignore all package names on update
+  argv._ = [];
+}
+
 for (const name of argv._) {
   const p = npa(String(name));
   pkgs.push({ name: p.name, version: p.rawSpec, type: p.type });

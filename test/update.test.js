@@ -27,8 +27,22 @@ describe('test/update.test.js', () => {
 
   afterEach(cleanup);
 
-  it('should uninstall ok', done => {
+  it('should update ok', done => {
     coffee.fork(npmupdate, [], {
+      cwd: root,
+      stdio: 'pipe',
+    })
+    .debug()
+    .end(err => {
+      assert(!err);
+      assert(fs.existsSync(path.join(root, 'node_modules/pedding')));
+      assert(fs.existsSync(path.join(root, 'node_modules/pkg')));
+      done();
+    });
+  });
+
+  it('should update pedding ok', done => {
+    coffee.fork(npmupdate, [ 'pedding' ], {
       cwd: root,
       stdio: 'pipe',
     })
