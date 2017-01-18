@@ -99,6 +99,11 @@ Options:
 
 const pkgs = [];
 
+if (process.env.NPMINSTALL_BY_UPDATE) {
+  // ignore all package names on update
+  argv._ = [];
+}
+
 for (const name of argv._) {
   const p = npa(String(name));
   pkgs.push({ name: p.name, version: p.rawSpec, type: p.type });
@@ -219,11 +224,18 @@ co(function* () {
     config.binDir = meta.binDir;
     yield installGlobal(config);
   } else {
-    if (pkgs.length === 0 && config.production) {
-      // warning when `${root}/node_modules` exists
-      const nodeModulesDir = path.join(root, 'node_modules');
-      if (yield fs.exists(nodeModulesDir)) {
-        console.error(chalk.yellow(`npminstall WARN node_modules exists: ${nodeModulesDir}`));
+    if (pkgs.length === 0) {
+      if (config.production) {
+        // warning when `${root}/node_modules` exists
+        const nodeModulesDir = path.join(root, 'node_modules');
+        if (yield fs.exists(nodeModulesDir)) {
+          console.error(chalk.yellow(`npminstall WARN node_modules exists: ${nodeModulesDir}`));
+        }
+      }
+      const pkgFile = path.join(root, 'package.json');
+      const exists = yield fs.exists(pkgFile);
+      if (!exists) {
+        console.warn(chalk.yellow(`npminstall WARN package.json not exists: ${pkgFile}`));
       }
     }
     yield installLocal(config);
