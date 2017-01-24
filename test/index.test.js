@@ -31,6 +31,8 @@ describe('test/index.test.js', () => {
         { name: 'contributors' },
       ],
     });
+    // tmp/node_modules/.npminstall.done file should exists
+    assert(fs.existsSync(path.join(tmp, 'node_modules/.npminstall.done')));
   });
 
   it('should npminstall not exists package throw error', function* () {
