@@ -1,4 +1,9 @@
 
+2.17.0 / 2017-01-25
+==================
+
+  * feat: add .npminstall.done file on node_modules after install success (#185)
+
 2.16.1 / 2017-01-18
 ==================
 
