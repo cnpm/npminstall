@@ -35,6 +35,18 @@ describe('test/index.test.js', () => {
     assert(fs.existsSync(path.join(tmp, 'node_modules/.npminstall.done')));
   });
 
+  it('should handle @types/escodegen@0.0.2 tgz', function* () {
+    yield npminstall({
+      root: tmp,
+      pkgs: [
+        { name: '@types/escodegen', version: '0.0.2' },
+      ],
+    });
+    assert(fs.existsSync(path.join(tmp, 'node_modules/.npminstall.done')));
+    assert(fs.existsSync(path.join(tmp, 'node_modules/@types/escodegen/package.json')));
+    assert(require(path.join(tmp, 'node_modules/@types/escodegen/package.json')).name === '@types/escodegen');
+  });
+
   it('should npminstall not exists package throw error', function* () {
     try {
       yield npminstall({
