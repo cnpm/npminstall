@@ -16,8 +16,6 @@ const globalConfig = require('../lib/config');
 const installLocal = require('..').installLocal;
 const installGlobal = require('..').installGlobal;
 
-const spinner = utils.spinner();
-
 const orignalArgv = process.argv.slice(2);
 const argv = parseArgs(orignalArgv, {
   string: [
@@ -213,9 +211,6 @@ co(function* () {
     };
   }
 
-  if (!config.detail) {
-    spinner.start();
-  }
   // -g install to npm's global prefix
   if (argv.global) {
     // support custom prefix for global install
@@ -250,7 +245,6 @@ co(function* () {
       }
     }
   }
-  spinner.stop();
 
   process.on('exit', code => {
     if (code !== 0) {
