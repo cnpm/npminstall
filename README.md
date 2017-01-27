@@ -12,7 +12,7 @@
 [npm-url]: https://npmjs.org/package/npminstall
 [travis-image]: https://img.shields.io/travis/cnpm/npminstall.svg?style=flat-square
 [travis-url]: https://travis-ci.org/cnpm/npminstall
-[appveyor-image]: https://ci.appveyor.com/api/projects/status/9x637qe09ivo8g2h/branch/master?svg=true
+[appveyor-image]: https://ci.appveyor.com/api/projects/status/xyn5tj86tvdy4cfe/branch/master?svg=true
 [appveyor-url]: https://ci.appveyor.com/project/eggjs/npminstall
 [codecov-image]: https://codecov.io/gh/cnpm/npminstall/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/cnpm/npminstall
