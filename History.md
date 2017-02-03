@@ -1,4 +1,11 @@
 
+2.19.0 / 2017-02-03
+==================
+
+  * test: ignore stdout assert on custom mirror
+  * fix: should stop spinner when install fail
+  * feat: support parallel execution
+
 2.18.2 / 2017-01-26
 ==================
 
