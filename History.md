@@ -1,4 +1,10 @@
 
+2.19.1 / 2017-02-03
+==================
+
+  * fix: dont show debug log when no bin to link
+  * fix: should limit sub package install parallel
+
 2.19.0 / 2017-02-03
 ==================
 
