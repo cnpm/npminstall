@@ -200,8 +200,6 @@ describe('test/installLocal.test.js', function() {
         .coverage(false)
         .debug()
         .expect('code', 0)
-        .expect('stdout',
-          /Use custom china mirror "http:\/\/cdn\.npm\.taobao\.org\/dist" instead of "https:\/\/npm\.taobao\.org\/mirrors"/)
         .end(done);
       });
     }

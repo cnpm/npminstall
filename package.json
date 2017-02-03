@@ -54,14 +54,14 @@
   },
   "devDependencies": {
     "autod": "2",
-    "coffee": "^3.3.0",
+    "coffee": "3",
     "eslint": "3",
     "eslint-config-egg": "3",
     "intelli-espower-loader": "1",
     "istanbul": "*",
-    "mm": "^2.1.0",
+    "mm": "2",
     "mocha": "3",
-    "power-assert": "^1.4.2",
+    "power-assert": "1",
     "thunk-mocha": "1"
   },
   "homepage": "https://github.com/cnpm/npminstall",
@@ -71,15 +71,18 @@
     "web": "https://github.com/cnpm/npminstall"
   },
   "bugs": {
-    "url": "https://github.com/cnpm/npminstall/issues",
-    "email": "m@fengmk2.com"
+    "url": "https://github.com/cnpm/npminstall/issues"
   },
   "keywords": [
-    "npminstall"
+    "npminstall",
+    "npm install",
+    "yarn",
+    "pnpm",
+    "fatest npm install"
   ],
   "engines": {
     "node": ">=4.2.3"
   },
-  "author": "fengmk2 <m@fengmk2.com> (http://fengmk2.com)",
+  "author": "fengmk2 <fengmk2@gmail.com> (https://fengmk2.com)",
   "license": "MIT"
 }
