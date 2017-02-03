@@ -1,4 +1,9 @@
 
+2.19.2 / 2017-02-03
+==================
+
+  * fix: get max satisfy version from root dependencies instead of * (#193)
+
 2.19.1 / 2017-02-03
 ==================
 
