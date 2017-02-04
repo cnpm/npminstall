@@ -19,6 +19,7 @@ describe('test/bigPackage.test.js', () => {
       it('should install success', function* () {
         yield npminstall({
           root,
+          trace: true,
         });
       });
     });
