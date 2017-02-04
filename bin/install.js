@@ -41,6 +41,7 @@ const argv = parseArgs(orignalArgv, {
     'ignore-scripts',
     'detail',
     'trace',
+    'engine-strict',
   ],
   alias: {
     // npm install [-S|--save|-D|--save-dev|-O|--save-optional] [-E|--save-exact] [-d|--detail]
@@ -92,6 +93,7 @@ Options:
   --trace: show memory and cpu usages traces of installation
   --ignore-scripts: ignore all preinstall / install and postinstall scripts during the installation
   --forbidden-licenses: forbit install packages which used these licenses
+  --engine-strict: refuse to install (or even consider installing) any package that claims to not be compatible with the current Node.js version.
 `
   );
   process.exit(0);
@@ -198,6 +200,7 @@ co(function* () {
   config.ignoreScripts = argv['ignore-scripts'] || getIgnoreScripts();
   config.detail = argv.detail;
   config.trace = argv.trace;
+  config.engineStrict = argv['engine-strict'];
   if (config.production || argv.global) {
     // make sure show detail on production install or global install
     config.detail = true;
