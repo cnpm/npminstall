@@ -40,6 +40,7 @@ const argv = parseArgs(orignalArgv, {
     'china',
     'ignore-scripts',
     'detail',
+    'trace',
   ],
   alias: {
     // npm install [-S|--save|-D|--save-dev|-O|--save-optional] [-E|--save-exact] [-d|--detail]
@@ -88,6 +89,7 @@ Options:
   -r, --registry: specify custom registry
   -c, --china: specify in china, will automatically using chinses npm registry and other binary's mirrors
   -d, --detail: show detail log of installation
+  --trace: show memory and cpu usages traces of installation
   --ignore-scripts: ignore all preinstall / install and postinstall scripts during the installation
   --forbidden-licenses: forbit install packages which used these licenses
 `
@@ -195,6 +197,7 @@ co(function* () {
   config.strictSSL = getStrictSSL();
   config.ignoreScripts = argv['ignore-scripts'] || getIgnoreScripts();
   config.detail = argv.detail;
+  config.trace = argv.trace;
   if (config.production || argv.global) {
     // make sure show detail on production install or global install
     config.detail = true;
