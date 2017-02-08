@@ -75,6 +75,7 @@ Options:
   --ignore-scripts: ignore all preinstall / install and postinstall scripts during the installation
   --forbidden-licenses: forbit install packages which used these licenses
   --engine-strict: refuse to install (or even consider installing) any package that claims to not be compatible with the current Node.js version.
+  --flatten: flatten dependencies by matching ancestors' dependencies
 ```
 
 #### npmuninstall
