@@ -72,7 +72,9 @@ Options:
   -c, --china: specify in china, will automatically using chinses npm registry and other binary's mirrors
   -d, --detail: show detail log of installation
   --ignore-scripts: ignore all preinstall / install and postinstall scripts during the installation
+  --trace: show memory and cpu usages traces of installation
   --forbidden-licenses: forbit install packages which used these licenses
+  --flatten: flatten dependencies by matching ancestors' dependencies
 ```
 
 #### npmuninstall
