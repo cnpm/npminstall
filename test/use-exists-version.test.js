@@ -16,7 +16,7 @@ describe('use-exists-version.test.js', () => {
   beforeEach(cleanup);
 
   it('should replace tarball url to other', function* () {
-    yield coffee.fork(bin, [ '-d' ], { cwd: tmp })
+    yield coffee.fork(bin, [ '-d', '--flatten' ], { cwd: tmp })
       .debug()
       .expect('code', 0)
       .expect('stdout', /All packages installed/)

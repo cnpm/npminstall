@@ -42,6 +42,7 @@ const argv = parseArgs(orignalArgv, {
     'detail',
     'trace',
     'engine-strict',
+    'flatten',
   ],
   alias: {
     // npm install [-S|--save|-D|--save-dev|-O|--save-optional] [-E|--save-exact] [-d|--detail]
@@ -94,6 +95,7 @@ Options:
   --ignore-scripts: ignore all preinstall / install and postinstall scripts during the installation
   --forbidden-licenses: forbit install packages which used these licenses
   --engine-strict: refuse to install (or even consider installing) any package that claims to not be compatible with the current Node.js version.
+  --flatten: flatten dependencies by matching ancestors' dependencies
 `
   );
   process.exit(0);
@@ -124,6 +126,8 @@ if (production) {
 
 let forbiddenLicenses = argv['forbidden-licenses'];
 forbiddenLicenses = forbiddenLicenses ? forbiddenLicenses.split(',') : null;
+
+const flatten = argv.flatten;
 
 // if in china, will automatic using chines registry and mirros.
 const inChina = argv.china || !!process.env.npm_china;
@@ -195,6 +199,7 @@ co(function* () {
     env,
     binaryMirrors,
     forbiddenLicenses,
+    flatten,
   };
   config.strictSSL = getStrictSSL();
   config.ignoreScripts = argv['ignore-scripts'] || getIgnoreScripts();
