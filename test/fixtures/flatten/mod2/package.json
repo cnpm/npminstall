@@ -1,0 +1,16 @@
+{
+  "name": "mod2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "koa": "~1.1.0",
+    "mod3": "./mod3",
+    "mod4": "./mod4"
+  },
+  "author": "",
+  "license": "ISC"
+}
