@@ -62,6 +62,8 @@ describe('use-exists-version.test.js', () => {
       .expect('stdout', /All packages installed/)
       .end();
     assert(getPkg('node_modules/mod5/node_modules/mod6/node_modules/mod7/node_modules/debug/package.json').version === '2.2.0');
+    assert(getPkg('node_modules/mod5/node_modules/mod6/node_modules/debug/package.json').version === '0.7.4');
+    assert(getPkg('node_modules/mod5/node_modules/debug/package.json').version === '2.2.0');
   });
 
   it('should not use first debug@2.2.0 without flatten flag', function* () {
@@ -71,5 +73,7 @@ describe('use-exists-version.test.js', () => {
       .expect('stdout', /All packages installed/)
       .end();
     assert(getPkg('node_modules/mod5/node_modules/mod6/node_modules/mod7/node_modules/debug/package.json').version !== '2.2.0');
+    assert(getPkg('node_modules/mod5/node_modules/mod6/node_modules/debug/package.json').version === '0.7.4');
+    assert(getPkg('node_modules/mod5/node_modules/debug/package.json').version === '2.2.0');
   });
 });
