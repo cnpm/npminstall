@@ -1,4 +1,9 @@
 
+2.22.1 / 2017-02-10
+==================
+
+  * fix: use ancestor's dependence even version not change (#198)
+
 2.22.0 / 2017-02-09
 ==================
 
