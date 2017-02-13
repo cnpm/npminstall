@@ -19,6 +19,7 @@ describe('use-exists-version.test.js', () => {
   }
 
   beforeEach(cleanup);
+  afterEach(cleanup);
 
   it('should force all koa to 1.1.0', function* () {
     yield coffee.fork(bin, [ '-d', '--flatten', './mod1' ], { cwd: tmp })
@@ -75,5 +76,16 @@ describe('use-exists-version.test.js', () => {
     assert(getPkg('node_modules/mod5/node_modules/mod6/node_modules/mod7/node_modules/debug/package.json').version !== '2.2.0');
     assert(getPkg('node_modules/mod5/node_modules/mod6/node_modules/debug/package.json').version === '0.7.4');
     assert(getPkg('node_modules/mod5/node_modules/debug/package.json').version === '2.2.0');
+  });
+
+  it('should flatten when version ends with x', function* () {
+    yield coffee.fork(bin, [ '-d', './mod8' ], { cwd: tmp })
+      .debug()
+      .expect('code', 0)
+      .expect('stdout', /All packages installed/)
+      .end();
+    assert(getPkg('node_modules/mod8/node_modules/mod9/node_modules/debug/package.json').version === '2.3.1');
+    assert(getPkg('node_modules/mod8/node_modules/mod10/node_modules/debug/package.json').version === '2.3.1');
+    assert(getPkg('node_modules/mod8/node_modules/debug/package.json').version === '2.3.1');
   });
 });
