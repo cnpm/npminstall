@@ -196,6 +196,62 @@ app/
     └── ms -> .0.7.1@ms # for peerDependencies
 ```
 
+### flattened vs nested
+
+npminstall will always try to install the maximal matched version of semver:
+
+```
+root/
+  koa@1.1.0
+  mod/
+    koa@~1.1.0
+# will install tow different version of koa when use npminstall.
+```
+
+you can enable flatten mode by `--flatten` flag, in this mod, npminstall will try to use ancestors' dependencies to minimize the dependence-tree.
+
+```
+root/
+  koa@1.1.0
+  mod/
+    koa@~1.1.0
+
+root/
+  koa@1.1.0
+  mod/
+    koa@^1.1.0
+# both the same version: 1.1.0
+
+root/
+  koa@~1.1.0
+  mod/
+    koa@^1.1.0
+# both the same version: 1.1.2
+
+root/
+  mod/
+    koa@^1.1.0
+  moe/
+    koa@~1.1.0
+# tow different versions
+```
+
+**npminstall will always treat `n.x` and `n.m.x` as flattened**
+
+```
+root/
+  koa@1.1.0
+  mod/
+    koa@1.1.x
+both the same version: 1.1.0
+
+root/
+  koa@~1.1.0
+  mod/
+    koa@1.x
+both the same version: 1.1.2
+```
+
 ## Benchmarks
 
 ### cnpmjs.org install
