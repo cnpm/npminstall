@@ -20,7 +20,7 @@ describe('test/link-folder.test.js', () => {
   afterEach(cleanup);
 
   it('should link one folder work', function* () {
-    yield coffee.fork(npmlink, [ 'linked-package' ], {
+    yield coffee.fork(npmlink, [ './linked-package' ], {
       cwd: root,
     })
     .debug()
@@ -31,7 +31,7 @@ describe('test/link-folder.test.js', () => {
   });
 
   it('should link two folder work', function* () {
-    yield coffee.fork(npmlink, [ 'linked-package', 'linked-package-2', '-d' ], {
+    yield coffee.fork(npmlink, [ './linked-package', './linked-package-2', '-d' ], {
       cwd: root,
     })
     .debug()
