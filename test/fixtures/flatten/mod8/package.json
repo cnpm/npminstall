@@ -1,0 +1,16 @@
+{
+  "name": "mod8",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "mod9": "./mod9",
+    "mod10": "./mod10",
+    "debug": "2.3.1"
+  },
+  "author": "",
+  "license": "ISC"
+}
