@@ -137,6 +137,9 @@ co(function* npmlink() {
       pkg = yield utils.readJSON(pkgFile);
       assert(pkg.name, `package.name not eixsts on ${pkgFile}`);
     } else {
+      if (!path.isAbsolute(folder)) {
+        folder = path.join(root, folder);
+      }
       // read from folder
       if (!(yield fs.exists(folder))) {
         throw new Error(`${folder} not exists`);
