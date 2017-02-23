@@ -1,6 +1,6 @@
 'use strict';
 
-const assert = require('power-assert');
+const assert = require('assert');
 const mm = require('mm');
 const urllib = require('urllib');
 const rimraf = require('rimraf');

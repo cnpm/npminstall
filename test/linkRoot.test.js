@@ -1,10 +1,10 @@
 'use strict';
 
-const npminstall = require('./npminstall');
 const rimraf = require('rimraf');
-const assert = require('power-assert');
+const assert = require('assert');
 const path = require('path');
 const mkdirp = require('mkdirp');
+const npminstall = require('./npminstall');
 
 describe('test/linkRoot.test.js', function() {
   const tmp = path.join(__dirname, 'fixtures', 'tmp');

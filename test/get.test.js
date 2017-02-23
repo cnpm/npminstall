@@ -1,6 +1,6 @@
 'use strict';
 
-const assert = require('power-assert');
+const assert = require('assert');
 const get = require('../lib/get');
 
 describe('test/get.test.js', () => {

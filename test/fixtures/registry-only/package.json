@@ -1,0 +1,7 @@
+{
+  "name": "registry-only",
+  "dependencies": {
+    "mm": "*",
+    "urllib": "https://github.com/node-modules/urllib.git"
+  }
+}

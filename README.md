@@ -67,7 +67,7 @@ Options:
 
   --production: won't install devDependencies
   --save, --save-dev, --save-optional: save installed dependencies into package.json
-  -g, --global: install devDependencies to global directory which specified in '$ npm config get prefix'
+  -g, --global: install devDependencies to global directory which specified in `$ npm config get prefix`
   -r, --registry: specify custom registry
   -c, --china: specify in china, will automatically using chinses npm registry and other binary's mirrors
   -d, --detail: show detail log of installation
@@ -75,7 +75,8 @@ Options:
   --ignore-scripts: ignore all preinstall / install and postinstall scripts during the installation
   --forbidden-licenses: forbit install packages which used these licenses
   --engine-strict: refuse to install (or even consider installing) any package that claims to not be compatible with the current Node.js version.
-  --flatten: flatten dependencies by matching ancestors' dependencies
+  --flatten: flatten dependencies by matching ancestors dependencies
+  --registry-only: make sure all packages install from registry. Any package is installed from remote(e.g.: git, remote url) cause install fail.
 ```
 
 #### npmuninstall
@@ -290,4 +291,4 @@ npm i babel-preset-es2015 browserify chalk debug minimist mkdirp
 
 ## License
 
-[MIT](LICENSE)
+[MIT](LICENSE.txt)

@@ -1,7 +1,7 @@
 'use strict';
 
 const os = require('os');
-const assert = require('power-assert');
+const assert = require('assert');
 const path = require('path');
 const rimraf = require('rimraf');
 const mkdirp = require('mkdirp');
