@@ -19,3 +19,4 @@ coverage/
 .tmp
 test/fixtures/tmp
 .idea
+npm-debug.log.*
