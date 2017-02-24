@@ -1,12 +1,12 @@
 'use strict';
 
 const fs = require('fs');
-const assert = require('power-assert');
+const assert = require('assert');
 const path = require('path');
 const rimraf = require('rimraf');
 const mkdirp = require('mkdirp');
-const npminstall = require('./npminstall');
 const mm = require('mm');
+const npminstall = require('./npminstall');
 
 describe('test/node-gyp.test.js', function() {
   const tmp = path.join(__dirname, 'fixtures', 'tmp');

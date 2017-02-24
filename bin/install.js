@@ -43,6 +43,7 @@ const argv = parseArgs(orignalArgv, {
     'trace',
     'engine-strict',
     'flatten',
+    'registry-only',
   ],
   alias: {
     // npm install [-S|--save|-D|--save-dev|-O|--save-optional] [-E|--save-exact] [-d|--detail]
@@ -96,6 +97,7 @@ Options:
   --forbidden-licenses: forbit install packages which used these licenses
   --engine-strict: refuse to install (or even consider installing) any package that claims to not be compatible with the current Node.js version.
   --flatten: flatten dependencies by matching ancestors' dependencies
+  --registry-only: make sure all packages install from registry. Any package is installed from remote(e.g.: git, remote url) cause install fail.
 `
   );
   process.exit(0);
@@ -206,6 +208,7 @@ co(function* () {
   config.detail = argv.detail;
   config.trace = argv.trace;
   config.engineStrict = argv['engine-strict'];
+  config.registryOnly = argv['registry-only'];
   if (config.production || argv.global) {
     // make sure show detail on production install or global install
     config.detail = true;
