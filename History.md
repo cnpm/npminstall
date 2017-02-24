@@ -1,4 +1,9 @@
 
+2.25.0 / 2017-02-24
+==================
+
+  * feat: only allow install from registry by a new flag (#203)
+
 2.24.1 / 2017-02-23
 ==================
 
