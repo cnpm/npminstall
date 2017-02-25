@@ -1,4 +1,10 @@
 
+2.26.0 / 2017-02-25
+==================
+
+  * feat: improve peerDependencies' lookup (#207)
+  * feat: typescript definitions always flatten (#206)
+
 2.25.0 / 2017-02-24
 ==================
 
