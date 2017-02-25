@@ -1,0 +1,15 @@
+{
+  "name": "peer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bisheng-plugin-antd": "0.12.1",
+    "antd-tools": "0.16.1"
+  }
+}
