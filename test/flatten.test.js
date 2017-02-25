@@ -6,7 +6,7 @@ const path = require('path');
 const assert = require('assert');
 const fs = require('fs');
 
-describe('use-exists-version.test.js', () => {
+describe('flatten.test.js', () => {
   const tmp = path.join(__dirname, 'fixtures', 'flatten');
   const bin = path.join(__dirname, '../bin/install.js');
 

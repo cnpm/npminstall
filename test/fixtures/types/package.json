@@ -1,0 +1,7 @@
+{
+  "name": "typescript-definitions",
+  "dependencies": {
+    "@types/react": "0.14.57",
+    "@types/react-dom": "0.14.23"
+  }
+}
