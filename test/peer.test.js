@@ -6,7 +6,7 @@ const path = require('path');
 const assert = require('assert');
 const fs = require('fs');
 
-describe.only('peer.test.js', () => {
+describe('peer.test.js', () => {
   const tmp = path.join(__dirname, 'fixtures', 'peer');
   const bin = path.join(__dirname, '../bin/install.js');
 
