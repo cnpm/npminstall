@@ -84,8 +84,8 @@ describe('flatten.test.js', () => {
       .expect('code', 0)
       .expect('stdout', /All packages installed/)
       .end();
-    assert(getPkg('node_modules/mod8/node_modules/mod9/node_modules/debug/package.json').version === '2.3.1');
-    assert(getPkg('node_modules/mod8/node_modules/mod10/node_modules/debug/package.json').version === '2.3.1');
-    assert(getPkg('node_modules/mod8/node_modules/debug/package.json').version === '2.3.1');
+    assert(getPkg('node_modules/mod8/node_modules/mod9/node_modules/debug/package.json').version === '1.0.1');
+    assert(getPkg('node_modules/mod8/node_modules/mod10/node_modules/debug/package.json').version === '1.0.1');
+    assert(getPkg('node_modules/mod8/node_modules/debug/package.json').version === '1.0.1');
   });
 });
