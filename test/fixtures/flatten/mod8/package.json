@@ -9,7 +9,7 @@
   "dependencies": {
     "mod9": "./mod9",
     "mod10": "./mod10",
-    "debug": "2.3.1"
+    "debug": "1.0.1"
   },
   "author": "",
   "license": "ISC"
