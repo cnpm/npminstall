@@ -37,7 +37,7 @@ describe('peer.test.js', () => {
       .expect('code', 0)
       .end();
     assert(getPkg('node_modules/react-countup/node_modules/react/package.json').version.startsWith('15.'));
-    const pkg = getPkg('node_modules/react-countup//package.json');
+    const pkg = getPkg('node_modules/react-countup/package.json');
     assert(pkg.dependencies.react === '^15.3.2');
     assert(pkg.peerDependencies.react === '>=0.14.0');
   });
