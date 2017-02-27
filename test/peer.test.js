@@ -30,4 +30,15 @@ describe('peer.test.js', () => {
     assert(getPkg('node_modules/antd-tools/node_modules/gulp-typescript/node_modules/typescript/package.json').version === '2.1.6');
     assert(getPkg('node_modules/antd-tools/node_modules/typescript/package.json').version === '2.1.6');
   });
+
+  it('should ignore peerDependency if in dependencies', function* () {
+    yield coffee.fork(bin, [ 'react-countup@1.3.0' ], { cwd: tmp })
+      .debug()
+      .expect('code', 0)
+      .end();
+    assert(getPkg('node_modules/react-countup/node_modules/react/package.json').version.startsWith('15.'));
+    const pkg = getPkg('node_modules/react-countup//package.json');
+    assert(pkg.dependencies.react === '^15.3.2');
+    assert(pkg.peerDependencies.react === '>=0.14.0');
+  });
 });
