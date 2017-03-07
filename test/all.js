@@ -7,7 +7,7 @@ const npminstall = require('./npminstall');
 
 const names = [
   'strongloop',
-  'express', 'koa', 'browserify',
+  'express', 'koa', 'browserify', 'egg',
   'pm2',
   'grunt-cli',
   'npm', 'karma',
