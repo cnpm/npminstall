@@ -10,7 +10,7 @@ describe('peer.test.js', () => {
   const bin = path.join(__dirname, '../bin/install.js');
 
   describe('unmet root and link', () => {
-    const tmp = path.join(__dirname, 'fixtures', 'peer');
+    const tmp = path.join(__dirname, 'fixtures', 'antd-tools-ts');
     function cleanup() {
       rimraf.sync(path.join(tmp, 'node_modules'));
     }
