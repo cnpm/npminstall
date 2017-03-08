@@ -26,21 +26,23 @@ const names = [
   'firebase',
 ];
 
-// test ghost install on node v4
-if (/^v4\./.test(process.version)) {
-  names.push('ghost');
-}
+// test ghost install on node 4, 6
+// if (/^v(4|6)\./.test(process.version)) {
+//   names.push({ name: 'ghost', version: '0' });
+// }
 
 co(function* () {
   const root = path.join(__dirname, 'fixtures', 'all');
   const pkgs = names.map(name => {
-    return { name };
+    if (typeof name === 'string') return { name };
+    return name;
   });
 
   rimraf.sync(root);
   yield npminstall({
     root,
     pkgs,
+    detail: true,
   });
 }).catch(err => {
   console.error(err);
