@@ -4,84 +4,84 @@ rm -rf .tmp
 
 git clone https://github.com/webpack/webpack.git --depth=1 .tmp
 cd .tmp
-../bin/install.js
+../bin/install.js || exit $?
 npm test || exit $?
 cd ..
 rm -rf .tmp
 
 git clone https://github.com/rstacruz/pnpm.git --depth=1 .tmp
 cd .tmp
-../bin/install.js
+../bin/install.js || exit $?
 npm test || exit $?
 cd ..
 rm -rf .tmp
 
 git clone https://github.com/chaijs/chai.git --depth=1 .tmp
 cd .tmp
-../bin/install.js
+../bin/install.js || exit $?
 npm test
 cd ..
 rm -rf .tmp
 
 git clone https://github.com/substack/node-browserify.git --depth=1 .tmp
 cd .tmp
-../bin/install.js
+../bin/install.js || exit $?
 npm test
 cd ..
 rm -rf .tmp
 
 git clone https://github.com/chalk/chalk.git --depth=1 .tmp
 cd .tmp
-../bin/install.js
+../bin/install.js || exit $?
 npm test || exit $?
 cd ..
 rm -rf .tmp
 
 git clone https://github.com/tj/co.git --depth=1 .tmp
 cd .tmp
-../bin/install.js
+../bin/install.js || exit $?
 npm test || exit $?
 cd ..
 rm -rf .tmp
 
 git clone https://github.com/tj/commander.js.git --depth=1 .tmp
 cd .tmp
-../bin/install.js
+../bin/install.js || exit $?
 npm test || exit $?
 cd ..
 rm -rf .tmp
 
 git clone https://github.com/substack/node-mkdirp.git --depth=1 .tmp
 cd .tmp
-../bin/install.js
+../bin/install.js || exit $?
 npm test || exit $?
 cd ..
 rm -rf .tmp
 
 git clone https://github.com/expressjs/express.git --depth=1 .tmp
 cd .tmp
-../bin/install.js
+../bin/install.js || exit $?
 npm test || exit $?
 cd ..
 rm -rf .tmp
 
 git clone https://github.com/toajs/toa.git --depth=1 .tmp
 cd .tmp
-../bin/install.js
+../bin/install.js || exit $?
 npm test || exit $?
 cd ..
 rm -rf .tmp
 
 git clone https://github.com/hapijs/hapi.git --depth=1 .tmp
 cd .tmp
-../bin/install.js
+../bin/install.js || exit $?
 npm test || exit $?
 cd ..
 rm -rf .tmp
 
 git clone https://github.com/cnpm/cnpmjs.org.git --depth=1 .tmp
 cd .tmp
-../bin/install.js
+../bin/install.js || exit $?
 npm test || exit $?
 cd ..
 rm -rf .tmp
@@ -95,35 +95,35 @@ rm -rf .tmp
 
 git clone https://github.com/koajs/koa.git --depth=1 .tmp
 cd .tmp
-../bin/install.js
+../bin/install.js || exit $?
 npm test || exit $?
 cd ..
 rm -rf .tmp
 
 git clone https://github.com/expressjs/body-parser.git --depth=1 .tmp
 cd .tmp
-../bin/install.js
+../bin/install.js || exit $?
 npm test || exit $?
 cd ..
 rm -rf .tmp
 
 git clone https://github.com/thunks/thunk-mocha.git --depth=1 .tmp
 cd .tmp
-../bin/install.js
+../bin/install.js || exit $?
 npm test || exit $?
 cd ..
 rm -rf .tmp
 
 git clone https://github.com/mapbox/node-sqlite3.git --depth=1 .tmp
 cd .tmp
-../bin/install.js
+../bin/install.js || exit $?
 npm test || exit $?
 cd ..
 rm -rf .tmp
 
 git clone https://github.com/cheeriojs/cheerio.git --depth=1 .tmp
 cd .tmp
-../bin/install.js
+../bin/install.js || exit $?
 npm test || exit $?
 cd ..
 rm -rf .tmp
