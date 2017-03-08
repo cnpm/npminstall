@@ -1,4 +1,10 @@
 
+2.26.4 / 2017-03-08
+==================
+
+  * fix: use readJSON instead of require (#214)
+  * test: remove ghost install test (#213)
+
 2.26.3 / 2017-03-08
 ==================
 
