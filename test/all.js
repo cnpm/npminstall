@@ -3,11 +3,12 @@
 const co = require('co');
 const path = require('path');
 const rimraf = require('rimraf');
+const semver = require('semver');
 const npminstall = require('./npminstall');
 
 const names = [
   'strongloop',
-  'express', 'koa', 'browserify', 'egg',
+  'express', 'koa', 'browserify',
   'pm2',
   'grunt-cli',
   'npm', 'karma',
@@ -26,10 +27,17 @@ const names = [
   'firebase',
 ];
 
-// test ghost install on node 4, 6
-// if (/^v(4|6)\./.test(process.version)) {
-//   names.push({ name: 'ghost', version: '0' });
-// }
+const semvers = {
+  '>= 6': [
+    'egg',
+  ],
+};
+
+for (const version in semvers) {
+  if (!semver.satisfies(process.version, version)) continue;
+  const pkgs = semvers[version];
+  for (const pkg of pkgs) names.push(pkg);
+}
 
 co(function* () {
   const root = path.join(__dirname, 'fixtures', 'all');
