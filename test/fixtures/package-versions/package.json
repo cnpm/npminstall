@@ -1,0 +1,6 @@
+{
+  "name": "package-versions",
+  "dependencies": {
+    "egg": "1"
+  }
+}
