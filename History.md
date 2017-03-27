@@ -1,4 +1,11 @@
 
+2.27.0 / 2017-03-27
+==================
+
+  * feat: record all installed packages' versions
+  * refactor: split install function into pieces
+  * fix: should continue install when optional dep error (#217)
+
 2.26.4 / 2017-03-08
 ==================
 
