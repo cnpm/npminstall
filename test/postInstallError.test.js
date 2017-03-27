@@ -5,8 +5,10 @@ const path = require('path');
 const rimraf = require('rimraf');
 const mkdirp = require('mkdirp');
 const npminstall = require('./npminstall');
+const bin = path.join(__dirname, '../bin/install.js');
+const coffee = require('coffee');
 
-describe('test/postInstallError.test.js', function() {
+describe('test/postInstallError.test.js', () => {
   const tmp = path.join(__dirname, 'fixtures', 'tmp');
 
   function cleanup() {
@@ -33,5 +35,19 @@ describe('test/postInstallError.test.js', function() {
       throwError = true;
     }
     assert.equal(throwError, true);
+  });
+
+  it('should ignore optional post install error', function* () {
+    const root = path.join(__dirname, 'fixtures', 'optional-dep-postinstall');
+    rimraf.sync(path.join(root, 'node_modules'));
+
+    yield coffee.fork(bin, [ '--production' ], { cwd: root })
+      // .debug()
+      .expect('code', 0)
+      .expect('stderr', /httpsync@\* optional error: Error: Run "sh -c sh build.sh" error/)
+      .expect('stdout', /\[1\/2\] scripts.install httpsync@\* run "sh build.sh"/)
+      .expect('stdout', /\[2\/2\] scripts.install pinyin@/)
+      .expect('stdout', /All packages installed/)
+      .end();
   });
 });
