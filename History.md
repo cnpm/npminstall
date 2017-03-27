@@ -1,4 +1,9 @@
 
+2.27.1 / 2017-03-28
+==================
+
+  * fix: emit download cache await event if donefile exists (#219)
+
 2.27.0 / 2017-03-27
 ==================
 
