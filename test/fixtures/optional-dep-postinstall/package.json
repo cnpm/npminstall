@@ -1,0 +1,9 @@
+{
+  "name": "optional-dep-posinstall",
+  "optionalDependencies": {
+    "httpsync": "*"
+  },
+  "dependencies": {
+    "pinyin": "^2.2.1"
+  }
+}
