@@ -34,7 +34,7 @@ describe('test/uninstall.test.js', () => {
     }).end(() => {
       assert(!fs.existsSync(path.join(path.join(root, 'node_modules/koa'))));
       assert(!fs.existsSync(path.join(path.join(root, 'node_modules/pkg'))));
-      assert(!fs.existsSync(path.join(path.join(root, 'node_modules/.1.0.0@pkg'))));
+      assert(!fs.existsSync(path.join(path.join(root, 'node_modules/.pkg@1.0.0@pkg'))));
       done();
     });
   });
@@ -44,7 +44,7 @@ describe('test/uninstall.test.js', () => {
       cwd: root,
       stdio: 'pipe',
     }).end(() => {
-      assert(!fs.existsSync(path.join(path.join(root, 'node_modules/.1.0.0@pkg'))));
+      assert(!fs.existsSync(path.join(path.join(root, 'node_modules/.pkg@1.0.0@pkg'))));
       const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json')));
       assert(!pkg.dependencies.pkg);
       done();
@@ -57,7 +57,7 @@ describe('test/uninstall.test.js', () => {
       stdio: 'pipe',
     }).end(() => {
       assert(!fs.existsSync(path.join(path.join(root, 'node_modules/pkg'))));
-      assert(!fs.existsSync(path.join(path.join(root, 'node_modules/.1.0.0@pkg'))));
+      assert(!fs.existsSync(path.join(path.join(root, 'node_modules/.pkg@1.0.0@pkg'))));
       const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json')));
       assert(!pkg.devDependencies.pkg);
       done();
@@ -70,7 +70,7 @@ describe('test/uninstall.test.js', () => {
       stdio: 'pipe',
     }).end(() => {
       assert(!fs.existsSync(path.join(path.join(root, 'node_modules/pkg'))));
-      assert(!fs.existsSync(path.join(path.join(root, 'node_modules/.1.0.0@pkg'))));
+      assert(!fs.existsSync(path.join(path.join(root, 'node_modules/.pkg@1.0.0@pkg'))));
       const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json')));
       assert(!pkg.optionalDependencies.pkg);
       done();
@@ -83,7 +83,7 @@ describe('test/uninstall.test.js', () => {
       stdio: 'pipe',
     }).end(() => {
       assert(fs.existsSync(path.join(path.join(root, 'node_modules/pkg'))));
-      assert(fs.existsSync(path.join(path.join(root, 'node_modules/.1.0.0@pkg'))));
+      assert(fs.existsSync(path.join(path.join(root, 'node_modules/.pkg@1.0.0@pkg'))));
       done();
     });
   });
@@ -93,7 +93,7 @@ describe('test/uninstall.test.js', () => {
       cwd: root,
       stdio: 'pipe',
     }).end(() => {
-      assert(fs.existsSync(path.join(path.join(root, 'node_modules/.1.0.0@pkg'))));
+      assert(fs.existsSync(path.join(path.join(root, 'node_modules/.pkg@1.0.0@pkg'))));
       done();
     });
   });
