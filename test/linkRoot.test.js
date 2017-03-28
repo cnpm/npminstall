@@ -6,7 +6,7 @@ const path = require('path');
 const mkdirp = require('mkdirp');
 const npminstall = require('./npminstall');
 
-describe('test/linkRoot.test.js', function() {
+describe('test/linkRoot.test.js', () => {
   const tmp = path.join(__dirname, 'fixtures', 'tmp');
 
   function cleanup() {

@@ -15,7 +15,7 @@ describe('test/bin.test.js', () => {
   }
 
   beforeEach(cleanup);
-  afterEach(cleanup);
+  // afterEach(cleanup);
 
   it('should create bins after install', function* () {
     yield npminstall({
@@ -35,7 +35,7 @@ describe('test/bin.test.js', () => {
       ],
     });
     const pkg = yield readJSON(path.join(root, 'node_modules', '@bigfunger/decompress-zip', 'package.json'));
-    assert.equal(pkg.name, '@bigfunger/decompress-zip');
+    assert(pkg.name === '@bigfunger/decompress-zip');
     assert(fs.existsSync(path.join(root, 'node_modules', '.bin', 'decompress-zip')));
   });
 });
