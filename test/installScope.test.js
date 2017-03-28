@@ -7,14 +7,14 @@ const readJSON = require('../lib/utils').readJSON;
 const mkdirp = require('mkdirp');
 const npminstall = require('./npminstall');
 
-describe('test/installScope.test.js', function() {
+describe('test/installScope.test.js', () => {
   const tmp = path.join(__dirname, 'fixtures', 'tmp');
 
   function cleanup() {
     rimraf.sync(tmp);
   }
 
-  beforeEach(function() {
+  beforeEach(() => {
     cleanup();
     mkdirp.sync(tmp);
   });
@@ -41,7 +41,7 @@ describe('test/installScope.test.js', function() {
       });
       throw new Error('should not excute here');
     } catch (err) {
-      assert(err.status, 404);
+      assert(err.message === '[@rstacruz/tap-spec@3.0.0] Can\'t find package @rstacruz/tap-spec\'s version: 3.0.0');
     }
   });
 
