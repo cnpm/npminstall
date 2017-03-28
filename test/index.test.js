@@ -57,6 +57,7 @@ describe('test/index.test.js', () => {
       });
       throw new Error('should not run this');
     } catch (err) {
+      console.log(err.stack);
       assert(/response 404 status/.test(err.message));
     }
   });

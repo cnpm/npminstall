@@ -42,7 +42,7 @@ describe('test/postInstallError.test.js', () => {
     rimraf.sync(path.join(root, 'node_modules'));
 
     yield coffee.fork(bin, [ '--production' ], { cwd: root })
-      // .debug()
+      .debug()
       .expect('code', 0)
       .expect('stderr', /httpsync@\* optional error: Error: Run ".*?build\.sh" error/)
       .expect('stdout', /\[1\/2\] scripts.install httpsync@\* run "sh build.sh"/)
