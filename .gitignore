@@ -20,3 +20,7 @@ coverage/
 test/fixtures/tmp
 .idea
 npm-debug.log.*
+.happypack/
+test/fixtures/css-loader-example2/build/
+test/fixtures/css-loader-example2/node_modules
+test/fixtures/css-loader-example2/webpack*.json
