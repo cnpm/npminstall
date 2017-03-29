@@ -7,7 +7,7 @@ const fs = require('fs');
 const readJSON = require('../lib/utils').readJSON;
 const npminstall = require('./npminstall');
 
-describe.only('test/bin.test.js', () => {
+describe('test/bin.test.js', () => {
   const root = path.join(__dirname, 'fixtures', 'bin');
 
   function cleanup() {
@@ -27,7 +27,7 @@ describe.only('test/bin.test.js', () => {
     assert(fs.existsSync(path.join(root, 'node_modules', '.bin', 'yo')));
   });
 
-  it.only('should create bin folders for scoped pkg', function* () {
+  it('should create bin folders for scoped pkg', function* () {
     yield npminstall({
       root,
       pkgs: [

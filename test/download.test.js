@@ -82,20 +82,21 @@ describe('test/download.test.js', () => {
     it('should throw sha1 error', function* () {
       this.timeout = 15000;
       const registry = process.env.npm_registry || 'https://registry.cnpmjs.org';
-      const res = yield urllib.request(`${registry}/pedding/1.0.0`, { dataType: 'json', timeout: 10000 });
+      const res = yield urllib.request(`${registry}/pedding`, { dataType: 'json', timeout: 10000 });
       const pkg = res.data;
-      pkg.dist.shasum = '00098d60307b4ef7240c3d693cb20a9473c111';
-      mm.https.request(/pedding\/latest/, JSON.stringify(pkg));
+      pkg.versions['1.0.0'].dist.shasum = '00098d60307b4ef7240c3d693cb20a9473c111';
+      mm.https.request(/^\/pedding$/, JSON.stringify(pkg));
       try {
         yield install({
           root: tmp,
           pkgs: [
-            { name: 'pedding' },
+            { name: 'pedding', version: '1.0.0' },
           ],
           production: true,
         });
         throw new Error('should not run this');
       } catch (err) {
+        assert(err.name === 'ShasumNotMatchError');
         assert(/real sha1:7f5098d60307b4ef7240c3d693cb20a9473c6074 not equal to remote:00098d60307b4ef7240c3d693cb20a9473c111/.test(err.message));
       }
     });
