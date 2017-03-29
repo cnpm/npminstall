@@ -3,8 +3,8 @@
 const assert = require('assert');
 const path = require('path');
 const rimraf = require('rimraf');
-const readJSON = require('../lib/utils').readJSON;
 const mkdirp = require('mkdirp');
+const readJSON = require('../lib/utils').readJSON;
 const npminstall = require('./npminstall');
 
 describe('test/installScope.test.js', () => {
