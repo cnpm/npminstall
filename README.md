@@ -189,12 +189,12 @@ e.g.:
 app/
 ├── package.json
 └── node_modules
-    ├── .2.2.0@debug
+    ├── ._debug@2.2.0@debug
     │   ├── node_modules
-    │   │   └── ms -> ../../.0.7.1@ms
+    │   │   └── ms -> ../../._ms@0.7.1@ms
     ├── .0.7.1@ms
-    ├── debug -> .2.2.0@debug
-    └── ms -> .0.7.1@ms # for peerDependencies
+    ├── debug -> ._debug@2.2.0@debug
+    └── ms -> ._ms@0.7.1@ms # for peerDependencies
 ```
 
 ### flattened vs nested
