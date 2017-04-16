@@ -15,7 +15,7 @@ describe('test/bin.test.js', () => {
   }
 
   beforeEach(cleanup);
-  // afterEach(cleanup);
+  afterEach(cleanup);
 
   it('should create bins after install', function* () {
     yield npminstall({

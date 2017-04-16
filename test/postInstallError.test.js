@@ -5,8 +5,9 @@ const path = require('path');
 const rimraf = require('rimraf');
 const mkdirp = require('mkdirp');
 const npminstall = require('./npminstall');
-const bin = path.join(__dirname, '../bin/install.js');
 const coffee = require('coffee');
+
+const bin = path.join(__dirname, '../bin/install.js');
 
 describe('test/postInstallError.test.js', () => {
   const tmp = path.join(__dirname, 'fixtures', 'tmp');
@@ -45,8 +46,7 @@ describe('test/postInstallError.test.js', () => {
       .debug()
       .expect('code', 0)
       .expect('stderr', /httpsync@\* optional error: Error: Run ".*?build\.sh" error/)
-      .expect('stdout', /\[1\/2\] scripts.install httpsync@\* run "sh build.sh"/)
-      .expect('stdout', /\[2\/2\] scripts.install pinyin@/)
+      .expect('stdout', /scripts.install httpsync@\* run "sh build.sh"/)
       .expect('stdout', /All packages installed/)
       .end();
   });
