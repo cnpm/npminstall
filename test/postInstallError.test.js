@@ -44,7 +44,7 @@ describe('test/postInstallError.test.js', () => {
     yield coffee.fork(bin, [ '--production' ], { cwd: root })
       // .debug()
       .expect('code', 0)
-      .expect('stderr', /httpsync@\* optional error: Error: Run "sh -c sh build.sh" error/)
+      .expect('stderr', /httpsync@\* optional error: Error: Run ".*?build\.sh" error/)
       .expect('stdout', /\[1\/2\] scripts.install httpsync@\* run "sh build.sh"/)
       .expect('stdout', /\[2\/2\] scripts.install pinyin@/)
       .expect('stdout', /All packages installed/)
