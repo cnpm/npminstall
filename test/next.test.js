@@ -23,7 +23,7 @@ describe('test/next.test.js', () => {
   afterEach(cleanup);
 
   it('should next build success', function* () {
-    yield exec(`git clone git@github.com:now-examples/next-news.git ${tmp}`);
+    yield exec(`git clone https://github.com/now-examples/next-news.git ${tmp}`);
     yield npminstall({
       root: tmp,
     });
