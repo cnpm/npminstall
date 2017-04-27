@@ -146,7 +146,7 @@ describe('test/index.test.js', () => {
         root,
       });
       // node_modules/.debug@2.2.0 should exists
-      assert(yield fs.exists(path.join(root, 'node_modules', '._debug@2.2.0@debug')));
+      assert(yield fs.exists(path.join(root, 'node_modules', '_debug@2.2.0@debug')));
 
       const debugPkg = yield readJSON(path.join(root, 'node_modules', 'debug', 'package.json'));
       assert.equal(debugPkg._from, 'debug@2.2.0');

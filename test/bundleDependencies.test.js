@@ -34,7 +34,7 @@ describe('test/bundleDependencies.test.js', () => {
 
     // only node-pre-gyp dir exists
     const dirs = yield fs.readdir(path.join(tmp, 'node_modules/'));
-    assert.deepEqual(dirs.sort(), [ '.bin', '._node-pre-gyp@0.6.19@node-pre-gyp', '.npminstall.done', 'node-pre-gyp' ].sort());
+    assert.deepEqual(dirs.sort(), [ '.bin', '_node-pre-gyp@0.6.19@node-pre-gyp', '.npminstall.done', 'node-pre-gyp' ].sort());
   });
 
   it('should install bundleDependencies not exist(nyc@6.4.2)', function* () {
