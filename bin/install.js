@@ -44,6 +44,8 @@ const argv = parseArgs(orignalArgv, {
     'engine-strict',
     'flatten',
     'registry-only',
+    // Use disk cache even on production mode
+    'cache-strict',
   ],
   alias: {
     // npm install [-S|--save|-D|--save-dev|-O|--save-optional] [-E|--save-exact] [-d|--detail]
@@ -197,6 +199,7 @@ co(function* () {
     registry,
     pkgs,
     production,
+    cacheStrict: argv['cache-strict'],
     cacheDir,
     env,
     binaryMirrors,
