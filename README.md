@@ -77,6 +77,7 @@ Options:
   --engine-strict: refuse to install (or even consider installing) any package that claims to not be compatible with the current Node.js version.
   --flatten: flatten dependencies by matching ancestors dependencies
   --registry-only: make sure all packages install from registry. Any package is installed from remote(e.g.: git, remote url) cause install fail.
+  --cache-strict: use disk cache even on production env
 ```
 
 #### npmuninstall
