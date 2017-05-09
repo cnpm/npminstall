@@ -1,4 +1,10 @@
 
+2.30.0 / 2017-05-09
+==================
+
+  * feat: enable disk cache strict event on production env (#230)
+  * feat: recently update display latest version (#228)
+
 2.29.2 / 2017-04-27
 ==================
 
