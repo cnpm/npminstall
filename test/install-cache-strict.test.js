@@ -8,6 +8,9 @@ const coffee = require('coffee');
 const npminstall = path.join(__dirname, '../bin/install.js');
 
 describe('test/install-cache-strict.test.js', () => {
+  // Fixme: mock Windows homedir
+  if (process.platform === 'win32') return;
+
   const homedir = path.join(__dirname, 'fixtures', '.tmp');
   const demo = path.join(__dirname, 'fixtures', 'demo');
 
