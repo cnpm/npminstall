@@ -1,4 +1,10 @@
 
+2.30.1 / 2017-05-23
+==================
+
+  * chore: rename await (#234)
+  * fix: package.json to reduce vulnerabilities (#232)
+
 2.30.0 / 2017-05-09
 ==================
 
