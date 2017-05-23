@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "agentkeepalive": "^3.0.0",
-    "await-event": "^1.0.0",
+    "await-event": "^2.1.0",
     "binary-mirror-config": "^1.5.0",
     "bytes": "^2.4.0",
     "chalk": "^1.1.3",
