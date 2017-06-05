@@ -256,39 +256,7 @@ both the same version: 1.1.2
 
 ## Benchmarks
 
-### cnpmjs.org install
-
-- npminstall@1.2.0
-- pnpm@0.18.0
-- npm@2.14.12
-
-cli | real | user | sys
---- | ---  | ---  | ---
-npminstall | 0m10.908s | 0m8.733s | 0m4.282s
-npminstall with cache | 0m8.815s | 0m7.492s | 0m3.644s
-npminstall --no-cache | 0m10.279s | 0m8.255s | 0m3.932s
-pnpm | 0m13.509s | 0m11.650s | 0m4.443s
-npm | 0m28.171s | 0m26.085s | 0m8.219s
-npm with cache | 0m20.939s | 0m19.415s | 0m6.302s
-
-### pnpm benchmark
-
-see https://github.com/rstacruz/pnpm#benchmark
-
-```bash
-npminstall babel-preset-es2015 browserify chalk debug minimist mkdirp
-    real	0m8.929s       user	0m5.606s       sys	0m2.913s
-```
-
-```bash
-pnpm i babel-preset-es2015 browserify chalk debug minimist mkdirp
-    real	0m12.998s      user	0m8.653s       sys	0m3.362s
-```
-
-```bash
-npm i babel-preset-es2015 browserify chalk debug minimist mkdirp
-    real	1m4.729s       user	0m55.589s      sys	0m23.135s
-```
+See https://github.com/cnpm/npminstall-benchmark#npminstall-benchmark
 
 ## License
 
