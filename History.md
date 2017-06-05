@@ -1,4 +1,13 @@
 
+3.0.0 / 2017-06-05
+==================
+
+  * test: ignore node-gyp.test.js on win32
+  * fix: set accept application/vnd.npm.install-v1+json; q=1.0, application/json; q=0.8, */*
+  * test: add test on node 8
+  * fix: merge local package.json file to realPkg
+  * feat: [BREAKING_CHANGE] less json requests, more faster
+
 2.30.1 / 2017-05-23
 ==================
 
