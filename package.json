@@ -73,6 +73,9 @@
   "bugs": {
     "url": "https://github.com/cnpm/npminstall/issues"
   },
+  "publishConfig": {
+    "tag": "release-2"
+  },
   "keywords": [
     "npminstall",
     "npm install",
