@@ -7,6 +7,8 @@ const rimraf = require('rimraf');
 const mkdirp = require('mkdirp');
 const readJSON = require('../lib/utils').readJSON;
 const npminstall = require('./npminstall');
+const coffee = require('coffee');
+const installBin = path.join(__dirname, '..', 'bin', 'install.js');
 
 describe('test/installGit.test.js', function() {
 
@@ -146,16 +148,19 @@ describe('test/installGit.test.js', function() {
     }
 
   });
-  it('should fail on some name not match', function* () {
-    try {
-      yield npminstall({
-        root: tmp,
-        pkgs: [
-          { name: 'error', version: 'git+https://github.com/mozilla/nunjucks.git#0f8b21b8d' },
-        ],
-      });
-    } catch (err) {
-      assert(/Invalid Package, expected error but found nunjucks/.test(err.message), err.message);
-    }
+
+  it('should warn on some name not match', done => {
+    coffee.fork(installBin, [
+      'error@git+https://github.com/mozilla/nunjucks.git#0f8b21b8d',
+    ], {
+      cwd: tmp,
+    })
+    .debug()
+    .expect(0)
+    .expect('stderr', /Package name unmatched: expected error but found nunjucks/)
+    .end(err => {
+      assert(require(path.join(tmp, 'node_modules/error/package.json')).name === 'nunjucks');
+      done(err);
+    });
   });
 });
