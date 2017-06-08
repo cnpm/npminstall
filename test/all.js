@@ -5,6 +5,7 @@ const path = require('path');
 const rimraf = require('rimraf');
 const semver = require('semver');
 const npminstall = require('./npminstall');
+const spawn = require('child_process').spawn;
 
 const names = [
   'strongloop',
@@ -52,6 +53,13 @@ co(function* () {
     pkgs,
     detail: true,
   });
+
+  if (semver.satisfies(process.version, '>= 6')) {
+    const installer = spawn('sh', [ path.join(__dirname, 'git-clone-install.sh') ], {
+      stdio: 'inherit',
+    });
+    installer.on('exit', code => process.exit(code));
+  }
 }).catch(err => {
   console.error(err);
   console.error(err.stack);
