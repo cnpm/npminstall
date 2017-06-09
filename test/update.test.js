@@ -10,6 +10,7 @@ const npmupdate = path.join(__dirname, '../bin/update.js');
 
 describe('test/update.test.js', () => {
   const root = path.join(__dirname, 'fixtures', 'update');
+  const tmp = path.join(__dirname, 'fixtures', 'tmp');
 
   function cleanup() {
     rimraf.sync(path.join(root, 'node_modules'));
@@ -53,5 +54,21 @@ describe('test/update.test.js', () => {
       assert(fs.existsSync(path.join(root, 'node_modules/pkg')));
       done();
     });
+  });
+
+  it('should update with global and prefix', function* () {
+    yield coffee.fork(npmupdate, [
+      'pedding',
+      'mocha',
+      '-g',
+      `--prefix=${tmp}`,
+    ], {
+      cwd: root,
+      stdio: 'pipe',
+    })
+    .debug()
+    .expect(/All packages installed/)
+    .expect('code', 0)
+    .end();
   });
 });
