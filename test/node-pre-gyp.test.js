@@ -8,7 +8,7 @@ const npminstall = require('./npminstall');
 
 const npminstallBin = path.join(__dirname, '../bin/install.js');
 
-describe.only('test/node-pre-gyp.test.js', () => {
+describe('test/node-pre-gyp.test.js', () => {
   const tmp = path.join(__dirname, 'fixtures', 'tmp');
 
   function cleanup() {
