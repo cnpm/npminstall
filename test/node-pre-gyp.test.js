@@ -3,9 +3,12 @@
 const path = require('path');
 const rimraf = require('rimraf');
 const mkdirp = require('mkdirp');
+const coffee = require('coffee');
 const npminstall = require('./npminstall');
 
-describe('test/node-pre-gyp.test.js', () => {
+const npminstallBin = path.join(__dirname, '../bin/install.js');
+
+describe.only('test/node-pre-gyp.test.js', () => {
   const tmp = path.join(__dirname, 'fixtures', 'tmp');
 
   function cleanup() {
@@ -32,5 +35,12 @@ describe('test/node-pre-gyp.test.js', () => {
         },
       },
     });
+  });
+
+  it('should install grpc work', () => {
+    return coffee.fork(npminstallBin, [ 'grpc' ], { cwd: tmp })
+      .debug()
+      .expect('code', 0)
+      .end();
   });
 });
