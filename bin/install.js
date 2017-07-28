@@ -26,6 +26,7 @@ const argv = parseArgs(orignalArgv, {
     'custom-china-mirror-url',
     // {"http://a.com":"http://b.com"}
     'tarball-url-mapping',
+    'proxy',
   ],
   boolean: [
     'version',
@@ -81,6 +82,7 @@ Usage:
   npminstall <tarball url>
   npminstall <git:// url>
   npminstall <github username>/<github project>
+  npminstall --proxy=http://localhost:8080
 
 Can specify one or more: npminstall ./foo.tgz bar@stable /some/folder
 If no argument is supplied, installs dependencies from ./package.json.
@@ -144,6 +146,9 @@ if (inChina) {
 }
 // for env.npm_config_registry
 registry = registry || 'https://registry.npmjs.org';
+
+const proxy = argv.proxy || process.env.npm_proxy || process.env.npm_config_proxy;
+
 const env = {
   npm_config_registry: registry,
   // set npm_config_argv
@@ -205,6 +210,7 @@ co(function* () {
     binaryMirrors,
     forbiddenLicenses,
     flatten,
+    proxy,
   };
   config.strictSSL = getStrictSSL();
   config.ignoreScripts = argv['ignore-scripts'] || getIgnoreScripts();
