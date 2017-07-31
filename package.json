@@ -49,7 +49,7 @@
     "runscript": "^1.2.1",
     "semver": "^5.3.0",
     "tar": "^2.2.1",
-    "urllib": "^2.22.0",
+    "urllib": "^2.24.0",
     "utility": "^1.12.0",
     "uuid": "^3.0.1"
   },
@@ -58,6 +58,7 @@
     "coffee": "^3.3.2",
     "eslint": "3",
     "eslint-config-egg": "3",
+    "http-proxy": "^1.16.2",
     "intelli-espower-loader": "1",
     "istanbul": "*",
     "mm": "^2.1.0",
