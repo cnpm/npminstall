@@ -180,7 +180,7 @@ co(function* () {
   let binaryMirrors = {};
 
   if (inChina) {
-    binaryMirrors = yield utils.getBinaryMirrors(registry);
+    binaryMirrors = yield utils.getBinaryMirrors(registry, { proxy });
     if (customChinaMirrorUrl) {
       for (const key in binaryMirrors) {
         const item = binaryMirrors[key];
