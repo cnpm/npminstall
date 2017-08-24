@@ -164,7 +164,7 @@ co(function* () {
 
 ## Different with NPM
 
-This project is inspired by [pnpm](https://github.com/rstacruz/pnpm), and has a similar store structure like pnpm. You can read [pnpm vs npm](https://github.com/rstacruz/pnpm/blob/master/docs/vs-npm.md) to see the different with npm.
+This project is inspired by [pnpm](https://github.com/pnpm/pnpm), and has a similar store structure like pnpm. You can read [pnpm vs npm](https://github.com/pnpm/pnpm/blob/master/docs/pnpm-vs-npm.md) to see the different with npm.
 
 ### Limitations
 
@@ -273,7 +273,7 @@ npm with cache | 0m20.939s | 0m19.415s | 0m6.302s
 
 ### pnpm benchmark
 
-see https://github.com/rstacruz/pnpm#benchmark
+see https://github.com/pnpm/pnpm#benchmark
 
 ```bash
 npminstall babel-preset-es2015 browserify chalk debug minimist mkdirp
