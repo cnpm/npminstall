@@ -9,7 +9,7 @@ npm test || exit $?
 cd ..
 rm -rf .tmp
 
-git clone https://github.com/rstacruz/pnpm.git --depth=1 .tmp
+git clone https://github.com/pnpm/pnpm.git --depth=1 .tmp
 cd .tmp
 ../bin/install.js || exit $?
 npm test || exit $?
