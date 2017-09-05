@@ -6,6 +6,8 @@ node_js:
   - '8'
   - '6'
   - '4'
+  - '4.4.7'
+  - '4.2.3'
 before_script:
   - echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 script:
