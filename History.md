@@ -1,4 +1,13 @@
 
+3.1.3 / 2017-09-05
+==================
+
+**fixes**
+  * [[`54abccb`](http://github.com/cnpm/npminstall/commit/54abccb5e0eba8857d7cb00fe9269d1ea804b447)] - fix: make sure Buffer.alloc exit on node < 4.5.0 (#247) (fengmk2 <<fengmk2@gmail.com>>)
+
+**others**
+  * [[`9e6f5fa`](http://github.com/cnpm/npminstall/commit/9e6f5fa48e22b29e049fc3054c29eeb0eba4ca74)] - test: don't clean cache on windows (#246) (fengmk2 <<fengmk2@gmail.com>>)
+
 3.1.2 / 2017-09-05
 ==================
 
