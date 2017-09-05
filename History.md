@@ -1,4 +1,13 @@
 
+3.1.2 / 2017-09-05
+==================
+
+**fixes**
+  * [[`87615ef`](http://github.com/cnpm/npminstall/commit/87615eff91c9a5c5be026f90f637297bb7398b6f)] - fix: ensure read and write permission like npm (#245) (Yiyu He <<dead_horse@qq.com>>)
+
+**others**
+  * [[`5ea123d`](http://github.com/cnpm/npminstall/commit/5ea123dcdd80705469d2d64004d94f598fe0eb52)] - chore: update pnpm links (#244) (Lon <<cnlon@users.noreply.github.com>>)
+
 3.1.1 / 2017-08-02
 ==================
 
