@@ -249,7 +249,7 @@ co(function* () {
         if (yield fs.exists(nodeModulesDir)) {
           const dirs = yield fs.readdir(nodeModulesDir);
           // ignore [ '.bin', 'node' ], it will install first by https://github.com/cnpm/nodeinstall
-          if (!(dirs.length === 2 && dirs.includes('.bin') && dirs.includes('node'))) {
+          if (!(dirs.length === 2 && dirs.indexOf('.bin') >= 0 && dirs.indexOf('node') >= 0)) {
             console.error(chalk.yellow(`npminstall WARN node_modules exists: ${nodeModulesDir}, contains ${dirs.length} dirs`));
           }
         }
