@@ -247,7 +247,11 @@ co(function* () {
         // warning when `${root}/node_modules` exists
         const nodeModulesDir = path.join(root, 'node_modules');
         if (yield fs.exists(nodeModulesDir)) {
-          console.error(chalk.yellow(`npminstall WARN node_modules exists: ${nodeModulesDir}`));
+          const dirs = yield fs.readdir(nodeModulesDir);
+          // ignore [ '.bin', 'node' ], it will install first by https://github.com/cnpm/nodeinstall
+          if (!(dirs.length === 2 && dirs.indexOf('.bin') >= 0 && dirs.indexOf('node') >= 0)) {
+            console.error(chalk.yellow(`npminstall WARN node_modules exists: ${nodeModulesDir}, contains ${dirs.length} dirs`));
+          }
         }
       }
       const pkgFile = path.join(root, 'package.json');
