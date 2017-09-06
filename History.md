@@ -1,4 +1,10 @@
 
+3.1.4 / 2017-09-06
+==================
+
+**fixes**
+  * [[`297260c`](http://github.com/cnpm/npminstall/commit/297260cb06e96acfd98ba8c7f08d025e1a88d741)] - fix: ignore warnning node_modules on [ '.bin', 'node' ] dir (#248) (fengmk2 <<fengmk2@gmail.com>>)
+
 3.1.3 / 2017-09-05
 ==================
 
