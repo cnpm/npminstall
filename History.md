@@ -1,4 +1,10 @@
 
+3.2.0 / 2017-10-25
+==================
+
+**features**
+  * [[`aeaf2fb`](http://github.com/cnpm/npminstall/commit/aeaf2fbc737bb3bfcb417bb38202962e70391807)] - feat: support mirror prebuild-install package (#250) (fengmk2 <<fengmk2@gmail.com>>)
+
 3.1.4 / 2017-09-06
 ==================
 
