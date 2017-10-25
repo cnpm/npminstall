@@ -1,4 +1,10 @@
 
+3.2.1 / 2017-10-26
+==================
+
+**fixes**
+  * [[`635d39f`](http://github.com/cnpm/npminstall/commit/635d39f59ba78590c8879701448a37e7c4b2a356)] - fix: handle concurrent install same bin name error (#251) (fengmk2 <<fengmk2@gmail.com>>)
+
 3.2.0 / 2017-10-25
 ==================
 
