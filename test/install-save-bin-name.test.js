@@ -7,7 +7,7 @@ const rimraf = require('rimraf');
 const coffee = require('coffee');
 const npminstall = path.join(__dirname, '../bin/install.js');
 
-describe.only('test/install-save-bin-name.test.js', () => {
+describe('test/install-save-bin-name.test.js', () => {
   const root = path.join(__dirname, 'fixtures', 'same-bin-name');
 
   function cleanup() {
