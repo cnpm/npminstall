@@ -25,6 +25,6 @@ describe.only('test/install-save-bin-name.test.js', () => {
     .expect('code', 0)
     .end();
 
-    assert(fs.existsSync(path.join(root, 'node_modules/.bin/uglifyjs')));
+    assert(fs.existsSync(path.join(root, 'node_modules/webpack-parallel-uglify-plugin/node_modules/.bin/uglifyjs')));
   });
 });
