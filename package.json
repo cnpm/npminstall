@@ -34,6 +34,7 @@
     "co-parallel": "^1.0.0",
     "debug": "^2.6.8",
     "destroy": "^1.0.4",
+    "extend2": "^1.0.0",
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
     "moment": "^2.18.1",

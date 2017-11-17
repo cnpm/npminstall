@@ -11,6 +11,7 @@ const util = require('util');
 const execSync = require('child_process').execSync;
 const fs = require('mz/fs');
 const parseArgs = require('minimist');
+const extend = require('extend2');
 const utils = require('../lib/utils');
 const globalConfig = require('../lib/config');
 const installLocal = require('..').installLocal;
@@ -140,6 +141,8 @@ const inChina = argv.china || !!process.env.npm_china;
 // if exists, override default china mirror url
 const customChinaMirrorUrl = argv['custom-china-mirror-url'];
 
+const customBinaryMirrorConfigFile = argv['custom-binary-mirror-config'];
+
 let registry = argv.registry || process.env.npm_registry;
 if (inChina) {
   registry = registry || globalConfig.chineseRegistry;
@@ -181,6 +184,16 @@ co(function* () {
 
   if (inChina) {
     binaryMirrors = yield utils.getBinaryMirrors(registry, { proxy });
+    if (customBinaryMirrorConfigFile) {
+      const customBinaryMirrorConfig = yield utils.readJSON(customBinaryMirrorConfigFile);
+      const customBinaryMirrors = customBinaryMirrorConfig &&
+        customBinaryMirrorConfig.mirrors &&
+        customBinaryMirrorConfig.mirrors.china;
+      if (customBinaryMirrors) {
+        binaryMirrors = extend(true, binaryMirrors, customBinaryMirrors);
+      }
+    }
+
     if (customChinaMirrorUrl) {
       for (const key in binaryMirrors) {
         const item = binaryMirrors[key];
