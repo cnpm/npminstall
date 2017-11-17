@@ -1,0 +1,6 @@
+{
+  "name": "custom-binary-mirror-config",
+  "scripts": {
+    "postinstall": "node -p 'process.env.NODEJS_ORG_MIRROR'"
+  }
+}

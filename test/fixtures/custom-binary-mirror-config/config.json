@@ -1,0 +1,9 @@
+{
+  "mirrors": {
+    "china": {
+      "ENVS": {
+        "NODEJS_ORG_MIRROR": "https://mynodejs.org"
+      }
+    }
+  }
+}
