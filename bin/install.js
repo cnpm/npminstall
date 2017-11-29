@@ -27,6 +27,7 @@ const argv = parseArgs(orignalArgv, {
     // {"http://a.com":"http://b.com"}
     'tarball-url-mapping',
     'proxy',
+    'cache'
   ],
   boolean: [
     'version',
@@ -83,6 +84,7 @@ Usage:
   npminstall <git:// url>
   npminstall <github username>/<github project>
   npminstall --proxy=http://localhost:8080
+  npminstall --cache=/home/foo/.cnpm
 
 Can specify one or more: npminstall ./foo.tgz bar@stable /some/folder
 If no argument is supplied, installs dependencies from ./package.json.
@@ -102,6 +104,7 @@ Options:
   --flatten: flatten dependencies by matching ancestors' dependencies
   --registry-only: make sure all packages install from registry. Any package is installed from remote(e.g.: git, remote url) cause install fail.
   --cache-strict: use disk cache even on production env.
+  --cache: use the specified directory as disk cache directory
 `
   );
   process.exit(0);
@@ -125,8 +128,9 @@ if (Array.isArray(root)) {
   root = root[root.length - 1];
 }
 const production = argv.production || process.env.NODE_ENV === 'production';
-let cacheDir = argv.cache === false ? '' : null;
-if (production) {
+
+let cacheDir = argv.cache;
+if (production && !argv['cache-strict']) {
   cacheDir = '';
 }
 
@@ -196,6 +200,17 @@ co(function* () {
       if (customChinaMirrorUrl) {
         env[key] = env[key].replace(globalConfig.chineseMirrorUrl, customChinaMirrorUrl);
       }
+    }
+  }
+
+  // ensure cache directory
+  if (cacheDir) {
+    cacheDir = utils.realPath(cacheDir);
+    if (!utils.isDirectory(cacheDir)) {
+      yield fse.ensureDir(cacheDir);
+    }
+    if (!utils.readAndWritableDirecotry(cacheDir)) {
+      throw new Error(`cacheDir: ${cacheDir} should have read/write permissions`);
     }
   }
 

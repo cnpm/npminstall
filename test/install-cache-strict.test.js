@@ -16,6 +16,7 @@ describe('test/install-cache-strict.test.js', () => {
 
   function cleanup() {
     rimraf.sync(path.join(demo, 'node_modules'));
+    rimraf.sync(path.join(demo, '.npm_cache'))
     rimraf.sync(homedir);
   }
 
@@ -49,4 +50,79 @@ describe('test/install-cache-strict.test.js', () => {
     .end();
     assert(fs.statSync(path.join(homedir, '.npminstall_tarball/d/e/b/u/debug')));
   });
+
+  it('should read disk cache from custimize direcotry on --cache=~/.npm_cache', function* () {
+    yield coffee.fork(npminstall, [ '--cache=~/.npm_cache' ], {
+      cwd: demo,
+      env: Object.assign({}, process.env, {
+        HOME: homedir,
+      }),
+    })
+    .debug()
+    .end();
+    assert(fs.statSync(path.join(homedir, '.npm_cache/d/e/b/u/debug')));
+  });
+
+  it('should read disk cache from customize direcotry on --cache=~/.npm_cache', function* () {
+    yield coffee.fork(npminstall, [ '--cache=~/.npm_cache' ], {
+      cwd: demo,
+      env: Object.assign({}, process.env, {
+        HOME: homedir,
+      }),
+    })
+    .debug()
+    .end();
+    assert(fs.statSync(path.join(homedir, '.npm_cache/d/e/b/u/debug')));
+  });
+
+  it('should read disk cache from customize directory on --cache=.npm_cache', function* () {
+    yield coffee.fork(npminstall, [ '--cache=.npm_cache' ], {
+      cwd: demo,
+      env: Object.assign({}, process.env, {
+        HOME: homedir
+      }),
+    })
+    .debug()
+    .end();
+    assert(fs.statSync(path.join(demo, '.npm_cache/d/e/b/u/debug')));
+  });
+
+  it('should read disk cache from customize directory on absolute path', function* () {
+    const absolutePath = path.join(homedir, '.npm_cache');
+    yield coffee.fork(npminstall, [ `--cache=${absolutePath}` ], {
+      cwd: demo,
+      env: Object.assign({}, process.env, {
+        HOME: homedir
+      }),
+    })
+    .debug()
+    .end();
+    assert(fs.statSync(path.join(absolutePath, 'd/e/b/u/debug')));
+  });
+
+  it('should read disk cache from customize directroy on --cache=../.tmp/.npm_cache', function* () {
+    yield coffee.fork(npminstall, [ `--cache=../.tmp/.npm_cache` ], {
+      cwd: demo,
+      env: Object.assign({}, process.env, {
+        HOME: homedir
+      }),
+    })
+    .debug()
+    .end();
+
+    assert(fs.statSync(path.join(homedir, '.npm_cache/d/e/b/u/debug')));
+  });
+
+  it('should read disk cache from customize directory on --cache-strict --production --cache=~/.npm_cache', function* () {
+    yield coffee.fork(npminstall, [ '--cache=~/.npm_cache', '--production', '--cache-strict' ], {
+      cwd: demo,
+      env: Object.assign({}, process.env, {
+        HOME: homedir,
+      }),
+    })
+    .debug()
+    .end();
+    assert(fs.statSync(path.join(homedir, '.npm_cache/d/e/b/u/debug')));
+  });
+
 });
