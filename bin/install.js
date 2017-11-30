@@ -104,7 +104,7 @@ Options:
   --flatten: flatten dependencies by matching ancestors' dependencies
   --registry-only: make sure all packages install from registry. Any package is installed from remote(e.g.: git, remote url) cause install fail.
   --cache-strict: use disk cache even on production env.
-  --cache: use the specified directory as disk cache directory
+  --cache: use the specified directory as the disk cache directory
 `
   );
   process.exit(0);
