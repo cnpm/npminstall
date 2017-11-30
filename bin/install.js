@@ -209,7 +209,7 @@ co(function* () {
     if (!utils.isDirectory(cacheDir)) {
       yield fse.ensureDir(cacheDir);
     }
-    if (!utils.readAndWritableDirecotry(cacheDir)) {
+    if (!(yield utils.readAndWritableDirecotry(cacheDir))) {
       throw new Error(`cacheDir: ${cacheDir} should have read/write permissions`);
     }
   }
