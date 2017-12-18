@@ -46,6 +46,7 @@ const argv = parseArgs(orignalArgv, {
     'flatten',
     'registry-only',
     'cache-strict',
+    'fix-bug-versions',
   ],
   alias: {
     // npm install [-S|--save|-D|--save-dev|-O|--save-optional] [-E|--save-exact] [-d|--detail]
@@ -102,6 +103,7 @@ Options:
   --flatten: flatten dependencies by matching ancestors' dependencies
   --registry-only: make sure all packages install from registry. Any package is installed from remote(e.g.: git, remote url) cause install fail.
   --cache-strict: use disk cache even on production env.
+  --fix-bug-versions: auto fix bug version of package.
 `
   );
   process.exit(0);
@@ -231,6 +233,14 @@ co(function* () {
         url = url.replace(fromUrl, toUrl);
       }
       return url;
+    };
+  }
+
+  if (argv['fix-bug-versions']) {
+    const packageVersionMapping = yield utils.getBugVersions(registry, { proxy });
+    config.autoFixVersion = function autoFixVersion(name, version) {
+      const fixVersions = packageVersionMapping[name];
+      return fixVersions && fixVersions[version] || null;
     };
   }
 

@@ -1,0 +1,7 @@
+{
+  "name": "fix-bug-versions-app",
+  "version": "1.0.0",
+  "dependencies": {
+    "is-my-json-valid": "2.17.0"
+  }
+}
