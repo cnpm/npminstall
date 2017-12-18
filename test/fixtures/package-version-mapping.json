@@ -1,0 +1,5 @@
+{
+  "pedding": {
+    "1.0.0": { "version": "1.1.0", "reason": "Security problem on 1.0.0" }
+  }
+}

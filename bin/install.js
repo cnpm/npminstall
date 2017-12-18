@@ -27,6 +27,13 @@ const argv = parseArgs(orignalArgv, {
     // {"http://a.com":"http://b.com"}
     'tarball-url-mapping',
     'proxy',
+    // --package-version-mapping-file=PWD/node_modules/.package-version-mapping.json
+    // {
+    //   "pedding": {
+    //     "1.0.0": { "version": "1.1.0", "reason": "Security problem on 1.0.0" }
+    //   }
+    // }
+    'package-version-mapping-file',
   ],
   boolean: [
     'version',
@@ -231,6 +238,14 @@ co(function* () {
         url = url.replace(fromUrl, toUrl);
       }
       return url;
+    };
+  }
+
+  if (argv['package-version-mapping-file']) {
+    const packageVersionMapping = yield utils.readJSON(argv['package-version-mapping-file']);
+    config.autoFixVersion = function autoFixVersion(name, version) {
+      const fixVersions = packageVersionMapping[name];
+      return fixVersions && fixVersions[version] || null;
     };
   }
 

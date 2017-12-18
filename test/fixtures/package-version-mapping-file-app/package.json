@@ -1,0 +1,7 @@
+{
+  "name": "package-version-mapping-file",
+  "version": "1.0.0",
+  "dependencies": {
+    "pedding": "1.0.0"
+  }
+}
