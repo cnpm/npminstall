@@ -1,4 +1,10 @@
 
+3.3.0 / 2017-12-25
+==================
+
+**features**
+  * [[`68164ea`](http://github.com/cnpm/npminstall/commit/68164eac6ea31b61ce683ea5aa23f4c47e9d584e)] - feat: support auto fix bug version of package (#256) (fengmk2 <<fengmk2@gmail.com>>)
+
 3.2.1 / 2017-10-26
 ==================
 
