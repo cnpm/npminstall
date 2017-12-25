@@ -111,7 +111,7 @@ Options:
 
 const pkgs = [];
 
-if (process.env.NPMINSTALL_BY_UPDATE) {
+if (process.env.NPMINSTALL_BY_UPDATE_LOCAL) {
   // ignore all package names on update
   argv._ = [];
 }
