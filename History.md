@@ -1,4 +1,13 @@
 
+3.4.0 / 2018-04-14
+==================
+
+**features**
+  * [[`ec0f76c`](http://github.com/cnpm/npminstall/commit/ec0f76ceec18b22d77281c465688f95183ca57c8)] - feat: add streamingTimeout for tar.gz download timeout (fengmk2 <<fengmk2@gmail.com>>)
+
+**fixes**
+  * [[`ff8a48f`](http://github.com/cnpm/npminstall/commit/ff8a48f1318795fea7d9b25b5ec17bdf0a40fd7c)] - fix: lock ora@~1.3.0 (fengmk2 <<fengmk2@gmail.com>>)
+
 3.3.0 / 2017-12-25
 ==================
 
