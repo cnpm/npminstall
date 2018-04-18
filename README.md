@@ -207,7 +207,7 @@ root/
   koa@1.1.0
   mod/
     koa@~1.1.0
-# will install tow different version of koa when use npminstall.
+# will install two different version of koa when use npminstall.
 ```
 
 you can enable flatten mode by `--flatten` flag, in this mod, npminstall will try to use ancestors' dependencies to minimize the dependence-tree.
