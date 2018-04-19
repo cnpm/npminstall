@@ -1,4 +1,14 @@
 
+3.5.0 / 2018-04-19
+==================
+
+**features**
+  * [[`1b5be21`](http://github.com/cnpm/npminstall/commit/1b5be21c61c45bf3b770bd8afd0deffd32c5e20b)] - feat: support latest-{major} tag as latest version (fengmk2 <<fengmk2@gmail.com>>)
+
+**others**
+  * [[`bb395a5`](http://github.com/cnpm/npminstall/commit/bb395a54bb32fb271c7b158f8fcc3137590dfbb6)] - test: add node 9 (fengmk2 <<fengmk2@gmail.com>>)
+  * [[`f2b1852`](http://github.com/cnpm/npminstall/commit/f2b1852402073f9f51dbb445cc2111379059ff78)] - chore: fix spelling mistake on README.md (Harry peng <<940948813@qq.com>>)
+
 3.4.0 / 2018-04-14
 ==================
 
