@@ -31,4 +31,75 @@ describe('test/utils.test.js', () => {
       assert(!utils.matchPlatform('win32', [ '!win32', 'win32' ]));
     });
   });
+
+  describe('findMaxSatisfyingVersion()', () => {
+    it('should use vaild version itself', () => {
+      assert(utils.findMaxSatisfyingVersion('1.0.2', {
+        latest: '2.0.0',
+      }, [
+        '1.0.1',
+        '1.0.2',
+        '1.0.3',
+        '2.0.0',
+      ]) === '1.0.2');
+    });
+
+    it('should return undefined when no version match', () => {
+      assert(utils.findMaxSatisfyingVersion('>= 2.0.1 < 3.0.0', {
+        latest: '2.0.0',
+      }, [
+        '1.0.1',
+        '1.0.2',
+        '1.0.3',
+        '2.0.0',
+      ]) === null);
+    });
+
+    it('should use max range version', () => {
+      assert(utils.findMaxSatisfyingVersion('>= 1.0.1 < 2.0.0', {
+        latest: '2.0.0',
+      }, [
+        '1.0.1',
+        '1.0.2',
+        '1.0.3',
+        '2.0.0',
+      ]) === '1.0.3');
+    });
+
+    it('should return latest version', () => {
+      assert(utils.findMaxSatisfyingVersion('latest', {
+        latest: '2.0.0',
+        'latest-1': '1.0.2',
+      }, [
+        '1.0.1',
+        '1.0.2',
+        '1.0.3',
+        '2.0.0',
+      ]) === '2.0.0');
+    });
+
+    it('should support latest version first', () => {
+      assert(utils.findMaxSatisfyingVersion('>= 1.0.1 < 2.0.0', {
+        latest: '1.0.1',
+        'latest-1': '1.0.2',
+      }, [
+        '1.0.1',
+        '1.0.2',
+        '1.0.3',
+        '2.0.0',
+      ]) === '1.0.1');
+    });
+
+    it('should support latest-{major} version', () => {
+      assert(utils.findMaxSatisfyingVersion('>= 1.0.1 < 2.0.0', {
+        latest: '2.0.0',
+        'latest-1': '1.0.2',
+      }, [
+        '1.0.1',
+        '1.0.2',
+        '1.0.3',
+        '2.0.0',
+      ]) === '1.0.2');
+    });
+  });
 });
