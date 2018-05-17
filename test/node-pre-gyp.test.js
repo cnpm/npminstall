@@ -22,7 +22,7 @@ describe('test/node-pre-gyp.test.js', () => {
     yield npminstall({
       root: tmp,
       pkgs: [
-        { name: 'sqlite3', version: '3' },
+        { name: 'sqlite3', version: '4' },
       ],
       production: true,
       cacheDir: '',

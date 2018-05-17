@@ -21,7 +21,7 @@ describe('test/install-cache-strict.test.js', () => {
 
   beforeEach(() => {
     cleanup();
-    fs.mkdir(homedir);
+    fs.mkdirSync(homedir);
   });
   afterEach(cleanup);
 

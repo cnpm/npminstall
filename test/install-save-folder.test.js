@@ -17,7 +17,7 @@ describe('test/install-save-folder.test.js', () => {
 
   beforeEach(() => {
     cleanup();
-    fs.mkdir(root);
+    fs.mkdirSync(root);
   });
   afterEach(cleanup);
 
