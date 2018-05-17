@@ -1,4 +1,10 @@
 
+3.6.0 / 2018-05-17
+==================
+
+**features**
+  * [[`b140b50`](http://github.com/cnpm/npminstall/commit/b140b5055db94494c1a2a25062a856f28bf04410)] - feat: support auto fix bug dependencies (#266) (fengmk2 <<fengmk2@gmail.com>>)
+
 3.5.0 / 2018-04-19
 ==================
 
