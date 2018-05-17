@@ -9,7 +9,7 @@ const npminstall = require('./npminstall');
 const exec = require('mz/child_process').exec;
 
 // make sure https://github.com/cnpm/cnpm/issues/194 work!
-describe('test/next.test.js', () => {
+describe.skip('test/next.test.js', () => {
   const tmp = path.join(__dirname, '.tmp', 'next');
 
   function cleanup() {

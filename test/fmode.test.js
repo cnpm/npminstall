@@ -17,7 +17,7 @@ if (process.platform !== 'win32') {
 
     beforeEach(() => {
       cleanup();
-      fs.mkdir(homedir);
+      fs.mkdirSync(homedir);
     });
     afterEach(cleanup);
 
