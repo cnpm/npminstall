@@ -1,4 +1,10 @@
 
+3.6.1 / 2018-05-21
+==================
+
+**fixes**
+  * [[`36c115d`](http://github.com/cnpm/npminstall/commit/36c115dc2947eb6c56739bac68b9f10ab908cc7f)] - fix: should keep querystring on registry url (#267) (fengmk2 <<fengmk2@gmail.com>>)
+
 3.6.0 / 2018-05-17
 ==================
 
