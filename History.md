@@ -1,4 +1,10 @@
 
+3.6.2 / 2018-05-22
+==================
+
+**fixes**
+  * [[`19d1545`](http://github.com/cnpm/npminstall/commit/19d1545a53557d060578100ab20cd5f9bb907cbf)] - fix: should support contains querystring registry (#268) (fengmk2 <<fengmk2@gmail.com>>)
+
 3.6.1 / 2018-05-21
 ==================
 
