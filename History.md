@@ -1,4 +1,10 @@
 
+3.7.0 / 2018-06-05
+==================
+
+**features**
+  * [[`b486e06`](http://github.com/cnpm/npminstall/commit/b486e06c37947c52130f7b2b50f0add91dd86e84)] - feat: support download tarball from other_urls query params (#269) (fengmk2 <<fengmk2@gmail.com>>)
+
 3.6.2 / 2018-05-22
 ==================
 
