@@ -26,9 +26,9 @@ describe('test/download.test.js', () => {
     it('should throw error when status === 404', function* () {
       const request = urllib.request;
       mm(urllib, 'request', function* (url, options) {
-        if (url.endsWith('.tgz')) {
-          mm.restore();
-        }
+        // if (url.endsWith('.tgz')) {
+        //   mm.restore();
+        // }
         const result = yield request.call(urllib, url, options);
         if (url.endsWith('.tgz')) {
           result.status = 404;
@@ -53,9 +53,9 @@ describe('test/download.test.js', () => {
     it('should throw error when status === 206', function* () {
       const request = urllib.request;
       mm(urllib, 'request', function* (url, options) {
-        if (url.endsWith('.tgz')) {
-          mm.restore();
-        }
+        // if (url.endsWith('.tgz')) {
+        //   mm.restore();
+        // }
         const result = yield request.call(urllib, url, options);
         if (url.endsWith('.tgz')) {
           result.status = 206;
@@ -81,7 +81,7 @@ describe('test/download.test.js', () => {
   describe('mock tarball error', () => {
     it('should throw sha1 error', function* () {
       this.timeout = 15000;
-      const registry = process.env.npm_registry || 'https://registry.cnpmjs.org';
+      const registry = process.env.npm_registry || 'https://registry.npm.taobao.org';
       const res = yield urllib.request(`${registry}/pedding`, { dataType: 'json', timeout: 10000 });
       const pkg = res.data;
       pkg.versions['1.0.0'].dist.shasum = '00098d60307b4ef7240c3d693cb20a9473c111';
