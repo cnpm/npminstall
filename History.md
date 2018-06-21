@@ -1,4 +1,10 @@
 
+3.8.0 / 2018-06-21
+==================
+
+**features**
+  * [[`cebc8e7`](http://github.com/cnpm/npminstall/commit/cebc8e71f7582735887fde814c25664065af1514)] - feat: download cypress from mirrors (#270) (fengmk2 <<fengmk2@gmail.com>>)
+
 3.7.0 / 2018-06-05
 ==================
 
