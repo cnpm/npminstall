@@ -61,7 +61,7 @@
     "http-proxy": "^1.16.2",
     "intelli-espower-loader": "1",
     "istanbul": "*",
-    "mm": "^2.1.0",
+    "mm": "^2.2.1",
     "mocha": "3",
     "power-assert": "1",
     "thunk-mocha": "1"
