@@ -1,0 +1,9 @@
+{
+  "name": "install-enable-prune",
+  "dependencies": {
+    "pedding": "~1.0.0",
+    "npm": "*",
+    "egg": "*",
+    "antd": "*"
+  }
+}
