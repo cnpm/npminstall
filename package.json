@@ -39,7 +39,7 @@
     "moment": "^2.18.1",
     "ms": "^2.0.0",
     "mz": "^2.6.0",
-    "node-gyp": "^3.6.2",
+    "node-gyp": "^3.7.0",
     "node-homedir": "^1.0.0",
     "normalize-git-url": "^3.0.2",
     "normalize-package-data": "^2.3.8",
