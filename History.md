@@ -1,4 +1,10 @@
 
+3.9.2 / 2018-07-11
+==================
+
+**fixes**
+  * [[`68b4ea8`](http://github.com/cnpm/npminstall/commit/68b4ea824e2bae7bed08412834521393a5305dd6)] - fix: don't remove gulpfile (#275) (Wei Zhu <<yesmeck@gmail.com>>)
+
 3.9.1 / 2018-07-11
 ==================
 
