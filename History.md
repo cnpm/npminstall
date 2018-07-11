@@ -1,4 +1,10 @@
 
+3.9.0 / 2018-07-11
+==================
+
+**features**
+  * [[`1879801`](http://github.com/cnpm/npminstall/commit/18798015a9af0c1719f41f254904d1e67ad764d0)] - feat: enable prune unused files by --prune option (#273) (fengmk2 <<fengmk2@gmail.com>>)
+
 3.8.0 / 2018-06-21
 ==================
 
