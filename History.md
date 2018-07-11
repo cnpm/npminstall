@@ -1,4 +1,10 @@
 
+3.9.1 / 2018-07-11
+==================
+
+**fixes**
+  * [[`fed1d7b`](http://github.com/cnpm/npminstall/commit/fed1d7b4f3a620a50849569f9018790e7d8e9255)] - fix: don't prune assets dir (#274) (Wei Zhu <<yesmeck@gmail.com>>)
+
 3.9.0 / 2018-07-11
 ==================
 
