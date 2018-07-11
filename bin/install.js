@@ -47,6 +47,7 @@ const argv = parseArgs(orignalArgv, {
     'registry-only',
     'cache-strict',
     'fix-bug-versions',
+    'prune',
   ],
   alias: {
     // npm install [-S|--save|-D|--save-dev|-O|--save-optional] [-E|--save-exact] [-d|--detail]
@@ -104,6 +105,7 @@ Options:
   --registry-only: make sure all packages install from registry. Any package is installed from remote(e.g.: git, remote url) cause install fail.
   --cache-strict: use disk cache even on production env.
   --fix-bug-versions: auto fix bug version of package.
+  --prune: prune unnecessary files from ./node_modules, such as markdown, typescript source files, and so on.
 `
   );
   process.exit(0);
@@ -136,6 +138,7 @@ let forbiddenLicenses = argv['forbidden-licenses'];
 forbiddenLicenses = forbiddenLicenses ? forbiddenLicenses.split(',') : null;
 
 const flatten = argv.flatten;
+const prune = argv.prune;
 
 // if in china, will automatic using chines registry and mirros.
 const inChina = argv.china || !!process.env.npm_china;
@@ -213,6 +216,7 @@ co(function* () {
     forbiddenLicenses,
     flatten,
     proxy,
+    prune,
   };
   config.strictSSL = getStrictSSL();
   config.ignoreScripts = argv['ignore-scripts'] || getIgnoreScripts();

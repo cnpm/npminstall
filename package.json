@@ -39,7 +39,7 @@
     "moment": "^2.18.1",
     "ms": "^2.0.0",
     "mz": "^2.6.0",
-    "node-gyp": "^3.6.2",
+    "node-gyp": "^3.7.0",
     "node-homedir": "^1.0.0",
     "normalize-git-url": "^3.0.2",
     "normalize-package-data": "^2.3.8",
@@ -61,7 +61,7 @@
     "http-proxy": "^1.16.2",
     "intelli-espower-loader": "1",
     "istanbul": "*",
-    "mm": "^2.1.0",
+    "mm": "^2.2.1",
     "mocha": "3",
     "power-assert": "1",
     "thunk-mocha": "1"
