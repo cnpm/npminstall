@@ -5,7 +5,7 @@ const rimraf = require('rimraf');
 const path = require('path');
 const assert = require('assert');
 
-describe('use-exists-version.test.js', () => {
+describe('test/use-exists-version.test.js', () => {
   const tmp = path.join(__dirname, 'fixtures', 'try-to-use-one-version');
   const bin = path.join(__dirname, '../bin/install.js');
 

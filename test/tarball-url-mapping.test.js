@@ -5,7 +5,7 @@ const rimraf = require('rimraf');
 const mkdirp = require('mkdirp');
 const path = require('path');
 
-describe('tarball-url-mapping.test.js', () => {
+describe('test/tarball-url-mapping.test.js', () => {
   const tmp = path.join(__dirname, 'fixtures', 'tmp');
   const bin = path.join(__dirname, '../bin/install.js');
 
