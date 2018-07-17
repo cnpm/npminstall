@@ -4,11 +4,10 @@ const co = require('co');
 const path = require('path');
 const rimraf = require('rimraf');
 const semver = require('semver');
-const npminstall = require('./npminstall');
 const spawn = require('child_process').spawn;
+const npminstall = require('./npminstall');
 
 const names = [
-  'strongloop',
   'express', 'koa', 'browserify',
   'pm2',
   'grunt-cli',
@@ -31,6 +30,9 @@ const names = [
 const semvers = {
   '>= 6': [
     'egg',
+  ],
+  '< 8': [
+    'strongloop',
   ],
 };
 
