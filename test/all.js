@@ -31,7 +31,7 @@ const semvers = {
   '>= 6': [
     'egg',
   ],
-  '< 8': [
+  '<= 8': [
     'strongloop',
   ],
 };
