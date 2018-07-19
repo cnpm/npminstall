@@ -1,4 +1,10 @@
 
+3.10.0 / 2018-07-19
+==================
+
+**features**
+  * [[`89f48cc`](http://github.com/cnpm/npminstall/commit/89f48cc93f205d66d85e0175129f4379b5bc69ec)] - feat: support high speed store for tarball download (#276) (fengmk2 <<fengmk2@gmail.com>>)
+
 3.9.2 / 2018-07-11
 ==================
 
