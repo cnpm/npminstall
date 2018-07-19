@@ -26,3 +26,4 @@ test/fixtures/css-loader-example2/node_modules
 test/fixtures/css-loader-example2/webpack*.json
 !test/fixtures/warn-node-modules-exists/node_modules
 !test/fixtures/ignore-warn-node-modules-exists/node_modules
+test/fixtures/high-speed-store/tmp

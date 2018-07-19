@@ -27,6 +27,8 @@ const argv = parseArgs(orignalArgv, {
     // {"http://a.com":"http://b.com"}
     'tarball-url-mapping',
     'proxy',
+    // --high-speed-store=filepath
+    'high-speed-store',
   ],
   boolean: [
     'version',
@@ -106,6 +108,7 @@ Options:
   --cache-strict: use disk cache even on production env.
   --fix-bug-versions: auto fix bug version of package.
   --prune: prune unnecessary files from ./node_modules, such as markdown, typescript source files, and so on.
+  --high-speed-store: specify high speed store script to cache tgz files, and so on. Should export '* getStream(url)' function.
 `
   );
   process.exit(0);
@@ -246,6 +249,10 @@ co(function* () {
       const fixVersions = packageVersionMapping[name];
       return fixVersions && fixVersions[version] || null;
     };
+  }
+
+  if (argv['high-speed-store']) {
+    config.highSpeedStore = require(argv['high-speed-store']);
   }
 
   // -g install to npm's global prefix
