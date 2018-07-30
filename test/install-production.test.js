@@ -7,7 +7,6 @@ const npminstall = path.join(__dirname, '..', 'bin', 'install.js');
 
 describe('test/install-production.test.js', () => {
   function cleanup(cwd) {
-    rimraf.sync(path.join(cwd, 'node_modules', '.npminstall.done'));
     rimraf.sync(path.join(cwd, 'node_modules', '.package_versions.json'));
   }
 

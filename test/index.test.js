@@ -5,6 +5,7 @@ const fs = require('mz/fs');
 const path = require('path');
 const rimraf = require('rimraf');
 const npminstall = require('./npminstall');
+const utils = require('../lib/utils');
 const mkdirp = require('../lib/utils').mkdirp;
 const readJSON = require('../lib/utils').readJSON;
 
@@ -31,8 +32,7 @@ describe('test/index.test.js', () => {
         { name: 'contributors' },
       ],
     });
-    // tmp/node_modules/.npminstall.done file should exists
-    assert(fs.existsSync(path.join(tmp, 'node_modules/.npminstall.done')));
+    assert(yield utils.isInstallDone(path.join(tmp, 'node_modules/mocha')));
   });
 
   it('should handle @types/escodegen@0.0.2 tgz', function* () {
@@ -42,7 +42,7 @@ describe('test/index.test.js', () => {
         { name: '@types/escodegen', version: '0.0.2' },
       ],
     });
-    assert(fs.existsSync(path.join(tmp, 'node_modules/.npminstall.done')));
+    assert(yield utils.isInstallDone(path.join(tmp, 'node_modules/@types/escodegen')));
     assert(fs.existsSync(path.join(tmp, 'node_modules/@types/escodegen/package.json')));
     assert(require(path.join(tmp, 'node_modules/@types/escodegen/package.json')).name === '@types/escodegen');
   });

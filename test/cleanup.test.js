@@ -5,6 +5,7 @@ const path = require('path');
 const rimraf = require('rimraf');
 const fs = require('mz/fs');
 const mkdirp = require('mkdirp');
+const utils = require('../lib/utils');
 const npminstall = require('./npminstall');
 
 describe('test/cleanup.test.js', () => {
@@ -34,8 +35,8 @@ describe('test/cleanup.test.js', () => {
     }
     assert(throwError);
 
-    let exists = yield fs.exists(path.join(tmp, 'node_modules/_install-error@1.0.1@install-error/.npminstall.done'));
-    assert.equal(exists, false);
+    let done = yield utils.isInstallDone(path.join(tmp, 'node_modules/_install-error@1.0.1@install-error/package.json'));
+    assert.equal(done, false);
     const dirs = yield fs.readdir(path.join(tmp, 'node_modules'));
     assert.deepEqual(dirs, [ '_install-error@1.0.1@install-error' ]);
 
@@ -52,8 +53,8 @@ describe('test/cleanup.test.js', () => {
       throwError = true;
     }
     assert.equal(throwError, true);
-    exists = yield fs.exists(path.join(tmp, 'node_modules/_install-error@1.0.1@install-error/.npminstall.done'));
-    assert.equal(exists, false);
+    done = yield utils.isInstallDone(path.join(tmp, 'node_modules/_install-error@1.0.1@install-error/.npminstall.done'));
+    assert.equal(done, false);
   });
 
   it('should remove donefile when execute postinstall script failed', function* () {
@@ -69,8 +70,8 @@ describe('test/cleanup.test.js', () => {
     }
     assert.equal(throwError, true);
 
-    let exists = yield fs.exists(path.join(tmp, 'node_modules/_postinstall-error@1.0.0@postinstall-error/.npminstall.done'));
-    assert.equal(exists, false);
+    let done = yield utils.isInstallDone(path.join(tmp, 'node_modules/_postinstall-error@1.0.0@postinstall-error/.npminstall.done'));
+    assert.equal(done, false);
 
     // install again will try to download
     throwError = false;
@@ -83,7 +84,7 @@ describe('test/cleanup.test.js', () => {
       throwError = true;
     }
     assert.equal(throwError, true);
-    exists = yield fs.exists(path.join(tmp, 'node_modules/_postinstall-error@1.0.0@postinstall-error/.npminstall.done'));
-    assert.equal(exists, false);
+    done = yield utils.isInstallDone(path.join(tmp, 'node_modules/_postinstall-error@1.0.0@postinstall-error/.npminstall.done'));
+    assert.equal(done, false);
   });
 });

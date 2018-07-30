@@ -153,7 +153,7 @@ if (inChina) {
   registry = registry || globalConfig.chineseRegistry;
 }
 // for env.npm_config_registry
-registry = registry || 'https://registry.npmjs.org';
+registry = registry || 'https://registry.npmjs.com';
 
 const proxy = argv.proxy || process.env.npm_proxy || process.env.npm_config_proxy;
 
@@ -279,6 +279,21 @@ co(function* () {
       const exists = yield fs.exists(pkgFile);
       if (!exists) {
         console.warn(chalk.yellow(`npminstall WARN package.json not exists: ${pkgFile}`));
+      } else {
+        // try to read npminstall config from package.json
+        const pkg = yield utils.readJSON(pkgFile);
+        pkg.config = pkg.config || {};
+        pkg.config.npminstall = pkg.config.npminstall || {};
+        // {
+        //   "config": {
+        //     "npminstall": {
+        //       "prune": true
+        //     }
+        //   }
+        // }
+        if (pkg.config.npminstall.prune === true) {
+          config.prune = true;
+        }
       }
     }
     yield installLocal(config);
