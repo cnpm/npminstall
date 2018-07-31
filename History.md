@@ -1,4 +1,10 @@
 
+3.11.0 / 2018-07-31
+==================
+
+**others**
+  * [[`05a31ee`](http://github.com/cnpm/npminstall/commit/05a31eef1ebe3c60a62f97d7b35fab4bc4491e91)] - refactor: don't create .npminstall.done file (#277) (fengmk2 <<fengmk2@gmail.com>>)
+
 3.10.0 / 2018-07-19
 ==================
 
