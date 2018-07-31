@@ -1,0 +1,14 @@
+{
+  "name": "install-enable-prune-on-pkg",
+  "dependencies": {
+    "pedding": "~1.0.0",
+    "npm": "*",
+    "egg": "*",
+    "antd": "*"
+  },
+  "config": {
+    "npminstall": {
+      "prune": true
+    }
+  }
+}
