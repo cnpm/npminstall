@@ -1,0 +1,4 @@
+registry=https://registry-mock.org/
+//registry-mock.org/:always-auth=true
+//registry-mock.org/:_password="bW9jaw=="
+//registry-mock.org/:username=hyj19911120
