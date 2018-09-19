@@ -1,4 +1,10 @@
 
+3.12.0 / 2018-09-19
+==================
+
+**features**
+  * [[`ef75b34`](http://github.com/cnpm/npminstall/commit/ef75b341082068723caf3e204ff2e74cdda04529)] - feat: replace vscode raw.gitcontent.com url (#278) (fengmk2 <<fengmk2@gmail.com>>)
+
 3.11.0 / 2018-07-31
 ==================
 
