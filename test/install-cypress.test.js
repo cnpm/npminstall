@@ -16,7 +16,7 @@ describe.skip('test/install-cypress.test.js', () => {
   beforeEach(() => {
     cleanup();
   });
-  // afterEach(cleanup);
+  afterEach(cleanup);
 
   it('should install cypress version on dependencies', function* () {
     return coffee.fork(npminstall, [ '-c' ], { cwd })

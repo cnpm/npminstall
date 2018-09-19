@@ -1,0 +1,6 @@
+{
+  "name": "install-vscode",
+  "dependencies": {
+    "vscode": "1"
+  }
+}
