@@ -1,4 +1,10 @@
 
+3.14.0 / 2018-10-24
+==================
+
+**features**
+  * [[`a472b39`](http://github.com/cnpm/npminstall/commit/a472b3974c1600f3bb54db616fdb77a841f9463f)] - feat: set config per env (#280) (fengmk2 <<fengmk2@gmail.com>>)
+
 3.13.0 / 2018-10-24
 ==================
 
