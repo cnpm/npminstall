@@ -50,6 +50,9 @@ const argv = parseArgs(orignalArgv, {
     'cache-strict',
     'fix-bug-versions',
     'prune',
+    // disable dedupe mode https://docs.npmjs.com/cli/dedupe, back to npm@2 mode
+    // please don't use on frontend project
+    'disable-dedupe',
   ],
   alias: {
     // npm install [-S|--save|-D|--save-dev|-O|--save-optional] [-E|--save-exact] [-d|--detail]
@@ -220,6 +223,7 @@ co(function* () {
     flatten,
     proxy,
     prune,
+    disableDedupe: argv['disable-dedupe'],
   };
   config.strictSSL = getStrictSSL();
   config.ignoreScripts = argv['ignore-scripts'] || getIgnoreScripts();
@@ -293,6 +297,9 @@ co(function* () {
         // }
         if (pkg.config.npminstall.prune === true) {
           config.prune = true;
+        }
+        if (pkg.config.npminstall.disableDedupe === true) {
+          config.disableDedupe = true;
         }
       }
     }

@@ -8,7 +8,7 @@ const readJSON = require('../lib/utils').readJSON;
 const mkdirp = require('mkdirp');
 const npminstall = require('./npminstall');
 
-describe('test/optionalDependencies.test.js', function() {
+describe('test/optionalDependencies.test.js', () => {
   const tmp = path.join(__dirname, 'fixtures', 'tmp');
   const root = path.join(__dirname, 'fixtures', 'optional');
 
@@ -27,7 +27,7 @@ describe('test/optionalDependencies.test.js', function() {
     yield npminstall({
       root: tmp,
       pkgs: [
-        { name: 'koa-redis', version: 'latest' },
+        { name: 'koa-redis', version: '3.1.0' },
       ],
     });
     const pkg = yield readJSON(path.join(tmp, 'node_modules/koa-redis/package.json'));

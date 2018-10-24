@@ -6,7 +6,7 @@ const rimraf = require('rimraf');
 const coffee = require('coffee');
 const mkdirp = require('../lib/utils').mkdirp;
 
-describe('test/uninstallGlobal.test.js', function() {
+describe('test/uninstallGlobal.test.js', () => {
   const tmp = path.join(__dirname, 'fixtures', 'tmp');
 
   function cleanup() {
@@ -26,7 +26,7 @@ describe('test/uninstallGlobal.test.js', function() {
       'mocha',
     ])
     .debug()
-    .expect(/All packages installed/)
+    .expect('stdout', /All packages installed/)
     .expect('code', 0)
     .end(err => {
       assert(!err);
@@ -36,9 +36,9 @@ describe('test/uninstallGlobal.test.js', function() {
         'mocha',
       ])
       .debug()
-      .expect(/- mocha@\d+\.\d+\.\d+ \.\/test\/fixtures\/tmp\/lib\/node_modules\/mocha/)
-      .expect(/- mocha@\d+\.\d+\.\d+ \.\/test\/fixtures\/tmp\/bin\/mocha/)
-      .expect(/- mocha@\d+\.\d+\.\d+ \.\/test\/fixtures\/tmp\/bin\/_mocha/)
+      .expect('stdout', /- mocha@\d+\.\d+\.\d+ \.\/test\/fixtures\/tmp\/lib\/node_modules\/mocha/)
+      .expect('stdout', /- mocha@\d+\.\d+\.\d+ \.\/test\/fixtures\/tmp\/bin\/mocha/)
+      .expect('stdout', /- mocha@\d+\.\d+\.\d+ \.\/test\/fixtures\/tmp\/bin\/_mocha/)
       .expect('code', 0)
       .end(done);
     });

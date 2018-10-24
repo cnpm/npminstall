@@ -10,7 +10,7 @@ const npminstall = require('./npminstall');
 const coffee = require('coffee');
 const installBin = path.join(__dirname, '..', 'bin', 'install.js');
 
-describe('test/installGit.test.js', function() {
+describe('test/installGit.test.js', () => {
 
   // here we use a tmp dir for custom testing since `getLastCommitHash` would silently pass
   // and return **this** repo's commit hash.
@@ -123,16 +123,16 @@ describe('test/installGit.test.js', function() {
     assert.equal(pkg.version, '1.2.0');
   });
 
-  it('should also ok on https://github.com/gulpjs/gulp#4.0', function* () {
+  it('should also ok on https://github.com/node-modules/agentkeepalive#2.x', function* () {
     yield npminstall({
       root: tmp,
       pkgs: [
-        { name: null, version: 'git+https://github.com/gulpjs/gulp.git#4.0' },
+        { name: null, version: 'git+https://github.com/node-modules/agentkeepalive#2.x' },
       ],
     });
 
-    const pkg = yield readJSON(path.join(tmp, 'node_modules/gulp/package.json'));
-    assert.equal(pkg.name, 'gulp');
+    const pkg = yield readJSON(path.join(tmp, 'node_modules/agentkeepalive/package.json'));
+    assert.equal(pkg.name, 'agentkeepalive');
   });
 
   it('should fail on some strange hash', function* () {
@@ -156,7 +156,7 @@ describe('test/installGit.test.js', function() {
       cwd: tmp,
     })
     .debug()
-    .expect(0)
+    .expect('code', 0)
     .expect('stderr', /Package name unmatched: expected error but found nunjucks/)
     .end(err => {
       assert(require(path.join(tmp, 'node_modules/error/package.json')).name === 'nunjucks');

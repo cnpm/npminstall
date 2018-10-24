@@ -1,0 +1,6 @@
+{
+  "name": "disable-dedupe-demo",
+  "dependencies": {
+    "koa": "2"
+  }
+}
