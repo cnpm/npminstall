@@ -37,7 +37,7 @@ describe('test/installGlobal.test.js', () => {
       `${registry}/egg-bin/-/egg-bin-1.6.0.tgz`,
     ])
     .debug()
-    .expect(/All packages installed/)
+    .expect('stdout', /All packages installed/)
     .expect('code', 0)
     .end();
 
@@ -57,7 +57,7 @@ describe('test/installGlobal.test.js', () => {
       `${registry}/egg-bin/-/egg-bin-1.7.0.tgz`,
     ])
     .debug()
-    .expect(/All packages installed/)
+    .expect('stdout', /All packages installed/)
     .expect('code', 0)
     .end();
 
@@ -74,7 +74,7 @@ describe('test/installGlobal.test.js', () => {
       'contributors@0',
     ])
     .debug()
-    .expect(/All packages installed/)
+    .expect('stdout', /All packages installed/)
     .expect('code', 0)
     .end();
 
@@ -89,9 +89,9 @@ describe('test/installGlobal.test.js', () => {
       'egg-bin',
     ])
     .debug()
-    .expect(/Downloading egg-bin to /)
-    .expect(/Installing egg-bin's dependencies to /)
-    .expect(/All packages installed/)
+    .expect('stdout', /Downloading egg-bin to /)
+    .expect('stdout', /Installing egg-bin's dependencies to /)
+    .expect('stdout', /All packages installed/)
     .expect('code', 0)
     .end();
 
