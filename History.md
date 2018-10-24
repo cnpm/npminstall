@@ -1,4 +1,13 @@
 
+3.13.0 / 2018-10-24
+==================
+
+**features**
+  * [[`a36dd1c`](http://github.com/cnpm/npminstall/commit/a36dd1ce21aafc13d528b050881e29b88cef0057)] - feat: allow disable dedupe mode on node project (#279) (fengmk2 <<fengmk2@gmail.com>>)
+
+**others**
+  * [[`e15b7e3`](http://github.com/cnpm/npminstall/commit/e15b7e364a14e69f5880b71eea77836a50aabaea)] - bench: update ghost package.json (fengmk2 <<fengmk2@gmail.com>>)
+
 3.12.0 / 2018-09-19
 ==================
 
