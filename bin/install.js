@@ -298,6 +298,9 @@ co(function* () {
         if (pkg.config.npminstall.prune === true) {
           config.prune = true;
         }
+        if (pkg.config.npminstall.disableDedupe === true) {
+          config.disableDedupe = true;
+        }
       }
     }
     yield installLocal(config);

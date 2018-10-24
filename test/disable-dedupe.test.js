@@ -9,9 +9,11 @@ const npminstall = path.join(__dirname, '..', 'bin', 'install.js');
 
 describe('test/disable-dedupe.test.js', () => {
   const root = path.join(__dirname, 'fixtures', 'disable-dedupe');
+  const root2 = path.join(__dirname, 'fixtures', 'disable-dedupe-config');
 
   function cleanup() {
     rimraf.sync(path.join(root, 'node_modules'));
+    rimraf.sync(path.join(root2, 'node_modules'));
   }
 
   beforeEach(cleanup);
@@ -24,6 +26,18 @@ describe('test/disable-dedupe.test.js', () => {
       .expect('stderr', /disable dedupe mode/)
       .end();
     const names = fs.readdirSync(path.join(root, 'node_modules'))
+      .filter(n => !/^[\.\_]/.test(n));
+    assert(names.length === 1);
+    assert(names[0] === 'koa');
+  });
+
+  it('should install config.npminstall.disableDedupe=true work', function* () {
+    yield coffee.fork(npminstall, { cwd: root2 })
+      .debug()
+      .expect('code', 0)
+      .expect('stderr', /disable dedupe mode/)
+      .end();
+    const names = fs.readdirSync(path.join(root2, 'node_modules'))
       .filter(n => !/^[\.\_]/.test(n));
     assert(names.length === 1);
     assert(names[0] === 'koa');
