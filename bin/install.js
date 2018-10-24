@@ -301,6 +301,36 @@ co(function* () {
         if (pkg.config.npminstall.disableDedupe === true) {
           config.disableDedupe = true;
         }
+        // env config
+        // {
+        //   "config": {
+        //     "npminstall": {
+        //       "env:production": {
+        //         "disableDedupe": true
+        //       }
+        //     }
+        //   }
+        // }
+        // production
+        if (config.production && pkg.config.npminstall['env:production']) {
+          const envConfig = pkg.config.npminstall['env:production'];
+          if (envConfig.prune === true) {
+            config.prune = true;
+          }
+          if (envConfig.disableDedupe === true) {
+            config.disableDedupe = true;
+          }
+        }
+        // development
+        if (!config.production && pkg.config.npminstall['env:development']) {
+          const envConfig = pkg.config.npminstall['env:development'];
+          if (envConfig.prune === true) {
+            config.prune = true;
+          }
+          if (envConfig.disableDedupe === true) {
+            config.disableDedupe = true;
+          }
+        }
       }
     }
     yield installLocal(config);
