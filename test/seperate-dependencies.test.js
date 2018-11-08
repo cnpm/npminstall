@@ -8,7 +8,7 @@ const coffee = require('coffee');
 
 const bin = path.join(__dirname, '../bin/install.js');
 
-describe.only('test/seperate-dependencies.test.js', () => {
+describe('test/seperate-dependencies.test.js', () => {
 
   describe('npminstall', function() {
     const root = path.join(__dirname, 'fixtures', 'seperate-dependencies');
