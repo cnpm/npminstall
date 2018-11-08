@@ -1,4 +1,10 @@
 
+3.15.0 / 2018-11-08
+==================
+
+**features**
+  * [[`8f94a43`](http://github.com/cnpm/npminstall/commit/8f94a434aa0788232d5f88167275fa6649ec11b3)] - feat: support install clientDependencies / buildDependencies / isomorphicDependencies (#281) (Yiyu He <<dead_horse@qq.com>>)
+
 3.14.0 / 2018-10-24
 ==================
 
