@@ -34,10 +34,14 @@ const argv = parseArgs(orignalArgv, {
     'version',
     'help',
     'production',
+    'client',
     'global',
     'save',
     'save-dev',
     'save-optional',
+    'save-client',
+    'save-build',
+    'save-isomorphic',
     // Saved dependencies will be configured with an exact version rather than using npm's default semver range operator.
     'save-exact',
     'china',
@@ -97,7 +101,8 @@ If no argument is supplied, installs dependencies from ./package.json.
 Options:
 
   --production: won't install devDependencies
-  --save, --save-dev, --save-optional, --save-exact: save installed dependencies into package.json
+  --client: install clientDependencies and buildDependencies
+  --save, --save-dev, --save-optional, --save-exact, --save-client, --save-build, --save-isomorphic: save installed dependencies into package.json
   -g, --global: install devDependencies to global directory which specified in '$npm config get prefix'
   -r, --registry: specify custom registry
   -c, --china: specify in china, will automatically using chinses npm registry and other binary's mirrors
@@ -235,6 +240,7 @@ co(function* () {
     // make sure show detail on production install or global install
     config.detail = true;
   }
+  config.client = argv.client;
 
   if (argv['tarball-url-mapping']) {
     const tarballUrlMapping = JSON.parse(argv['tarball-url-mapping']);
@@ -335,13 +341,17 @@ co(function* () {
     }
     yield installLocal(config);
     if (pkgs.length > 0) {
-      // support --save, --save-dev and --save-optional
-      if (argv.save) {
-        yield updateDependencies(root, pkgs, 'dependencies', argv['save-exact'], config.remoteNames);
-      } else if (argv['save-dev']) {
-        yield updateDependencies(root, pkgs, 'devDependencies', argv['save-exact'], config.remoteNames);
-      } else if (argv['save-optional']) {
-        yield updateDependencies(root, pkgs, 'optionalDependencies', argv['save-exact'], config.remoteNames);
+      // support --save, --save-dev, --save-optional, --save-client, --save-build and --save-isomorphic
+      const map = {
+        save: 'dependencies',
+        'save-dev': 'devDependencies',
+        'save-optional': 'optinoalDependencies',
+        'save-client': 'clientDependencies',
+        'save-build': 'buildDependencies',
+        'save-isomorphic': 'isomorphicDependencies',
+      };
+      for (const key in map) {
+        if (argv[key]) yield updateDependencies(root, pkgs, map[key], argv['save-exact'], config.remoteNames);
       }
     }
   }
