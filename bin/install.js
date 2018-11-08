@@ -345,7 +345,7 @@ co(function* () {
       const map = {
         save: 'dependencies',
         'save-dev': 'devDependencies',
-        'save-optional': 'optinoalDependencies',
+        'save-optional': 'optionalDependencies',
         'save-client': 'clientDependencies',
         'save-build': 'buildDependencies',
         'save-isomorphic': 'isomorphicDependencies',
