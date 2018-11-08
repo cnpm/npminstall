@@ -170,7 +170,7 @@ describe('test/dependencies.test.js', () => {
       throw new Error('should not excute');
     } catch (err) {
       assert(err.message === `duplicate dependencies error, put isomorphic dependency into isomorphicDependencies:
-koa defined multiple times in dependencies,clientDependencies,buildDependencies
+koa defined multiple times in dependencies,clientDependencies
 express defined multiple times in dependencies,isomorphicDependencies
 vue defined multiple times in clientDependencies,isomorphicDependencies`);
     }
