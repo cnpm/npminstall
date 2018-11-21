@@ -17,7 +17,7 @@ describe('test/dependencies.test.js', () => {
       },
     };
 
-    const parsed = dependencies(pkg);
+    const parsed = dependencies(pkg, {});
     assert.deepEqual(parsed.all, [
       { name: 'koa', version: '1', optional: false },
       { name: 'express', version: '2', optional: false },
@@ -49,7 +49,7 @@ describe('test/dependencies.test.js', () => {
       },
     };
 
-    const parsed = dependencies(pkg);
+    const parsed = dependencies(pkg, {});
     assert.deepEqual(parsed.all, [
       { name: 'koa', version: '1', optional: false },
       { name: 'express', version: '3', optional: true },
@@ -64,6 +64,36 @@ describe('test/dependencies.test.js', () => {
       { name: 'hapi', version: '1', optional: true },
     ]);
     assert.deepEqual(parsed.prodMap, { koa: '1', express: '3', hapi: '1' });
+  });
+
+  it('should ignore optionalDependencies', () => {
+    const pkg = {
+      dependencies: {
+        koa: '1',
+        express: '2',
+      },
+      devDependencies: {
+        connect: '3',
+        egg: '4',
+        koa: '5',
+      },
+      optionalDependencies: {
+        express: '3',
+        hapi: '1',
+      },
+    };
+
+    const parsed = dependencies(pkg, { ignoreOptionalDependencies: true });
+    assert.deepEqual(parsed.all, [
+      { name: 'koa', version: '1', optional: false },
+      { name: 'connect', version: '3', optional: false },
+      { name: 'egg', version: '4', optional: false },
+    ]);
+    assert.deepEqual(parsed.allMap, { koa: '1', connect: '3', egg: '4' });
+    assert.deepEqual(parsed.prod, [
+      { name: 'koa', version: '1', optional: false },
+    ]);
+    assert.deepEqual(parsed.prodMap, { koa: '1' });
   });
 
   it('should work with dependencies, devDependencies, clientDependencies, buildDependencies and isomorphicDependencies', () => {
@@ -90,7 +120,7 @@ describe('test/dependencies.test.js', () => {
       },
     };
 
-    const parsed = dependencies(pkg);
+    const parsed = dependencies(pkg, {});
     assert.deepEqual(parsed.all, [
       { name: 'koa', version: '1', optional: false },
       { name: 'express', version: '2', optional: false },
@@ -166,7 +196,7 @@ describe('test/dependencies.test.js', () => {
     };
 
     try {
-      dependencies(pkg);
+      dependencies(pkg, {});
       throw new Error('should not excute');
     } catch (err) {
       assert(err.message === `duplicate dependencies error, put isomorphic dependency into isomorphicDependencies:

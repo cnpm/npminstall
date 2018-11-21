@@ -46,6 +46,8 @@ const argv = parseArgs(orignalArgv, {
     'save-exact',
     'china',
     'ignore-scripts',
+    // install ignore optionalDependencies
+    'optional',
     'detail',
     'trace',
     'engine-strict',
@@ -58,6 +60,9 @@ const argv = parseArgs(orignalArgv, {
     // please don't use on frontend project
     'disable-dedupe',
   ],
+  default: {
+    optional: true,
+  },
   alias: {
     // npm install [-S|--save|-D|--save-dev|-O|--save-optional] [-E|--save-exact] [-d|--detail]
     S: 'save',
@@ -109,6 +114,7 @@ Options:
   -d, --detail: show detail log of installation
   --trace: show memory and cpu usages traces of installation
   --ignore-scripts: ignore all preinstall / install and postinstall scripts during the installation
+  --no-optional: ignore all optionalDependencies during the installation
   --forbidden-licenses: forbit install packages which used these licenses
   --engine-strict: refuse to install (or even consider installing) any package that claims to not be compatible with the current Node.js version.
   --flatten: flatten dependencies by matching ancestors' dependencies
@@ -232,6 +238,7 @@ co(function* () {
   };
   config.strictSSL = getStrictSSL();
   config.ignoreScripts = argv['ignore-scripts'] || getIgnoreScripts();
+  config.ignoreOptionalDependencies = !argv.optional;
   config.detail = argv.detail;
   config.trace = argv.trace;
   config.engineStrict = argv['engine-strict'];
