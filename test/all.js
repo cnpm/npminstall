@@ -7,19 +7,36 @@ const semver = require('semver');
 const spawn = require('child_process').spawn;
 const npminstall = require('./npminstall');
 
+if (semver.satisfies(process.version, '< 6.0.0')) {
+  process.exit(0);
+}
+
 const names = [
-  'express', 'koa', 'browserify',
+  'express',
+  'koa',
+  'browserify',
   'pm2',
   'grunt-cli',
-  'npm', 'karma',
+  'npm',
+  'karma',
   'bower',
   'coffee-script',
   'gulp',
   'forever',
-  'grunt', 'less',
+  'grunt',
+  'less',
   'yo',
-  'lodash', 'bluebird', 'async', 'commander',
-  'q', 'request', 'debug', 'mkdirp', 'underscore', 'chalk', 'colors',
+  'lodash',
+  'bluebird',
+  'async',
+  'commander',
+  'q',
+  'request',
+  'debug',
+  'mkdirp',
+  'underscore',
+  'chalk',
+  'colors',
   'webpack',
   'antd',
   'cnpm',
@@ -56,12 +73,10 @@ co(function* () {
     detail: true,
   });
 
-  if (semver.satisfies(process.version, '>= 6')) {
-    const installer = spawn('sh', [ path.join(__dirname, 'git-clone-install.sh') ], {
-      stdio: 'inherit',
-    });
-    installer.on('exit', code => process.exit(code));
-  }
+  const installer = spawn('sh', [ path.join(__dirname, 'git-clone-install.sh') ], {
+    stdio: 'inherit',
+  });
+  installer.on('exit', code => process.exit(code));
 }).catch(err => {
   console.error(err);
   console.error(err.stack);
