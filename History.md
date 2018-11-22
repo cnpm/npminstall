@@ -1,4 +1,10 @@
 
+3.16.0 / 2018-11-22
+==================
+
+**features**
+  * [[`1c74e7d`](http://github.com/cnpm/npminstall/commit/1c74e7d59661bd22fa11cd028d8e149f1430b446)] - feat: support --no-optional on install process (#282) (fengmk2 <<fengmk2@gmail.com>>)
+
 3.15.0 / 2018-11-08
 ==================
 
