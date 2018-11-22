@@ -127,7 +127,7 @@ describe('test/index.test.js', () => {
     yield npminstall({
       root: tmp,
       pkgs: [
-        { name: 'chromedriver' },
+        { name: 'chromedriver', version: '2.10.0' },
       ],
     });
   });
