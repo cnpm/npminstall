@@ -1,0 +1,6 @@
+{
+  "name": "ignore-optional",
+  "dependencies": {
+    "pinyin": "2.8.3"
+  }
+}
