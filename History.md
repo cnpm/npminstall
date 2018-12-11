@@ -1,4 +1,13 @@
 
+3.16.1 / 2018-12-12
+==================
+
+**fixes**
+  * [[`20bbb17`](http://github.com/cnpm/npminstall/commit/20bbb17df088f68b476ec428289372c1a935abb4)] - fix: try to link latest version to top node_modules (#284) (fengmk2 <<fengmk2@gmail.com>>)
+
+**others**
+  * [[`e7f1f05`](http://github.com/cnpm/npminstall/commit/e7f1f05277e6e4d9fbe496a6fba0d88adfa8a7b4)] - docs: typo chinses -> chinese (#283) (孑枵 <<Abreto@users.noreply.github.com>>)
+
 3.16.0 / 2018-11-22
 ==================
 
