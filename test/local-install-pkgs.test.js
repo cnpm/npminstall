@@ -25,7 +25,8 @@ describe('test/local-install-pkgs.test.js', () => {
       .end();
     const names = fs.readdirSync(path.join(root, 'node_modules'))
       .filter(n => !/^[\.\_]/.test(n));
-    assert(names.length === 1);
-    assert(names[0] === 'koa');
+    assert(names.length > 10);
+    assert(names.indexOf('koa') > 0);
+    assert(names.indexOf('accepts') >= 0);
   });
 });
