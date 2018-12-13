@@ -1,4 +1,10 @@
 
+3.17.0 / 2018-12-13
+==================
+
+**features**
+  * [[`45bdbc0`](http://github.com/cnpm/npminstall/commit/45bdbc04b32fdcf23f659ccb1c4e67d0aacc4257)] - feat: support binary mirror replaceHostFiles config (#285) (fengmk2 <<fengmk2@gmail.com>>)
+
 3.16.1 / 2018-12-12
 ==================
 
