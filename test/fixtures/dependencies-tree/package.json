@@ -1,0 +1,9 @@
+{
+  "name": "dependencies-tree",
+  "dependencies": {
+    "koa": "^2.0.0"
+  },
+  "devDependencies": {
+    "mocha": "3"
+  }
+}

@@ -1,0 +1,2185 @@
+{
+  "koa@^2.0.0": {
+    "name": "koa",
+    "version": "2.6.2",
+    "dependencies": {
+      "accepts": "^1.3.5",
+      "cache-content-type": "^1.0.0",
+      "content-disposition": "~0.5.2",
+      "content-type": "^1.0.4",
+      "cookies": "~0.7.1",
+      "debug": "~3.1.0",
+      "delegates": "^1.0.0",
+      "depd": "^1.1.2",
+      "destroy": "^1.0.4",
+      "error-inject": "^1.0.0",
+      "escape-html": "^1.0.3",
+      "fresh": "~0.5.2",
+      "http-assert": "^1.3.0",
+      "http-errors": "^1.6.3",
+      "is-generator-function": "^1.0.7",
+      "koa-compose": "^4.1.0",
+      "koa-convert": "^1.2.0",
+      "koa-is-json": "^1.0.0",
+      "on-finished": "^2.3.0",
+      "only": "~0.0.2",
+      "parseurl": "^1.3.2",
+      "statuses": "^1.5.0",
+      "type-is": "^1.6.16",
+      "vary": "^1.1.2"
+    },
+    "devDependencies": {
+      "eslint": "^3.17.1",
+      "eslint-config-koa": "^2.0.0",
+      "eslint-config-standard": "^7.0.1",
+      "eslint-plugin-promise": "^3.5.0",
+      "eslint-plugin-standard": "^2.1.1",
+      "jest": "^20.0.0",
+      "supertest": "^3.1.0"
+    },
+    "publish_time": 1541785407005,
+    "license": "MIT",
+    "engines": {
+      "node": "^4.8.4 || ^6.10.1 || ^7.10.1 || >= 8.1.4"
+    },
+    "dist": {
+      "shasum": "57ba4d049b0a99cae0d594e6144e2931949a7ce1",
+      "size": 19478,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/koa/download/koa-2.6.2.tgz"
+    },
+    "scripts": {
+      "test": "jest",
+      "test-cov": "jest --coverage --runInBand --forceExit",
+      "lint": "eslint benchmarks lib test",
+      "bench": "make -C benchmarks",
+      "authors": "git log --format='%aN <%aE>' | sort -u > AUTHORS"
+    },
+    "_id": "koa@2.6.2"
+  },
+  "mocha@3": {
+    "name": "mocha",
+    "version": "3.5.3",
+    "dependencies": {
+      "browser-stdout": "1.3.0",
+      "commander": "2.9.0",
+      "debug": "2.6.8",
+      "diff": "3.2.0",
+      "escape-string-regexp": "1.0.5",
+      "glob": "7.1.1",
+      "growl": "1.9.2",
+      "he": "1.1.1",
+      "json3": "3.3.2",
+      "lodash.create": "3.1.1",
+      "mkdirp": "0.5.1",
+      "supports-color": "3.1.2"
+    },
+    "devDependencies": {
+      "@coderbyheart/karma-sauce-launcher": "git://github.com/coderbyheart/karma-sauce-launcher.git#5259942cd6d40090eaa13ceeef5b0b8738c7710f",
+      "assert": "^1.4.1",
+      "browserify": "^13.0.0",
+      "coffee-script": "^1.10.0",
+      "coveralls": "^2.11.15",
+      "cross-spawn": "^5.1.0",
+      "eslint": "^3.11.1",
+      "eslint-config-semistandard": "^7.0.0",
+      "eslint-config-standard": "^6.2.1",
+      "eslint-plugin-promise": "^3.4.0",
+      "eslint-plugin-standard": "2.0.1",
+      "expect.js": "^0.3.1",
+      "karma": "1.3.0",
+      "karma-browserify": "^5.0.5",
+      "karma-chrome-launcher": "^2.0.0",
+      "karma-expect": "^1.1.2",
+      "karma-mocha": "^1.3.0",
+      "karma-phantomjs-launcher": "0.2.3",
+      "karma-spec-reporter": "0.0.26",
+      "nyc": "^11.2.1",
+      "os-name": "^2.0.1",
+      "phantomjs": "1.9.8",
+      "readable-stream": "2.2.11",
+      "rimraf": "^2.5.2",
+      "should": "^9.0.2",
+      "through2": "^2.0.1",
+      "watchify": "^3.7.0"
+    },
+    "publish_time": 1505165090236,
+    "license": "MIT",
+    "engines": {
+      "node": ">= 0.10.x",
+      "npm": ">= 1.4.x"
+    },
+    "dist": {
+      "shasum": "1e0480fe36d2da5858d1eb6acc38418b26eaa20d",
+      "size": 209904,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/mocha/download/mocha-3.5.3.tgz"
+    },
+    "scripts": {
+      "lint": "eslint . bin/*",
+      "test": "make test && make clean",
+      "preversion": "make test && rm mocha.js && make mocha.js && git add mocha.js",
+      "coveralls": "nyc report --reporter=text-lcov | coveralls"
+    },
+    "_id": "mocha@3.5.3"
+  },
+  "cache-content-type@^1.0.0": {
+    "name": "cache-content-type",
+    "version": "1.0.1",
+    "dependencies": {
+      "mime-types": "^2.1.18",
+      "ylru": "^1.2.0"
+    },
+    "devDependencies": {
+      "egg-bin": "^4.7.1",
+      "egg-ci": "^1.8.0",
+      "eslint": "^5.1.0",
+      "eslint-config-egg": "^7.0.0",
+      "mm": "^2.2.0"
+    },
+    "publish_time": 1531923423773,
+    "license": "MIT",
+    "engines": {
+      "node": ">= 6.0.0"
+    },
+    "dist": {
+      "shasum": "035cde2b08ee2129f4a8315ea8f00a00dba1453c",
+      "size": 1140,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/cache-content-type/download/cache-content-type-1.0.1.tgz"
+    },
+    "scripts": {
+      "test": "egg-bin test",
+      "cov": "egg-bin cov",
+      "ci": "eslint . && npm run cov"
+    },
+    "_id": "cache-content-type@1.0.1"
+  },
+  "accepts@^1.3.5": {
+    "name": "accepts",
+    "version": "1.3.5",
+    "dependencies": {
+      "mime-types": "~2.1.18",
+      "negotiator": "0.6.1"
+    },
+    "devDependencies": {
+      "eslint": "4.18.1",
+      "eslint-config-standard": "11.0.0",
+      "eslint-plugin-import": "2.9.0",
+      "eslint-plugin-markdown": "1.0.0-beta.6",
+      "eslint-plugin-node": "6.0.1",
+      "eslint-plugin-promise": "3.6.0",
+      "eslint-plugin-standard": "3.0.1",
+      "istanbul": "0.4.5",
+      "mocha": "~1.21.5"
+    },
+    "publish_time": 1519869527742,
+    "license": "MIT",
+    "engines": {
+      "node": ">= 0.6"
+    },
+    "dist": {
+      "shasum": "eb777df6011723a3b14e8a72c0805c8e86746bd2",
+      "size": 5409,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/accepts/download/accepts-1.3.5.tgz"
+    },
+    "scripts": {
+      "lint": "eslint --plugin markdown --ext js,md .",
+      "test": "mocha --reporter spec --check-leaks --bail test/",
+      "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot --check-leaks test/",
+      "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/"
+    },
+    "_id": "accepts@1.3.5"
+  },
+  "delegates@^1.0.0": {
+    "name": "delegates",
+    "version": "1.0.0",
+    "dependencies": {},
+    "devDependencies": {
+      "mocha": "*",
+      "should": "*"
+    },
+    "publish_time": 1450122969247,
+    "license": "MIT",
+    "dist": {
+      "shasum": "84c6e159b81904fdca59a0ef44cd870d31250f9a",
+      "size": 2848,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/delegates/download/delegates-1.0.0.tgz"
+    },
+    "_id": "delegates@1.0.0"
+  },
+  "content-type@^1.0.4": {
+    "name": "content-type",
+    "version": "1.0.4",
+    "devDependencies": {
+      "eslint": "3.19.0",
+      "eslint-config-standard": "10.2.1",
+      "eslint-plugin-import": "2.7.0",
+      "eslint-plugin-node": "5.1.1",
+      "eslint-plugin-promise": "3.5.0",
+      "eslint-plugin-standard": "3.0.1",
+      "istanbul": "0.4.5",
+      "mocha": "~1.21.5"
+    },
+    "publish_time": 1505166156476,
+    "license": "MIT",
+    "engines": {
+      "node": ">= 0.6"
+    },
+    "dist": {
+      "shasum": "e138cc75e040c727b1966fe5e5f8c9aee256fe3b",
+      "size": 4655,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/content-type/download/content-type-1.0.4.tgz"
+    },
+    "scripts": {
+      "lint": "eslint .",
+      "test": "mocha --reporter spec --check-leaks --bail test/",
+      "test-ci": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/",
+      "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot --check-leaks test/"
+    },
+    "_id": "content-type@1.0.4"
+  },
+  "destroy@^1.0.4": {
+    "name": "destroy",
+    "version": "1.0.4",
+    "devDependencies": {
+      "istanbul": "0.4.2",
+      "mocha": "2.3.4"
+    },
+    "publish_time": 1452914045899,
+    "license": "MIT",
+    "dist": {
+      "shasum": "978857442c44749e4206613e37946205826abd80",
+      "size": 2331,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/destroy/download/destroy-1.0.4.tgz"
+    },
+    "scripts": {
+      "test": "mocha --reporter spec",
+      "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot",
+      "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter dot"
+    },
+    "_id": "destroy@1.0.4"
+  },
+  "content-disposition@~0.5.2": {
+    "name": "content-disposition",
+    "version": "0.5.3",
+    "dependencies": {
+      "safe-buffer": "5.1.2"
+    },
+    "devDependencies": {
+      "deep-equal": "1.0.1",
+      "eslint": "5.10.0",
+      "eslint-config-standard": "12.0.0",
+      "eslint-plugin-import": "2.14.0",
+      "eslint-plugin-markdown": "1.0.0-rc.1",
+      "eslint-plugin-node": "7.0.1",
+      "eslint-plugin-promise": "4.0.1",
+      "eslint-plugin-standard": "4.0.0",
+      "istanbul": "0.4.5",
+      "mocha": "5.2.0"
+    },
+    "publish_time": 1545077932643,
+    "license": "MIT",
+    "engines": {
+      "node": ">= 0.6"
+    },
+    "dist": {
+      "shasum": "e130caf7e7279087c5616c2007d0485698984fbd",
+      "size": 6755,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/content-disposition/download/content-disposition-0.5.3.tgz"
+    },
+    "scripts": {
+      "lint": "eslint --plugin markdown --ext js,md .",
+      "test": "mocha --reporter spec --bail --check-leaks test/",
+      "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot --check-leaks test/",
+      "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/"
+    },
+    "_id": "content-disposition@0.5.3"
+  },
+  "error-inject@^1.0.0": {
+    "name": "error-inject",
+    "version": "1.0.0",
+    "publish_time": 1397020605534,
+    "license": "MIT",
+    "dist": {
+      "shasum": "e2b3d91b54aed672f309d950d154850fa11d4f37",
+      "size": 704,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/error-inject/download/error-inject-1.0.0.tgz"
+    },
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "_id": "error-inject@1.0.0"
+  },
+  "cookies@~0.7.1": {
+    "name": "cookies",
+    "version": "0.7.3",
+    "dependencies": {
+      "depd": "~1.1.2",
+      "keygrip": "~1.0.3"
+    },
+    "devDependencies": {
+      "eslint": "3.19.0",
+      "express": "4.16.4",
+      "istanbul": "0.4.5",
+      "mocha": "5.2.0",
+      "restify": "6.4.0",
+      "supertest": "3.3.0"
+    },
+    "publish_time": 1541381579665,
+    "license": "MIT",
+    "engines": {
+      "node": ">= 0.8"
+    },
+    "dist": {
+      "shasum": "7912ce21fbf2e8c2da70cf1c3f351aecf59dadfa",
+      "size": 7133,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/cookies/download/cookies-0.7.3.tgz"
+    },
+    "scripts": {
+      "lint": "eslint .",
+      "test": "mocha --require test/support/env --reporter spec --bail --check-leaks test/",
+      "test-ci": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --require test/support/env --reporter spec --check-leaks test/",
+      "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --require test/support/env --reporter dot --check-leaks test/"
+    },
+    "_id": "cookies@0.7.3"
+  },
+  "depd@^1.1.2": {
+    "name": "depd",
+    "version": "1.1.2",
+    "devDependencies": {
+      "benchmark": "2.1.4",
+      "beautify-benchmark": "0.2.4",
+      "eslint": "3.19.0",
+      "eslint-config-standard": "7.1.0",
+      "eslint-plugin-markdown": "1.0.0-beta.7",
+      "eslint-plugin-promise": "3.6.0",
+      "eslint-plugin-standard": "3.0.1",
+      "istanbul": "0.4.5",
+      "mocha": "~1.21.5"
+    },
+    "publish_time": 1515736023858,
+    "license": "MIT",
+    "engines": {
+      "node": ">= 0.6"
+    },
+    "dist": {
+      "shasum": "9bcd52e14c097763e749b274c4346ed2e560b5a9",
+      "size": 9026,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/depd/download/depd-1.1.2.tgz"
+    },
+    "scripts": {
+      "bench": "node benchmark/index.js",
+      "lint": "eslint --plugin markdown --ext js,md .",
+      "test": "mocha --reporter spec --bail test/",
+      "test-ci": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --no-exit test/",
+      "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot test/"
+    },
+    "_id": "depd@1.1.2"
+  },
+  "debug@~3.1.0": {
+    "name": "debug",
+    "version": "3.1.0",
+    "dependencies": {
+      "ms": "2.0.0"
+    },
+    "devDependencies": {
+      "browserify": "14.4.0",
+      "chai": "^3.5.0",
+      "concurrently": "^3.1.0",
+      "coveralls": "^2.11.15",
+      "eslint": "^3.12.1",
+      "istanbul": "^0.4.5",
+      "karma": "^1.3.0",
+      "karma-chai": "^0.1.0",
+      "karma-mocha": "^1.3.0",
+      "karma-phantomjs-launcher": "^1.0.2",
+      "karma-sinon": "^1.0.5",
+      "mocha": "^3.2.0",
+      "mocha-lcov-reporter": "^1.2.0",
+      "rimraf": "^2.5.4",
+      "sinon": "^1.17.6",
+      "sinon-chai": "^2.8.0"
+    },
+    "publish_time": 1506453231492,
+    "license": "MIT",
+    "dist": {
+      "shasum": "5bb5a0672628b64149566ba16819e61518c67261",
+      "size": 17183,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/debug/download/debug-3.1.0.tgz"
+    },
+    "_id": "debug@3.1.0"
+  },
+  "ylru@^1.2.0": {
+    "name": "ylru",
+    "version": "1.2.1",
+    "dependencies": {},
+    "devDependencies": {
+      "beautify-benchmark": "^0.2.4",
+      "benchmark": "^2.1.3",
+      "egg-bin": "^1.10.0",
+      "eslint": "^3.12.2",
+      "eslint-config-egg": "^3.2.0",
+      "hashlru": "^1.0.3",
+      "ko-sleep": "^1.0.2",
+      "lru-cache": "^4.0.2"
+    },
+    "publish_time": 1531301612621,
+    "license": "MIT",
+    "engines": {
+      "node": ">= 4.0.0"
+    },
+    "dist": {
+      "shasum": "f576b63341547989c1de7ba288760923b27fe84f",
+      "size": 2997,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/ylru/download/ylru-1.2.1.tgz"
+    },
+    "scripts": {
+      "lint": "eslint test *.js",
+      "test": "npm run lint -- --fix && npm run test-local",
+      "test-local": "egg-bin test",
+      "cov": "egg-bin cov",
+      "ci": "npm run lint && npm run cov",
+      "autod": "autod"
+    },
+    "_id": "ylru@1.2.1"
+  },
+  "mime-types@^2.1.18": {
+    "name": "mime-types",
+    "version": "2.1.21",
+    "dependencies": {
+      "mime-db": "~1.37.0"
+    },
+    "devDependencies": {
+      "eslint": "5.7.0",
+      "eslint-config-standard": "12.0.0",
+      "eslint-plugin-import": "2.14.0",
+      "eslint-plugin-node": "7.0.1",
+      "eslint-plugin-promise": "4.0.1",
+      "eslint-plugin-standard": "4.0.0",
+      "mocha": "5.2.0",
+      "nyc": "13.1.0"
+    },
+    "publish_time": 1540006627996,
+    "license": "MIT",
+    "engines": {
+      "node": ">= 0.6"
+    },
+    "dist": {
+      "shasum": "28995aa1ecb770742fe6ae7e58f9181c744b3f96",
+      "size": 4962,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/mime-types/download/mime-types-2.1.21.tgz"
+    },
+    "scripts": {
+      "lint": "eslint .",
+      "test": "mocha --reporter spec test/test.js",
+      "test-cov": "nyc --reporter=html --reporter=text npm test",
+      "test-travis": "nyc --reporter=text npm test"
+    },
+    "_id": "mime-types@2.1.21"
+  },
+  "mime-types@~2.1.18": {
+    "name": "mime-types",
+    "version": "2.1.21",
+    "dependencies": {
+      "mime-db": "~1.37.0"
+    },
+    "devDependencies": {
+      "eslint": "5.7.0",
+      "eslint-config-standard": "12.0.0",
+      "eslint-plugin-import": "2.14.0",
+      "eslint-plugin-node": "7.0.1",
+      "eslint-plugin-promise": "4.0.1",
+      "eslint-plugin-standard": "4.0.0",
+      "mocha": "5.2.0",
+      "nyc": "13.1.0"
+    },
+    "publish_time": 1540006627996,
+    "license": "MIT",
+    "engines": {
+      "node": ">= 0.6"
+    },
+    "dist": {
+      "shasum": "28995aa1ecb770742fe6ae7e58f9181c744b3f96",
+      "size": 4962,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/mime-types/download/mime-types-2.1.21.tgz"
+    },
+    "scripts": {
+      "lint": "eslint .",
+      "test": "mocha --reporter spec test/test.js",
+      "test-cov": "nyc --reporter=html --reporter=text npm test",
+      "test-travis": "nyc --reporter=text npm test"
+    },
+    "_id": "mime-types@2.1.21"
+  },
+  "depd@~1.1.2": {
+    "name": "depd",
+    "version": "1.1.2",
+    "devDependencies": {
+      "benchmark": "2.1.4",
+      "beautify-benchmark": "0.2.4",
+      "eslint": "3.19.0",
+      "eslint-config-standard": "7.1.0",
+      "eslint-plugin-markdown": "1.0.0-beta.7",
+      "eslint-plugin-promise": "3.6.0",
+      "eslint-plugin-standard": "3.0.1",
+      "istanbul": "0.4.5",
+      "mocha": "~1.21.5"
+    },
+    "publish_time": 1515736023858,
+    "license": "MIT",
+    "engines": {
+      "node": ">= 0.6"
+    },
+    "dist": {
+      "shasum": "9bcd52e14c097763e749b274c4346ed2e560b5a9",
+      "size": 9026,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/depd/download/depd-1.1.2.tgz"
+    },
+    "scripts": {
+      "bench": "node benchmark/index.js",
+      "lint": "eslint --plugin markdown --ext js,md .",
+      "test": "mocha --reporter spec --bail test/",
+      "test-ci": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --no-exit test/",
+      "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot test/"
+    },
+    "_id": "depd@1.1.2"
+  },
+  "negotiator@0.6.1": {
+    "name": "negotiator",
+    "version": "0.6.1",
+    "devDependencies": {
+      "istanbul": "0.4.3",
+      "mocha": "~1.21.5"
+    },
+    "publish_time": 1462250849814,
+    "license": "MIT",
+    "engines": {
+      "node": ">= 0.6"
+    },
+    "dist": {
+      "shasum": "2b327184e8992101177b28563fb5e7102acd0ca9",
+      "size": 6625,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/negotiator/download/negotiator-0.6.1.tgz"
+    },
+    "scripts": {
+      "test": "mocha --reporter spec --check-leaks --bail test/",
+      "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot --check-leaks test/",
+      "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/"
+    },
+    "_id": "negotiator@0.6.1"
+  },
+  "safe-buffer@5.1.2": {
+    "name": "safe-buffer",
+    "version": "5.1.2",
+    "devDependencies": {
+      "standard": "*",
+      "tape": "^4.0.0"
+    },
+    "publish_time": 1524687024706,
+    "license": "MIT",
+    "dist": {
+      "shasum": "991ec69d296e0313747d59bdfd2b745c35f8828d",
+      "size": 9822,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/safe-buffer/download/safe-buffer-5.1.2.tgz"
+    },
+    "scripts": {
+      "test": "standard && tape test/*.js"
+    },
+    "_id": "safe-buffer@5.1.2"
+  },
+  "keygrip@~1.0.3": {
+    "name": "keygrip",
+    "version": "1.0.3",
+    "devDependencies": {
+      "istanbul": "0.4.5",
+      "mocha": "1.21.5"
+    },
+    "publish_time": 1536810112966,
+    "license": "MIT",
+    "engines": {
+      "node": ">= 0.6"
+    },
+    "dist": {
+      "shasum": "399d709f0aed2bab0a059e0cdd3a5023a053e1dc",
+      "size": 3566,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/keygrip/download/keygrip-1.0.3.tgz"
+    },
+    "scripts": {
+      "test": "mocha --reporter spec test/",
+      "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot test/",
+      "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter dot test/"
+    },
+    "_id": "keygrip@1.0.3"
+  },
+  "escape-html@^1.0.3": {
+    "name": "escape-html",
+    "version": "1.0.3",
+    "devDependencies": {
+      "benchmark": "1.0.0",
+      "beautify-benchmark": "0.2.4"
+    },
+    "publish_time": 1441082842713,
+    "license": "MIT",
+    "dist": {
+      "shasum": "0258eae4d3d0c0974de1c169188ef0051d1d1988",
+      "size": 1917,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/escape-html/download/escape-html-1.0.3.tgz"
+    },
+    "scripts": {
+      "bench": "node benchmark/index.js"
+    },
+    "_id": "escape-html@1.0.3"
+  },
+  "fresh@~0.5.2": {
+    "name": "fresh",
+    "version": "0.5.2",
+    "devDependencies": {
+      "beautify-benchmark": "0.2.4",
+      "benchmark": "2.1.4",
+      "eslint": "3.19.0",
+      "eslint-config-standard": "10.2.1",
+      "eslint-plugin-import": "2.7.0",
+      "eslint-plugin-markdown": "1.0.0-beta.6",
+      "eslint-plugin-node": "5.1.1",
+      "eslint-plugin-promise": "3.5.0",
+      "eslint-plugin-standard": "3.0.1",
+      "istanbul": "0.4.5",
+      "mocha": "1.21.5"
+    },
+    "publish_time": 1505365392205,
+    "license": "MIT",
+    "engines": {
+      "node": ">= 0.6"
+    },
+    "dist": {
+      "shasum": "3d8cadd90d976569fa835ab1f8e4b23a105605a7",
+      "size": 4229,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/fresh/download/fresh-0.5.2.tgz"
+    },
+    "scripts": {
+      "bench": "node benchmark/index.js",
+      "lint": "eslint --plugin markdown --ext js,md .",
+      "test": "mocha --reporter spec --bail --check-leaks test/",
+      "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot --check-leaks test/",
+      "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/"
+    },
+    "_id": "fresh@0.5.2"
+  },
+  "http-errors@^1.6.3": {
+    "name": "http-errors",
+    "version": "1.7.1",
+    "dependencies": {
+      "depd": "~1.1.2",
+      "inherits": "2.0.3",
+      "setprototypeof": "1.1.0",
+      "statuses": ">= 1.5.0 < 2",
+      "toidentifier": "1.0.0"
+    },
+    "devDependencies": {
+      "eslint": "5.5.0",
+      "eslint-config-standard": "12.0.0",
+      "eslint-plugin-import": "2.14.0",
+      "eslint-plugin-markdown": "1.0.0-beta.6",
+      "eslint-plugin-node": "7.0.1",
+      "eslint-plugin-promise": "4.0.1",
+      "eslint-plugin-standard": "4.0.0",
+      "istanbul": "0.4.5",
+      "mocha": "1.21.5"
+    },
+    "publish_time": 1536444992820,
+    "license": "MIT",
+    "engines": {
+      "node": ">= 0.6"
+    },
+    "dist": {
+      "shasum": "6a4ffe5d35188e1c39f872534690585852e1f027",
+      "size": 5899,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/http-errors/download/http-errors-1.7.1.tgz"
+    },
+    "scripts": {
+      "lint": "eslint --plugin markdown --ext js,md .",
+      "test": "mocha --reporter spec --bail",
+      "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot",
+      "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter dot"
+    },
+    "_id": "http-errors@1.7.1"
+  },
+  "http-assert@^1.3.0": {
+    "name": "http-assert",
+    "version": "1.4.0",
+    "dependencies": {
+      "deep-equal": "~1.0.1",
+      "http-errors": "~1.7.1"
+    },
+    "devDependencies": {
+      "eslint": "5.5.0",
+      "eslint-config-standard": "12.0.0",
+      "eslint-plugin-import": "2.14.0",
+      "eslint-plugin-markdown": "1.0.0-beta.6",
+      "eslint-plugin-node": "7.0.1",
+      "eslint-plugin-promise": "4.0.0",
+      "eslint-plugin-standard": "4.0.0",
+      "istanbul": "0.4.5",
+      "mocha": "2.5.3"
+    },
+    "publish_time": 1536503792497,
+    "license": "MIT",
+    "engines": {
+      "node": ">= 0.8"
+    },
+    "dist": {
+      "shasum": "0e550b4fca6adf121bbeed83248c17e62f593a9a",
+      "size": 3085,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/http-assert/download/http-assert-1.4.0.tgz"
+    },
+    "scripts": {
+      "lint": "eslint --plugin markdown --ext js,md .",
+      "test": "mocha --reporter spec --bail --check-leaks test/",
+      "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot --check-leaks test/",
+      "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/"
+    },
+    "_id": "http-assert@1.4.0"
+  },
+  "debug@2.6.8": {
+    "name": "debug",
+    "version": "2.6.8",
+    "dependencies": {
+      "ms": "2.0.0"
+    },
+    "devDependencies": {
+      "browserify": "9.0.3",
+      "chai": "^3.5.0",
+      "concurrently": "^3.1.0",
+      "coveralls": "^2.11.15",
+      "eslint": "^3.12.1",
+      "istanbul": "^0.4.5",
+      "karma": "^1.3.0",
+      "karma-chai": "^0.1.0",
+      "karma-mocha": "^1.3.0",
+      "karma-phantomjs-launcher": "^1.0.2",
+      "karma-sinon": "^1.0.5",
+      "mocha": "^3.2.0",
+      "mocha-lcov-reporter": "^1.2.0",
+      "rimraf": "^2.5.4",
+      "sinon": "^1.17.6",
+      "sinon-chai": "^2.8.0"
+    },
+    "publish_time": 1495138021168,
+    "license": "MIT",
+    "dist": {
+      "shasum": "e731531ca2ede27d188222427da17821d68ff4fc",
+      "size": 16335,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/debug/download/debug-2.6.8.tgz"
+    },
+    "_id": "debug@2.6.8"
+  },
+  "ms@2.0.0": {
+    "name": "ms",
+    "version": "2.0.0",
+    "devDependencies": {
+      "eslint": "3.19.0",
+      "expect.js": "0.3.1",
+      "husky": "0.13.3",
+      "lint-staged": "3.4.1",
+      "mocha": "3.4.1"
+    },
+    "publish_time": 1494937566610,
+    "license": "MIT",
+    "dist": {
+      "shasum": "5608aeadfc00be6c2901df5f9861788de0d597c8",
+      "size": 2874,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/ms/download/ms-2.0.0.tgz"
+    },
+    "scripts": {
+      "precommit": "lint-staged",
+      "lint": "eslint lib/* bin/*",
+      "test": "mocha tests.js"
+    },
+    "_id": "ms@2.0.0"
+  },
+  "is-generator-function@^1.0.7": {
+    "name": "is-generator-function",
+    "version": "1.0.7",
+    "dependencies": {},
+    "devDependencies": {
+      "@ljharb/eslint-config": "^12.2.1",
+      "core-js": "^2.5.3",
+      "covert": "^1.1.0",
+      "eslint": "^4.14.0",
+      "jscs": "^3.0.7",
+      "make-generator-function": "^1.1.0",
+      "nsp": "^3.1.0",
+      "replace": "^0.3.0",
+      "semver": "^5.4.1",
+      "tape": "^4.8.0",
+      "uglify-register": "^1.0.1"
+    },
+    "publish_time": 1514499632180,
+    "license": "MIT",
+    "engines": {
+      "node": ">= 0.4"
+    },
+    "dist": {
+      "shasum": "d2132e529bb0000a7f80794d4bdf5cd5e5813522",
+      "size": 7947,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/is-generator-function/download/is-generator-function-1.0.7.tgz"
+    },
+    "scripts": {
+      "pretest": "npm run lint",
+      "test": "npm run tests-only",
+      "tests-only": "node --es-staging --harmony test",
+      "posttests-only": "npm run test:corejs && npm run test:uglified",
+      "test:corejs": "node test/corejs",
+      "test:uglified": "node test/uglified",
+      "posttest": "npm run security",
+      "coverage": "covert test",
+      "lint": "npm run jscs && npm run eslint",
+      "jscs": "jscs *.js */*.js",
+      "eslint": "eslint *.js */*.js",
+      "security": "nsp check"
+    },
+    "_id": "is-generator-function@1.0.7"
+  },
+  "json3@3.3.2": {
+    "name": "json3",
+    "version": "3.3.2",
+    "publish_time": 1403472442857,
+    "dist": {
+      "shasum": "3c0434743df93e2f5c42aee7b19bcb483575f4e1",
+      "size": 19398,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/json3/download/json3-3.3.2.tgz"
+    },
+    "scripts": {
+      "test": "node test/test_*.js"
+    },
+    "_id": "json3@3.3.2"
+  },
+  "commander@2.9.0": {
+    "name": "commander",
+    "version": "2.9.0",
+    "dependencies": {
+      "graceful-readlink": ">= 1.0.0"
+    },
+    "devDependencies": {
+      "should": ">= 0.0.1",
+      "sinon": ">=1.17.1"
+    },
+    "publish_time": 1444749985933,
+    "license": "MIT",
+    "engines": {
+      "node": ">= 0.6.x"
+    },
+    "dist": {
+      "shasum": "9c99094176e12240cb22d6c5146098400fe0f7d4",
+      "size": 13425,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/commander/download/commander-2.9.0.tgz"
+    },
+    "scripts": {
+      "test": "make test"
+    },
+    "_id": "commander@2.9.0"
+  },
+  "he@1.1.1": {
+    "name": "he",
+    "version": "1.1.1",
+    "devDependencies": {
+      "codecov.io": "^0.1.6",
+      "grunt": "^0.4.5",
+      "grunt-shell": "^1.1.1",
+      "grunt-template": "^0.2.3",
+      "istanbul": "^0.4.2",
+      "jsesc": "^1.0.0",
+      "lodash": "^4.8.2",
+      "qunit-extras": "^1.4.5",
+      "qunitjs": "~1.11.0",
+      "regenerate": "^1.2.1",
+      "requirejs": "^2.1.22",
+      "sort-object": "^3.0.2"
+    },
+    "publish_time": 1485179743985,
+    "license": "MIT",
+    "dist": {
+      "shasum": "93410fd21b009735151f8868c2f271f3427e23fd",
+      "size": 34193,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/he/download/he-1.1.1.tgz"
+    },
+    "scripts": {
+      "test": "node tests/tests.js",
+      "build": "grunt build"
+    },
+    "_id": "he@1.1.1"
+  },
+  "growl@1.9.2": {
+    "name": "growl",
+    "version": "1.9.2",
+    "publish_time": 1456056373693,
+    "license": "MIT",
+    "dist": {
+      "shasum": "0ea7743715db8d8de2c5ede1775e1b45ac85c02f",
+      "size": 4734,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/growl/download/growl-1.9.2.tgz"
+    },
+    "_id": "growl@1.9.2"
+  },
+  "escape-string-regexp@1.0.5": {
+    "name": "escape-string-regexp",
+    "version": "1.0.5",
+    "devDependencies": {
+      "ava": "*",
+      "xo": "*"
+    },
+    "publish_time": 1456059317074,
+    "license": "MIT",
+    "engines": {
+      "node": ">=0.8.0"
+    },
+    "dist": {
+      "shasum": "1b61c0562190a8dff6ae3bb2cf0200ca130b86d4",
+      "size": 1578,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/escape-string-regexp/download/escape-string-regexp-1.0.5.tgz"
+    },
+    "scripts": {
+      "test": "xo && ava"
+    },
+    "_id": "escape-string-regexp@1.0.5"
+  },
+  "browser-stdout@1.3.0": {
+    "name": "browser-stdout",
+    "version": "1.3.0",
+    "publish_time": 1439877177089,
+    "license": "ISC",
+    "dist": {
+      "shasum": "f351d32969d32fa5d7a5567154263d928ae3bd1f",
+      "size": 1533,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/browser-stdout/download/browser-stdout-1.3.0.tgz"
+    },
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "_id": "browser-stdout@1.3.0"
+  },
+  "glob@7.1.1": {
+    "name": "glob",
+    "version": "7.1.1",
+    "dependencies": {
+      "fs.realpath": "^1.0.0",
+      "inflight": "^1.0.4",
+      "inherits": "2",
+      "minimatch": "^3.0.2",
+      "once": "^1.3.0",
+      "path-is-absolute": "^1.0.0"
+    },
+    "devDependencies": {
+      "mkdirp": "0",
+      "rimraf": "^2.2.8",
+      "tap": "^7.1.2",
+      "tick": "0.0.6"
+    },
+    "publish_time": 1475876993305,
+    "license": "ISC",
+    "engines": {
+      "node": "*"
+    },
+    "dist": {
+      "shasum": "805211df04faaf1c63a3600306cdf5ade50b2ec8",
+      "size": 15617,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/glob/download/glob-7.1.1.tgz"
+    },
+    "scripts": {
+      "prepublish": "npm run benchclean",
+      "profclean": "rm -f v8.log profile.txt",
+      "test": "tap test/*.js --cov",
+      "test-regen": "npm run profclean && TEST_REGEN=1 node test/00-setup.js",
+      "bench": "bash benchmark.sh",
+      "prof": "bash prof.sh && cat profile.txt",
+      "benchclean": "node benchclean.js"
+    },
+    "_id": "glob@7.1.1"
+  },
+  "diff@3.2.0": {
+    "name": "diff",
+    "version": "3.2.0",
+    "dependencies": {},
+    "devDependencies": {
+      "async": "^1.4.2",
+      "babel-core": "^6.0.0",
+      "babel-loader": "^6.0.0",
+      "babel-preset-es2015-mod": "^6.3.13",
+      "babel-preset-es3": "^1.0.1",
+      "chai": "^3.3.0",
+      "colors": "^1.1.2",
+      "eslint": "^1.6.0",
+      "grunt": "^0.4.5",
+      "grunt-babel": "^6.0.0",
+      "grunt-clean": "^0.4.0",
+      "grunt-cli": "^0.1.13",
+      "grunt-contrib-clean": "^1.0.0",
+      "grunt-contrib-copy": "^1.0.0",
+      "grunt-contrib-uglify": "^1.0.0",
+      "grunt-contrib-watch": "^1.0.0",
+      "grunt-eslint": "^17.3.1",
+      "grunt-karma": "^0.12.1",
+      "grunt-mocha-istanbul": "^3.0.1",
+      "grunt-mocha-test": "^0.12.7",
+      "grunt-webpack": "^1.0.11",
+      "istanbul": "github:kpdecker/istanbul",
+      "karma": "^0.13.11",
+      "karma-mocha": "^0.2.0",
+      "karma-mocha-reporter": "^2.0.0",
+      "karma-phantomjs-launcher": "^1.0.0",
+      "karma-sauce-launcher": "^0.3.0",
+      "karma-sourcemap-loader": "^0.3.6",
+      "karma-webpack": "^1.7.0",
+      "mocha": "^2.3.3",
+      "phantomjs-prebuilt": "^2.1.5",
+      "semver": "^5.0.3",
+      "webpack": "^1.12.2",
+      "webpack-dev-server": "^1.12.0"
+    },
+    "optionalDependencies": {},
+    "publish_time": 1482770141652,
+    "license": "BSD-3-Clause",
+    "engines": {
+      "node": ">=0.3.1"
+    },
+    "dist": {
+      "shasum": "c9ce393a4b7cbd0b058a725c93df299027868ff9",
+      "size": 103103,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/diff/download/diff-3.2.0.tgz"
+    },
+    "scripts": {
+      "test": "grunt"
+    },
+    "_id": "diff@3.2.0"
+  },
+  "lodash.create@3.1.1": {
+    "name": "lodash.create",
+    "version": "3.1.1",
+    "dependencies": {
+      "lodash._baseassign": "^3.0.0",
+      "lodash._basecreate": "^3.0.0",
+      "lodash._isiterateecall": "^3.0.0"
+    },
+    "publish_time": 1435677466287,
+    "license": "MIT",
+    "dist": {
+      "shasum": "d7f2849f0dbda7e04682bb8cd72ab022461debe7",
+      "size": 2261,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/lodash.create/download/lodash.create-3.1.1.tgz"
+    },
+    "scripts": {
+      "test": "echo \"See https://travis-ci.org/lodash/lodash-cli for testing details.\""
+    },
+    "_id": "lodash.create@3.1.1"
+  },
+  "mime-db@~1.37.0": {
+    "name": "mime-db",
+    "version": "1.37.0",
+    "devDependencies": {
+      "bluebird": "3.5.2",
+      "co": "4.6.0",
+      "cogent": "1.0.1",
+      "csv-parse": "2.5.0",
+      "eslint": "5.7.0",
+      "eslint-config-standard": "12.0.0",
+      "eslint-plugin-import": "2.14.0",
+      "eslint-plugin-node": "7.0.1",
+      "eslint-plugin-promise": "4.0.1",
+      "eslint-plugin-standard": "4.0.0",
+      "gnode": "0.1.2",
+      "mocha": "5.2.0",
+      "nyc": "13.1.0",
+      "raw-body": "2.3.3",
+      "stream-to-array": "2.3.0"
+    },
+    "publish_time": 1539999574333,
+    "license": "MIT",
+    "engines": {
+      "node": ">= 0.6"
+    },
+    "dist": {
+      "shasum": "0b6a0ce6fdbe9576e25f1f2d2fde8830dc0ad0d8",
+      "size": 25548,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/mime-db/download/mime-db-1.37.0.tgz"
+    },
+    "scripts": {
+      "build": "node scripts/build",
+      "fetch": "node scripts/fetch-apache && gnode scripts/fetch-iana && node scripts/fetch-nginx",
+      "lint": "eslint .",
+      "test": "mocha --reporter spec --bail --check-leaks test/",
+      "test-cov": "nyc --reporter=html --reporter=text npm test",
+      "test-travis": "nyc --reporter=text npm test",
+      "update": "npm run fetch && npm run build"
+    },
+    "_id": "mime-db@1.37.0"
+  },
+  "http-errors@~1.7.1": {
+    "name": "http-errors",
+    "version": "1.7.1",
+    "dependencies": {
+      "depd": "~1.1.2",
+      "inherits": "2.0.3",
+      "setprototypeof": "1.1.0",
+      "statuses": ">= 1.5.0 < 2",
+      "toidentifier": "1.0.0"
+    },
+    "devDependencies": {
+      "eslint": "5.5.0",
+      "eslint-config-standard": "12.0.0",
+      "eslint-plugin-import": "2.14.0",
+      "eslint-plugin-markdown": "1.0.0-beta.6",
+      "eslint-plugin-node": "7.0.1",
+      "eslint-plugin-promise": "4.0.1",
+      "eslint-plugin-standard": "4.0.0",
+      "istanbul": "0.4.5",
+      "mocha": "1.21.5"
+    },
+    "publish_time": 1536444992820,
+    "license": "MIT",
+    "engines": {
+      "node": ">= 0.6"
+    },
+    "dist": {
+      "shasum": "6a4ffe5d35188e1c39f872534690585852e1f027",
+      "size": 5899,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/http-errors/download/http-errors-1.7.1.tgz"
+    },
+    "scripts": {
+      "lint": "eslint --plugin markdown --ext js,md .",
+      "test": "mocha --reporter spec --bail",
+      "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot",
+      "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter dot"
+    },
+    "_id": "http-errors@1.7.1"
+  },
+  "statuses@>= 1.5.0 < 2": {
+    "name": "statuses",
+    "version": "1.5.0",
+    "devDependencies": {
+      "csv-parse": "1.2.4",
+      "eslint": "4.19.1",
+      "eslint-config-standard": "11.0.0",
+      "eslint-plugin-import": "2.9.0",
+      "eslint-plugin-markdown": "1.0.0-beta.6",
+      "eslint-plugin-node": "6.0.1",
+      "eslint-plugin-promise": "3.7.0",
+      "eslint-plugin-standard": "3.0.1",
+      "istanbul": "0.4.5",
+      "mocha": "1.21.5",
+      "raw-body": "2.3.2",
+      "stream-to-array": "2.3.0"
+    },
+    "publish_time": 1522201397941,
+    "license": "MIT",
+    "engines": {
+      "node": ">= 0.6"
+    },
+    "dist": {
+      "shasum": "161c7dac177659fd9811f43771fa99381478628c",
+      "size": 5482,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/statuses/download/statuses-1.5.0.tgz"
+    },
+    "scripts": {
+      "build": "node scripts/build.js",
+      "fetch": "node scripts/fetch-apache.js && node scripts/fetch-iana.js && node scripts/fetch-nginx.js && node scripts/fetch-node.js",
+      "lint": "eslint --plugin markdown --ext js,md .",
+      "test": "mocha --reporter spec --check-leaks --bail test/",
+      "test-ci": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/",
+      "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot --check-leaks test/",
+      "update": "npm run fetch && npm run build"
+    },
+    "_id": "statuses@1.5.0"
+  },
+  "inherits@2.0.3": {
+    "name": "inherits",
+    "version": "2.0.3",
+    "devDependencies": {
+      "tap": "^7.1.0"
+    },
+    "publish_time": 1473295778520,
+    "license": "ISC",
+    "dist": {
+      "shasum": "633c2c83e3da42a502f52466022480f4208261de",
+      "size": 2028,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/inherits/download/inherits-2.0.3.tgz"
+    },
+    "scripts": {
+      "test": "node test"
+    },
+    "_id": "inherits@2.0.3"
+  },
+  "koa-compose@^4.1.0": {
+    "name": "koa-compose",
+    "version": "4.1.0",
+    "dependencies": {},
+    "devDependencies": {
+      "codecov": "^3.0.0",
+      "jest": "^21.0.0",
+      "matcha": "^0.7.0",
+      "standard": "^10.0.3"
+    },
+    "publish_time": 1527002663190,
+    "license": "MIT",
+    "dist": {
+      "shasum": "507306b9371901db41121c812e923d0d67d3e877",
+      "size": 1816,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/koa-compose/download/koa-compose-4.1.0.tgz"
+    },
+    "scripts": {
+      "bench": "matcha bench/bench.js",
+      "lint": "standard --fix .",
+      "test": "jest --forceExit --coverage"
+    },
+    "_id": "koa-compose@4.1.0"
+  },
+  "toidentifier@1.0.0": {
+    "name": "toidentifier",
+    "version": "1.0.0",
+    "devDependencies": {
+      "eslint": "4.19.1",
+      "eslint-config-standard": "11.0.0",
+      "eslint-plugin-import": "2.11.0",
+      "eslint-plugin-markdown": "1.0.0-beta.6",
+      "eslint-plugin-node": "6.0.1",
+      "eslint-plugin-promise": "3.7.0",
+      "eslint-plugin-standard": "3.1.0",
+      "mocha": "1.21.5",
+      "nyc": "11.8.0"
+    },
+    "publish_time": 1531151827703,
+    "license": "MIT",
+    "engines": {
+      "node": ">=0.6"
+    },
+    "dist": {
+      "shasum": "7e1be3470f1e77948bc43d94a3c8f4d7752ba553",
+      "size": 2210,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/toidentifier/download/toidentifier-1.0.0.tgz"
+    },
+    "scripts": {
+      "lint": "eslint --plugin markdown --ext js,md .",
+      "test": "mocha --reporter spec --bail --check-leaks test/",
+      "test-cov": "nyc --reporter=html --reporter=text npm test"
+    },
+    "_id": "toidentifier@1.0.0"
+  },
+  "setprototypeof@1.1.0": {
+    "name": "setprototypeof",
+    "version": "1.1.0",
+    "publish_time": 1505346624119,
+    "license": "ISC",
+    "dist": {
+      "shasum": "d0bd85536887b6fe7c0d818cb962d9d91c54e656",
+      "size": 1428,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/setprototypeof/download/setprototypeof-1.1.0.tgz"
+    },
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "_id": "setprototypeof@1.1.0"
+  },
+  "koa-convert@^1.2.0": {
+    "name": "koa-convert",
+    "version": "1.2.0",
+    "dependencies": {
+      "co": "^4.6.0",
+      "koa-compose": "^3.0.0"
+    },
+    "devDependencies": {
+      "koa": "^2.0.0-alpha.2",
+      "koa-v1": "^1.0.0",
+      "mocha": "^2.3.3",
+      "standard": "^5.3.1",
+      "supertest": "^1.1.0"
+    },
+    "publish_time": 1447701265277,
+    "license": "MIT",
+    "engines": {
+      "node": ">= 4"
+    },
+    "dist": {
+      "shasum": "da40875df49de0539098d1700b50820cebcd21d0",
+      "size": 3806,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/koa-convert/download/koa-convert-1.2.0.tgz"
+    },
+    "scripts": {
+      "test": "standard && mocha test.js"
+    },
+    "_id": "koa-convert@1.2.0"
+  },
+  "deep-equal@~1.0.1": {
+    "name": "deep-equal",
+    "version": "1.0.1",
+    "devDependencies": {
+      "tape": "^3.5.0"
+    },
+    "publish_time": 1440882148562,
+    "license": "MIT",
+    "dist": {
+      "shasum": "f5d260292b660e084eff4cdbc9f08ad3247448b5",
+      "size": 3797,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/deep-equal/download/deep-equal-1.0.1.tgz"
+    },
+    "scripts": {
+      "test": "tape test/*.js"
+    },
+    "_id": "deep-equal@1.0.1"
+  },
+  "koa-is-json@^1.0.0": {
+    "name": "koa-is-json",
+    "version": "1.0.0",
+    "publish_time": 1398409931902,
+    "license": "MIT",
+    "dist": {
+      "shasum": "273c07edcdcb8df6a2c1ab7d59ee76491451ec14",
+      "size": 1517,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/koa-is-json/download/koa-is-json-1.0.0.tgz"
+    },
+    "_id": "koa-is-json@1.0.0"
+  },
+  "on-finished@^2.3.0": {
+    "name": "on-finished",
+    "version": "2.3.0",
+    "dependencies": {
+      "ee-first": "1.1.1"
+    },
+    "devDependencies": {
+      "istanbul": "0.3.9",
+      "mocha": "2.2.5"
+    },
+    "publish_time": 1432691894758,
+    "license": "MIT",
+    "engines": {
+      "node": ">= 0.8"
+    },
+    "dist": {
+      "shasum": "20f1336481b083cd75337992a16971aa2d906947",
+      "size": 4552,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/on-finished/download/on-finished-2.3.0.tgz"
+    },
+    "scripts": {
+      "test": "mocha --reporter spec --bail --check-leaks test/",
+      "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot --check-leaks test/",
+      "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/"
+    },
+    "_id": "on-finished@2.3.0"
+  },
+  "only@~0.0.2": {
+    "name": "only",
+    "version": "0.0.2",
+    "dependencies": {},
+    "devDependencies": {
+      "mocha": "*",
+      "should": "*"
+    },
+    "publish_time": 1363117614755,
+    "dist": {
+      "shasum": "2afde84d03e50b9a8edc444e30610a70295edfb4",
+      "size": 1580,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/only/download/only-0.0.2.tgz"
+    },
+    "_id": "only@0.0.2"
+  },
+  "lodash._baseassign@^3.0.0": {
+    "name": "lodash._baseassign",
+    "version": "3.2.0",
+    "dependencies": {
+      "lodash._basecopy": "^3.0.0",
+      "lodash.keys": "^3.0.0"
+    },
+    "publish_time": 1432064624599,
+    "license": "MIT",
+    "dist": {
+      "shasum": "8c38a099500f215ad09e59f1722fd0c52bfe0a4e",
+      "size": 1931,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/lodash._baseassign/download/lodash._baseassign-3.2.0.tgz"
+    },
+    "scripts": {
+      "test": "echo \"See https://travis-ci.org/lodash/lodash-cli for testing details.\""
+    },
+    "_id": "lodash._baseassign@3.2.0"
+  },
+  "lodash._basecreate@^3.0.0": {
+    "name": "lodash._basecreate",
+    "version": "3.0.3",
+    "publish_time": 1435677299295,
+    "license": "MIT",
+    "dist": {
+      "shasum": "1bc661614daa7fc311b7d03bf16806a0213cf821",
+      "size": 2248,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/lodash._basecreate/download/lodash._basecreate-3.0.3.tgz"
+    },
+    "scripts": {
+      "test": "echo \"See https://travis-ci.org/lodash/lodash-cli for testing details.\""
+    },
+    "_id": "lodash._basecreate@3.0.3"
+  },
+  "lodash._isiterateecall@^3.0.0": {
+    "name": "lodash._isiterateecall",
+    "version": "3.0.9",
+    "publish_time": 1432605305063,
+    "license": "MIT",
+    "dist": {
+      "shasum": "5203ad7ba425fae842460e696db9cf3e6aac057c",
+      "size": 2924,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/lodash._isiterateecall/download/lodash._isiterateecall-3.0.9.tgz"
+    },
+    "scripts": {
+      "test": "echo \"See https://travis-ci.org/lodash/lodash-cli for testing details.\""
+    },
+    "_id": "lodash._isiterateecall@3.0.9"
+  },
+  "inherits@2": {
+    "name": "inherits",
+    "version": "2.0.3",
+    "devDependencies": {
+      "tap": "^7.1.0"
+    },
+    "publish_time": 1473295778520,
+    "license": "ISC",
+    "dist": {
+      "shasum": "633c2c83e3da42a502f52466022480f4208261de",
+      "size": 2028,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/inherits/download/inherits-2.0.3.tgz"
+    },
+    "scripts": {
+      "test": "node test"
+    },
+    "_id": "inherits@2.0.3"
+  },
+  "statuses@^1.5.0": {
+    "name": "statuses",
+    "version": "1.5.0",
+    "devDependencies": {
+      "csv-parse": "1.2.4",
+      "eslint": "4.19.1",
+      "eslint-config-standard": "11.0.0",
+      "eslint-plugin-import": "2.9.0",
+      "eslint-plugin-markdown": "1.0.0-beta.6",
+      "eslint-plugin-node": "6.0.1",
+      "eslint-plugin-promise": "3.7.0",
+      "eslint-plugin-standard": "3.0.1",
+      "istanbul": "0.4.5",
+      "mocha": "1.21.5",
+      "raw-body": "2.3.2",
+      "stream-to-array": "2.3.0"
+    },
+    "publish_time": 1522201397941,
+    "license": "MIT",
+    "engines": {
+      "node": ">= 0.6"
+    },
+    "dist": {
+      "shasum": "161c7dac177659fd9811f43771fa99381478628c",
+      "size": 5482,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/statuses/download/statuses-1.5.0.tgz"
+    },
+    "scripts": {
+      "build": "node scripts/build.js",
+      "fetch": "node scripts/fetch-apache.js && node scripts/fetch-iana.js && node scripts/fetch-nginx.js && node scripts/fetch-node.js",
+      "lint": "eslint --plugin markdown --ext js,md .",
+      "test": "mocha --reporter spec --check-leaks --bail test/",
+      "test-ci": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/",
+      "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot --check-leaks test/",
+      "update": "npm run fetch && npm run build"
+    },
+    "_id": "statuses@1.5.0"
+  },
+  "parseurl@^1.3.2": {
+    "name": "parseurl",
+    "version": "1.3.2",
+    "devDependencies": {
+      "beautify-benchmark": "0.2.4",
+      "benchmark": "2.1.4",
+      "eslint": "3.19.0",
+      "eslint-config-standard": "10.2.1",
+      "eslint-plugin-import": "2.7.0",
+      "eslint-plugin-node": "5.1.1",
+      "eslint-plugin-promise": "3.5.0",
+      "eslint-plugin-standard": "3.0.1",
+      "fast-url-parser": "1.1.3",
+      "istanbul": "0.4.5",
+      "mocha": "2.5.3"
+    },
+    "publish_time": 1504992080714,
+    "license": "MIT",
+    "engines": {
+      "node": ">= 0.8"
+    },
+    "dist": {
+      "shasum": "fc289d4ed8993119460c156253262cdc8de65bf3",
+      "size": 3789,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/parseurl/download/parseurl-1.3.2.tgz"
+    },
+    "scripts": {
+      "bench": "node benchmark/index.js",
+      "lint": "eslint .",
+      "test": "mocha --check-leaks --bail --reporter spec test/",
+      "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --check-leaks --reporter dot test/",
+      "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --check-leaks --reporter spec test/"
+    },
+    "_id": "parseurl@1.3.2"
+  },
+  "graceful-readlink@>= 1.0.0": {
+    "name": "graceful-readlink",
+    "version": "1.0.1",
+    "publish_time": 1423714736538,
+    "license": "MIT",
+    "dist": {
+      "shasum": "4cafad76bc62f02fa039b2f94e9a3dd3a391a725",
+      "size": 1531,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/graceful-readlink/download/graceful-readlink-1.0.1.tgz"
+    },
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "_id": "graceful-readlink@1.0.1"
+  },
+  "mkdirp@0.5.1": {
+    "name": "mkdirp",
+    "version": "0.5.1",
+    "dependencies": {
+      "minimist": "0.0.8"
+    },
+    "devDependencies": {
+      "tap": "1",
+      "mock-fs": "2 >=2.7.0"
+    },
+    "publish_time": 1431570421553,
+    "license": "MIT",
+    "dist": {
+      "shasum": "30057438eac6cf7f8c4767f38648d6697d75c903",
+      "size": 4991,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/mkdirp/download/mkdirp-0.5.1.tgz"
+    },
+    "scripts": {
+      "test": "tap test/*.js"
+    },
+    "_id": "mkdirp@0.5.1"
+  },
+  "supports-color@3.1.2": {
+    "name": "supports-color",
+    "version": "3.1.2",
+    "dependencies": {
+      "has-flag": "^1.0.0"
+    },
+    "devDependencies": {
+      "mocha": "*",
+      "require-uncached": "^1.0.2",
+      "xo": "*"
+    },
+    "publish_time": 1444735254814,
+    "license": "MIT",
+    "engines": {
+      "node": ">=0.8.0"
+    },
+    "dist": {
+      "shasum": "72a262894d9d408b956ca05ff37b2ed8a6e2a2d5",
+      "size": 2394,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/supports-color/download/supports-color-3.1.2.tgz"
+    },
+    "scripts": {
+      "test": "xo && mocha",
+      "travis": "mocha"
+    },
+    "_id": "supports-color@3.1.2"
+  },
+  "once@^1.3.0": {
+    "name": "once",
+    "version": "1.4.0",
+    "dependencies": {
+      "wrappy": "1"
+    },
+    "devDependencies": {
+      "tap": "^7.0.1"
+    },
+    "publish_time": 1473196269367,
+    "license": "ISC",
+    "dist": {
+      "shasum": "583b1aa775961d4b113ac17d9c50baef9dd76bd1",
+      "size": 1979,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/once/download/once-1.4.0.tgz"
+    },
+    "scripts": {
+      "test": "tap test/*.js"
+    },
+    "_id": "once@1.4.0"
+  },
+  "path-is-absolute@^1.0.0": {
+    "name": "path-is-absolute",
+    "version": "1.0.1",
+    "devDependencies": {
+      "xo": "^0.16.0"
+    },
+    "publish_time": 1475210523803,
+    "license": "MIT",
+    "engines": {
+      "node": ">=0.10.0"
+    },
+    "dist": {
+      "shasum": "174b9268735534ffbc7ace6bf53a5a9e1b5c5f5f",
+      "size": 1882,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/path-is-absolute/download/path-is-absolute-1.0.1.tgz"
+    },
+    "scripts": {
+      "test": "xo && node test.js"
+    },
+    "_id": "path-is-absolute@1.0.1"
+  },
+  "inflight@^1.0.4": {
+    "name": "inflight",
+    "version": "1.0.6",
+    "dependencies": {
+      "once": "^1.3.0",
+      "wrappy": "1"
+    },
+    "devDependencies": {
+      "tap": "^7.1.2"
+    },
+    "publish_time": 1476330809524,
+    "license": "ISC",
+    "dist": {
+      "shasum": "49bd6331d7d02d0c09bc910a1075ba8165b56df9",
+      "size": 2041,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/inflight/download/inflight-1.0.6.tgz"
+    },
+    "scripts": {
+      "test": "tap test.js --100"
+    },
+    "_id": "inflight@1.0.6"
+  },
+  "minimatch@^3.0.2": {
+    "name": "minimatch",
+    "version": "3.0.4",
+    "dependencies": {
+      "brace-expansion": "^1.1.7"
+    },
+    "devDependencies": {
+      "tap": "^10.3.2"
+    },
+    "publish_time": 1494180670900,
+    "license": "ISC",
+    "engines": {
+      "node": "*"
+    },
+    "dist": {
+      "shasum": "5166e286457f03306064be5497e8dbb0c3d32083",
+      "size": 11423,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/minimatch/download/minimatch-3.0.4.tgz"
+    },
+    "scripts": {
+      "test": "tap test/*.js --cov",
+      "preversion": "npm test",
+      "postversion": "npm publish",
+      "postpublish": "git push origin --all; git push origin --tags"
+    },
+    "_id": "minimatch@3.0.4"
+  },
+  "fs.realpath@^1.0.0": {
+    "name": "fs.realpath",
+    "version": "1.0.0",
+    "dependencies": {},
+    "devDependencies": {},
+    "publish_time": 1466015945978,
+    "license": "ISC",
+    "dist": {
+      "shasum": "1504ad2523158caa40db4a2787cb01411994ea4f",
+      "size": 4434,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/fs.realpath/download/fs.realpath-1.0.0.tgz"
+    },
+    "scripts": {
+      "test": "tap test/*.js --cov"
+    },
+    "_id": "fs.realpath@1.0.0"
+  },
+  "koa-compose@^3.0.0": {
+    "name": "koa-compose",
+    "version": "3.2.1",
+    "dependencies": {
+      "any-promise": "^1.1.0"
+    },
+    "devDependencies": {
+      "co": "^4.6.0",
+      "istanbul": "^0.4.2",
+      "matcha": "^0.7.0",
+      "mocha": "^3.1.2",
+      "should": "^2.0.0",
+      "standard": "^8.4.0"
+    },
+    "publish_time": 1477508181622,
+    "license": "MIT",
+    "dist": {
+      "shasum": "a85ccb40b7d986d8e5a345b3a1ace8eabcf54de7",
+      "size": 1856,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/koa-compose/download/koa-compose-3.2.1.tgz"
+    },
+    "scripts": {
+      "bench": "matcha bench/bench.js",
+      "lint": "standard index.js test/*.js",
+      "test": "mocha --require should --reporter spec",
+      "test-cov": "node ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --require should",
+      "test-travis": "node ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report lcovonly -- --require should"
+    },
+    "_id": "koa-compose@3.2.1"
+  },
+  "type-is@^1.6.16": {
+    "name": "type-is",
+    "version": "1.6.16",
+    "dependencies": {
+      "media-typer": "0.3.0",
+      "mime-types": "~2.1.18"
+    },
+    "devDependencies": {
+      "eslint": "3.19.0",
+      "eslint-config-standard": "10.2.1",
+      "eslint-plugin-import": "2.8.0",
+      "eslint-plugin-markdown": "1.0.0-beta.6",
+      "eslint-plugin-node": "5.2.1",
+      "eslint-plugin-promise": "3.6.0",
+      "eslint-plugin-standard": "3.0.1",
+      "istanbul": "0.4.5",
+      "mocha": "1.21.5"
+    },
+    "publish_time": 1518812523004,
+    "license": "MIT",
+    "engines": {
+      "node": ">= 0.6"
+    },
+    "dist": {
+      "shasum": "f89ce341541c672b25ee7ae3c73dee3b2be50194",
+      "size": 5621,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/type-is/download/type-is-1.6.16.tgz"
+    },
+    "scripts": {
+      "lint": "eslint --plugin markdown --ext js,md .",
+      "test": "mocha --reporter spec --check-leaks --bail test/",
+      "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot --check-leaks test/",
+      "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/"
+    },
+    "_id": "type-is@1.6.16"
+  },
+  "co@^4.6.0": {
+    "name": "co",
+    "version": "4.6.0",
+    "devDependencies": {
+      "browserify": "^10.0.0",
+      "istanbul-harmony": "0",
+      "mocha": "^2.0.0",
+      "mz": "^1.0.2"
+    },
+    "publish_time": 1436481044562,
+    "license": "MIT",
+    "engines": {
+      "iojs": ">= 1.0.0",
+      "node": ">= 0.12.0"
+    },
+    "dist": {
+      "shasum": "6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184",
+      "size": 5880,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/co/download/co-4.6.0.tgz"
+    },
+    "scripts": {
+      "test": "mocha --harmony",
+      "test-cov": "node --harmony node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --reporter dot",
+      "test-travis": "node --harmony node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report lcovonly -- --reporter dot",
+      "prepublish": "npm run browserify",
+      "browserify": "browserify index.js -o ./co-browser.js -s co"
+    },
+    "_id": "co@4.6.0"
+  },
+  "ee-first@1.1.1": {
+    "name": "ee-first",
+    "version": "1.1.1",
+    "devDependencies": {
+      "istanbul": "0.3.9",
+      "mocha": "2.2.5"
+    },
+    "publish_time": 1432581508732,
+    "license": "MIT",
+    "dist": {
+      "shasum": "590c61156b0ae2f4f0255732a158b266bc56b21d",
+      "size": 2733,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/ee-first/download/ee-first-1.1.1.tgz"
+    },
+    "scripts": {
+      "test": "mocha --reporter spec --bail --check-leaks test/",
+      "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot --check-leaks test/",
+      "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/"
+    },
+    "_id": "ee-first@1.1.1"
+  },
+  "vary@^1.1.2": {
+    "name": "vary",
+    "version": "1.1.2",
+    "devDependencies": {
+      "beautify-benchmark": "0.2.4",
+      "benchmark": "2.1.4",
+      "eslint": "3.19.0",
+      "eslint-config-standard": "10.2.1",
+      "eslint-plugin-import": "2.7.0",
+      "eslint-plugin-markdown": "1.0.0-beta.6",
+      "eslint-plugin-node": "5.1.1",
+      "eslint-plugin-promise": "3.5.0",
+      "eslint-plugin-standard": "3.0.1",
+      "istanbul": "0.4.5",
+      "mocha": "2.5.3",
+      "supertest": "1.1.0"
+    },
+    "publish_time": 1506217631325,
+    "license": "MIT",
+    "engines": {
+      "node": ">= 0.8"
+    },
+    "dist": {
+      "shasum": "2299f02c6ded30d4a5961b0b9f74524a18f634fc",
+      "size": 3772,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/vary/download/vary-1.1.2.tgz"
+    },
+    "scripts": {
+      "bench": "node benchmark/index.js",
+      "lint": "eslint --plugin markdown --ext js,md .",
+      "test": "mocha --reporter spec --bail --check-leaks test/",
+      "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot --check-leaks test/",
+      "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/"
+    },
+    "_id": "vary@1.1.2"
+  },
+  "lodash._basecopy@^3.0.0": {
+    "name": "lodash._basecopy",
+    "version": "3.0.1",
+    "publish_time": 1429201587139,
+    "license": "MIT",
+    "dist": {
+      "shasum": "8da0e6a876cf344c0ad8a54882111dd3c5c7ca36",
+      "size": 1914,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/lodash._basecopy/download/lodash._basecopy-3.0.1.tgz"
+    },
+    "scripts": {
+      "test": "echo \"See https://travis-ci.org/lodash/lodash-cli for testing details.\""
+    },
+    "_id": "lodash._basecopy@3.0.1"
+  },
+  "lodash.keys@^3.0.0": {
+    "name": "lodash.keys",
+    "version": "3.1.2",
+    "dependencies": {
+      "lodash._getnative": "^3.0.0",
+      "lodash.isarguments": "^3.0.0",
+      "lodash.isarray": "^3.0.0"
+    },
+    "publish_time": 1435677719178,
+    "license": "MIT",
+    "dist": {
+      "shasum": "4dbc0472b156be50a0b286855d1bd0b0c656098a",
+      "size": 3605,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/lodash.keys/download/lodash.keys-3.1.2.tgz"
+    },
+    "scripts": {
+      "test": "echo \"See https://travis-ci.org/lodash/lodash-cli for testing details.\""
+    },
+    "_id": "lodash.keys@3.1.2"
+  },
+  "has-flag@^1.0.0": {
+    "name": "has-flag",
+    "version": "1.0.0",
+    "devDependencies": {
+      "ava": "0.0.4"
+    },
+    "publish_time": 1436309034339,
+    "license": "MIT",
+    "engines": {
+      "node": ">=0.10.0"
+    },
+    "dist": {
+      "shasum": "9d9e793165ce017a00f00418c43f942a7b1d11fa",
+      "size": 1831,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/has-flag/download/has-flag-1.0.0.tgz"
+    },
+    "scripts": {
+      "test": "node test.js"
+    },
+    "_id": "has-flag@1.0.0"
+  },
+  "wrappy@1": {
+    "name": "wrappy",
+    "version": "1.0.2",
+    "dependencies": {},
+    "devDependencies": {
+      "tap": "^2.3.1"
+    },
+    "publish_time": 1463527852415,
+    "license": "ISC",
+    "dist": {
+      "shasum": "b5243d8f3ec1aa35f1364605bc0d1036e30ab69f",
+      "size": 1676,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/wrappy/download/wrappy-1.0.2.tgz"
+    },
+    "scripts": {
+      "test": "tap --coverage test/*.js"
+    },
+    "_id": "wrappy@1.0.2"
+  },
+  "brace-expansion@^1.1.7": {
+    "name": "brace-expansion",
+    "version": "1.1.11",
+    "dependencies": {
+      "balanced-match": "^1.0.0",
+      "concat-map": "0.0.1"
+    },
+    "devDependencies": {
+      "matcha": "^0.7.0",
+      "tape": "^4.6.0"
+    },
+    "publish_time": 1518248542313,
+    "license": "MIT",
+    "dist": {
+      "shasum": "3c7fcbf529d87226f3d2f52b966ff5271eb441dd",
+      "size": 4239,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/brace-expansion/download/brace-expansion-1.1.11.tgz"
+    },
+    "scripts": {
+      "test": "tape test/*.js",
+      "gentest": "bash test/generate.sh",
+      "bench": "matcha test/perf/bench.js"
+    },
+    "_id": "brace-expansion@1.1.11"
+  },
+  "minimist@0.0.8": {
+    "name": "minimist",
+    "version": "0.0.8",
+    "devDependencies": {
+      "tape": "~1.0.4",
+      "tap": "~0.4.0"
+    },
+    "publish_time": 1392958009997,
+    "license": "MIT",
+    "dist": {
+      "shasum": "857fcabfc3397d2625b8228262e86aa7a011b05d",
+      "size": 5990,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/minimist/download/minimist-0.0.8.tgz"
+    },
+    "scripts": {
+      "test": "tap test/*.js"
+    },
+    "_id": "minimist@0.0.8"
+  },
+  "any-promise@^1.1.0": {
+    "name": "any-promise",
+    "version": "1.3.0",
+    "dependencies": {},
+    "devDependencies": {
+      "ava": "^0.14.0",
+      "bluebird": "^3.0.0",
+      "es6-promise": "^3.0.0",
+      "is-promise": "^2.0.0",
+      "lie": "^3.0.0",
+      "mocha": "^2.0.0",
+      "native-promise-only": "^0.8.0",
+      "phantomjs-prebuilt": "^2.0.0",
+      "pinkie": "^2.0.0",
+      "promise": "^7.0.0",
+      "q": "^1.0.0",
+      "rsvp": "^3.0.0",
+      "vow": "^0.4.0",
+      "when": "^3.0.0",
+      "zuul": "^3.0.0"
+    },
+    "publish_time": 1462709706060,
+    "license": "MIT",
+    "dist": {
+      "shasum": "abc6afeedcea52e809cdc0376aed3ce39635d17f",
+      "size": 7611,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/any-promise/download/any-promise-1.3.0.tgz"
+    },
+    "scripts": {
+      "test": "ava"
+    },
+    "_id": "any-promise@1.3.0"
+  },
+  "lodash.isarray@^3.0.0": {
+    "name": "lodash.isarray",
+    "version": "3.0.4",
+    "publish_time": 1435677663448,
+    "license": "MIT",
+    "dist": {
+      "shasum": "79e4eb88c36a8122af86f844aa9bcd851b5fbb55",
+      "size": 3215,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/lodash.isarray/download/lodash.isarray-3.0.4.tgz"
+    },
+    "scripts": {
+      "test": "echo \"See https://travis-ci.org/lodash/lodash-cli for testing details.\""
+    },
+    "_id": "lodash.isarray@3.0.4"
+  },
+  "lodash._getnative@^3.0.0": {
+    "name": "lodash._getnative",
+    "version": "3.9.1",
+    "publish_time": 1435677391631,
+    "license": "MIT",
+    "dist": {
+      "shasum": "570bc7dede46d61cdcde687d65d3eecbaa3aaff5",
+      "size": 2887,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/lodash._getnative/download/lodash._getnative-3.9.1.tgz"
+    },
+    "scripts": {
+      "test": "echo \"See https://travis-ci.org/lodash/lodash-cli for testing details.\""
+    },
+    "_id": "lodash._getnative@3.9.1"
+  },
+  "media-typer@0.3.0": {
+    "name": "media-typer",
+    "version": "0.3.0",
+    "devDependencies": {
+      "istanbul": "0.3.2",
+      "mocha": "~1.21.4",
+      "should": "~4.0.4"
+    },
+    "publish_time": 1410150744363,
+    "license": "MIT",
+    "engines": {
+      "node": ">= 0.6"
+    },
+    "dist": {
+      "shasum": "8710d7af0aa626f8fffa1ce00168545263255748",
+      "size": 4189,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/media-typer/download/media-typer-0.3.0.tgz"
+    },
+    "scripts": {
+      "test": "mocha --reporter spec --check-leaks --bail test/",
+      "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot --check-leaks test/",
+      "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/"
+    },
+    "_id": "media-typer@0.3.0"
+  },
+  "lodash.isarguments@^3.0.0": {
+    "name": "lodash.isarguments",
+    "version": "3.1.0",
+    "publish_time": 1471110007017,
+    "license": "MIT",
+    "dist": {
+      "shasum": "2f573d85c6a24289ff00663b491c1d338ff3458a",
+      "size": 3304,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/lodash.isarguments/download/lodash.isarguments-3.1.0.tgz"
+    },
+    "scripts": {
+      "test": "echo \"See https://travis-ci.org/lodash/lodash-cli for testing details.\""
+    },
+    "_id": "lodash.isarguments@3.1.0"
+  },
+  "concat-map@0.0.1": {
+    "name": "concat-map",
+    "version": "0.0.1",
+    "devDependencies": {
+      "tape": "~2.4.0"
+    },
+    "publish_time": 1391051195982,
+    "license": "MIT",
+    "dist": {
+      "shasum": "d8a96bd77fd68df7793a73036a3ba0d5405d477b",
+      "size": 2263,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/concat-map/download/concat-map-0.0.1.tgz"
+    },
+    "scripts": {
+      "test": "tape test/*.js"
+    },
+    "_id": "concat-map@0.0.1"
+  },
+  "balanced-match@^1.0.0": {
+    "name": "balanced-match",
+    "version": "1.0.0",
+    "dependencies": {},
+    "devDependencies": {
+      "matcha": "^0.7.0",
+      "tape": "^4.6.0"
+    },
+    "publish_time": 1497251910595,
+    "license": "MIT",
+    "dist": {
+      "shasum": "89b4d199ab2bee49de164ea02b89ce462d71b767",
+      "size": 2566,
+      "noattachment": false,
+      "tarball": "http://registry.npm.taobao.org/balanced-match/download/balanced-match-1.0.0.tgz"
+    },
+    "scripts": {
+      "test": "make test",
+      "bench": "make bench"
+    },
+    "_id": "balanced-match@1.0.0"
+  }
+}
