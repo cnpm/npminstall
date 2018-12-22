@@ -8,7 +8,7 @@ const assert = require('assert');
 
 const npminstall = path.join(__dirname, '..', 'bin', 'install.js');
 
-describe.only('test/dependencies-tree.test.js', () => {
+describe('test/dependencies-tree.test.js', () => {
 
   const cwd = path.join(__dirname, 'fixtures', 'dependencies-tree');
 
