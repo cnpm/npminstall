@@ -29,6 +29,7 @@ const argv = parseArgs(orignalArgv, {
     'proxy',
     // --high-speed-store=filepath
     'high-speed-store',
+    'dependencies-tree',
   ],
   boolean: [
     'version',
@@ -59,6 +60,7 @@ const argv = parseArgs(orignalArgv, {
     // disable dedupe mode https://docs.npmjs.com/cli/dedupe, back to npm@2 mode
     // please don't use on frontend project
     'disable-dedupe',
+    'save-dependencies-tree',
   ],
   default: {
     optional: true,
@@ -123,6 +125,7 @@ Options:
   --fix-bug-versions: auto fix bug version of package.
   --prune: prune unnecessary files from ./node_modules, such as markdown, typescript source files, and so on.
   --high-speed-store: specify high speed store script to cache tgz files, and so on. Should export '* getStream(url)' function.
+  --dependencies-tree: install with dependencies tree to restore the last install.
 `
   );
   process.exit(0);
@@ -266,6 +269,19 @@ co(function* () {
       const fixVersions = packageVersionMapping[name];
       return fixVersions && fixVersions[version] || null;
     };
+  }
+
+  const dependenciesTree = argv['dependencies-tree'];
+  if (dependenciesTree) {
+    try {
+      const content = fs.readFileSync(dependenciesTree);
+      config.dependenciesTree = JSON.parse(content);
+    } catch (err) {
+      console.warn(chalk.yellow('npminstall WARN load dependencies tree %s error: %s'), dependenciesTree, err.message);
+    }
+  }
+  if (argv['save-dependencies-tree']) {
+    config.saveDependenciesTree = true;
   }
 
   if (argv['high-speed-store']) {
