@@ -1,4 +1,10 @@
 
+3.18.0 / 2018-12-24
+==================
+
+**features**
+  * [[`d029138`](http://github.com/cnpm/npminstall/commit/d02913803d9758c91d20e721f63e93a90344baf1)] - feat: support dependencies tree (#287) (Yiyu He <<dead_horse@qq.com>>)
+
 3.17.0 / 2018-12-13
 ==================
 
