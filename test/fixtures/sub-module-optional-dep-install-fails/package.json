@@ -1,0 +1,9 @@
+{
+  "name": "sub-module-optional-dep-install-fails",
+  "optionalDependencies": {
+    "httpsync": "*"
+  },
+  "dependencies": {
+    "nunjucks": "3.1.6"
+  }
+}
