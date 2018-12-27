@@ -1,4 +1,10 @@
 
+3.19.0 / 2018-12-27
+==================
+
+**features**
+  * [[`b702924`](http://github.com/cnpm/npminstall/commit/b7029245ad0c61a62490bc2e1bba4978fda4ce8c)] - feat: show post isntall scripts error detail message (#289) (fengmk2 <<fengmk2@gmail.com>>)
+
 3.18.0 / 2018-12-24
 ==================
 
