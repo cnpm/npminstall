@@ -1,4 +1,10 @@
 
+3.19.1 / 2018-12-28
+==================
+
+**fixes**
+  * [[`0975790`](http://github.com/cnpm/npminstall/commit/0975790a91357a30c5299ad59be3e03ecddfc253)] - fix: show every runscript log before run it (#290) (fengmk2 <<fengmk2@gmail.com>>)
+
 3.19.0 / 2018-12-27
 ==================
 
