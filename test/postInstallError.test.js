@@ -46,7 +46,7 @@ describe('test/postInstallError.test.js', () => {
       .debug()
       .expect('code', 0)
       .expect('stderr', /httpsync@\* optional error: Error: Run ".*?build\.sh" error/)
-      .expect('stdout', /scripts.install httpsync@\* run "sh build.sh"/)
+      .expect('stderr', /scripts.install httpsync@\* run "sh build.sh"/)
       .expect('stdout', /All packages installed/)
       .end();
   });
