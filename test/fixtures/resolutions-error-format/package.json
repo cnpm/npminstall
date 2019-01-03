@@ -1,0 +1,9 @@
+{
+  "name": "resolution-error-endpoint",
+  "dependencies": {
+    "koa": "^1"
+  },
+  "resolutions": {
+    "foo/**": "1.0.0"
+  }
+}
