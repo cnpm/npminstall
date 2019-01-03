@@ -1,6 +1,6 @@
 {
   "name": "npminstall",
-  "version": "3.19.1",
+  "version": "3.20.0",
   "description": "Let npm install fast and easy",
   "main": "lib/index.js",
   "files": [

@@ -1,4 +1,10 @@
 
+3.20.0 / 2019-01-03
+==================
+
+**features**
+  * [[`9aa0a65`](http://github.com/cnpm/npminstall/commit/9aa0a65546790df5cc6d9083e0710f89f0bd1fbc)] - feat: support selective version resolutions (#291) (Yiyu He <<dead_horse@qq.com>>)
+
 3.19.1 / 2018-12-28
 ==================
 
