@@ -1,0 +1,13 @@
+{
+  "name": "resolutions",
+  "dependencies": {
+    "koa": "2",
+    "debug": "2.0.0",
+    "cookies": "0.7.1"
+  },
+  "resolutions": {
+    "debug": "1.0.0",
+    "**/http-errors": "1.0.0",
+    "koa/cookies": "0.7.0"
+  }
+}

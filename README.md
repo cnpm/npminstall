@@ -162,6 +162,7 @@ co(function* () {
 - [x] `save`, `save-dev`, `save-optional`
 - [x] support `ignore-scripts`
 - [x] uninstall
+- [x] resolutions
 
 ## Different with NPM
 
@@ -254,6 +255,10 @@ root/
     koa@1.x
 both the same version: 1.1.2
 ```
+
+## Resolutions
+
+support [selective version resolutions](https://yarnpkg.com/en/docs/selective-version-resolutions) like yarn. which lets you define custom package versions inside your dependencies through the resolutions field in your `package.json` file.
 
 ## Benchmarks
 
