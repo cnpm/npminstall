@@ -66,7 +66,7 @@ describe('test/seperate-dependencies.test.js', () => {
       yield coffee.fork(bin, {
         cwd: root,
       })
-      .debug()
+      // .debug()
       .expect('code', 0)
       .end();
 
@@ -74,6 +74,7 @@ describe('test/seperate-dependencies.test.js', () => {
       yield checkPkg('koa/node_modules/debug', '1.0.0');
       yield checkPkg('koa/node_modules/cookies', '0.7.0');
       yield checkPkg('cookies', '0.7.1');
+      yield checkPkg('@koa/cors/node_modules/vary', '1.0.0');
 
     });
   });
