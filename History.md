@@ -1,4 +1,10 @@
 
+3.20.1 / 2019-01-05
+==================
+
+**fixes**
+  * [[`8f558a5`](http://github.com/cnpm/npminstall/commit/8f558a59224588cd0a885c2efdf4a06fcccdb026)] - fix: resolutions support scope packages (#292) (Yiyu He <<dead_horse@qq.com>>)
+
 3.20.0 / 2019-01-03
 ==================
 
