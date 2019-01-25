@@ -48,7 +48,7 @@ describe('test/seperate-dependencies.test.js', () => {
     });
 
     it('should install client', function* () {
-      yield coffee.fork(bin, [ '--client' ], {
+      yield coffee.fork(bin, [ '--client', '--prodcution' ], {
         cwd: root,
       }).end();
       yield checkPkg('koa', undefined);
