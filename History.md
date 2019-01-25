@@ -1,4 +1,10 @@
 
+3.20.2 / 2019-01-25
+==================
+
+**fixes**
+  * [[`8dc3842`](http://github.com/cnpm/npminstall/commit/8dc3842b2683ee0f3c0ccb8a2ba0807dd99648a6)] - fix: --client override --prodcution (#294) (Yiyu He <<dead_horse@qq.com>>)
+
 3.20.1 / 2019-01-05
 ==================
 
