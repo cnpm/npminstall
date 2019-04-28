@@ -262,6 +262,8 @@ support [selective version resolutions](https://yarnpkg.com/en/docs/selective-ve
 
 ## Benchmarks
 
+https://github.com/cnpm/npminstall-benchmark
+
 ### cnpmjs.org install
 
 - npminstall@1.2.0
