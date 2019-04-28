@@ -1,4 +1,13 @@
 
+3.21.0 / 2019-04-28
+==================
+
+**features**
+  * [[`4464362`](http://github.com/cnpm/npminstall/commit/4464362c7eef31d75a665b90326cef494d47e01e)] - feat: support authorization (#259) (hyj1991 <<yeekwanvong@gmail.com>>)
+
+**others**
+  * [[`c41abc0`](http://github.com/cnpm/npminstall/commit/c41abc0341c5d50075ca3a012510e94bf83df083)] - chore: typo (#295) (vuchan <<givingwu@gmail.com>>)
+
 3.20.2 / 2019-01-25
 ==================
 
