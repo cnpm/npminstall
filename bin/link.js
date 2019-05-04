@@ -5,7 +5,6 @@
 const debug = require('debug')('npminstall:bin:link');
 const npa = require('npm-package-arg');
 const semver = require('semver');
-const co = require('co');
 const assert = require('assert');
 const chalk = require('chalk');
 const path = require('path');
@@ -31,8 +30,7 @@ if (argv.version) {
 }
 
 if (argv.help) {
-  console.log(
-`
+  console.log(`
 Usage:
 
   npmlink <folder>
@@ -50,7 +48,7 @@ const globalModuleDir = path.join(globalMeta.targetDir, 'node_modules');
 
 const folders = argv._.map(name => utils.formatPath(name));
 
-co(function* npmlink() {
+(async () => {
   const installArgs = [];
   for (const arg of orignalArgv) {
     if (arg.startsWith('--root')) {
@@ -67,18 +65,18 @@ co(function* npmlink() {
     // 2. link CWD to targetDir/node_modules/{name}
     // 3. link bins to binDir
     const pkgFile = path.join(root, 'package.json');
-    const pkg = yield utils.readJSON(pkgFile);
+    const pkg = await utils.readJSON(pkgFile);
     assert(pkg.name, `package.name not eixsts on ${pkgFile}`);
     const linkDir = path.join(globalMeta.targetDir, 'node_modules', pkg.name);
 
     console.info(chalk.gray(`\`$ npminstall ${installArgs.join(' ')}\` on ${root}`));
     const installBin = path.join(__dirname, 'install.js');
-    yield utils.fork(installBin, installArgs, {
+    await utils.fork(installBin, installArgs, {
       cwd: root,
     });
-    yield utils.forceSymlink(root, linkDir);
+    await utils.forceSymlink(root, linkDir);
     console.info(`link ${chalk.magenta(linkDir)}@ -> ${root}`);
-    yield bin(root, pkg, linkDir, {
+    await bin(root, pkg, linkDir, {
       console,
       binDir: globalMeta.binDir,
       targetDir: root,
@@ -111,8 +109,7 @@ co(function* npmlink() {
     if (pkgInfo.name) {
       debug('link source %s is a npm module', folder);
       folder = path.join(globalModuleDir, pkgInfo.name);
-      pkg = yield utils.readJSON(path.join(globalModuleDir, pkgInfo.name, 'package.json'));
-
+      pkg = await utils.readJSON(path.join(globalModuleDir, pkgInfo.name, 'package.json'));
 
       // when these situations need install
       // 1. pkg not exist in global module directory
@@ -128,30 +125,30 @@ co(function* npmlink() {
         debug('%s not satisfies with requirement, try to install %s from npm', folder, pkgInfo.raw);
         // try install from npm registry
         console.info(chalk.gray(`\`$ npminstall --global ${pkgInfo.raw}`));
-        yield utils.fork(installBin, installArgs.concat([ '-g', pkgInfo.raw ]), {
+        await utils.fork(installBin, installArgs.concat([ '-g', pkgInfo.raw ]), {
           env,
         });
       }
 
       const pkgFile = path.join(folder, 'package.json');
-      pkg = yield utils.readJSON(pkgFile);
+      pkg = await utils.readJSON(pkgFile);
       assert(pkg.name, `package.name not eixsts on ${pkgFile}`);
     } else {
       if (!path.isAbsolute(folder)) {
         folder = path.join(root, folder);
       }
       // read from folder
-      if (!(yield fs.exists(folder))) {
+      if (!(await fs.exists(folder))) {
         throw new Error(`${folder} not exists`);
       }
 
       const pkgFile = path.join(folder, 'package.json');
-      pkg = yield utils.readJSON(pkgFile);
+      pkg = await utils.readJSON(pkgFile);
       assert(pkg.name, `package.name not eixsts on ${pkgFile}`);
 
       // install dependencies
       console.info(chalk.gray(`\`$ npminstall ${installArgs.join(' ')}\` on ${folder}`));
-      yield utils.fork(installBin, installArgs, {
+      await utils.fork(installBin, installArgs, {
         cwd: folder,
         env,
       });
@@ -159,12 +156,12 @@ co(function* npmlink() {
 
     // link folder to CWD/node_modules/{name}
     const linkDir = path.join(targetDir, pkg.name);
-    yield utils.forceSymlink(folder, linkDir);
+    await utils.forceSymlink(folder, linkDir);
     // link bins
     console.info(`link ${chalk.magenta(linkDir)}@ -> ${folder}`);
-    yield bin(root, pkg, linkDir, { console });
+    await bin(root, pkg, linkDir, { console });
   }
-}).catch(err => {
+})().catch(err => {
   console.error(chalk.red(err.stack));
   console.error(chalk.yellow('npmlink version: %s'), require('../package.json').version);
   console.error(chalk.yellow('npmlink args: %s'), process.argv.join(' '));

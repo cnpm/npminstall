@@ -3,7 +3,6 @@
 'use strict';
 
 const debug = require('debug')('npminstall:bin:install');
-const co = require('co');
 const npa = require('npm-package-arg');
 const chalk = require('chalk');
 const path = require('path');
@@ -86,8 +85,7 @@ if (argv.version) {
 }
 
 if (argv.help) {
-  console.log(
-`
+  console.log(`
 Usage:
 
   npminstall
@@ -201,11 +199,11 @@ for (const key in argv) {
 
 debug('argv: %j, env: %j', argv, env);
 
-co(function* () {
+(async () => {
   let binaryMirrors = {};
 
   if (inChina) {
-    binaryMirrors = yield utils.getBinaryMirrors(registry, { proxy });
+    binaryMirrors = await utils.getBinaryMirrors(registry, { proxy });
     if (customChinaMirrorUrl) {
       for (const key in binaryMirrors) {
         const item = binaryMirrors[key];
@@ -264,7 +262,7 @@ co(function* () {
   }
 
   if (argv['fix-bug-versions']) {
-    const packageVersionMapping = yield utils.getBugVersions(registry, { proxy });
+    const packageVersionMapping = await utils.getBugVersions(registry, { proxy });
     config.autoFixVersion = function autoFixVersion(name, version) {
       const fixVersions = packageVersionMapping[name];
       return fixVersions && fixVersions[version] || null;
@@ -294,14 +292,14 @@ co(function* () {
     const meta = utils.getGlobalInstallMeta(argv.prefix);
     config.targetDir = meta.targetDir;
     config.binDir = meta.binDir;
-    yield installGlobal(config);
+    await installGlobal(config);
   } else {
     if (pkgs.length === 0) {
       if (config.production) {
         // warning when `${root}/node_modules` exists
         const nodeModulesDir = path.join(root, 'node_modules');
-        if (yield fs.exists(nodeModulesDir)) {
-          const dirs = yield fs.readdir(nodeModulesDir);
+        if (await fs.exists(nodeModulesDir)) {
+          const dirs = await fs.readdir(nodeModulesDir);
           // ignore [ '.bin', 'node' ], it will install first by https://github.com/cnpm/nodeinstall
           if (!(dirs.length === 2 && dirs.indexOf('.bin') >= 0 && dirs.indexOf('node') >= 0)) {
             console.error(chalk.yellow(`npminstall WARN node_modules exists: ${nodeModulesDir}, contains ${dirs.length} dirs`));
@@ -309,12 +307,12 @@ co(function* () {
         }
       }
       const pkgFile = path.join(root, 'package.json');
-      const exists = yield fs.exists(pkgFile);
+      const exists = await fs.exists(pkgFile);
       if (!exists) {
         console.warn(chalk.yellow(`npminstall WARN package.json not exists: ${pkgFile}`));
       } else {
         // try to read npminstall config from package.json
-        const pkg = yield utils.readJSON(pkgFile);
+        const pkg = await utils.readJSON(pkgFile);
         pkg.config = pkg.config || {};
         pkg.config.npminstall = pkg.config.npminstall || {};
         // {
@@ -362,7 +360,7 @@ co(function* () {
         }
       }
     }
-    yield installLocal(config);
+    await installLocal(config);
     if (pkgs.length > 0) {
       // support --save, --save-dev, --save-optional, --save-client, --save-build and --save-isomorphic
       const map = {
@@ -374,7 +372,7 @@ co(function* () {
         'save-isomorphic': 'isomorphicDependencies',
       };
       for (const key in map) {
-        if (argv[key]) yield updateDependencies(root, pkgs, map[key], argv['save-exact'], config.remoteNames);
+        if (argv[key]) await updateDependencies(root, pkgs, map[key], argv['save-exact'], config.remoteNames);
       }
     }
   }
@@ -384,7 +382,7 @@ co(function* () {
       fs.writeFileSync(path.join(root, 'npminstall-debug.log'), util.inspect(config, { depth: 2 }));
     }
   });
-}).catch(err => {
+})().catch(err => {
   console.error(chalk.red(err.stack));
   console.error(chalk.yellow('npminstall version: %s'), require('../package.json').version);
   console.error(chalk.yellow('npminstall args: %s'), process.argv.join(' '));
@@ -420,10 +418,10 @@ function getIgnoreScripts() {
   }
 }
 
-function* updateDependencies(root, pkgs, propName, saveExact, remoteNames) {
+async function updateDependencies(root, pkgs, propName, saveExact, remoteNames) {
   const savePrefix = saveExact ? '' : getVersionSavePrefix();
   const pkgFile = path.join(root, 'package.json');
-  const pkg = yield utils.readJSON(pkgFile);
+  const pkg = await utils.readJSON(pkgFile);
   const deps = pkg[propName] = pkg[propName] || {};
   for (const item of pkgs) {
     if ([ 'remote', 'hosted', 'git' ].indexOf(item.type) >= 0) {
@@ -434,7 +432,7 @@ function* updateDependencies(root, pkgs, propName, saveExact, remoteNames) {
         : deps[remoteNames[item.version]] = item.version;
     } else {
       const pkgDir = item.type === 'local' ? item.version : path.join(root, 'node_modules', item.name);
-      const itemPkg = yield utils.readJSON(path.join(pkgDir, 'package.json'));
+      const itemPkg = await utils.readJSON(path.join(pkgDir, 'package.json'));
       deps[itemPkg.name] = `${savePrefix}${itemPkg.version}`;
     }
   }
@@ -444,5 +442,5 @@ function* updateDependencies(root, pkgs, propName, saveExact, remoteNames) {
     newDeps[key] = deps[key];
   }
   pkg[propName] = newDeps;
-  yield fs.writeFile(pkgFile, JSON.stringify(pkg, null, 2) + '\n');
+  await fs.writeFile(pkgFile, JSON.stringify(pkg, null, 2) + '\n');
 }

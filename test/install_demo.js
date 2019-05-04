@@ -2,11 +2,10 @@
 
 require('debug').enable('npminstall:*');
 const path = require('path');
-const co = require('co');
 const npminstall = require('./npminstall');
 
-co(function* () {
-  yield npminstall({
+(async () => {
+  await npminstall({
     // install root dir
     root: path.join(__dirname, 'fixtures', 'demo'),
     // optional packages need to install, default is package.json's dependencies and devDependencies
@@ -22,7 +21,7 @@ co(function* () {
     // debug: false,
     // storeDir: root + '.npminstall',
   });
-}).catch(function(err) {
+})().catch(err => {
   console.error(err);
   console.error(err.stack);
   process.exit(1);

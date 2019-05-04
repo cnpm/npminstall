@@ -23,17 +23,17 @@ describe('test/install-cache-strict.test.js', () => {
     cleanup();
     fs.mkdirSync(homedir);
   });
-  afterEach(cleanup);
+  // afterEach(cleanup);
 
-  it('should read disk cache on --cache-strict --production', function* () {
+  it.only('should read disk cache on --cache-strict --production', function* () {
     yield coffee.fork(npminstall, [ '--cache-strict', '--production' ], {
       cwd: demo,
       env: Object.assign({}, process.env, {
         HOME: homedir,
       }),
     })
-    .debug()
-    .end();
+      .debug()
+      .end();
     assert(fs.statSync(path.join(homedir, '.npminstall_tarball/d/e/b/u/debug')));
   });
 
@@ -45,8 +45,8 @@ describe('test/install-cache-strict.test.js', () => {
         NODE_ENV: 'production',
       }),
     })
-    .debug()
-    .end();
+      .debug()
+      .end();
     assert(fs.statSync(path.join(homedir, '.npminstall_tarball/d/e/b/u/debug')));
   });
 });
