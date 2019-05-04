@@ -31,8 +31,7 @@ process.env.NPMINSTALL_BY_UPDATE = 'true';
 require('./install');
 
 function help() {
-  console.log(
-`
+  console.log(`
 Usage:
 
   npmupdate [--root=${root}]

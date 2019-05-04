@@ -4,7 +4,6 @@
 
 const debug = require('debug')('npminstall:bin:uninstall');
 const npa = require('npm-package-arg');
-const co = require('co');
 const path = require('path');
 const fs = require('mz/fs');
 const parseArgs = require('minimist');
@@ -54,7 +53,7 @@ for (const name of argv._) {
 
 if (!pkgs.length) help();
 
-co(function* () {
+(async () => {
   const root = argv.root || process.cwd();
   const config = {
     root,
@@ -76,27 +75,27 @@ co(function* () {
     }
   }
   debug('uninstall in %s with pkg: $j, config: %j', root, pkgs, config);
-  const uninstalled = yield uninstall(config);
+  const uninstalled = await uninstall(config);
   if (uninstalled.length > 0) {
     // support --save, --save-dev and --save-optional
     if (argv.save) {
-      yield updateDependencies(root, pkgs, 'dependencies');
+      await updateDependencies(root, pkgs, 'dependencies');
     } else if (argv['save-dev']) {
-      yield updateDependencies(root, pkgs, 'devDependencies');
+      await updateDependencies(root, pkgs, 'devDependencies');
     } else if (argv['save-optional']) {
-      yield updateDependencies(root, pkgs, 'optionalDependencies');
+      await updateDependencies(root, pkgs, 'optionalDependencies');
     }
   }
-  yield updateDependencies(root, uninstalled);
-}).catch(function(err) {
+  await updateDependencies(root, uninstalled);
+})().catch(err => {
   console.error(chalk.red(err));
   console.error(chalk.red(err.stack));
   process.exit(1);
 });
 
-function* updateDependencies(root, pkgs, propName) {
+async function updateDependencies(root, pkgs, propName) {
   const pkgFile = path.join(root, 'package.json');
-  const pkg = yield utils.readJSON(pkgFile);
+  const pkg = await utils.readJSON(pkgFile);
   const deps = pkg[propName];
   if (!deps) return;
 
@@ -104,12 +103,11 @@ function* updateDependencies(root, pkgs, propName) {
     delete deps[pkg.name];
   }
 
-  yield fs.writeFile(pkgFile, JSON.stringify(pkg, null, 2));
+  await fs.writeFile(pkgFile, JSON.stringify(pkg, null, 2));
 }
 
 function help() {
-  console.log(
-`
+  console.log(`
 Usage:
 
   npmuninstall <pkg>

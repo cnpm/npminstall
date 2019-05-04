@@ -1,6 +1,5 @@
 'use strict';
 
-const co = require('co');
 const path = require('path');
 const rimraf = require('rimraf');
 const semver = require('semver');
@@ -59,7 +58,7 @@ for (const version in semvers) {
   for (const pkg of pkgs) names.push(pkg);
 }
 
-co(function* () {
+(async () => {
   const root = path.join(__dirname, 'fixtures', 'all');
   const pkgs = names.map(name => {
     if (typeof name === 'string') return { name };
@@ -67,7 +66,7 @@ co(function* () {
   });
 
   rimraf.sync(root);
-  yield npminstall({
+  await npminstall({
     root,
     pkgs,
     detail: true,
@@ -77,7 +76,7 @@ co(function* () {
     stdio: 'inherit',
   });
   installer.on('exit', code => process.exit(code));
-}).catch(err => {
+})().catch(err => {
   console.error(err);
   console.error(err.stack);
   process.exit(1);

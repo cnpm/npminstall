@@ -15,9 +15,9 @@
     "npmupdate": "bin/update.js"
   },
   "scripts": {
-    "test": "mocha -r intelli-espower-loader -t 200000 test/*.test.js",
-    "test-cov": "nyc --reporter=lcov --reporter=text-summary --reporter=json npm test",
-    "test-local": "npm_china=true local=true npm test",
+    "test": "npm run lint && egg-bin test",
+    "test-cov": "egg-bin cov",
+    "test-local": "npm_china=true local=true egg-bin test",
     "lint": "eslint . --fix",
     "ci": "npm run lint && npm run test-cov",
     "autod": "autod"
@@ -29,11 +29,9 @@
     "bytes": "^3.1.0",
     "chalk": "^2.4.2",
     "cmd-shim": "^2.0.2",
-    "co": "^4.6.0",
-    "co-fs-extra": "^1.2.1",
-    "co-parallel": "^1.0.0",
     "debug": "^4.1.1",
     "destroy": "^1.0.4",
+    "fs-extra": "^7.0.1",
     "minimatch": "^3.0.4",
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
@@ -45,8 +43,9 @@
     "node-homedir": "^1.1.1",
     "normalize-git-url": "^3.0.2",
     "normalize-package-data": "^2.5.0",
-    "npm-package-arg": "^6.1.0",
+    "npm-package-arg": "^4.2.1",
     "ora": "^3.4.0",
+    "p-map": "^2.1.0",
     "rimraf": "^2.6.3",
     "runscript": "^1.3.0",
     "semver": "^6.0.0",
@@ -58,15 +57,12 @@
   "devDependencies": {
     "autod": "3",
     "coffee": "^5.2.1",
+    "egg-bin": "^4.13.1",
     "eslint": "5",
     "eslint-config-egg": "7",
     "http-proxy": "1",
-    "intelli-espower-loader": "1",
     "mm": "^2.5.0",
-    "mocha": "6",
-    "mz-modules": "2",
-    "nyc": "14",
-    "power-assert": "1"
+    "mz-modules": "2"
   },
   "homepage": "https://github.com/cnpm/npminstall",
   "repository": {
