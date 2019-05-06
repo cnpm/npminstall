@@ -2,56 +2,45 @@
 
 const assert = require('assert');
 const path = require('path');
-const fs = require('fs');
-const rimraf = require('rimraf');
+const fs = require('mz/fs');
 const coffee = require('coffee');
-const npminstall = path.join(__dirname, '../bin/install.js');
-const npmupdate = path.join(__dirname, '../bin/update.js');
+const helper = require('./helper');
 
 describe('test/update.test.js', () => {
-  const root = path.join(__dirname, 'fixtures', 'update');
+  const npmupdate = path.join(__dirname, '../bin/update.js');
+  const cwd = helper.fixtures('update');
+  const cleanup = helper.cleanup(cwd);
 
-  function cleanup() {
-    rimraf.sync(path.join(root, 'node_modules'));
-  }
-
-  beforeEach(done => {
-    cleanup();
-    coffee.fork(npminstall, [], {
-      cwd: root,
+  beforeEach(async () => {
+    await cleanup();
+    await coffee.fork(helper.npminstall, [], {
+      cwd,
       stdio: 'pipe',
     })
-    .debug()
-    .end(done);
+      .debug()
+      .end();
   });
-
   afterEach(cleanup);
 
-  it('should update ok', done => {
-    coffee.fork(npmupdate, [], {
-      cwd: root,
+  it('should update ok', async () => {
+    await coffee.fork(npmupdate, [], {
+      cwd,
       stdio: 'pipe',
     })
-    .debug()
-    .end(err => {
-      assert(!err);
-      assert(fs.existsSync(path.join(root, 'node_modules/pedding')));
-      assert(fs.existsSync(path.join(root, 'node_modules/pkg')));
-      done();
-    });
+      .debug()
+      .end();
+    assert(await fs.exists(path.join(cwd, 'node_modules/pedding')));
+    assert(await fs.exists(path.join(cwd, 'node_modules/pkg')));
   });
 
-  it('should update pedding ok', done => {
-    coffee.fork(npmupdate, [ 'pedding' ], {
-      cwd: root,
+  it('should update pedding ok', async () => {
+    await coffee.fork(npmupdate, [ 'pedding' ], {
+      cwd,
       stdio: 'pipe',
     })
-    .debug()
-    .end(err => {
-      assert(!err);
-      assert(fs.existsSync(path.join(root, 'node_modules/pedding')));
-      assert(fs.existsSync(path.join(root, 'node_modules/pkg')));
-      done();
-    });
+      .debug()
+      .end();
+    assert(await fs.exists(path.join(cwd, 'node_modules/pedding')));
+    assert(await fs.exists(path.join(cwd, 'node_modules/pkg')));
   });
 });

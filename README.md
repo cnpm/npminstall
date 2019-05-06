@@ -110,11 +110,10 @@ $ npm install npminstall --save
 ### Usage
 
 ```js
-const co = require('co');
 const npminstall = require('npminstall');
 
-co(function* () {
-  yield npminstall({
+(async () => {
+  await npminstall({
     // install root dir
     root: process.cwd(),
     // optional packages need to install, default is package.json's dependencies and devDependencies
@@ -132,8 +131,8 @@ co(function* () {
     // ignoreScripts: true, // ignore pre/post install scripts, default is `false`
     // forbiddenLicenses: forbit install packages which used these licenses
   });
-}).catch(err => {
-  console.error(err.stack);
+})().catch(err => {
+  console.error(err);
 });
 ```
 
@@ -301,3 +300,16 @@ npm i babel-preset-es2015 browserify chalk debug minimist mkdirp
 ## License
 
 [MIT](LICENSE.txt)
+<!-- GITCONTRIBUTOR_START -->
+
+## Contributors
+
+|[<img src="https://avatars0.githubusercontent.com/u/156269?v=4" width="100px;"/><br/><sub><b>fengmk2</b></sub>](https://github.com/fengmk2)<br/>|[<img src="https://avatars3.githubusercontent.com/u/985607?v=4" width="100px;"/><br/><sub><b>dead-horse</b></sub>](https://github.com/dead-horse)<br/>|[<img src="https://avatars3.githubusercontent.com/u/543405?v=4" width="100px;"/><br/><sub><b>ibigbug</b></sub>](https://github.com/ibigbug)<br/>|[<img src="https://avatars1.githubusercontent.com/u/507615?v=4" width="100px;"/><br/><sub><b>afc163</b></sub>](https://github.com/afc163)<br/>|[<img src="https://avatars0.githubusercontent.com/u/465125?v=4" width="100px;"/><br/><sub><b>yesmeck</b></sub>](https://github.com/yesmeck)<br/>|[<img src="https://avatars1.githubusercontent.com/u/360661?v=4" width="100px;"/><br/><sub><b>popomore</b></sub>](https://github.com/popomore)<br/>|
+| :---: | :---: | :---: | :---: | :---: | :---: |
+|[<img src="https://avatars3.githubusercontent.com/u/319494?v=4" width="100px;"/><br/><sub><b>welladamm</b></sub>](https://github.com/welladamm)<br/>|[<img src="https://avatars3.githubusercontent.com/u/7336582?v=4" width="100px;"/><br/><sub><b>weihong1028</b></sub>](https://github.com/weihong1028)<br/>|[<img src="https://avatars1.githubusercontent.com/u/1195765?v=4" width="100px;"/><br/><sub><b>LeoYuan</b></sub>](https://github.com/LeoYuan)<br/>|[<img src="https://avatars3.githubusercontent.com/u/13602053?v=4" width="100px;"/><br/><sub><b>cnlon</b></sub>](https://github.com/cnlon)<br/>|[<img src="https://avatars1.githubusercontent.com/u/6753092?v=4" width="100px;"/><br/><sub><b>magicae</b></sub>](https://github.com/magicae)<br/>|[<img src="https://avatars3.githubusercontent.com/u/431376?v=4" width="100px;"/><br/><sub><b>marcbachmann</b></sub>](https://github.com/marcbachmann)<br/>|
+|[<img src="https://avatars2.githubusercontent.com/u/19733683?v=4" width="100px;"/><br/><sub><b>snyk-bot</b></sub>](https://github.com/snyk-bot)<br/>|[<img src="https://avatars2.githubusercontent.com/u/227713?v=4" width="100px;"/><br/><sub><b>atian25</b></sub>](https://github.com/atian25)<br/>|[<img src="https://avatars0.githubusercontent.com/u/3364271?v=4" width="100px;"/><br/><sub><b>tommytroylin</b></sub>](https://github.com/tommytroylin)<br/>|[<img src="https://avatars1.githubusercontent.com/u/3922719?v=4" width="100px;"/><br/><sub><b>wssgcg1213</b></sub>](https://github.com/wssgcg1213)<br/>|[<img src="https://avatars2.githubusercontent.com/u/4136679?v=4" width="100px;"/><br/><sub><b>yibn2008</b></sub>](https://github.com/yibn2008)<br/>|[<img src="https://avatars2.githubusercontent.com/u/19908330?v=4" width="100px;"/><br/><sub><b>hyj1991</b></sub>](https://github.com/hyj1991)<br/>|
+[<img src="https://avatars3.githubusercontent.com/u/13431452?v=4" width="100px;"/><br/><sub><b>vuchan</b></sub>](https://github.com/vuchan)<br/>
+
+This project follows the git-contributor [spec](https://github.com/xudafeng/git-contributor), auto updated at `Wed May 08 2019 18:02:56 GMT+0800`.
+
+<!-- GITCONTRIBUTOR_END -->

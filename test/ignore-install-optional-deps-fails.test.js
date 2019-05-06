@@ -1,25 +1,17 @@
 'use strict';
 
-const path = require('path');
-const rimraf = require('rimraf');
 const coffee = require('coffee');
-
-const npminstall = path.join(__dirname, '..', 'bin', 'install.js');
+const helper = require('./helper');
 
 describe('test/ignore-install-optional-deps-fails.test.js', () => {
-  const cwd = path.join(__dirname, 'fixtures', 'sub-module-optional-dep-install-fails');
+  const cwd = helper.fixtures('sub-module-optional-dep-install-fails');
+  const cleanup = helper.cleanup(cwd);
 
-  function cleanup() {
-    rimraf.sync(path.join(cwd, 'node_modules'));
-  }
-
-  beforeEach(() => {
-    cleanup();
-  });
+  beforeEach(cleanup);
   afterEach(cleanup);
 
-  it('should install success when optionalDependencies fails', function* () {
-    return coffee.fork(npminstall, [ '-d' ], { cwd })
+  it('should install success when optionalDependencies fails', async () => {
+    await coffee.fork(helper.npminstall, [ '-d' ], { cwd })
       .debug()
       .expect('code', 0)
       .end();

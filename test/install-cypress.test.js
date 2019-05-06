@@ -1,25 +1,17 @@
 'use strict';
 
-const path = require('path');
-const rimraf = require('rimraf');
 const coffee = require('coffee');
-
-const npminstall = path.join(__dirname, '..', 'bin', 'install.js');
+const helper = require('./helper');
 
 describe.skip('test/install-cypress.test.js', () => {
-  const cwd = path.join(__dirname, 'fixtures', 'install-cypress');
+  const cwd = helper.fixtures('install-cypress');
+  const cleanup = helper.cleanup(cwd);
 
-  function cleanup() {
-    rimraf.sync(path.join(cwd, 'node_modules'));
-  }
-
-  beforeEach(() => {
-    cleanup();
-  });
+  beforeEach(cleanup);
   afterEach(cleanup);
 
-  it('should install cypress version on dependencies', function* () {
-    return coffee.fork(npminstall, [ '-c' ], { cwd })
+  it('should install cypress version on dependencies', async () => {
+    await coffee.fork(helper.npminstall, [ '-c' ], { cwd })
       .debug()
       .expect('code', 0)
       .end();

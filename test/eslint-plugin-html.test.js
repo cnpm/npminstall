@@ -1,40 +1,35 @@
 'use strict';
 
 const assert = require('assert');
-const rimraf = require('rimraf');
 const path = require('path');
 const readJSON = require('../lib/utils').readJSON;
 const npminstall = require('./npminstall');
 const coffee = require('coffee');
+const helper = require('./helper');
 
 if (process.platform !== 'win32') {
-  describe('test/eslint-plugin-html.test.js', () => {
-    const root = path.join(__dirname, 'fixtures', 'eslint-plugin-html');
-
-    function cleanup() {
-      rimraf.sync(path.join(root, 'node_modules'));
-    }
+  describe.skip('test/eslint-plugin-html.test.js', () => {
+    const root = helper.fixtures('eslint-plugin-html');
+    const cleanup = helper.cleanup(root);
 
     beforeEach(cleanup);
-    afterEach(cleanup);
+    // afterEach(cleanup);
 
-    it('should install and run lint pass', function* () {
-      yield npminstall({
+    it('should install and run lint pass', async () => {
+      await npminstall({
         root,
       });
-      const pkg = yield readJSON(path.join(root, 'node_modules', 'eslint-plugin-html', 'package.json'));
+      const pkg = await readJSON(path.join(root, 'node_modules', 'eslint-plugin-html', 'package.json'));
       assert.equal(pkg.name, 'eslint-plugin-html');
-      yield runLint(root);
+      await runLint(root);
     });
   });
 }
 
 function runLint(cwd) {
-  return callback => {
-    coffee.spawn('npm', [ 'run', 'lint' ], { cwd })
-      .debug()
-      .expect('code', 0)
-      .expect('stdout', /eslint index\.js/)
-      .end(callback);
-  };
+  return coffee.spawn('npm', [ 'run', 'lint' ], { cwd })
+    .debug()
+    .expect('code', 0)
+    .expect('stdout', /eslint index\.js/)
+    .end();
 }

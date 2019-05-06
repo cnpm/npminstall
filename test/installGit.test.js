@@ -1,143 +1,128 @@
 'use strict';
 
-const os = require('os');
 const assert = require('assert');
 const path = require('path');
-const rimraf = require('rimraf');
-const mkdirp = require('mkdirp');
-const readJSON = require('../lib/utils').readJSON;
-const npminstall = require('./npminstall');
 const coffee = require('coffee');
-const installBin = path.join(__dirname, '..', 'bin', 'install.js');
+const npminstall = require('./npminstall');
+const helper = require('./helper');
 
 describe('test/installGit.test.js', () => {
-
-  // here we use a tmp dir for custom testing since `getLastCommitHash` would silently pass
-  // and return **this** repo's commit hash.
-  const tmp = path.join(os.tmpdir(), 'fixtures', 'tmp');
-
-  function prepare() {
-    mkdirp.sync(tmp);
-  }
-  function cleanup() {
-    rimraf.sync(tmp);
-  }
-
-  beforeEach(prepare);
+  const [ tmp, cleanup ] = helper.tmp();
+  beforeEach(cleanup);
   afterEach(cleanup);
 
-  it.skip('should install ikt@git+http://ikt.pm2.io/ikt.git#master', function* () {
-    yield npminstall({
+  it.skip('should install ikt@git+http://ikt.pm2.io/ikt.git#master', async () => {
+    await npminstall({
       root: tmp,
       pkgs: [
         { name: 'ikt', version: 'git+http://ikt.pm2.io/ikt.git#master' },
       ],
     });
-    const pkg = yield readJSON(path.join(tmp, 'node_modules/ikt/package.json'));
+    const pkg = await helper.readJSON(path.join(tmp, 'node_modules/ikt/package.json'));
     assert.equal(pkg.name, 'ikt');
   });
 
-  it('should install github repo `node-modules/pedding` ok', function* () {
-    yield npminstall({
+  it('should install github repo `node-modules/pedding` ok', async () => {
+    await npminstall({
       root: tmp,
       pkgs: [
         { name: null, version: 'node-modules/pedding' },
       ],
     });
-    const pkg = yield readJSON(path.join(tmp, 'node_modules/pedding/package.json'));
+    const pkg = await helper.readJSON(path.join(tmp, 'node_modules/pedding/package.json'));
     assert.equal(pkg.name, 'pedding');
     assert(pkg.version !== '0.0.3');
   });
 
-  it('should install github repo `node-modules/pedding#0.0.3` ok', function* () {
-    yield npminstall({
+  it('should install github repo `node-modules/pedding#0.0.3` ok', async () => {
+    await npminstall({
       root: tmp,
       pkgs: [
         { name: null, version: 'node-modules/pedding#0.0.3' },
       ],
     });
-    const pkg = yield readJSON(path.join(tmp, 'node_modules/pedding/package.json'));
+    const pkg = await helper.readJSON(path.join(tmp, 'node_modules/pedding/package.json'));
     assert.equal(pkg.name, 'pedding');
     assert.equal(pkg.version, '0.0.3');
   });
 
-  it('should install from git with ssh `git+ssh://git@github.com:node-modules/pedding.git#0.0.2` ok', function* () {
-    yield npminstall({
+  it('should install from git with ssh `git+ssh://git@github.com:node-modules/pedding.git#0.0.2` ok', async () => {
+    await npminstall({
       root: tmp,
       pkgs: [
         { name: null, version: 'git+ssh://git@github.com:node-modules/pedding.git#0.0.2' },
       ],
     });
-    const pkg = yield readJSON(path.join(tmp, 'node_modules/pedding/package.json'));
+    const pkg = await helper.readJSON(path.join(tmp, 'node_modules/pedding/package.json'));
     assert.equal(pkg.name, 'pedding');
     assert.equal(pkg.version, '0.0.2');
   });
 
-  it('should install from git with http `git+https://github.com/node-modules/pedding.git` ok', function* () {
-    yield npminstall({
+  it('should install from git with http `git+https://github.com/node-modules/pedding.git` ok', async () => {
+    await npminstall({
       root: tmp,
       pkgs: [
         { name: null, version: 'git+https://github.com/node-modules/pedding.git' },
       ],
     });
-    const pkg = yield readJSON(path.join(tmp, 'node_modules/pedding/package.json'));
+    const pkg = await helper.readJSON(path.join(tmp, 'node_modules/pedding/package.json'));
     assert.equal(pkg.name, 'pedding');
     assert(pkg.version !== '0.0.3');
   });
 
-  it('should install from bitbucket `bitbucket:node-modules/pedding`', function* () {
-    yield npminstall({
+  it('should install from bitbucket `bitbucket:node-modules/pedding`', async () => {
+    await npminstall({
       root: tmp,
       pkgs: [
         { name: null, version: 'bitbucket:node-modules/pedding' },
       ],
     });
-    const pkg = yield readJSON(path.join(tmp, 'node_modules/pedding/package.json'));
+    const pkg = await helper.readJSON(path.join(tmp, 'node_modules/pedding/package.json'));
     assert.equal(pkg.name, 'pedding');
     assert(pkg.version !== '0.0.3');
   });
 
-  it('should install from github with commit hash https://github.com/mozilla/nunjucks.git#0f8b21b8df7e8e852b2e1889388653b7075f0d09', function* () {
-    yield npminstall({
+  it('should install from github with commit hash https://github.com/mozilla/nunjucks.git#0f8b21b8df7e8e852b2e1889388653b7075f0d09', async () => {
+    await npminstall({
       root: tmp,
       pkgs: [
         { name: null, version: 'git+https://github.com/mozilla/nunjucks.git#0f8b21b8df7e8e852b2e1889388653b7075f0d09' },
       ],
     });
 
-    const pkg = yield readJSON(path.join(tmp, 'node_modules/nunjucks/package.json'));
+    const pkg = await helper.readJSON(path.join(tmp, 'node_modules/nunjucks/package.json'));
     assert.equal(pkg.name, 'nunjucks');
     assert.equal(pkg.version, '1.2.0');
   });
 
-  it('should also ok on https://github.com/mozilla/nunjucks.git#0f8b21b8d', function* () {
-    yield npminstall({
+  it('should also ok on https://github.com/mozilla/nunjucks.git#0f8b21b8d', async () => {
+    await npminstall({
       root: tmp,
       pkgs: [
         { name: null, version: 'git+https://github.com/mozilla/nunjucks.git#0f8b21b8d' },
       ],
     });
 
-    const pkg = yield readJSON(path.join(tmp, 'node_modules/nunjucks/package.json'));
+    const pkg = await helper.readJSON(path.join(tmp, 'node_modules/nunjucks/package.json'));
     assert.equal(pkg.name, 'nunjucks');
     assert.equal(pkg.version, '1.2.0');
   });
 
-  it('should also ok on https://github.com/node-modules/agentkeepalive#2.x', function* () {
-    yield npminstall({
+  it('should also ok on https://github.com/node-modules/agentkeepalive#2.x', async () => {
+    await npminstall({
       root: tmp,
       pkgs: [
         { name: null, version: 'git+https://github.com/node-modules/agentkeepalive#2.x' },
       ],
     });
 
-    const pkg = yield readJSON(path.join(tmp, 'node_modules/agentkeepalive/package.json'));
+    const pkg = await helper.readJSON(path.join(tmp, 'node_modules/agentkeepalive/package.json'));
     assert.equal(pkg.name, 'agentkeepalive');
   });
 
-  it('should fail on some strange hash', function* () {
+  it('should fail on some strange hash', async () => {
     try {
-      yield npminstall({
+      await npminstall({
         root: tmp,
         pkgs: [
           { name: null, version: 'git+https://github.com/mozilla/nunjucks.git#wtf???!!!fail-here,hahaa' },
@@ -150,17 +135,17 @@ describe('test/installGit.test.js', () => {
   });
 
   it('should warn on some name not match', done => {
-    coffee.fork(installBin, [
+    coffee.fork(helper.npminstall, [
       'error@git+https://github.com/mozilla/nunjucks.git#0f8b21b8d',
     ], {
       cwd: tmp,
     })
-    .debug()
-    .expect('code', 0)
-    .expect('stderr', /Package name unmatched: expected error but found nunjucks/)
-    .end(err => {
-      assert(require(path.join(tmp, 'node_modules/error/package.json')).name === 'nunjucks');
-      done(err);
-    });
+      .debug()
+      .expect('code', 0)
+      .expect('stderr', /Package name unmatched: expected error but found nunjucks/)
+      .end(err => {
+        assert(require(path.join(tmp, 'node_modules/error/package.json')).name === 'nunjucks');
+        done(err);
+      });
   });
 });

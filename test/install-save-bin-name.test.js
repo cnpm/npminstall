@@ -2,29 +2,25 @@
 
 const assert = require('assert');
 const path = require('path');
-const fs = require('fs');
-const rimraf = require('rimraf');
+const fs = require('mz/fs');
 const coffee = require('coffee');
-const npminstall = path.join(__dirname, '../bin/install.js');
+const helper = require('./helper');
 
 describe('test/install-save-bin-name.test.js', () => {
-  const root = path.join(__dirname, 'fixtures', 'same-bin-name');
-
-  function cleanup() {
-    rimraf.sync(path.join(root, 'node_modules'));
-  }
+  const root = helper.fixtures('same-bin-name');
+  const cleanup = helper.cleanup(root);
 
   beforeEach(cleanup);
-  // afterEach(cleanup);
+  afterEach(cleanup);
 
-  it('should install work', function* () {
-    yield coffee.fork(npminstall, [ 'webpack-parallel-uglify-plugin@1.0.0' ], {
+  it('should install work', async () => {
+    await coffee.fork(helper.npminstall, [ 'webpack-parallel-uglify-plugin@1.0.0' ], {
       cwd: root,
     })
-    .debug()
-    .expect('code', 0)
-    .end();
+      .debug()
+      .expect('code', 0)
+      .end();
 
-    assert(fs.existsSync(path.join(root, 'node_modules/webpack-parallel-uglify-plugin/node_modules/.bin/uglifyjs')));
+    assert(await fs.exists(path.join(root, 'node_modules/webpack-parallel-uglify-plugin/node_modules/.bin/uglifyjs')));
   });
 });

@@ -1,41 +1,32 @@
 'use strict';
 
-const path = require('path');
-const rimraf = require('rimraf');
-const npminstall = path.join(__dirname, '..', 'bin', 'install.js');
 const coffee = require('coffee');
+const helper = require('./helper');
 
 describe('test/license.test.js', () => {
-  const root = path.join(__dirname, 'fixtures', 'forbidden-license');
-
-  function cleanup() {
-    rimraf.sync(path.join(root, 'node_modules'));
-  }
+  const cwd = helper.fixtures('forbidden-license');
+  const cleanup = helper.cleanup(cwd);
 
   beforeEach(cleanup);
   afterEach(cleanup);
 
-  it('should install forbidden license error', done => {
-    coffee.fork(npminstall, [
+  it('should install forbidden license error', async () => {
+    await coffee.fork(helper.npminstall, [
       '--forbidden-licenses=mit,sic',
       './forbidden',
-    ], {
-      cwd: root,
-    })
-    .expect('stderr', /package forbidden's license\(MIT-v3\.0\) is not allowed/)
-    .end(done);
+    ], { cwd })
+      .expect('stderr', /package forbidden's license\(MIT-v3\.0\) is not allowed/)
+      .end();
   });
 
-  it('should install none / allowed license ok', done => {
-    coffee.fork(npminstall, [
+  it('should install none / allowed license ok', async () => {
+    await coffee.fork(helper.npminstall, [
       '--forbidden-licenses=mit,sic',
       './allow',
       './none',
       '-d',
-    ], {
-      cwd: root,
-    })
-    .expect('stdout', /2 packages installed from local file/)
-    .end(done);
+    ], { cwd })
+      .expect('stdout', /2 packages installed from local file/)
+      .end();
   });
 });

@@ -1,7 +1,7 @@
 'use strict';
 
 const path = require('path');
-const rimraf = require('rimraf');
+const rimraf = require('mz-modules/rimraf');
 const semver = require('semver');
 const spawn = require('child_process').spawn;
 const npminstall = require('./npminstall');
@@ -40,7 +40,7 @@ const names = [
   'antd',
   'cnpm',
   'pnpm',
-  'firebase',
+  // 'firebase',
 ];
 
 const semvers = {
@@ -65,7 +65,7 @@ for (const version in semvers) {
     return name;
   });
 
-  rimraf.sync(root);
+  await rimraf(root);
   await npminstall({
     root,
     pkgs,

@@ -1,21 +1,17 @@
 'use strict';
 
-const path = require('path');
-const rimraf = require('rimraf');
 const npminstall = require('./npminstall');
+const helper = require('./helper');
 
-describe('test/peerDependencies.test.js', function() {
-  const root = path.join(__dirname, 'fixtures', 'peerDependencies');
-
-  function cleanup() {
-    rimraf.sync(path.join(root, 'node_modules'));
-  }
+describe('test/peerDependencies.test.js', () => {
+  const root = helper.fixtures('peerDependencies');
+  const cleanup = helper.cleanup(root);
 
   beforeEach(cleanup);
   afterEach(cleanup);
 
-  it('should show peerDependencies warning message', function* () {
-    yield npminstall({
+  it('should show peerDependencies warning message', async () => {
+    await npminstall({
       root,
     });
   });

@@ -1,61 +1,56 @@
 'use strict';
 
 const assert = require('assert');
-const rimraf = require('rimraf');
 const path = require('path');
-const readJSON = require('../lib/utils').readJSON;
 const coffee = require('coffee');
-
-const bin = path.join(__dirname, '../bin/install.js');
+const readJSON = require('../lib/utils').readJSON;
+const helper = require('./helper');
 
 describe('test/seperate-dependencies.test.js', () => {
+  const cwd = helper.fixtures('seperate-dependencies');
+  const cleanup = helper.cleanup(cwd);
 
-  describe('npminstall', function() {
-    const root = path.join(__dirname, 'fixtures', 'seperate-dependencies');
+  async function checkPkg(name, version) {
+    const pkg = await readJSON(path.join(cwd, 'node_modules', name, 'package.json'));
+    assert(pkg.version === version);
+  }
 
-    function cleanup() {
-      rimraf.sync(path.join(root, 'node_modules'));
-    }
+  beforeEach(cleanup);
+  afterEach(cleanup);
 
-    function* checkPkg(name, version) {
-      const pkg = yield readJSON(path.join(root, 'node_modules', name, 'package.json'));
-      assert.equal(pkg.version, version);
-    }
+  it('should install all', async () => {
+    await coffee.fork(helper.npminstall, [], {
+      cwd,
+    })
+      .end();
+    await checkPkg('koa', '1.0.0');
+    await checkPkg('mocha', '3.0.0');
+    await checkPkg('react', '15.0.0');
+    await checkPkg('webpack', '3.0.0');
+    await checkPkg('utility', '1.0.0');
+  });
 
-    beforeEach(cleanup);
-    afterEach(cleanup);
+  it('should install production', async () => {
+    await coffee.fork(helper.npminstall, [ '--production' ], {
+      cwd,
+    })
+      .end();
+    await checkPkg('koa', '1.0.0');
+    await checkPkg('mocha', undefined);
+    await checkPkg('react', undefined);
+    await checkPkg('webpack', undefined);
+    await checkPkg('utility', '1.0.0');
+  });
 
-    it('should install all', function* () {
-      yield coffee.fork(bin, [], {
-        cwd: root,
-      }).end();
-      yield checkPkg('koa', '1.0.0');
-      yield checkPkg('mocha', '3.0.0');
-      yield checkPkg('react', '15.0.0');
-      yield checkPkg('webpack', '3.0.0');
-      yield checkPkg('utility', '1.0.0');
-    });
-
-    it('should install production', function* () {
-      yield coffee.fork(bin, [ '--production' ], {
-        cwd: root,
-      }).end();
-      yield checkPkg('koa', '1.0.0');
-      yield checkPkg('mocha', undefined);
-      yield checkPkg('react', undefined);
-      yield checkPkg('webpack', undefined);
-      yield checkPkg('utility', '1.0.0');
-    });
-
-    it('should install client', function* () {
-      yield coffee.fork(bin, [ '--client', '--prodcution' ], {
-        cwd: root,
-      }).end();
-      yield checkPkg('koa', undefined);
-      yield checkPkg('mocha', undefined);
-      yield checkPkg('react', '15.0.0');
-      yield checkPkg('webpack', '3.0.0');
-      yield checkPkg('utility', '1.0.0');
-    });
+  it('should install client', async () => {
+    await coffee.fork(helper.npminstall, [ '--client', '--prodcution' ], {
+      cwd,
+    })
+      .end();
+    await checkPkg('koa', undefined);
+    await checkPkg('mocha', undefined);
+    await checkPkg('react', '15.0.0');
+    await checkPkg('webpack', '3.0.0');
+    await checkPkg('utility', '1.0.0');
   });
 });

@@ -1,32 +1,28 @@
 'use strict';
 
 const assert = require('assert');
-const fs = require('fs');
-const rimraf = require('rimraf');
+const fs = require('mz/fs');
 const path = require('path');
 const coffee = require('coffee');
-const npminstall = path.join(__dirname, '..', 'bin', 'install.js');
+const helper = require('./helper');
 
 describe('test/local-install-pkgs.test.js', () => {
-  const root = path.join(__dirname, 'fixtures', 'local-install-pkgs');
-
-  function cleanup() {
-    rimraf.sync(path.join(root, 'node_modules'));
-  }
+  const cwd = helper.fixtures('local-install-pkgs');
+  const cleanup = helper.cleanup(cwd);
 
   beforeEach(cleanup);
   afterEach(cleanup);
 
-  it('should install pkg and dont link latestVersions', function* () {
-    yield coffee.fork(npminstall, [ 'koa' ], { cwd: root })
+  it('should install pkg and dont link latestVersions', async () => {
+    await coffee.fork(helper.npminstall, [ 'koa' ], { cwd })
       .debug()
       .expect('code', 0)
       .notExpect('stdout', /Linked \d+ latest versions/)
       .end();
-    const names = fs.readdirSync(path.join(root, 'node_modules'))
-      .filter(n => !/^[\.\_]/.test(n));
+    let names = await fs.readdir(path.join(cwd, 'node_modules'));
+    names = names.filter(n => !/^[\.\_]/.test(n));
     assert(names.length > 10);
-    assert(names.indexOf('koa') > 0);
-    assert(names.indexOf('accepts') >= 0);
+    assert(names.includes('koa'));
+    assert(names.includes('accepts'));
   });
 });

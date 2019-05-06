@@ -1,22 +1,17 @@
 'use strict';
 
-const rimraf = require('rimraf');
-const path = require('path');
 const coffee = require('coffee');
-const npminstall = path.join(__dirname, '..', 'bin', 'install.js');
+const helper = require('./helper');
 
 describe('test/rootpath.test.js', () => {
-  const root = path.join(__dirname, 'fixtures', 'rootpath');
-
-  function cleanup() {
-    rimraf.sync(path.join(root, 'node_modules'));
-  }
+  const cwd = helper.fixtures('rootpath');
+  const cleanup = helper.cleanup(cwd);
 
   beforeEach(cleanup);
   afterEach(cleanup);
 
   it('should run preinstall and postinstall', () => {
-    return coffee.fork(npminstall, [ '-d' ], { cwd: root })
+    return coffee.fork(helper.npminstall, [ '-d' ], { cwd })
       .debug()
       .expect('code', 0)
       .expect('stdout', /hello process\.env\.npm_rootpath is true/)

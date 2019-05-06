@@ -1,31 +1,22 @@
 'use strict';
 
-const path = require('path');
-const rimraf = require('rimraf');
-const mkdirp = require('mkdirp');
-const npminstall = require('./npminstall');
 const mm = require('mm');
+const npminstall = require('./npminstall');
+const helper = require('./helper');
 
 describe('test/node-sass.test.js', () => {
-  const tmp = path.join(__dirname, 'fixtures', 'tmp');
+  const [ tmp, cleanup ] = helper.tmp();
 
-  function cleanup() {
-    rimraf.sync(tmp);
-  }
-
-  beforeEach(() => {
-    cleanup();
-    mkdirp.sync(tmp);
-  });
+  beforeEach(cleanup);
   afterEach(cleanup);
   afterEach(mm.restore);
 
-  it('should auto set npm_config_cache env', function* () {
+  it('should auto set npm_config_cache env', async () => {
     mm(process.env, 'npm_config_cache', undefined);
-    yield npminstall({
+    await npminstall({
       root: tmp,
       pkgs: [
-        { name: 'node-sass', version: '3' },
+        { name: 'node-sass', version: '4' },
       ],
       env: {
         npm_config_cache: undefined,

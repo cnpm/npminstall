@@ -1,25 +1,30 @@
 'use strict';
 
+const assert = require('assert');
+const fs = require('mz/fs');
 const path = require('path');
-const rimraf = require('rimraf');
+const rimraf = require('mz-modules/rimraf');
 const npminstall = require('./npminstall');
+const helper = require('./helper');
 
 describe('test/concurrency-install.test.js', () => {
-  const root1 = path.join(__dirname, 'fixtures', 'concurrency1');
-  const root2 = path.join(__dirname, 'fixtures', 'concurrency2');
-  const cacheDir = path.join(__dirname, 'fixtures', '.tmp');
+  const root1 = helper.fixtures('concurrency1');
+  const root2 = helper.fixtures('concurrency2');
+  const [ cacheDir, cleanupTmp ] = helper.tmp();
 
-  function cleanup() {
-    rimraf.sync(cacheDir);
-    rimraf.sync(path.join(root1, 'node_modules'));
-    rimraf.sync(path.join(root2, 'node_modules'));
+  async function cleanup() {
+    await Promise.all([
+      cleanupTmp(),
+      rimraf(path.join(root1, 'node_modules')),
+      rimraf(path.join(root2, 'node_modules')),
+    ]);
   }
 
   beforeEach(cleanup);
   afterEach(cleanup);
 
-  it('should concurrency install success', function* () {
-    yield [
+  it('should concurrency install success', async () => {
+    await Promise.all([
       npminstall({
         root: root1,
         cacheDir,
@@ -30,6 +35,8 @@ describe('test/concurrency-install.test.js', () => {
         cacheDir,
         detail: true,
       }),
-    ];
+    ]);
+    assert(await fs.exists(path.join(root1, 'node_modules/browserify')));
+    assert(await fs.exists(path.join(root2, 'node_modules/browserify')));
   });
 });

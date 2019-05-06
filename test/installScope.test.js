@@ -2,38 +2,29 @@
 
 const assert = require('assert');
 const path = require('path');
-const rimraf = require('rimraf');
-const mkdirp = require('mkdirp');
-const readJSON = require('../lib/utils').readJSON;
 const npminstall = require('./npminstall');
+const helper = require('./helper');
 
 describe('test/installScope.test.js', () => {
-  const tmp = path.join(__dirname, 'fixtures', 'tmp');
+  const [ tmp, cleanup ] = helper.tmp();
 
-  function cleanup() {
-    rimraf.sync(tmp);
-  }
-
-  beforeEach(() => {
-    cleanup();
-    mkdirp.sync(tmp);
-  });
+  beforeEach(cleanup);
   afterEach(cleanup);
 
-  it('should install scope package with version', function* () {
-    yield npminstall({
+  it('should install scope package with version', async () => {
+    await npminstall({
       root: tmp,
       pkgs: [
         { name: '@rstacruz/tap-spec', version: '4.1.1' },
       ],
     });
-    const pkg = yield readJSON(path.join(tmp, 'node_modules/@rstacruz/tap-spec/package.json'));
+    const pkg = await helper.readJSON(path.join(tmp, 'node_modules/@rstacruz/tap-spec/package.json'));
     assert(pkg.version === '4.1.1');
   });
 
-  it('should install scope package with version not exist throw err', function* () {
+  it('should install scope package with version not exist throw err', async () => {
     try {
-      yield npminstall({
+      await npminstall({
         root: tmp,
         pkgs: [
           { name: '@rstacruz/tap-spec', version: '3.0.0' },
@@ -45,14 +36,14 @@ describe('test/installScope.test.js', () => {
     }
   });
 
-  it('should install scope package with range', function* () {
-    yield npminstall({
+  it('should install scope package with range', async () => {
+    await npminstall({
       root: tmp,
       pkgs: [
         { name: '@rstacruz/tap-spec', version: '~4.1.0' },
       ],
     });
-    const pkg = yield readJSON(path.join(tmp, 'node_modules/@rstacruz/tap-spec/package.json'));
+    const pkg = await helper.readJSON(path.join(tmp, 'node_modules/@rstacruz/tap-spec/package.json'));
     assert(pkg.version === '4.1.1');
   });
 });

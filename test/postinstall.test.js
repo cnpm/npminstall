@@ -1,30 +1,28 @@
 'use strict';
 
 const assert = require('assert');
-const rimraf = require('rimraf');
+const rimraf = require('mz-modules/rimraf');
 const path = require('path');
 const fs = require('fs');
 const coffee = require('coffee');
 const readJSON = require('../lib/utils').readJSON;
 const npminstall = require('./npminstall');
+const helper = require('./helper');
 
 describe('test/postinstall.test.js', () => {
-
-  describe('postinstall', function() {
-    const root = path.join(__dirname, 'fixtures', 'postinstall');
-
-    function cleanup() {
-      rimraf.sync(path.join(root, 'node_modules'));
-    }
+  describe('postinstall', () => {
+    const root = helper.fixtures('postinstall');
+    const cleanup = helper.cleanup(root);
 
     beforeEach(cleanup);
     afterEach(cleanup);
 
-    it('should run preinstall, install, postinstall and prepublish', function* () {
-      yield npminstall({
-        root,
-      });
-      const pkg = yield readJSON(path.join(root, 'node_modules', 'utility', 'package.json'));
+    it('should run preinstall, install, postinstall and prepublish', async () => {
+      await coffee.fork(helper.npminstall, [], { cwd: root })
+        .debug()
+        .expect('code', 0)
+        .end();
+      const pkg = await readJSON(path.join(root, 'node_modules', 'utility', 'package.json'));
       assert.equal(pkg.name, 'utility');
       assert.equal(pkg.version, '1.6.0');
 
@@ -38,12 +36,12 @@ describe('test/postinstall.test.js', () => {
       assert.equal(fs.readFileSync(path.join(root, 'node_modules', '.prepublish.txt'), 'utf8'), 'success: prepublish');
     });
 
-    it('should not run prepublish with production mode', function* () {
-      yield npminstall({
+    it('should not run prepublish with production mode', async () => {
+      await npminstall({
         root,
         production: true,
       });
-      const pkg = yield readJSON(path.join(root, 'node_modules', 'utility', 'package.json'));
+      const pkg = await readJSON(path.join(root, 'node_modules', 'utility', 'package.json'));
       assert.equal(pkg.name, 'utility');
       assert.equal(pkg.version, '1.6.0');
 
@@ -52,7 +50,6 @@ describe('test/postinstall.test.js', () => {
 
       // prepublish pass
       let hasFile = false;
-
       try {
         hasFile = !!fs.statSync(path.join(root, 'node_modules', '.prepublish.txt'));
       } catch (err) {
@@ -62,19 +59,19 @@ describe('test/postinstall.test.js', () => {
     });
   });
 
-  describe('node-gyp', function() {
-    const root = path.join(__dirname, 'fixtures', 'node-gyp-hello');
+  describe('node-gyp', () => {
+    const root = helper.fixtures('node-gyp-hello');
 
-    function cleanup() {
-      rimraf.sync(path.join(root, 'build'));
-      rimraf.sync(path.join(root, 'node_modules'));
+    async function cleanup() {
+      await rimraf(path.join(root, 'build'));
+      await rimraf(path.join(root, 'node_modules'));
     }
 
     beforeEach(cleanup);
     afterEach(cleanup);
 
-    it('should auto run node-gyp rebuild', function* () {
-      yield npminstall({
+    it('should auto run node-gyp rebuild', async () => {
+      await npminstall({
         root,
       });
     });
@@ -82,33 +79,27 @@ describe('test/postinstall.test.js', () => {
 
   if (process.platform !== 'win32') {
     describe('test/installSaveDeps.test.js', () => {
-      const root = path.join(__dirname, 'fixtures', 'auto-set-npm-env');
+      const root = helper.fixtures('auto-set-npm-env');
+      const cleanup = helper.cleanup(root);
 
-      beforeEach(() => {
-        rimraf.sync(path.join(root, 'node_modules'));
-      });
-      afterEach(() => {
-        rimraf.sync(path.join(root, 'node_modules'));
-      });
+      beforeEach(cleanup);
+      afterEach(cleanup);
 
-      it('should install --save pedding and update dependencies', done => {
-        coffee.fork(path.join(__dirname, '..', 'bin', 'install.js'), [
+      it('should install --save pedding and update dependencies', async () => {
+        await coffee.fork(helper.npminstall, [
           '--foo_bar_haha=okok',
           '-d',
         ], {
           cwd: root,
         })
-        .debug()
-        .expect('stdout', /pedding@1\.0\.0 installed/)
-        .expect('stdout', /npm_config_foo_bar_haha = okok/)
-        .expect('code', 0)
-        .end(err => {
-          assert(!err, err && err.message);
-          const version = require(path.join(root, 'node_modules', 'pedding', 'package.json')).version;
-          assert(version);
-          assert.equal(version, '1.0.0');
-          done();
-        });
+          .debug()
+          .expect('stdout', /pedding@1\.0\.0 installed/)
+          .expect('stdout', /npm_config_foo_bar_haha = okok/)
+          .expect('code', 0)
+          .end();
+
+        const pkg = await readJSON(path.join(root, 'node_modules', 'pedding', 'package.json'));
+        assert(pkg.version === '1.0.0');
       });
     });
   }

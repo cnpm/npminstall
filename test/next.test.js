@@ -1,35 +1,27 @@
 'use strict';
 
-const fs = require('fs');
+const fs = require('mz/fs');
 const path = require('path');
 const assert = require('assert');
-const rimraf = require('rimraf');
-const mkdirp = require('mkdirp');
-const npminstall = require('./npminstall');
 const exec = require('mz/child_process').exec;
+const helper = require('./helper');
+const npminstall = require('./npminstall');
 
 // make sure https://github.com/cnpm/cnpm/issues/194 work!
 describe.skip('test/next.test.js', () => {
-  const tmp = path.join(__dirname, '.tmp', 'next');
+  const [ tmp, cleanup ] = helper.tmp();
 
-  function cleanup() {
-    rimraf.sync(tmp);
-  }
-
-  beforeEach(() => {
-    cleanup();
-    mkdirp.sync(tmp);
-  });
+  beforeEach(cleanup);
   afterEach(cleanup);
 
-  it('should next build success', function* () {
-    yield exec(`git clone https://github.com/now-examples/next-news.git ${tmp}`);
-    yield npminstall({
+  it('should next build success', async () => {
+    await exec(`git clone https://github.com/now-examples/next-news.git ${tmp}`);
+    await npminstall({
       root: tmp,
     });
-    yield exec('npm run build', {
+    await exec('npm run build', {
       cwd: tmp,
     });
-    assert(fs.existsSync(path.join(tmp, '.next')));
+    assert(await fs.exists(path.join(tmp, '.next')));
   });
 });

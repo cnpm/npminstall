@@ -2,98 +2,94 @@
 
 const assert = require('assert');
 const path = require('path');
-const rimraf = require('rimraf');
-const readJSON = require('../lib/utils').readJSON;
-const npminstall = require('./npminstall');
 const coffee = require('coffee');
+const npminstall = require('./npminstall');
+const helper = require('./helper');
 
-describe('test/installLocal.test.js', function() {
-  const root = path.join(__dirname, 'fixtures', 'local');
-
-  function cleanup() {
-    rimraf.sync(path.join(root, 'node_modules'));
-  }
+describe('test/installLocal.test.js', () => {
+  const root = helper.fixtures('local');
+  const cleanup = helper.cleanup(root);
 
   beforeEach(cleanup);
   afterEach(cleanup);
 
-  it('should install local folder ok', function* () {
-    yield npminstall({
+  it('should install local folder ok', async () => {
+    await npminstall({
       root,
       pkgs: [
         { name: null, version: 'file:pkg' },
       ],
     });
-    const pkg = yield readJSON(path.join(root, 'node_modules/pkg/package.json'));
+    const pkg = await helper.readJSON(path.join(root, 'node_modules/pkg/package.json'));
     assert.equal(pkg.name, 'pkg');
   });
 
-  it('should install local folder with relative path ok', function* () {
-    yield npminstall({
+  it('should install local folder with relative path ok', async () => {
+    await npminstall({
       root,
       pkgs: [
         { name: null, version: './pkg' },
       ],
     });
-    const pkg = yield readJSON(path.join(root, 'node_modules/pkg/package.json'));
+    const pkg = await helper.readJSON(path.join(root, 'node_modules/pkg/package.json'));
     assert.equal(pkg.name, 'pkg');
   });
 
-  it('should install local link folder ok', function* () {
+  it('should install local link folder ok', async () => {
     if (process.platform === 'win32') {
       return;
     }
-    yield npminstall({
+    await npminstall({
       root,
       pkgs: [
         { name: null, version: 'file:pkg-link' },
       ],
     });
-    const pkg = yield readJSON(path.join(root, 'node_modules/pkg/package.json'));
+    const pkg = await helper.readJSON(path.join(root, 'node_modules/pkg/package.json'));
     assert.equal(pkg.name, 'pkg');
   });
 
-  it('should install local gzip tarball ok', function* () {
-    yield npminstall({
+  it('should install local gzip tarball ok', async () => {
+    await npminstall({
       root,
       pkgs: [
         { name: null, version: 'file:sequelize.tgz' },
       ],
     });
 
-    const pkg = yield readJSON(path.join(root, 'node_modules/sequelize/package.json'));
+    const pkg = await helper.readJSON(path.join(root, 'node_modules/sequelize/package.json'));
     assert.equal(pkg.name, 'sequelize');
   });
 
-  it('should install local link gzip tarball ok', function* () {
+  it('should install local link gzip tarball ok', async () => {
     if (process.platform === 'win32') {
       return;
     }
-    yield npminstall({
+    await npminstall({
       root,
       pkgs: [
         { name: null, version: 'file:sequelize-link.tgz' },
       ],
     });
 
-    const pkg = yield readJSON(path.join(root, 'node_modules/sequelize/package.json'));
+    const pkg = await helper.readJSON(path.join(root, 'node_modules/sequelize/package.json'));
     assert.equal(pkg.name, 'sequelize');
   });
 
-  it('should install local naked tarball ok', function* () {
-    yield npminstall({
+  it('should install local naked tarball ok', async () => {
+    await npminstall({
       root,
       pkgs: [
         { name: null, version: 'file:pkg.tar' },
       ],
     });
-    const pkg = yield readJSON(path.join(root, 'node_modules/pkg/package.json'));
+    const pkg = await helper.readJSON(path.join(root, 'node_modules/pkg/package.json'));
     assert.equal(pkg.name, 'pkg');
   });
 
-  it('should install local folder without package.json error', function* () {
+  it('should install local folder without package.json error', async () => {
     try {
-      yield npminstall({
+      await npminstall({
         root,
         pkgs: [
           { name: null, version: 'file:not-pkg' },
@@ -105,9 +101,9 @@ describe('test/installLocal.test.js', function() {
     }
   });
 
-  it('should install local tarball without package.json error', function* () {
+  it('should install local tarball without package.json error', async () => {
     try {
-      yield npminstall({
+      await npminstall({
         root,
         pkgs: [
           { name: null, version: 'file:not-pkg.tar' },
@@ -119,9 +115,9 @@ describe('test/installLocal.test.js', function() {
     }
   });
 
-  it('should install local folder without package name error', function* () {
+  it('should install local folder without package name error', async () => {
     try {
-      yield npminstall({
+      await npminstall({
         root,
         pkgs: [
           { name: null, version: 'file:pkg-without-name' },
@@ -133,9 +129,9 @@ describe('test/installLocal.test.js', function() {
     }
   });
 
-  it('should install local tarball without package name error', function* () {
+  it('should install local tarball without package name error', async () => {
     try {
-      yield npminstall({
+      await npminstall({
         root,
         pkgs: [
           { name: null, version: 'file:pkg-without-name.tgz' },
@@ -148,59 +144,59 @@ describe('test/installLocal.test.js', function() {
   });
 
   if (process.platform !== 'win32') {
-    it('should install the same tarball ok', function* () {
-      yield npminstall({
+    it('should install the same tarball ok', async () => {
+      await npminstall({
         root,
         pkgs: [
           { name: null, version: 'file:pkg.tar' },
         ],
       });
-      let pkg = yield readJSON(path.join(root, 'node_modules/pkg/package.json'));
+      let pkg = await helper.readJSON(path.join(root, 'node_modules/pkg/package.json'));
       assert.equal(pkg.name, 'pkg');
-      yield npminstall({
+      await npminstall({
         root,
         pkgs: [
           { name: null, version: 'file:pkg.tar' },
           // { name: null, version: 'file:pkg.tar' },
         ],
       });
-      pkg = yield readJSON(path.join(root, 'node_modules/pkg/package.json'));
+      pkg = await helper.readJSON(path.join(root, 'node_modules/pkg/package.json'));
       assert.equal(pkg.name, 'pkg');
     });
 
-    it('should install the same local folder ok', function* () {
-      yield npminstall({
+    it('should install the same local folder ok', async () => {
+      await npminstall({
         root,
         pkgs: [
           { name: null, version: 'file:pkg' },
         ],
       });
-      let pkg = yield readJSON(path.join(root, 'node_modules/pkg/package.json'));
+      let pkg = await helper.readJSON(path.join(root, 'node_modules/pkg/package.json'));
       assert.equal(pkg.name, 'pkg');
-      yield npminstall({
+      await npminstall({
         root,
         pkgs: [
           { name: null, version: 'file:pkg' },
           { name: null, version: 'file:pkg' },
         ],
       });
-      pkg = yield readJSON(path.join(root, 'node_modules/pkg/package.json'));
+      pkg = await helper.readJSON(path.join(root, 'node_modules/pkg/package.json'));
       assert.equal(pkg.name, 'pkg');
     });
 
     if (process.env.npm_china) {
-      it('should install from custom china mirror url work', done => {
+      it('should install from custom china mirror url work', () => {
         const cli = require.resolve('../bin/install');
-        coffee.fork(cli, [
+        return coffee.fork(cli, [
           'phantomjs-prebuilt',
           '--custom-china-mirror-url=http://cdn.npm.taobao.org/dist',
         ], {
           cwd: root,
         })
-        .coverage(false)
-        .debug()
-        .expect('code', 0)
-        .end(done);
+          .coverage(false)
+          .debug()
+          .expect('code', 0)
+          .end();
       });
     }
   }

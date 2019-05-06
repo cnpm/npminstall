@@ -2,28 +2,18 @@
 
 const assert = require('assert');
 const path = require('path');
-const rimraf = require('rimraf');
-const mkdirp = require('mkdirp');
-const readJSON = require('../lib/utils').readJSON;
+const fs = require('mz/fs');
+const helper = require('./helper');
 const npminstall = require('./npminstall');
-const fs = require('fs');
 
-describe('test/installTarget.test.js', function() {
-  const tmp = path.join(__dirname, 'fixtures', 'tmp');
+describe('test/installTarget.test.js', () => {
+  const [ tmp, cleanup ] = helper.tmp();
 
-  function cleanup() {
-    rimraf.sync(tmp);
-  }
-
-  beforeEach(() => {
-    cleanup();
-    mkdirp.sync(tmp);
-  });
-
+  beforeEach(cleanup);
   afterEach(cleanup);
 
-  it('should install to target dir', function* () {
-    yield npminstall({
+  it('should install to target dir', async () => {
+    await npminstall({
       root: tmp,
       targetDir: path.join(tmp, 'targetDir'),
       binDir: path.join(tmp, 'binDir'),
@@ -33,15 +23,15 @@ describe('test/installTarget.test.js', function() {
       ],
     });
 
-    let pkg = yield readJSON(path.join(tmp, 'targetDir/node_modules/koa/package.json'));
+    let pkg = await helper.readJSON(path.join(tmp, 'targetDir/node_modules/koa/package.json'));
     assert(pkg.name, 'koa');
-    pkg = yield readJSON(path.join(tmp, 'targetDir/node_modules/mocha/package.json'));
+    pkg = await helper.readJSON(path.join(tmp, 'targetDir/node_modules/mocha/package.json'));
     assert(pkg.name, 'mocha');
-    const pkgs = fs.readdirSync(path.join(tmp, 'targetDir/node_modules/'));
-    assert(pkgs.indexOf('koa') >= 0);
-    assert(pkgs.indexOf('mocha') >= 0);
-    const bins = fs.readdirSync(path.join(tmp, 'binDir'));
-    assert(bins.indexOf('mocha') >= 0);
-    assert(bins.indexOf('_mocha') >= 0);
+    const pkgs = await fs.readdir(path.join(tmp, 'targetDir/node_modules/'));
+    assert(pkgs.includes('koa'));
+    assert(pkgs.includes('mocha'));
+    const bins = await fs.readdir(path.join(tmp, 'binDir'));
+    assert(bins.includes('mocha'));
+    assert(bins.includes('_mocha'));
   });
 });

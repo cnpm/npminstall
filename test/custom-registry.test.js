@@ -2,36 +2,27 @@
 
 const assert = require('assert');
 const path = require('path');
-const rimraf = require('rimraf');
-const mkdirp = require('mkdirp');
-const fs = require('fs');
+const fs = require('mz/fs');
 const coffee = require('coffee');
-
-const npminstall = path.join(__dirname, '..', 'bin', 'install.js');
+const helper = require('./helper');
 
 describe('test/custom-registry.test.js', () => {
-  const tmp = path.join(__dirname, 'fixtures', 'install-pedding');
+  const tmp = helper.fixtures('install-pedding');
+  const cleanup = helper.cleanup(tmp);
 
-  function cleanup() {
-    rimraf.sync(path.join(tmp, 'node_modules'));
-  }
-
-  beforeEach(() => {
-    cleanup();
-    mkdirp.sync(tmp);
-  });
+  beforeEach(cleanup);
   afterEach(cleanup);
 
-  it('should install with custom registry', function* () {
+  it('should install with custom registry', async () => {
     const args = [
       '--registry=https://r.cnpmjs.org?bucket=foo',
       '-d',
     ];
-    yield coffee.fork(npminstall, args, { cwd: tmp })
+    await coffee.fork(helper.npminstall, args, { cwd: tmp })
       .debug()
       .expect('stdout', /All packages installed/)
       .expect('code', 0)
       .end();
-    assert(JSON.parse(fs.readFileSync(path.join(tmp, 'node_modules/pedding/package.json'))).version === '0.0.1');
+    assert(JSON.parse(await fs.readFile(path.join(tmp, 'node_modules/pedding/package.json'))).version === '0.0.1');
   });
 });
