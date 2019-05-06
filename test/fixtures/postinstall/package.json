@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "utility": "1.6.0",
-    "bignum": "*",
     "a-dep-b": "*"
-  }
+  },
+  "__npminstall_done": false
 }

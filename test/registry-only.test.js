@@ -1,27 +1,22 @@
 'use strict';
 
-const path = require('path');
-const rimraf = require('rimraf');
 const coffee = require('coffee');
-const npminstall = path.join(__dirname, '../bin/install.js');
+const helper = require('./helper');
 
 describe('test/registry-only.test.js', () => {
-  const root = path.join(__dirname, 'fixtures', 'registry-only');
-
-  function cleanup() {
-    rimraf.sync(path.join(root, 'node_modules'));
-  }
+  const cwd = helper.fixtures('registry-only');
+  const cleanup = helper.cleanup(cwd);
 
   beforeEach(cleanup);
   afterEach(cleanup);
 
-  it('should install ok', () => {
-    return coffee.fork(npminstall, [ '--registry-only' ], {
-      cwd: root,
+  it('should install fail', () => {
+    return coffee.fork(helper.npminstall, [ '--registry-only' ], {
+      cwd,
     })
-    .debug()
-    .expect('stderr', /Only allow install package from registry/)
-    .expect('code', 1)
-    .end();
+      .debug()
+      .expect('stderr', /Only allow install package from registry/)
+      .expect('code', 1)
+      .end();
   });
 });

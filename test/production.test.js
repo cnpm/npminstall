@@ -2,41 +2,37 @@
 
 const assert = require('assert');
 const path = require('path');
-const rimraf = require('rimraf');
 const fs = require('mz/fs');
 const coffee = require('coffee');
 const npminstall = require('./npminstall');
-const bin = path.join(__dirname, '../bin/install.js');
+const helper = require('./helper');
 
 describe('test/production.test.js', () => {
-  const root = path.join(__dirname, 'fixtures', 'production');
-
-  function cleanup() {
-    rimraf.sync(path.join(root, 'node_modules'));
-  }
+  const cwd = helper.fixtures('production');
+  const cleanup = helper.cleanup(cwd);
 
   beforeEach(cleanup);
   afterEach(cleanup);
 
-  it('should ignore devDependencies when install with production', function* () {
-    yield npminstall({
-      root,
+  it('should ignore devDependencies when install with production', async () => {
+    await npminstall({
+      root: cwd,
       production: true,
     });
 
-    const dirs = yield fs.readdir(path.join(root, 'node_modules'));
-    assert.equal(dirs.indexOf('mocha'), -1);
-    assert(dirs.indexOf('should') >= 0);
-    assert(dirs.indexOf('koa') >= 0);
+    const dirs = await fs.readdir(path.join(cwd, 'node_modules'));
+    assert(!dirs.includes('mocha'));
+    assert(dirs.includes('should'));
+    assert(dirs.includes('koa'));
   });
 
-  it('should show detail and check node_modules dir on production mode', function* () {
-    yield coffee.fork(bin, [ '--production' ], { cwd: root })
+  it('should show detail and check node_modules dir on production mode', async () => {
+    await coffee.fork(helper.npminstall, [ '--production' ], { cwd })
       .expect('code', 0)
       .expect('stdout', /installed at node_modules/)
       .end();
     // again
-    yield coffee.fork(bin, [ '--production' ], { cwd: root })
+    await coffee.fork(helper.npminstall, [ '--production' ], { cwd })
       .debug()
       .expect('code', 0)
       .expect('stdout', /koa@\* is skipped because it already exists at/)

@@ -1,5 +1,5 @@
 {
-  "name": "eslint-plugin-html",
+  "name": "eslint-plugin-html-test",
   "scripts": {
     "lint": "eslint index.js"
   },

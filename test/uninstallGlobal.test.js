@@ -1,46 +1,35 @@
 'use strict';
 
-const assert = require('assert');
-const path = require('path');
-const rimraf = require('rimraf');
 const coffee = require('coffee');
-const mkdirp = require('../lib/utils').mkdirp;
+const helper = require('./helper');
 
 describe('test/uninstallGlobal.test.js', () => {
-  const tmp = path.join(__dirname, 'fixtures', 'tmp');
+  const [ tmp, cleanup ] = helper.tmp();
 
-  function cleanup() {
-    rimraf.sync(tmp);
-  }
-
-  beforeEach(function* () {
-    cleanup();
-    yield mkdirp(tmp);
-  });
+  beforeEach(cleanup);
   afterEach(cleanup);
 
-  it('should uninstall with global and prefix', done => {
-    coffee.fork(require.resolve('../bin/install.js'), [
+  it('should uninstall with global and prefix', async () => {
+    await coffee.fork(helper.npminstall, [
       `--prefix=${tmp}`,
       '-g',
       'mocha',
     ])
-    .debug()
-    .expect('stdout', /All packages installed/)
-    .expect('code', 0)
-    .end(err => {
-      assert(!err);
-      coffee.fork(require.resolve('../bin/uninstall'), [
-        `--prefix=${tmp}`,
-        '-g',
-        'mocha',
-      ])
+      .debug()
+      .expect('stdout', /All packages installed/)
+      .expect('code', 0)
+      .end();
+
+    await coffee.fork(require.resolve('../bin/uninstall'), [
+      `--prefix=${tmp}`,
+      '-g',
+      'mocha',
+    ])
       .debug()
       .expect('stdout', /- mocha@\d+\.\d+\.\d+ \.\/test\/fixtures\/tmp\/lib\/node_modules\/mocha/)
       .expect('stdout', /- mocha@\d+\.\d+\.\d+ \.\/test\/fixtures\/tmp\/bin\/mocha/)
       .expect('stdout', /- mocha@\d+\.\d+\.\d+ \.\/test\/fixtures\/tmp\/bin\/_mocha/)
       .expect('code', 0)
-      .end(done);
-    });
+      .end();
   });
 });

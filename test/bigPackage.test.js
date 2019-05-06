@@ -1,23 +1,19 @@
 'use strict';
 
-const path = require('path');
-const rimraf = require('rimraf');
 const npminstall = require('./npminstall');
+const helper = require('./helper');
 
 describe('test/bigPackage.test.js', () => {
   function testcase(name) {
     describe(name, () => {
-      const root = path.join(__dirname, 'fixtures', name);
-
-      function cleanup() {
-        rimraf.sync(path.join(root, 'node_modules'));
-      }
+      const root = helper.fixtures(name);
+      const cleanup = helper.cleanup(root);
 
       beforeEach(cleanup);
       afterEach(cleanup);
 
-      it('should install success', function* () {
-        yield npminstall({
+      it('should install success', async () => {
+        await npminstall({
           root,
           trace: true,
         });

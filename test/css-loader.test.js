@@ -1,30 +1,21 @@
 'use strict';
 
-const path = require('path');
-const rimraf = require('rimraf');
-const mkdirp = require('mkdirp');
-const semver = require('semver');
+const assert = require('assert');
+const fs = require('mz/fs');
 const npminstall = require('./npminstall');
+const helper = require('./helper');
 
-if (semver.satisfies(process.version, '>= 6.0.0')) {
-  // make sure https://github.com/cnpm/npminstall/pull/223 work!
-  describe('test/css-loader.test.js', () => {
-    const tmp = path.join(__dirname, 'fixtures', 'css-loader-example2');
+describe('test/css-loader.test.js', () => {
+  const tmp = helper.fixtures('css-loader-example2');
+  const cleanup = helper.cleanup(tmp);
 
-    function cleanup() {
-      rimraf.sync(path.join(tmp, 'node_modules'));
-    }
+  beforeEach(cleanup);
+  afterEach(cleanup);
 
-    beforeEach(() => {
-      cleanup();
-      mkdirp.sync(tmp);
+  it('should work on css-loader', async () => {
+    await npminstall({
+      root: tmp,
     });
-    afterEach(cleanup);
-
-    it('should work on css-loader', function* () {
-      yield npminstall({
-        root: tmp,
-      });
-    });
+    assert(await fs.exists(tmp, 'node_modules/css-loader'));
   });
-}
+});

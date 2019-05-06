@@ -1,13 +1,9 @@
 'use strict';
 
-const path = require('path');
-const rimraf = require('rimraf');
-const mkdirp = require('mkdirp');
 const mm = require('mm');
 const coffee = require('coffee');
 const proxy = require('./fixtures/reverse-proxy');
-
-const npminstallBin = path.join(__dirname, '../bin/install.js');
+const helper = require('./helper');
 
 describe('test/proxy.test.js', () => {
   let port;
@@ -22,26 +18,17 @@ describe('test/proxy.test.js', () => {
   });
   after(() => proxy.close());
 
-  const tmp = path.join(__dirname, 'fixtures', 'tmp');
+  const [ cwd, cleanup ] = helper.tmp();
 
-  function cleanup() {
-    rimraf.sync(tmp);
-  }
-
-  beforeEach(() => {
-    cleanup();
-    mkdirp.sync(tmp);
-  });
+  beforeEach(cleanup);
   afterEach(cleanup);
   afterEach(mm.restore);
 
   it('should install from proxy', () => {
-    return coffee.fork(npminstallBin, [
+    return coffee.fork(helper.npminstall, [
       '--proxy', proxyUrl,
       'koa', 'pedding',
-    ], {
-      cwd: tmp,
-    })
+    ], { cwd })
       .debug()
       .expect('code', 0)
       .end();

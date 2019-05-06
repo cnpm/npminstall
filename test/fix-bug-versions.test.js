@@ -1,31 +1,31 @@
 'use strict';
 
 const coffee = require('coffee');
-const rimraf = require('rimraf');
-const mkdirp = require('mkdirp');
 const path = require('path');
 const assert = require('assert');
 const fs = require('fs');
+const helper = require('./helper');
 
-describe('fix-bug-versions.test.js', () => {
-  const tmp = path.join(__dirname, 'fixtures', 'tmp');
-  const demo = path.join(__dirname, 'fixtures', 'fix-bug-versions-app');
-  const bin = path.join(__dirname, '../bin/install.js');
-  const update = path.join(__dirname, '../bin/update.js');
+const bin = helper.npminstall;
+const update = path.join(path.dirname(helper.npminstall), 'update.js');
+
+describe('test/fix-bug-versions.test.js', () => {
+  const demo = helper.fixtures('fix-bug-versions-app');
+  const cleanupModules = helper.cleanup(demo);
+  const [ tmp, cleanupTmp ] = helper.tmp();
 
   function getPkg(subPath) {
     return JSON.parse(fs.readFileSync(path.join(tmp, subPath)));
   }
 
-  function cleanup() {
-    rimraf.sync(tmp);
-    rimraf.sync(path.join(demo, 'node_modules'));
+  async function cleanup() {
+    await Promise.all([
+      cleanupModules(),
+      cleanupTmp(),
+    ]);
   }
 
-  beforeEach(() => {
-    cleanup();
-    mkdirp.sync(tmp);
-  });
+  beforeEach(cleanup);
   afterEach(cleanup);
 
   it('should use fix version instead', done => {
@@ -41,8 +41,8 @@ describe('fix-bug-versions.test.js', () => {
       .end(done);
   });
 
-  it('should use fix dependencies instead', function* () {
-    yield coffee.fork(bin, [
+  it('should use fix dependencies instead', async () => {
+    await coffee.fork(bin, [
       'accord@0.28.0',
       '-d',
       '--fix-bug-versions',
@@ -58,8 +58,8 @@ describe('fix-bug-versions.test.js', () => {
     assert(getPkg('node_modules/accord/node_modules/less/package.json').version.split('.')[0] === '2');
   });
 
-  it('should support on install and update', function* () {
-    yield coffee.fork(bin, [
+  it('should support on install and update', async () => {
+    await coffee.fork(bin, [
       '-d',
       '--fix-bug-versions',
       '--no-cache',
@@ -69,7 +69,7 @@ describe('fix-bug-versions.test.js', () => {
       .expect('stdout', /is-my-json-valid@2\.17\.1@is-my-json-valid/)
       .end();
 
-    yield coffee.fork(update, [
+    await coffee.fork(update, [
       '-d',
       '--fix-bug-versions',
       '--no-cache',

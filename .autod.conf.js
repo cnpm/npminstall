@@ -1,7 +1,6 @@
 'use strict';
 
 module.exports = {
-  registry: 'https://r.cnpmjs.org',
   write: true,
   prefix: '^',
   dep: [

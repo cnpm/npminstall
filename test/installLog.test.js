@@ -1,51 +1,36 @@
 'use strict';
 
-const assert = require('assert');
-const path = require('path');
-const rimraf = require('rimraf');
-const mkdirp = require('mkdirp');
 const coffee = require('coffee');
-const npminstall = path.join(__dirname, '..', 'bin', 'install.js');
+const helper = require('./helper');
 
 if (process.platform !== 'win32') {
   describe('test/installLog.test.js', () => {
-    const tmp = path.join(__dirname, 'fixtures', 'tmp');
+    const [ tmp, cleanup ] = helper.tmp();
 
-    beforeEach(() => {
-      rimraf.sync(tmp);
-      mkdirp.sync(tmp);
-    });
-    afterEach(() => {
-      rimraf.sync(tmp);
-    });
+    beforeEach(cleanup);
+    afterEach(cleanup);
 
-    it('should install pedding with detail log', done => {
-      coffee.fork(npminstall, [
+    it('should install pedding with detail log', () => {
+      return coffee.fork(helper.npminstall, [
         'pedding',
         '-d',
       ], {
         cwd: tmp,
       })
-      .expect('stdout', /pedding@\* installed/)
-      .expect('code', 0)
-      .end(err => {
-        assert(!err, err && err.message);
-        done();
-      });
+        .expect('stdout', /pedding@\* installed/)
+        .expect('code', 0)
+        .end();
     });
 
-    it('should install pedding without detail log', done => {
-      coffee.fork(npminstall, [
+    it('should install pedding without detail log', () => {
+      return coffee.fork(helper.npminstall, [
         'pedding',
       ], {
         cwd: tmp,
       })
-      .notExpect('stdout', /pedding@\* installed/)
-      .expect('code', 0)
-      .end(err => {
-        assert(!err, err && err.message);
-        done();
-      });
+        .notExpect('stdout', /pedding@\* installed/)
+        .expect('code', 0)
+        .end();
     });
   });
 }

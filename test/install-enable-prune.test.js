@@ -1,53 +1,43 @@
 'use strict';
 
 const assert = require('assert');
-const fs = require('fs');
+const fs = require('mz/fs');
 const path = require('path');
-const rimraf = require('rimraf');
 const coffee = require('coffee');
-
-const npminstall = path.join(__dirname, '..', 'bin', 'install.js');
+const helper = require('./helper');
 
 describe('test/install-enable-prune.test.js', () => {
   describe('--prune', () => {
-    const cwd = path.join(__dirname, 'fixtures', 'install-enable-prune');
+    const cwd = helper.fixtures('install-enable-prune');
+    const cleanup = helper.cleanup(cwd);
 
-    function cleanup() {
-      rimraf.sync(path.join(cwd, 'node_modules'));
-    }
-
-    beforeEach(() => {
-      cleanup();
-    });
+    beforeEach(cleanup);
     afterEach(cleanup);
 
-    it('should install --prune', function* () {
-      yield coffee.fork(npminstall, [ '--prune', '--production' ], { cwd })
+    it('should install --prune', async () => {
+      await coffee.fork(helper.npminstall, [ '--prune', '--production' ], { cwd })
         .debug()
         .expect('code', 0)
         .end();
-      assert(!fs.existsSync(path.join(cwd, 'node_modules/egg/README.md')));
+      const exists = await fs.exists(path.join(cwd, 'node_modules/egg/README.md'));
+      assert(!exists);
     });
   });
 
   describe('pkg.config.npminstall.prune', () => {
-    const cwd = path.join(__dirname, 'fixtures', 'install-enable-prune-on-pkg');
+    const cwd = helper.fixtures('install-enable-prune-on-pkg');
+    const cleanup = helper.cleanup(cwd);
 
-    function cleanup() {
-      rimraf.sync(path.join(cwd, 'node_modules'));
-    }
-
-    beforeEach(() => {
-      cleanup();
-    });
+    beforeEach(cleanup);
     afterEach(cleanup);
 
-    it('should install with prune', function* () {
-      yield coffee.fork(npminstall, [], { cwd })
+    it('should install with prune', async () => {
+      await coffee.fork(helper.npminstall, [], { cwd })
         .debug()
         .expect('code', 0)
         .end();
-      assert(!fs.existsSync(path.join(cwd, 'node_modules/egg/README.md')));
+      const exists = await fs.exists(path.join(cwd, 'node_modules/egg/README.md'));
+      assert(!exists);
     });
   });
 });

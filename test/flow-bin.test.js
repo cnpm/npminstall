@@ -1,29 +1,20 @@
 'use strict';
 
-const path = require('path');
-const rimraf = require('rimraf');
-const mkdirp = require('mkdirp');
 const npminstall = require('./npminstall');
 const utils = require('../lib/utils');
+const helper = require('./helper');
 
 describe('test/flow-bin.test.js', () => {
-  const tmp = path.join(__dirname, 'fixtures', 'tmp');
+  const [ tmp, cleanup ] = helper.tmp();
 
-  function cleanup() {
-    rimraf.sync(tmp);
-  }
-
-  beforeEach(() => {
-    cleanup();
-    mkdirp.sync(tmp);
-  });
+  beforeEach(cleanup);
   afterEach(cleanup);
 
-  it('should install flow-bin from china mirror', function* () {
+  it('should install flow-bin from china mirror', async () => {
     if (!process.env.local) return;
     const registry = process.env.local ? 'https://registry.npm.taobao.org' : 'https://registry.npmjs.org';
-    const binaryMirrors = yield utils.getBinaryMirrors(registry);
-    yield npminstall({
+    const binaryMirrors = await utils.getBinaryMirrors(registry);
+    await npminstall({
       root: tmp,
       pkgs: [
         { name: 'flow-bin' },

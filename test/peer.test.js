@@ -1,61 +1,58 @@
 'use strict';
 
 const coffee = require('coffee');
-const rimraf = require('rimraf');
 const path = require('path');
 const assert = require('assert');
-const fs = require('fs');
+const fs = require('mz/fs');
+const helper = require('./helper');
 
-describe('peer.test.js', () => {
-  const bin = path.join(__dirname, '../bin/install.js');
-
+describe('test/peer.test.js', () => {
   describe('unmet root and link', () => {
-    const tmp = path.join(__dirname, 'fixtures', 'antd-tools-ts');
-    function cleanup() {
-      rimraf.sync(path.join(tmp, 'node_modules'));
-    }
+    const tmp = helper.fixtures('antd-tools-ts');
+    const cleanup = helper.cleanup(tmp);
 
     beforeEach(cleanup);
     afterEach(cleanup);
 
-    function getPkg(subPath) {
-      return JSON.parse(fs.readFileSync(path.join(tmp, subPath)));
+    async function getPkg(subPath) {
+      return JSON.parse(await fs.readFile(path.join(tmp, subPath)));
     }
 
-    it('should use ancestor\'s dependency for peerDependencies', function* () {
-      yield coffee.fork(bin, [], { cwd: tmp })
+    it('should use ancestor\'s dependency for peerDependencies', async () => {
+      await coffee.fork(helper.npminstall, [], { cwd: tmp })
         .debug()
         .expect('code', 0)
         .end();
-      assert(getPkg('node_modules/antd-tools/node_modules/tslint/node_modules/typescript/package.json').version === '2.1.6');
-      assert(getPkg('node_modules/antd-tools/node_modules/gulp-typescript/node_modules/typescript/package.json').version === '2.1.6');
-      assert(getPkg('node_modules/antd-tools/node_modules/typescript/package.json').version === '2.1.6');
+      let pkg = await getPkg('node_modules/antd-tools/node_modules/tslint/node_modules/typescript/package.json');
+      assert(pkg.version === '2.1.6');
+      pkg = await getPkg('node_modules/antd-tools/node_modules/gulp-typescript/node_modules/typescript/package.json');
+      assert(pkg.version === '2.1.6');
+      pkg = await getPkg('node_modules/antd-tools/node_modules/typescript/package.json');
+      assert(pkg.version === '2.1.6');
     });
 
-    it('should ignore peerDependency if in dependencies', function* () {
-      yield coffee.fork(bin, [ 'react-countup@1.3.0' ], { cwd: tmp })
+    it('should ignore peerDependency if in dependencies', async () => {
+      await coffee.fork(helper.npminstall, [ 'react-countup@1.3.0' ], { cwd: tmp })
         .debug()
         .expect('code', 0)
         .end();
-      assert(getPkg('node_modules/react-countup/node_modules/react/package.json').version.startsWith('15.'));
-      const pkg = getPkg('node_modules/react-countup/package.json');
+      let pkg = await getPkg('node_modules/react-countup/node_modules/react/package.json');
+      assert(pkg.version.startsWith('15.'));
+      pkg = await getPkg('node_modules/react-countup/package.json');
       assert(pkg.dependencies.react === '^15.3.2');
       assert(pkg.peerDependencies.react === '>=0.14.0');
     });
   });
 
   describe('match root', () => {
-    const tmp = path.join(__dirname, 'fixtures', 'react-and-react-dom');
-
-    function cleanup() {
-      rimraf.sync(path.join(tmp, 'node_modules'));
-    }
+    const tmp = helper.fixtures('react-and-react-dom');
+    const cleanup = helper.cleanup(tmp);
 
     beforeEach(cleanup);
     afterEach(cleanup);
 
-    it('should ignore peerDependency match with root', function* () {
-      yield coffee.fork(bin, [], { cwd: tmp })
+    it('should ignore peerDependency match with root', async () => {
+      await coffee.fork(helper.npminstall, [], { cwd: tmp })
         .debug()
         .expect('code', 0)
         .end();

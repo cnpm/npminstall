@@ -17,14 +17,14 @@ const get = require('../lib/get');
 mm.restore();
 
 describe('test/get.test.js', () => {
-  it('should retry on JSON parse error', function* () {
+  it('should retry on JSON parse error', async () => {
     const logger = {
       warn(msg) {
         assert(msg.indexOf('[npminstall:get] retry GET') === 0);
       },
     };
     try {
-      yield get('https://cnpmjs.org', { dataType: 'json' }, { console: logger });
+      await get('https://cnpmjs.org', { dataType: 'json' }, { console: logger });
       assert(false, 'should not run this');
     } catch (err) {
       assert(err.name === 'JSONResponseFormatError');
@@ -32,7 +32,7 @@ describe('test/get.test.js', () => {
     }
   });
 
-  it('should set auth info into header', function* () {
+  it('should set auth info into header', async () => {
     const logger = {
       warn(msg) {
         assert(msg.indexOf('[npminstall:get] retry GET') === 0);
@@ -41,7 +41,7 @@ describe('test/get.test.js', () => {
     const options = { dataType: 'json' };
     assert(fs.existsSync(mockCnpmrc + '.cnpmrc'));
     try {
-      yield get('https://registry-mock.org/mock', options, { console: logger });
+      await get('https://registry-mock.org/mock', options, { console: logger });
       assert(false, 'should not run this');
     } catch (err) {
       const headers = options.headers;

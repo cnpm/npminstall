@@ -1,25 +1,21 @@
 'use strict';
 
 const assert = require('assert');
-const path = require('path');
-const rimraf = require('rimraf');
 const npminstall = require('./npminstall');
+const helper = require('./helper');
 
 describe('test/specify-os-property.test.js', () => {
   describe('install fail', () => {
     const wrongPlatform = process.platform === 'darwin' ? 'linux' : 'darwin';
-    const root = path.join(__dirname, 'fixtures', `specify-${wrongPlatform}-os`);
-
-    function cleanup() {
-      rimraf.sync(path.join(root, 'node_modules'));
-    }
+    const root = helper.fixtures(`specify-${wrongPlatform}-os`);
+    const cleanup = helper.cleanup(root);
 
     beforeEach(cleanup);
     afterEach(cleanup);
 
-    it('should throw error when package.json#os property not match current platform', function* () {
+    it('should throw error when package.json#os property not match current platform', async () => {
       try {
-        yield npminstall({
+        await npminstall({
           root,
         });
         throw new Error('should not run this');
@@ -31,17 +27,14 @@ describe('test/specify-os-property.test.js', () => {
 
   if (process.platform === 'darwin' || process.platform === 'linux') {
     describe('install success', () => {
-      const root = path.join(__dirname, 'fixtures', `specify-${process.platform}-os`);
-
-      function cleanup() {
-        rimraf.sync(path.join(root, 'node_modules'));
-      }
+      const root = helper.fixtures(`specify-${process.platform}-os`);
+      const cleanup = helper.cleanup(root);
 
       beforeEach(cleanup);
       afterEach(cleanup);
 
-      it('should success when package.json#os property match current platform', function* () {
-        yield npminstall({
+      it('should success when package.json#os property match current platform', async () => {
+        await npminstall({
           root,
         });
       });

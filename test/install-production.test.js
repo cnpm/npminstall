@@ -2,21 +2,21 @@
 
 const path = require('path');
 const coffee = require('coffee');
-const rimraf = require('rimraf');
-const npminstall = path.join(__dirname, '..', 'bin', 'install.js');
+const rimraf = require('mz-modules/rimraf');
+const helper = require('./helper');
 
 describe('test/install-production.test.js', () => {
-  function cleanup(cwd) {
-    rimraf.sync(path.join(cwd, 'node_modules', '.package_versions.json'));
+  async function cleanup(cwd) {
+    await rimraf(path.join(cwd, 'node_modules', '.package_versions.json'));
   }
 
   describe('warn-node-modules-exists', () => {
-    const cwd = path.join(__dirname, 'fixtures', 'warn-node-modules-exists');
+    const cwd = helper.fixtures('warn-node-modules-exists');
     before(() => cleanup(cwd));
     after(() => cleanup(cwd));
 
     it('should warning node_modules exists on production', () => {
-      return coffee.fork(npminstall, [ '--production' ], { cwd })
+      return coffee.fork(helper.npminstall, [ '--production' ], { cwd })
         .debug()
         .expect('code', 0)
         .expect('stderr', /npminstall WARN node_modules exists/)
@@ -26,12 +26,12 @@ describe('test/install-production.test.js', () => {
   });
 
   describe('ignore-warn-node-modules-exists', () => {
-    const cwd = path.join(__dirname, 'fixtures', 'ignore-warn-node-modules-exists');
+    const cwd = helper.fixtures('ignore-warn-node-modules-exists');
     before(() => cleanup(cwd));
     after(() => cleanup(cwd));
 
     it('should ignore [ .bin, node ] node_modules', () => {
-      return coffee.fork(npminstall, [ '--production' ], { cwd })
+      return coffee.fork(helper.npminstall, [ '--production' ], { cwd })
         .debug()
         .expect('code', 0)
         .notExpect('stderr', /npminstall WARN node_modules exists/)

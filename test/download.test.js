@@ -3,33 +3,24 @@
 const assert = require('assert');
 const mm = require('mm');
 const urllib = require('urllib');
-const rimraf = require('rimraf');
-const path = require('path');
 const install = require('./npminstall');
-const mkdirp = require('../lib/utils').mkdirp;
+const helper = require('./helper');
 
 describe('test/download.test.js', () => {
-  const tmp = path.join(__dirname, 'fixtures', 'tmp');
+  const [ tmp, cleanup ] = helper.tmp();
 
-  function cleanup() {
-    rimraf.sync(tmp);
-  }
-
-  beforeEach(function* () {
-    cleanup();
-    yield mkdirp(tmp);
-  });
+  beforeEach(cleanup);
   afterEach(cleanup);
   afterEach(mm.restore);
 
   describe('mock tarball not exists', () => {
-    it('should throw error when status === 404', function* () {
+    it('should throw error when status === 404', async () => {
       const request = urllib.request;
-      mm(urllib, 'request', function* (url, options) {
+      mm(urllib, 'request', async (url, options) => {
         // if (url.endsWith('.tgz')) {
         //   mm.restore();
         // }
-        const result = yield request.call(urllib, url, options);
+        const result = await request.call(urllib, url, options);
         if (url.endsWith('.tgz')) {
           result.status = 404;
         }
@@ -37,7 +28,7 @@ describe('test/download.test.js', () => {
       });
 
       try {
-        yield install({
+        await install({
           root: tmp,
           pkgs: [
             { name: 'pedding' },
@@ -50,13 +41,13 @@ describe('test/download.test.js', () => {
       }
     });
 
-    it('should throw error when status === 206', function* () {
+    it('should throw error when status === 206', async () => {
       const request = urllib.request;
-      mm(urllib, 'request', function* (url, options) {
+      mm(urllib, 'request', async (url, options) => {
         // if (url.endsWith('.tgz')) {
         //   mm.restore();
         // }
-        const result = yield request.call(urllib, url, options);
+        const result = await request.call(urllib, url, options);
         if (url.endsWith('.tgz')) {
           result.status = 206;
         }
@@ -64,7 +55,7 @@ describe('test/download.test.js', () => {
       });
 
       try {
-        yield install({
+        await install({
           root: tmp,
           pkgs: [
             { name: 'pedding' },
@@ -79,15 +70,15 @@ describe('test/download.test.js', () => {
   });
 
   describe('mock tarball error', () => {
-    it('should throw sha1 error', function* () {
+    it('should throw sha1 error', async () => {
       this.timeout = 15000;
       const registry = process.env.npm_registry || 'https://registry.npm.taobao.org';
-      const res = yield urllib.request(`${registry}/pedding`, { dataType: 'json', timeout: 10000 });
+      const res = await urllib.request(`${registry}/pedding`, { dataType: 'json', timeout: 10000 });
       const pkg = res.data;
       pkg.versions['1.0.0'].dist.shasum = '00098d60307b4ef7240c3d693cb20a9473c111';
       mm.https.request(/^\/pedding$/, JSON.stringify(pkg));
       try {
-        yield install({
+        await install({
           root: tmp,
           pkgs: [
             { name: 'pedding', version: '1.0.0' },
@@ -101,11 +92,11 @@ describe('test/download.test.js', () => {
       }
     });
 
-    it('should throw 500 error', function* () {
+    it('should throw 500 error', async () => {
       mm.http.request(/\.tgz/, 'hello', { statusCode: 500 });
       mm.https.request(/\.tgz/, 'hello', { statusCode: 500 });
       try {
-        yield install({
+        await install({
           root: tmp,
           pkgs: [
             { name: 'pedding' },
@@ -118,12 +109,12 @@ describe('test/download.test.js', () => {
       }
     });
 
-    it('should throw 502 error', function* () {
+    it('should throw 502 error', async () => {
       mm.http.request(/\.tgz/, 'hello', { statusCode: 502 });
       mm.https.request(/\.tgz/, 'hello', { statusCode: 502 });
 
       try {
-        yield install({
+        await install({
           root: tmp,
           pkgs: [
             { name: 'pedding' },
