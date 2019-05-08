@@ -1,4 +1,18 @@
 
+4.0.0 / 2019-05-08
+==================
+
+**fixes**
+  * [[`2688fa8`](http://github.com/cnpm/npminstall/commit/2688fa86c3e922efb7faf471929b80c12d64649d)] - fix: cnpm install error without user settings (#301) (M0D27 <<i@0u0b.com>>)
+
+**others**
+  * [[`fe32958`](http://github.com/cnpm/npminstall/commit/fe32958526e8031a9a8a17df10a5c0ce65205b41)] - test: use async/await instead of generator (fengmk2 <<fengmk2@gmail.com>>)
+  * [[`3fbb871`](http://github.com/cnpm/npminstall/commit/3fbb871e8b668a355db4d4d120cb59a2a095adc1)] - refactor: use p-map instead of co-parallel (fengmk2 <<fengmk2@gmail.com>>)
+  * [[`313dcb9`](http://github.com/cnpm/npminstall/commit/313dcb99e8d7f34c7b88a2f71807cd04ecdd8d0c)] - refactor: use async/await instead of generator function (fengmk2 <<fengmk2@gmail.com>>)
+  * [[`322c5e0`](http://github.com/cnpm/npminstall/commit/322c5e049187da73ddfdad7f23e181680ecbfd3c)] - refactor: drop node 4 and 6 support (fengmk2 <<fengmk2@gmail.com>>)
+  * [[`ef1432a`](http://github.com/cnpm/npminstall/commit/ef1432ac60d5e68e3189df9b914d62a8309904f5)] - chore: remove benchmark (#298) (fengmk2 <<fengmk2@gmail.com>>)
+  * [[`f867120`](http://github.com/cnpm/npminstall/commit/f867120c3fd1009a4faec37c557f64c70010dd04)] - chore: add publishConfig.tag latest-3 (fengmk2 <<fengmk2@gmail.com>>)
+
 3.21.0 / 2019-04-28
 ==================
 
