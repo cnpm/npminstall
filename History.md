@@ -1,4 +1,14 @@
 
+3.21.1 / 2019-05-08
+==================
+
+**fixes**
+  * [[`3754ef6`](http://github.com/cnpm/npminstall/commit/3754ef6b5d8ce23bd704013664c01b19f3200809)] - fix: cnpm install error without user settings (#301) (M0D27 <<i@0u0b.com>>)
+
+**others**
+  * [[`ef1432a`](http://github.com/cnpm/npminstall/commit/ef1432ac60d5e68e3189df9b914d62a8309904f5)] - chore: remove benchmark (#298) (fengmk2 <<fengmk2@gmail.com>>)
+  * [[`f867120`](http://github.com/cnpm/npminstall/commit/f867120c3fd1009a4faec37c557f64c70010dd04)] - chore: add publishConfig.tag latest-3 (fengmk2 <<fengmk2@gmail.com>>)
+
 3.21.0 / 2019-04-28
 ==================
 
