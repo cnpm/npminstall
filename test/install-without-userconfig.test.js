@@ -20,7 +20,6 @@ describe('test/install-without-userconfig.test.js', () => {
     yield coffee.fork(npminstall, ['webpack-parallel-uglify-plugin@1.0.0'], { 
         cwd: cwd, 
         env: Object.assign({}, process.env, { 
-          NODE: cwd, 
           USERPROFILE: cwd, 
           HOME: cwd 
         }) 
