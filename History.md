@@ -1,4 +1,10 @@
 
+3.22.0 / 2019-05-24
+==================
+
+**features**
+  * [[`9e7c3d5`](http://github.com/cnpm/npminstall/commit/9e7c3d55d0bf4a83007354d99584befec073b83e)] - feat: use r.npm.taobao.org on cdn (fengmk2 <<fengmk2@gmail.com>>)
+
 3.21.1 / 2019-05-08
 ==================
 
