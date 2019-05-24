@@ -6,7 +6,7 @@ const fs = require('mz/fs');
 const coffee = require('coffee');
 const helper = require('./helper');
 
-const registry = process.env.npm_china ? 'https://registry.npm.taobao.org' : 'https://registry.npmjs.org';
+const registry = process.env.npm_china ? 'https://r.npm.taobao.org' : 'https://registry.npmjs.org';
 
 if (process.platform !== 'win32') {
   describe('test/installSaveDeps.test.js', () => {

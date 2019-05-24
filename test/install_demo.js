@@ -17,7 +17,7 @@ const npminstall = require('./npminstall');
       // { name: 'express' },
     ],
     // registry, default is https://registry.npmjs.org
-    registry: 'https://registry.npm.taobao.org',
+    registry: 'https://r.npm.taobao.org',
     // debug: false,
     // storeDir: root + '.npminstall',
   });
