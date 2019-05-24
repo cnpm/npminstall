@@ -8,7 +8,7 @@ const fs = require('mz/fs');
 const readJSON = require('../lib/utils').readJSON;
 const npminstall = require('./npminstall');
 
-const registry = process.env.npm_china ? 'https://registry.npm.taobao.org' : 'https://registry.npmjs.org';
+const registry = process.env.npm_china ? 'https://r.npm.taobao.org' : 'https://registry.npmjs.org';
 
 describe('test/installRemote.test.js', () => {
   const root = path.join(__dirname, 'fixtures', 'github');
