@@ -1,4 +1,10 @@
 
+4.1.0 / 2019-05-24
+==================
+
+**features**
+  * [[`48bbb04`](http://github.com/cnpm/npminstall/commit/48bbb04f2b6c8498079f131290fa4bad8c3a9634)] - feat: use more faster cdn registry (#303) (fengmk2 <<fengmk2@gmail.com>>)
+
 4.0.0 / 2019-05-08
 ==================
 
