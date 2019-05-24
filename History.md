@@ -1,4 +1,13 @@
 
+2.31.0 / 2019-05-24
+==================
+
+**features**
+  * [[`25a4871`](http://github.com/cnpm/npminstall/commit/25a4871b3763ce15bd3fcb0a2b9f45820c5da299)] - feat: use cdn registry (fengmk2 <<fengmk2@gmail.com>>)
+
+**others**
+  * [[`a6b25eb`](http://github.com/cnpm/npminstall/commit/a6b25ebe7c18e135a2f000d6f6dad7d4cc70521a)] - chore: change tag to latest-2 (fengmk2 <<fengmk2@gmail.com>>)
+
 2.30.2 / 2017-06-08
 ==================
 
