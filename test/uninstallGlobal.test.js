@@ -25,22 +25,22 @@ describe('test/uninstallGlobal.test.js', () => {
       '-g',
       'mocha',
     ])
-    .debug()
-    .expect('stdout', /All packages installed/)
-    .expect('code', 0)
-    .end(err => {
-      assert(!err);
-      coffee.fork(require.resolve('../bin/uninstall'), [
-        `--prefix=${tmp}`,
-        '-g',
-        'mocha',
-      ])
       .debug()
-      .expect('stdout', /- mocha@\d+\.\d+\.\d+ \.\/test\/fixtures\/tmp\/lib\/node_modules\/mocha/)
-      .expect('stdout', /- mocha@\d+\.\d+\.\d+ \.\/test\/fixtures\/tmp\/bin\/mocha/)
-      .expect('stdout', /- mocha@\d+\.\d+\.\d+ \.\/test\/fixtures\/tmp\/bin\/_mocha/)
+      .expect('stdout', /All packages installed/)
       .expect('code', 0)
-      .end(done);
-    });
+      .end(err => {
+        assert(!err);
+        coffee.fork(require.resolve('../bin/uninstall'), [
+          `--prefix=${tmp}`,
+          '-g',
+          'mocha',
+        ])
+          .debug()
+          .expect('stdout', /- mocha@\d+\.\d+\.\d+ \.\/test\/fixtures\/tmp\/lib\/node_modules\/mocha/)
+          .expect('stdout', /- mocha@\d+\.\d+\.\d+ \.\/test\/fixtures\/tmp\/bin\/mocha/)
+          .expect('stdout', /- mocha@\d+\.\d+\.\d+ \.\/test\/fixtures\/tmp\/bin\/_mocha/)
+          .expect('code', 0)
+          .end(done);
+      });
   });
 });

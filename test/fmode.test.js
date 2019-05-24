@@ -25,8 +25,8 @@ if (process.platform !== 'win32') {
       yield coffee.fork(npminstall, [ 'array-unique@0.2.1' ], {
         cwd: homedir,
       })
-      .debug()
-      .end();
+        .debug()
+        .end();
       const stat = fs.statSync(path.join(homedir, 'node_modules/array-unique/index.js'));
       // 700 -> 744
       assert(stat.mode === 33252);

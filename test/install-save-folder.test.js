@@ -26,7 +26,7 @@ describe('test/install-save-folder.test.js', () => {
       cwd: root,
     })
     // .debug()
-    .end();
+      .end();
 
     const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json')));
     assert(pkg.dependencies.demo, '^1.0.0');
@@ -38,7 +38,7 @@ describe('test/install-save-folder.test.js', () => {
       cwd: root,
     })
     // .debug()
-    .end();
+      .end();
 
     const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json')));
     assert(pkg.devDependencies.demo, '^1.0.0');
@@ -50,7 +50,7 @@ describe('test/install-save-folder.test.js', () => {
       cwd: root,
     })
     // .debug()
-    .end();
+      .end();
 
     const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json')));
     assert(pkg.clientDependencies.demo, '^1.0.0');
@@ -62,7 +62,7 @@ describe('test/install-save-folder.test.js', () => {
       cwd: root,
     })
     // .debug()
-    .end();
+      .end();
 
     const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json')));
     assert(pkg.buildDependencies.demo, '^1.0.0');
@@ -74,7 +74,7 @@ describe('test/install-save-folder.test.js', () => {
       cwd: root,
     })
     // .debug()
-    .end();
+      .end();
 
     const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json')));
     assert(pkg.isomorphicDependencies.demo, '^1.0.0');

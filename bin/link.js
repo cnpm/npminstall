@@ -32,7 +32,7 @@ if (argv.version) {
 
 if (argv.help) {
   console.log(
-`
+    `
 Usage:
 
   npmlink <folder>

@@ -31,9 +31,9 @@ describe('test/seperate-dependencies.test.js', () => {
         cwd: root,
       })
       // .debug()
-      .expect('code', 1)
-      .expect('stderr', /resolution package foo\/\*\* format error/)
-      .end();
+        .expect('code', 1)
+        .expect('stderr', /resolution package foo\/\*\* format error/)
+        .end();
     });
   });
 
@@ -49,9 +49,9 @@ describe('test/seperate-dependencies.test.js', () => {
         cwd: root,
       })
       // .debug()
-      .expect('code', 1)
-      .expect('stderr', /resolution package foo\/bar-\* format error/)
-      .end();
+        .expect('code', 1)
+        .expect('stderr', /resolution package foo\/bar-\* format error/)
+        .end();
     });
   });
 
@@ -67,8 +67,8 @@ describe('test/seperate-dependencies.test.js', () => {
         cwd: root,
       })
       // .debug()
-      .expect('code', 0)
-      .end();
+        .expect('code', 0)
+        .end();
 
       yield checkPkg('debug', '2.0.0');
       yield checkPkg('koa/node_modules/debug', '1.0.0');

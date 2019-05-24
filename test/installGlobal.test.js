@@ -36,10 +36,10 @@ describe('test/installGlobal.test.js', () => {
       `${registry}/taffydb/-/taffydb-2.7.2.tgz`,
       `${registry}/egg-bin/-/egg-bin-1.6.0.tgz`,
     ])
-    .debug()
-    .expect('stdout', /All packages installed/)
-    .expect('code', 0)
-    .end();
+      .debug()
+      .expect('stdout', /All packages installed/)
+      .expect('code', 0)
+      .end();
 
     assert(yield fs.exists(path.join(binDir, 'contributors')));
     assert(yield fs.exists(path.join(binDir, 'egg-bin')));
@@ -56,10 +56,10 @@ describe('test/installGlobal.test.js', () => {
       'b',
       `${registry}/egg-bin/-/egg-bin-1.7.0.tgz`,
     ])
-    .debug()
-    .expect('stdout', /All packages installed/)
-    .expect('code', 0)
-    .end();
+      .debug()
+      .expect('stdout', /All packages installed/)
+      .expect('code', 0)
+      .end();
 
     assert(yield fs.exists(path.join(binDir, 'contributors')));
     assert(yield fs.exists(path.join(binDir, 'egg-bin')));
@@ -73,10 +73,10 @@ describe('test/installGlobal.test.js', () => {
       '-g',
       'contributors@0',
     ])
-    .debug()
-    .expect('stdout', /All packages installed/)
-    .expect('code', 0)
-    .end();
+      .debug()
+      .expect('stdout', /All packages installed/)
+      .expect('code', 0)
+      .end();
 
     assert(yield fs.exists(path.join(binDir, 'contributors')));
     assert(yield fs.exists(path.join(libDir, 'node_modules/contributors')));
@@ -88,12 +88,12 @@ describe('test/installGlobal.test.js', () => {
       '-g',
       'egg-bin',
     ])
-    .debug()
-    .expect('stdout', /Downloading egg-bin to /)
-    .expect('stdout', /Installing egg-bin's dependencies to /)
-    .expect('stdout', /All packages installed/)
-    .expect('code', 0)
-    .end();
+      .debug()
+      .expect('stdout', /Downloading egg-bin to /)
+      .expect('stdout', /Installing egg-bin's dependencies to /)
+      .expect('stdout', /All packages installed/)
+      .expect('code', 0)
+      .end();
 
     assert(yield fs.exists(path.join(binDir, 'egg-bin')));
     assert(yield fs.exists(path.join(binDir, 'mocha')));

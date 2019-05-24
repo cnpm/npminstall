@@ -23,9 +23,9 @@ describe('test/link-folder.test.js', () => {
     yield coffee.fork(npmlink, [ './linked-package' ], {
       cwd: root,
     })
-    .debug()
-    .expect('stderr', /npm_rootpath:.+link\-demo!!!!!/)
-    .end();
+      .debug()
+      .expect('stderr', /npm_rootpath:.+link\-demo!!!!!/)
+      .end();
 
     assert(fs.existsSync(path.join(root, 'node_modules/linked-package')));
   });
@@ -34,8 +34,8 @@ describe('test/link-folder.test.js', () => {
     yield coffee.fork(npmlink, [ './linked-package', './linked-package-2', '-d' ], {
       cwd: root,
     })
-    .debug()
-    .end();
+      .debug()
+      .end();
 
     assert(fs.existsSync(path.join(root, 'node_modules/linked-package')));
     assert(fs.existsSync(path.join(root, 'node_modules/linked-package-2')));

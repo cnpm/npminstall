@@ -81,7 +81,7 @@ describe('test/download.test.js', () => {
   describe('mock tarball error', () => {
     it('should throw sha1 error', function* () {
       this.timeout = 15000;
-      const registry = process.env.npm_registry || 'https://registry.npm.taobao.org';
+      const registry = process.env.npm_registry || 'https://r.npm.taobao.org';
       const res = yield urllib.request(`${registry}/pedding`, { dataType: 'json', timeout: 10000 });
       const pkg = res.data;
       pkg.versions['1.0.0'].dist.shasum = '00098d60307b4ef7240c3d693cb20a9473c111';

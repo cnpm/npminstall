@@ -21,8 +21,8 @@ describe('test/update.test.js', () => {
       cwd: root,
       stdio: 'pipe',
     })
-    .debug()
-    .end(done);
+      .debug()
+      .end(done);
   });
 
   afterEach(cleanup);
@@ -32,13 +32,13 @@ describe('test/update.test.js', () => {
       cwd: root,
       stdio: 'pipe',
     })
-    .debug()
-    .end(err => {
-      assert(!err);
-      assert(fs.existsSync(path.join(root, 'node_modules/pedding')));
-      assert(fs.existsSync(path.join(root, 'node_modules/pkg')));
-      done();
-    });
+      .debug()
+      .end(err => {
+        assert(!err);
+        assert(fs.existsSync(path.join(root, 'node_modules/pedding')));
+        assert(fs.existsSync(path.join(root, 'node_modules/pkg')));
+        done();
+      });
   });
 
   it('should update pedding ok', done => {
@@ -46,12 +46,12 @@ describe('test/update.test.js', () => {
       cwd: root,
       stdio: 'pipe',
     })
-    .debug()
-    .end(err => {
-      assert(!err);
-      assert(fs.existsSync(path.join(root, 'node_modules/pedding')));
-      assert(fs.existsSync(path.join(root, 'node_modules/pkg')));
-      done();
-    });
+      .debug()
+      .end(err => {
+        assert(!err);
+        assert(fs.existsSync(path.join(root, 'node_modules/pedding')));
+        assert(fs.existsSync(path.join(root, 'node_modules/pkg')));
+        done();
+      });
   });
 });

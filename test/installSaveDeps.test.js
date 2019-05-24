@@ -8,7 +8,7 @@ const fs = require('mz/fs');
 const coffee = require('coffee');
 const npminstall = path.join(__dirname, '..', 'bin', 'install.js');
 
-const registry = process.env.npm_china ? 'https://registry.npm.taobao.org' : 'https://registry.npmjs.org';
+const registry = process.env.npm_china ? 'https://r.npm.taobao.org' : 'https://registry.npmjs.org';
 
 if (process.platform !== 'win32') {
   describe('test/installSaveDeps.test.js', () => {
@@ -30,19 +30,19 @@ if (process.platform !== 'win32') {
       ], {
         cwd: tmp,
       })
-      .expect('stdout', /pedding@\* installed/)
-      .expect('code', 0)
-      .end(err => {
-        assert(!err, err && err.message);
+        .expect('stdout', /pedding@\* installed/)
+        .expect('code', 0)
+        .end(err => {
+          assert(!err, err && err.message);
 
-        const deps = JSON.parse(fs.readFileSync(path.join(tmp, 'package.json'))).dependencies;
-        assert(deps);
-        assert(deps.pedding);
-        assert.equal(typeof deps.pedding, 'string');
-        assert(/^[\^~]{1}\d+\.\d+\.\d+/.test(deps.pedding), deps.pedding);
+          const deps = JSON.parse(fs.readFileSync(path.join(tmp, 'package.json'))).dependencies;
+          assert(deps);
+          assert(deps.pedding);
+          assert.equal(typeof deps.pedding, 'string');
+          assert(/^[\^~]{1}\d+\.\d+\.\d+/.test(deps.pedding), deps.pedding);
 
-        done();
-      });
+          done();
+        });
     });
 
     it('should install --save pedding and update dependencies and sort', done => {
@@ -54,17 +54,17 @@ if (process.platform !== 'win32') {
       ], {
         cwd: tmp,
       })
-      .debug()
-      .expect('stdout', /pedding@\* installed/)
-      .expect('code', 0)
-      .end(err => {
-        assert(!err, err && err.message);
+        .debug()
+        .expect('stdout', /pedding@\* installed/)
+        .expect('code', 0)
+        .end(err => {
+          assert(!err, err && err.message);
 
-        const deps = JSON.parse(fs.readFileSync(path.join(tmp, 'package.json'))).dependencies;
-        assert(/\{"pedding":"[\^~]\d+\.\d+\.\d+","zhi":"\^0.3.1"\}/.test(JSON.stringify(deps)));
+          const deps = JSON.parse(fs.readFileSync(path.join(tmp, 'package.json'))).dependencies;
+          assert(/\{"pedding":"[\^~]\d+\.\d+\.\d+","zhi":"\^0.3.1"\}/.test(JSON.stringify(deps)));
 
-        done();
-      });
+          done();
+        });
     });
 
     it('should install --save-dev pedding and update devDependencies', done => {
@@ -75,18 +75,18 @@ if (process.platform !== 'win32') {
       ], {
         cwd: tmp,
       })
-      .expect('stdout', /pedding@0 installed/)
-      .expect('code', 0)
-      .end(err => {
-        assert(!err, err && err.message);
-        const deps = JSON.parse(fs.readFileSync(path.join(tmp, 'package.json'))).devDependencies;
-        assert(deps);
-        assert(deps.pedding);
-        assert.equal(typeof deps.pedding, 'string');
-        assert(/^[\^~]{1}\d+\.\d+\.\d+/.test(deps.pedding), deps.pedding);
+        .expect('stdout', /pedding@0 installed/)
+        .expect('code', 0)
+        .end(err => {
+          assert(!err, err && err.message);
+          const deps = JSON.parse(fs.readFileSync(path.join(tmp, 'package.json'))).devDependencies;
+          assert(deps);
+          assert(deps.pedding);
+          assert.equal(typeof deps.pedding, 'string');
+          assert(/^[\^~]{1}\d+\.\d+\.\d+/.test(deps.pedding), deps.pedding);
 
-        done();
-      });
+          done();
+        });
     });
 
     it('should install --save-optional pedding and update optionalDependencies', done => {
@@ -97,18 +97,18 @@ if (process.platform !== 'win32') {
       ], {
         cwd: tmp,
       })
-      .expect('stdout', /pedding@1 installed/)
-      .expect('code', 0)
-      .end(err => {
-        assert(!err, err && err.message);
-        const deps = JSON.parse(fs.readFileSync(path.join(tmp, 'package.json'))).optionalDependencies;
-        assert(deps);
-        assert(deps.pedding);
-        assert.equal(typeof deps.pedding, 'string');
-        assert(/^[\^~]{1}\d+\.\d+\.\d+/.test(deps.pedding), deps.pedding);
+        .expect('stdout', /pedding@1 installed/)
+        .expect('code', 0)
+        .end(err => {
+          assert(!err, err && err.message);
+          const deps = JSON.parse(fs.readFileSync(path.join(tmp, 'package.json'))).optionalDependencies;
+          assert(deps);
+          assert(deps.pedding);
+          assert.equal(typeof deps.pedding, 'string');
+          assert(/^[\^~]{1}\d+\.\d+\.\d+/.test(deps.pedding), deps.pedding);
 
-        done();
-      });
+          done();
+        });
     });
 
     it('should install --save from remote without name', done => {
@@ -120,14 +120,14 @@ if (process.platform !== 'win32') {
       ], {
         cwd: tmp,
       })
-      .expect('code', 0)
-      .end(err => {
-        assert(!err, err && err.message);
-        const deps = JSON.parse(fs.readFileSync(path.join(tmp, 'package.json'))).dependencies;
-        assert(deps);
-        assert(deps.taffydb === url);
-        done();
-      });
+        .expect('code', 0)
+        .end(err => {
+          assert(!err, err && err.message);
+          const deps = JSON.parse(fs.readFileSync(path.join(tmp, 'package.json'))).dependencies;
+          assert(deps);
+          assert(deps.taffydb === url);
+          done();
+        });
     });
 
     it('should install --save from remote with name', done => {
@@ -139,14 +139,14 @@ if (process.platform !== 'win32') {
       ], {
         cwd: tmp,
       })
-      .expect('code', 0)
-      .end(err => {
-        assert(!err, err && err.message);
-        const deps = JSON.parse(fs.readFileSync(path.join(tmp, 'package.json'))).dependencies;
-        assert(deps);
-        assert(deps.taffydb === url);
-        done();
-      });
+        .expect('code', 0)
+        .end(err => {
+          assert(!err, err && err.message);
+          const deps = JSON.parse(fs.readFileSync(path.join(tmp, 'package.json'))).dependencies;
+          assert(deps);
+          assert(deps.taffydb === url);
+          done();
+        });
     });
 
     it('should install from github with commit hash mozilla/nunjucks#0f8b21b8df7e8e852b2e1889388653b7075f0d09 and update dependencies', done => {
@@ -157,18 +157,18 @@ if (process.platform !== 'win32') {
       ], {
         cwd: tmp,
       })
-      .expect('stdout', /nunjucks@mozilla\/nunjucks#0f8b21b8df7e8e852b2e1889388653b7075f0d09 installed/)
-      .expect('code', 0)
-      .end(err => {
-        assert(!err, err && err.message);
-        const deps = JSON.parse(fs.readFileSync(path.join(tmp, 'package.json'))).dependencies;
-        assert(deps);
-        assert(deps.nunjucks);
-        assert.equal(typeof deps.nunjucks, 'string');
-        assert.equal(deps.nunjucks, 'mozilla/nunjucks#0f8b21b8df7e8e852b2e1889388653b7075f0d09');
+        .expect('stdout', /nunjucks@mozilla\/nunjucks#0f8b21b8df7e8e852b2e1889388653b7075f0d09 installed/)
+        .expect('code', 0)
+        .end(err => {
+          assert(!err, err && err.message);
+          const deps = JSON.parse(fs.readFileSync(path.join(tmp, 'package.json'))).dependencies;
+          assert(deps);
+          assert(deps.nunjucks);
+          assert.equal(typeof deps.nunjucks, 'string');
+          assert.equal(deps.nunjucks, 'mozilla/nunjucks#0f8b21b8df7e8e852b2e1889388653b7075f0d09');
 
-        done();
-      });
+          done();
+        });
     });
   });
 }

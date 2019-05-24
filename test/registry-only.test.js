@@ -19,9 +19,9 @@ describe('test/registry-only.test.js', () => {
     return coffee.fork(npminstall, [ '--registry-only' ], {
       cwd: root,
     })
-    .debug()
-    .expect('stderr', /Only allow install package from registry/)
-    .expect('code', 1)
-    .end();
+      .debug()
+      .expect('stderr', /Only allow install package from registry/)
+      .expect('code', 1)
+      .end();
   });
 });

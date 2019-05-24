@@ -26,12 +26,12 @@ if (process.platform !== 'win32') {
       ], {
         cwd: tmp,
       })
-      .expect('stdout', /pedding@\* installed/)
-      .expect('code', 0)
-      .end(err => {
-        assert(!err, err && err.message);
-        done();
-      });
+        .expect('stdout', /pedding@\* installed/)
+        .expect('code', 0)
+        .end(err => {
+          assert(!err, err && err.message);
+          done();
+        });
     });
 
     it('should install pedding without detail log', done => {
@@ -40,12 +40,12 @@ if (process.platform !== 'win32') {
       ], {
         cwd: tmp,
       })
-      .notExpect('stdout', /pedding@\* installed/)
-      .expect('code', 0)
-      .end(err => {
-        assert(!err, err && err.message);
-        done();
-      });
+        .notExpect('stdout', /pedding@\* installed/)
+        .expect('code', 0)
+        .end(err => {
+          assert(!err, err && err.message);
+          done();
+        });
     });
   });
 }

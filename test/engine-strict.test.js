@@ -24,10 +24,10 @@ describe('test/engine-strict.test.js', () => {
       cwd: root,
     })
     // .debug()
-    .expect('stderr', /WARN node unsupported/)
-    .expect('stderr', /All packages installed/)
-    .expect('code', 0)
-    .end();
+      .expect('stderr', /WARN node unsupported/)
+      .expect('stderr', /All packages installed/)
+      .expect('code', 0)
+      .end();
   });
 
   it('should install fail when --engine-strict enable', () => {
@@ -38,8 +38,8 @@ describe('test/engine-strict.test.js', () => {
       cwd: root,
     })
     // .debug()
-    .expect('stderr', /Install fail! UnSupportedNodeError/)
-    .expect('code', 1)
-    .end();
+      .expect('stderr', /Install fail! UnSupportedNodeError/)
+      .expect('code', 1)
+      .end();
   });
 });

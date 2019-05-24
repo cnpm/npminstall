@@ -98,17 +98,17 @@ describe('test/postinstall.test.js', () => {
         ], {
           cwd: root,
         })
-        .debug()
-        .expect('stdout', /pedding@1\.0\.0 installed/)
-        .expect('stdout', /npm_config_foo_bar_haha = okok/)
-        .expect('code', 0)
-        .end(err => {
-          assert(!err, err && err.message);
-          const version = require(path.join(root, 'node_modules', 'pedding', 'package.json')).version;
-          assert(version);
-          assert.equal(version, '1.0.0');
-          done();
-        });
+          .debug()
+          .expect('stdout', /pedding@1\.0\.0 installed/)
+          .expect('stdout', /npm_config_foo_bar_haha = okok/)
+          .expect('code', 0)
+          .end(err => {
+            assert(!err, err && err.message);
+            const version = require(path.join(root, 'node_modules', 'pedding', 'package.json')).version;
+            assert(version);
+            assert.equal(version, '1.0.0');
+            done();
+          });
       });
     });
   }

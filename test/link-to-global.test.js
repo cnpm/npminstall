@@ -28,8 +28,8 @@ describe('test/link-to-global.test.js', () => {
     yield coffee.fork(npmlink, [ `--prefix=${prefix}` ], {
       cwd: path.join(root, 'linked-package'),
     })
-    .debug()
-    .end();
+      .debug()
+      .end();
 
     assert(fs.existsSync(path.join(libDir, 'node_modules/linked-package')));
   });
@@ -38,8 +38,8 @@ describe('test/link-to-global.test.js', () => {
     yield coffee.fork(npmlink, [ `--prefix=${prefix}` ], {
       cwd: path.join(root, 'linked-package-2'),
     })
-    .debug()
-    .end();
+      .debug()
+      .end();
 
     assert(fs.existsSync(path.join(libDir, 'node_modules/linked-package-2')));
     // bin file should be exists

@@ -24,8 +24,8 @@ describe('test/link-module.test.js', () => {
     yield coffee.fork(npmlink, [ 'debug', `--prefix=${globalRoot}` ], {
       cwd: root,
     })
-    .debug()
-    .end();
+      .debug()
+      .end();
 
     assert(fs.existsSync(path.join(root, 'node_modules/debug')));
     assert(fs.existsSync(path.join(globalTarget, 'node_modules/debug')));
@@ -35,8 +35,8 @@ describe('test/link-module.test.js', () => {
     yield coffee.fork(npmlink, [ 'debug@~2.2.0', `--prefix=${globalRoot}` ], {
       cwd: root,
     })
-    .debug()
-    .end();
+      .debug()
+      .end();
 
     assert(fs.existsSync(path.join(root, 'node_modules/debug')));
     assert(fs.existsSync(path.join(globalTarget, 'node_modules/debug')));
@@ -45,8 +45,8 @@ describe('test/link-module.test.js', () => {
     yield coffee.fork(npmlink, [ 'debug@1.0.0', `--prefix=${globalRoot}` ], {
       cwd: root,
     })
-    .debug()
-    .end();
+      .debug()
+      .end();
 
     assert(fs.existsSync(path.join(root, 'node_modules/debug')));
     assert(fs.existsSync(path.join(globalTarget, 'node_modules/debug')));
@@ -55,8 +55,8 @@ describe('test/link-module.test.js', () => {
     yield coffee.fork(npmlink, [ 'debug', `--prefix=${globalRoot}` ], {
       cwd: root,
     })
-    .debug()
-    .end();
+      .debug()
+      .end();
 
     assert(fs.existsSync(path.join(root, 'node_modules/debug')));
     assert(fs.existsSync(path.join(globalTarget, 'node_modules/debug')));
@@ -65,8 +65,8 @@ describe('test/link-module.test.js', () => {
     yield coffee.fork(npmlink, [ 'debug@latest', `--prefix=${globalRoot}` ], {
       cwd: root,
     })
-    .debug()
-    .end();
+      .debug()
+      .end();
 
     assert(fs.existsSync(path.join(root, 'node_modules/debug')));
     assert(fs.existsSync(path.join(globalTarget, 'node_modules/debug')));

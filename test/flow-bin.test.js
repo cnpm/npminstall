@@ -21,7 +21,7 @@ describe('test/flow-bin.test.js', () => {
 
   it('should install flow-bin from china mirror', function* () {
     if (!process.env.local) return;
-    const registry = process.env.local ? 'https://registry.npm.taobao.org' : 'https://registry.npmjs.org';
+    const registry = process.env.local ? 'https://r.npm.taobao.org' : 'https://registry.npmjs.org';
     const binaryMirrors = yield utils.getBinaryMirrors(registry);
     yield npminstall({
       root: tmp,

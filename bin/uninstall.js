@@ -109,7 +109,7 @@ function* updateDependencies(root, pkgs, propName) {
 
 function help() {
   console.log(
-`
+    `
 Usage:
 
   npmuninstall <pkg>

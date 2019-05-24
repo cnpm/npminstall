@@ -22,8 +22,8 @@ describe('test/license.test.js', () => {
     ], {
       cwd: root,
     })
-    .expect('stderr', /package forbidden's license\(MIT-v3\.0\) is not allowed/)
-    .end(done);
+      .expect('stderr', /package forbidden's license\(MIT-v3\.0\) is not allowed/)
+      .end(done);
   });
 
   it('should install none / allowed license ok', done => {
@@ -35,7 +35,7 @@ describe('test/license.test.js', () => {
     ], {
       cwd: root,
     })
-    .expect('stdout', /2 packages installed from local file/)
-    .end(done);
+      .expect('stdout', /2 packages installed from local file/)
+      .end(done);
   });
 });

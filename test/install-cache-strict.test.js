@@ -32,8 +32,8 @@ describe('test/install-cache-strict.test.js', () => {
         HOME: homedir,
       }),
     })
-    .debug()
-    .end();
+      .debug()
+      .end();
     assert(fs.statSync(path.join(homedir, '.npminstall_tarball/d/e/b/u/debug')));
   });
 
@@ -45,8 +45,8 @@ describe('test/install-cache-strict.test.js', () => {
         NODE_ENV: 'production',
       }),
     })
-    .debug()
-    .end();
+      .debug()
+      .end();
     assert(fs.statSync(path.join(homedir, '.npminstall_tarball/d/e/b/u/debug')));
   });
 });

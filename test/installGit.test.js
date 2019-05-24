@@ -155,12 +155,12 @@ describe('test/installGit.test.js', () => {
     ], {
       cwd: tmp,
     })
-    .debug()
-    .expect('code', 0)
-    .expect('stderr', /Package name unmatched: expected error but found nunjucks/)
-    .end(err => {
-      assert(require(path.join(tmp, 'node_modules/error/package.json')).name === 'nunjucks');
-      done(err);
-    });
+      .debug()
+      .expect('code', 0)
+      .expect('stderr', /Package name unmatched: expected error but found nunjucks/)
+      .end(err => {
+        assert(require(path.join(tmp, 'node_modules/error/package.json')).name === 'nunjucks');
+        done(err);
+      });
   });
 });

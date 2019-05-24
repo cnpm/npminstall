@@ -197,10 +197,10 @@ describe('test/installLocal.test.js', function() {
         ], {
           cwd: root,
         })
-        .coverage(false)
-        .debug()
-        .expect('code', 0)
-        .end(done);
+          .coverage(false)
+          .debug()
+          .expect('code', 0)
+          .end(done);
       });
     }
   }

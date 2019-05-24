@@ -32,7 +32,7 @@ require('./install');
 
 function help() {
   console.log(
-`
+    `
 Usage:
 
   npmupdate [--root=${root}]

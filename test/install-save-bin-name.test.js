@@ -21,9 +21,9 @@ describe('test/install-save-bin-name.test.js', () => {
     yield coffee.fork(npminstall, [ 'webpack-parallel-uglify-plugin@1.0.0' ], {
       cwd: root,
     })
-    .debug()
-    .expect('code', 0)
-    .end();
+      .debug()
+      .expect('code', 0)
+      .end();
 
     assert(fs.existsSync(path.join(root, 'node_modules/webpack-parallel-uglify-plugin/node_modules/.bin/uglifyjs')));
   });
