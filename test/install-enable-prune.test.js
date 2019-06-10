@@ -48,6 +48,8 @@ describe('test/install-enable-prune.test.js', () => {
         .expect('code', 0)
         .end();
       assert(!fs.existsSync(path.join(cwd, 'node_modules/egg/README.md')));
+      // should keep ts file
+      assert(fs.existsSync(path.join(cwd, 'node_modules/egg/index.d.ts')));
     });
   });
 });
