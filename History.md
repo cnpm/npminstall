@@ -1,4 +1,10 @@
 
+3.22.1 / 2019-06-10
+==================
+
+**fixes**
+  * [[`2d419a4`](http://github.com/cnpm/npminstall/commit/2d419a4fe79b9d189676b3e1c54a1fad0cb64441)] - fix: prune don't filter ts files (#304) (#305) (fengmk2 <<fengmk2@gmail.com>>)
+
 3.22.0 / 2019-05-24
 ==================
 
