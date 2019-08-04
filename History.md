@@ -1,4 +1,10 @@
 
+3.23.0 / 2019-08-05
+==================
+
+**features**
+  * [[`04855be`](http://github.com/cnpm/npminstall/commit/04855be25d92b05d3d872225c8df313d91638d6d)] - feat: try to use cypress new platforms (#308) (fengmk2 <<fengmk2@gmail.com>>)
+
 3.22.1 / 2019-06-10
 ==================
 
