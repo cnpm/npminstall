@@ -18,7 +18,7 @@ delete require.cache[require.resolve('./npminstall')];
 const npminstall = require('./npminstall');
 mm.restore();
 
-describe('test/installScope.test.js', () => {
+describe('test/installScopeRegistry.test.js', () => {
   const [ tmp, cleanup ] = helper.tmp();
 
   beforeEach(cleanup);
