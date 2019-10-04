@@ -21,7 +21,9 @@
     "lint": "eslint . --fix",
     "ci": "npm run lint && npm run test-cov",
     "autod": "autod",
-    "contributor": "git-contributor"
+    "contributor": "git-contributor",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "agentkeepalive": "^4.0.2",
@@ -51,7 +53,8 @@
     "tar": "^4.4.8",
     "urllib": "^2.33.3",
     "utility": "^1.16.1",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "snyk": "^1.231.0"
   },
   "devDependencies": {
     "autod": "3",
@@ -86,5 +89,6 @@
     "node": ">=8.0.0"
   },
   "author": "fengmk2 <fengmk2@gmail.com> (https://fengmk2.com)",
-  "license": "MIT"
+  "license": "MIT",
+  "snyk": true
 }
