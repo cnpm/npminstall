@@ -29,3 +29,5 @@ test/fixtures/css-loader-example2/webpack*.json
 test/fixtures/high-speed-store/tmp
 .nyc_output
 .npminstall_tarball
+
+.editorconfig
