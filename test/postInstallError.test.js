@@ -36,7 +36,7 @@ describe('test/postInstallError.test.js', () => {
     await coffee.fork(helper.npminstall, [ '--production' ], { cwd })
       .debug()
       .expect('code', 0)
-      .expect('stderr', /httpsync@\* optional error: Error: Run ".*?build\.sh" error/)
+      .expect('stderr', /httpsync@\* optional error: .*Error: Run ".*?build\.sh" error/)
       .expect('stderr', /scripts.install httpsync@\* run "sh build.sh"/)
       .expect('stdout', /All packages installed/)
       .end();
