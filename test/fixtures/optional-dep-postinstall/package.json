@@ -4,6 +4,6 @@
     "httpsync": "*"
   },
   "dependencies": {
-    "pinyin": "^2.2.1"
+    "shameimaru": "^1.0.2"
   }
 }
