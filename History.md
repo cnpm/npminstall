@@ -1,4 +1,10 @@
 
+3.24.0 / 2019-10-11
+==================
+
+**features**
+  * [[`189c97e`](http://github.com/cnpm/npminstall/commit/189c97e36030199568be928994508907b4f7522a)] - feat: add force-link-latest mode (#311) (Khaidi Chu <<i@2333.moe>>)
+
 3.23.0 / 2019-08-05
 ==================
 
