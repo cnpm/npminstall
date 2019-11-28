@@ -1,4 +1,13 @@
 
+4.4.0 / 2019-11-28
+==================
+
+**features**
+  * [[`014bbd5`](http://github.com/cnpm/npminstall/commit/014bbd597301065fb953b5ec44741f68ba1b5971)] - feat: support custom scope registry (hugohua <<baofen14787@gmail.com>>)
+
+**others**
+  * [[`8c00128`](http://github.com/cnpm/npminstall/commit/8c00128c6913bfb4179ba6a49c78a81ddef39985)] - test: add node 13 (#312) (fengmk2 <<fengmk2@gmail.com>>)
+
 4.3.0 / 2019-10-10
 ==================
 
