@@ -60,7 +60,7 @@ describe('test/postinstall.test.js', () => {
     });
   });
 
-  if (semver.satisfies(process.version, '>= 13.0.0')) {
+  if (semver.satisfies(process.version, '< 13.0.0')) {
     describe('node-gyp', () => {
       const root = helper.fixtures('node-gyp-hello');
 
