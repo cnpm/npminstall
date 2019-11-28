@@ -25,7 +25,8 @@ const names = [
   'forever',
   'grunt',
   'less',
-  'yo',
+  // only support node >=8
+  // 'yo',
   'lodash',
   'bluebird',
   'async',
