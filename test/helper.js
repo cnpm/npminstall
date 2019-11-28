@@ -8,6 +8,7 @@ const fixtures = path.join(__dirname, 'fixtures');
 
 exports.cleanup = function* (dirs) {
   for (let i = 0; i < dirs.length; i++) {
+    const dir = dirs[i];
     yield rimraf(path.join(dir, 'node_modules'));
   }
 };
