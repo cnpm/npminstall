@@ -1,4 +1,10 @@
 
+3.25.0 / 2019-11-29
+==================
+
+**features**
+  * [[`dca3ab1`](http://github.com/cnpm/npminstall/commit/dca3ab19ce78d5511afbc4f7f1fa865a8ce05dd2)] - feat: support custom scope registry (#313) (fengmk2 <<fengmk2@gmail.com>>)
+
 3.24.0 / 2019-10-11
 ==================
 
