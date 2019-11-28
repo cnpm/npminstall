@@ -28,20 +28,20 @@ describe('test/installScopeRegistry.test.js', () => {
   beforeEach(cleanup);
   afterEach(cleanup);
 
-  it('should install scope package with huawei available scope registry', async () => {
-    await npminstall({
+  it('should install scope package with huawei available scope registry', function* () {
+    yield npminstall({
       root: tmp,
       pkgs: [
         { name: '@rstacruz/tap-spec', version: '~4.1.0' },
       ],
     });
-    const pkg = await helper.readJSON(path.join(tmp, 'node_modules/@rstacruz/tap-spec/package.json'));
+    const pkg = yield helper.readJSON(path.join(tmp, 'node_modules/@rstacruz/tap-spec/package.json'));
     assert(pkg.version === '4.1.1');
   });
 
-  it('should install scope package with unavailable scope registry', async () => {
+  it('should install scope package with unavailable scope registry', function* () {
     try {
-      await npminstall({
+      yield npminstall({
         root: tmp,
         pkgs: [
           { name: '@starthubit/npm-test-pkg', version: '~0.0.2' },
