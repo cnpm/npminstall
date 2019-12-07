@@ -1,4 +1,10 @@
 
+4.5.0 / 2019-12-07
+==================
+
+**others**
+  * [[`bbf4ec1`](http://github.com/cnpm/npminstall/commit/bbf4ec1ea58e2de7f7feab8d00894663f30899bf)] - deps: cmd-shim v3 (#315) (fengmk2 <<fengmk2@gmail.com>>)
+
 4.4.0 / 2019-11-28
 ==================
 
