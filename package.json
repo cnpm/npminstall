@@ -15,9 +15,9 @@
     "npmupdate": "bin/update.js"
   },
   "scripts": {
-    "test": "mocha -r thunk-mocha -r intelli-espower-loader -t 200000 test/*.test.js",
-    "test-cov": "istanbul cover --report none --print none node_modules/mocha/bin/_mocha -- -r thunk-mocha -r intelli-espower-loader -t 200000 test/*.test.js && istanbul report text-summary json lcov",
-    "test-local": "npm_china=true local=true mocha -r thunk-mocha -r intelli-espower-loader -t 200000 test/*.test.js",
+    "test": "mocha -r thunk-mocha -t 200000 test/*.test.js",
+    "test-cov": "istanbul cover --report none --print none node_modules/mocha/bin/_mocha -- -r thunk-mocha -t 200000 test/*.test.js && istanbul report text-summary json lcov",
+    "test-local": "npm_china=true local=true mocha -r thunk-mocha -t 200000 test/*.test.js",
     "lint": "eslint . --fix",
     "ci": "npm run lint && npm run test-cov",
     "autod": "autod"
@@ -61,7 +61,6 @@
     "eslint": "3",
     "eslint-config-egg": "3",
     "http-proxy": "^1.16.2",
-    "intelli-espower-loader": "1",
     "istanbul": "*",
     "mm": "^2.2.1",
     "mocha": "3",
