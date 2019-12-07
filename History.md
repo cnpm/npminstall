@@ -1,4 +1,10 @@
 
+4.5.1 / 2019-12-07
+==================
+
+**fixes**
+  * [[`e0be08b`](http://github.com/cnpm/npminstall/commit/e0be08baa5f031d3121a44b4b555f429397d61df)] - fix: dont add quotes on node global bin path on Windows (#317) (fengmk2 <<fengmk2@gmail.com>>)
+
 4.5.0 / 2019-12-07
 ==================
 
