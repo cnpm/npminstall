@@ -1,0 +1,6 @@
+{
+  "name": "runscript-with-mocha",
+  "dependencies": {
+    "mocha": "3.5.3"
+  }
+}
