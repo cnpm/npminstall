@@ -7,7 +7,7 @@ const readJSON = require('../lib/utils').readJSON;
 const npminstall = require('./npminstall');
 const helper = require('./helper');
 
-describe.only('test/runscript-with-mocha.test.js', () => {
+describe('test/runscript-with-mocha.test.js', () => {
   const root = helper.fixtures('runscript-with-mocha');
   const cleanup = helper.cleanup(root);
 
