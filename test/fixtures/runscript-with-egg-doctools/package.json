@@ -1,0 +1,6 @@
+{
+  "name": "runscript-with-egg-doctools",
+  "dependencies": {
+    "egg-doctools": "2.9.0"
+  }
+}
