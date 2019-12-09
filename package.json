@@ -64,7 +64,6 @@
     "istanbul": "*",
     "mm": "^2.2.1",
     "mocha": "3",
-    "power-assert": "1",
     "thunk-mocha": "1"
   },
   "homepage": "https://github.com/cnpm/npminstall",

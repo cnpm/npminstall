@@ -36,9 +36,7 @@ describe('test/uninstallGlobal.test.js', () => {
           'mocha',
         ])
           .debug()
-          .expect('stdout', /- mocha@\d+\.\d+\.\d+ \.\/test\/fixtures\/tmp\/lib\/node_modules\/mocha/)
-          .expect('stdout', /- mocha@\d+\.\d+\.\d+ \.\/test\/fixtures\/tmp\/bin\/mocha/)
-          .expect('stdout', /- mocha@\d+\.\d+\.\d+ \.\/test\/fixtures\/tmp\/bin\/_mocha/)
+          .expect('stdout', /- mocha@\d+\.\d+\.\d+/)
           .expect('code', 0)
           .end(done);
       });

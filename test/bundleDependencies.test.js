@@ -59,7 +59,7 @@ describe('test/bundleDependencies.test.js', () => {
     });
     const bins = yield fs.readdir(path.join(tmp, 'node_modules/sqlite3/node_modules/.bin'));
     if (process.platform === 'win32') {
-      assert.deepEqual(bins, [ 'node-pre-gyp', 'node-pre-gyp.cmd' ]);
+      assert.deepEqual(bins, [ 'node-pre-gyp', 'node-pre-gyp.cmd', 'node-pre-gyp.ps1' ]);
     } else {
       assert.deepEqual(bins, [ 'node-pre-gyp' ]);
     }
