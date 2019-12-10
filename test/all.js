@@ -7,7 +7,7 @@ const semver = require('semver');
 const spawn = require('child_process').spawn;
 const npminstall = require('./npminstall');
 
-if (semver.satisfies(process.version, '< 6.0.0')) {
+if (semver.satisfies(process.version, '< 8.0.0')) {
   process.exit(0);
 }
 

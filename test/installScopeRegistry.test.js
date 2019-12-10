@@ -8,7 +8,9 @@ const helper = require('./helper');
 const npminstall = require('./npminstall');
 
 describe('test/installScopeRegistry.test.js', () => {
-  const [ tmp, cleanup ] = helper.tmp();
+  const items = helper.tmp();
+  const tmp = items[0];
+  const cleanup = items[1];
   let mockCnpmrc;
 
   before(() => {
