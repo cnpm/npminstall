@@ -1,13 +1,13 @@
 'use strict';
 
 const assert = require('assert');
-const normalize = require('npm-normalize-package-bin')
+const normalize = require('npm-normalize-package-bin');
 
 describe('test/normalize-bin.test.js', () => {
   it('should fix security bugs', () => {
     assert.deepEqual(normalize({
       name: 'foo',
-      bin: '/etc/passwd'
+      bin: '/etc/passwd',
     }), {
       name: 'foo',
       bin: {
@@ -17,7 +17,7 @@ describe('test/normalize-bin.test.js', () => {
 
     assert.deepEqual(normalize({
       name: 'foo',
-      bin: '../../../../.././etc/passwd'
+      bin: '../../../../.././etc/passwd',
     }), {
       name: 'foo',
       bin: {
