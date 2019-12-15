@@ -43,6 +43,7 @@
     "node-homedir": "^1.1.1",
     "normalize-git-url": "^3.0.2",
     "normalize-package-data": "^2.5.0",
+    "npm-normalize-package-bin": "^1.0.1",
     "npm-package-arg": "^4.2.1",
     "ora": "^3.4.0",
     "p-map": "^2.1.0",
