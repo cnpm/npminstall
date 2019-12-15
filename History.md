@@ -1,4 +1,10 @@
 
+4.5.2 / 2019-12-15
+==================
+
+**fixes**
+  * [[`2054f10`](http://github.com/cnpm/npminstall/commit/2054f10c442f0dcd3b06e03845413af5af9f66ac)] - fix: the vulnerabilities same as npm cli (#319) (fengmk2 <<fengmk2@gmail.com>>)
+
 4.5.1 / 2019-12-07
 ==================
 
