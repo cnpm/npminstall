@@ -1,9 +1,6 @@
 'use strict';
 
-const path = require('path');
 const coffee = require('coffee');
-const fs = require('mz/fs');
-const assert = require('assert');
 const helper = require('./helper');
 
 describe('test/install-with-env.test.js', () => {
