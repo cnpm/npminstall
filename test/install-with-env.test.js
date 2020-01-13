@@ -1,11 +1,15 @@
 'use strict';
 
+const path = require('path');
+const rimraf = require('rimraf');
 const coffee = require('coffee');
 const helper = require('./helper');
 
 describe('test/install-with-env.test.js', function() {
   const cwd = helper.fixtures('install-husky-4');
-  const cleanup = helper.cleanup(cwd);
+  function cleanup() {
+    rimraf.sync(path.join(cwd, 'node_modules'));
+  }
 
   beforeEach(cleanup);
   afterEach(cleanup);
