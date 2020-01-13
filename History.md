@@ -1,4 +1,10 @@
 
+3.26.0 / 2020-01-13
+==================
+
+**features**
+  * [[`b21b4ed`](http://github.com/cnpm/npminstall/commit/b21b4ed659e629d437823c8c1ebf2cc4b3536a94)] - feat: support INIT_CWD env (#322) (fengmk2 <<fengmk2@gmail.com>>)
+
 3.25.2 / 2019-12-15
 ==================
 
