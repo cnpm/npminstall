@@ -185,6 +185,8 @@ const env = {
     cooked: orignalArgv,
     original: orignalArgv,
   }),
+  // user-agent
+  npm_config_user_agent: globalConfig.userAgent,
 };
 // https://github.com/npm/npm/blob/2005f4ce11f6cdf142f8a77f4f7ee4996000fb57/lib/utils/lifecycle.js#L67
 env.npm_node_execpath = env.NODE = process.env.NODE || process.execPath;
