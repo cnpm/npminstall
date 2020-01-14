@@ -3,7 +3,8 @@
 const assert = require('assert');
 const rimraf = require('mz-modules/rimraf');
 const path = require('path');
-const npminstall = require('..');
+const coffee = require('coffee');
+const pkg = require('../package.json');
 const helper = require('./helper');
 
 describe('test/npm_package_env.test.js', () => {
@@ -18,9 +19,12 @@ describe('test/npm_package_env.test.js', () => {
   afterEach(cleanup);
 
   it('should set npm_package_* env on preinstall, postinstall', async () => {
-    await npminstall({
-      root,
-    });
+    await coffee.fork(helper.npminstall, [], {
+      cwd: root,
+    })
+      .debug()
+      .expect('code', 0)
+      .end();
     const preinstallEnv = await helper.readJSON(path.join(root, '.tmp_preinstall'));
     assert(preinstallEnv.npm_package_engines_node === '~0.10.0 || ~0.12.0 || ^4.2.0');
     assert(preinstallEnv.npm_package_engines_foo_bar_0 === '1111');
@@ -31,5 +35,6 @@ describe('test/npm_package_env.test.js', () => {
     assert(postinstallEnv.npm_package_engines_foo_bar_0 === '1111');
     assert(postinstallEnv.npm_package_greenkeeper_ignore_0 === 'glob');
     assert(postinstallEnv.npm_package_greenkeeper_ignore_4 === 'showdown-ghost');
+    assert(postinstallEnv.npm_config_user_agent === `npminstall/${pkg.version} npm/? node/${process.version} ${process.platform} ${process.arch}`);
   });
 });
