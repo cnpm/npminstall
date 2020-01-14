@@ -1,4 +1,10 @@
 
+4.7.0 / 2020-01-14
+==================
+
+**features**
+  * [[`9a2dde5`](http://github.com/cnpm/npminstall/commit/9a2dde5baa45709489d07acb442da25871cfff4e)] - feat: support npm_config_user_agent env (#323) (fengmk2 <<fengmk2@gmail.com>>)
+
 4.6.0 / 2020-01-13
 ==================
 
