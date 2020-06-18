@@ -1,0 +1,7 @@
+{
+  "name": "alias",
+  "version": "1.0.0",
+  "dependencies": {
+    "egg-alias": "npm:egg@1"
+  }
+}
