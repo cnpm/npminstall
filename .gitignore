@@ -19,6 +19,7 @@ coverage/
 .tmp
 test/fixtures/tmp
 .idea
+.vscode
 npm-debug.log.*
 .happypack/
 test/fixtures/css-loader-example2/build/
