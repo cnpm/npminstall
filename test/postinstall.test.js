@@ -35,6 +35,8 @@ describe('test/postinstall.test.js', () => {
       assert.equal(fs.readFileSync(path.join(root, 'node_modules', '.postinstall.txt'), 'utf8'), 'success: postinstall');
       // prepublish pass
       assert.equal(fs.readFileSync(path.join(root, 'node_modules', '.prepublish.txt'), 'utf8'), 'success: prepublish');
+      // prepublish pass
+      assert.equal(fs.readFileSync(path.join(root, 'node_modules', '.prepare.txt'), 'utf8'), 'success: prepare');
     });
 
     it('should not run prepublish with production mode', async () => {
