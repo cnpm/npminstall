@@ -5,7 +5,8 @@
     "preinstall": "node index.js preinstall",
     "install": "node index.js install",
     "postinstall": "node index.js postinstall",
-    "prepublish": "node index.js prepublish"
+    "prepublish": "node index.js prepublish",
+    "prepare": "node index.js prepare"
   },
   "dependencies": {
     "utility": "1.6.0",
