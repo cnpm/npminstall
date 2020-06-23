@@ -1,4 +1,10 @@
 
+4.8.0 / 2020-06-23
+==================
+
+**features**
+  * [[`58ab908`](http://github.com/cnpm/npminstall/commit/58ab90869be521b4140b860e909506f388cb8793)] - feat: support script.prepare (#328) (Yiyu He <<dead_horse@qq.com>>)
+
 4.7.0 / 2020-01-14
 ==================
 
