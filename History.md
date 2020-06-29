@@ -1,4 +1,10 @@
 
+4.9.0 / 2020-06-29
+==================
+
+**features**
+  * [[`d586566`](http://github.com/cnpm/npminstall/commit/d586566d54e7c987b126823e8f26cf07ceb5d247)] - feat: keep npminstall_done label stable (#329) (Yiyu He <<dead_horse@qq.com>>)
+
 4.8.0 / 2020-06-23
 ==================
 
