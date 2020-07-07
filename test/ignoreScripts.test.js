@@ -6,7 +6,7 @@ const fs = require('mz/fs');
 const npminstall = require('./npminstall');
 const helper = require('./helper');
 
-describe.only('test/ignoreScripts.test.js', () => {
+describe('test/ignoreScripts.test.js', () => {
   const root = helper.fixtures('ignore-scripts');
   const cleanup = helper.cleanup(root);
 
