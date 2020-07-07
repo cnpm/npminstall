@@ -1,12 +1,14 @@
 'use strict';
 
+const mm = require('mm');
 const assert = require('assert');
 const path = require('path');
 const coffee = require('coffee');
 const npminstall = require('./npminstall');
 const helper = require('./helper');
+const cp = require('mz/child_process');
 
-describe('test/installLocal.test.js', () => {
+describe.only('test/installLocal.test.js', () => {
   const root = helper.fixtures('local');
   const cleanup = helper.cleanup(root);
 
@@ -14,6 +16,18 @@ describe('test/installLocal.test.js', () => {
   afterEach(cleanup);
 
   it('should install local folder ok', async () => {
+    await npminstall({
+      root,
+      pkgs: [
+        { name: null, version: 'file:pkg' },
+      ],
+    });
+    const pkg = await helper.readJSON(path.join(root, 'node_modules/pkg/package.json'));
+    assert.equal(pkg.name, 'pkg');
+  });
+
+  it('should install local folder with copy ok', async () => {
+    mm.error(cp, 'exec');
     await npminstall({
       root,
       pkgs: [
