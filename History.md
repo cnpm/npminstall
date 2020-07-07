@@ -1,4 +1,10 @@
 
+4.9.1 / 2020-07-07
+==================
+
+**fixes**
+  * [[`1320f30`](http://github.com/cnpm/npminstall/commit/1320f3060bdc9dee10e17e3db1a118bb57ca2a3e)] - fix: install local folder use npm pack (#330) (Yiyu He <<dead_horse@qq.com>>)
+
 4.9.0 / 2020-06-29
 ==================
 
