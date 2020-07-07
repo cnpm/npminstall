@@ -8,7 +8,7 @@ const npminstall = require('./npminstall');
 const helper = require('./helper');
 const cp = require('mz/child_process');
 
-describe.only('test/installLocal.test.js', () => {
+describe('test/installLocal.test.js', () => {
   const root = helper.fixtures('local');
   const cleanup = helper.cleanup(root);
 
