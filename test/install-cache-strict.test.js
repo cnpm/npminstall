@@ -49,4 +49,17 @@ describe('test/install-cache-strict.test.js', () => {
       .end();
     assert(fs.statSync(path.join(homedir, '.npminstall_tarball/d/e/b/u/debug')));
   });
+
+  it('should read disk cache from npm_config_cache env', function* () {
+    yield coffee.fork(npminstall, [], {
+      cwd: demo,
+      env: Object.assign({}, process.env, {
+        HOME: homedir,
+        npm_config_cache: path.join(homedir, 'foocache/.npminstall_tarball'),
+      }),
+    })
+      .debug()
+      .end();
+    assert(fs.statSync(path.join(homedir, 'foocache/.npminstall_tarball/d/e/b/u/debug')));
+  });
 });
