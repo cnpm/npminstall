@@ -1,4 +1,13 @@
 
+4.10.0 / 2020-10-30
+==================
+
+**features**
+  * [[`d598f9d`](http://github.com/cnpm/npminstall/commit/d598f9db2200eb91005a1caac237e60d1a52b4f8)] - feat: support npm_config_cache to change default cache dir (#335) (fengmk2 <<fengmk2@gmail.com>>)
+
+**fixes**
+  * [[`f87d6bd`](http://github.com/cnpm/npminstall/commit/f87d6bd4d2bb8dd50bd8b48bda698004e7678241)] - fix: replace in files when replaceHostRegExpMap is set (#331) (fengmk2 <<fengmk2@gmail.com>>)
+
 4.9.1 / 2020-07-07
 ==================
 
