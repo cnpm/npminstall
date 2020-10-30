@@ -153,6 +153,10 @@ let cacheDir = argv.cache === false ? '' : null;
 if (production) {
   cacheDir = '';
 }
+// support npm_config_cache to change default cache dir
+if (cacheDir === null && process.env.npm_config_cache) {
+  cacheDir = process.env.npm_config_cache;
+}
 
 let forbiddenLicenses = argv['forbidden-licenses'];
 forbiddenLicenses = forbiddenLicenses ? forbiddenLicenses.split(',') : null;
