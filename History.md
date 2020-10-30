@@ -1,4 +1,10 @@
 
+3.28.0 / 2020-10-30
+==================
+
+**features**
+  * [[`68eef01`](http://github.com/cnpm/npminstall/commit/68eef01396f8d6cd22df76c547034ae5febc3f61)] - feat: support npm_config_cache to change default cache dir (#335) (#336) (fengmk2 <<fengmk2@gmail.com>>)
+
 3.27.0 / 2020-01-14
 ==================
 
