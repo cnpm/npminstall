@@ -7,6 +7,7 @@ const coffee = require('coffee');
 const npminstall = require('./npminstall');
 const helper = require('./helper');
 const cp = require('mz/child_process');
+const semver = require('semver');
 
 describe('test/installLocal.test.js', () => {
   const root = helper.fixtures('local');
@@ -155,6 +156,37 @@ describe('test/installLocal.test.js', () => {
     } catch (err) {
       assert(err.message.match(/package.json must contains name/), err.message);
     }
+  });
+
+  it('should install local alias package ok', async () => {
+    await npminstall({
+      root,
+      pkgs: [
+        {
+          name: 'lodash.has',
+          version: '',
+          alias: 'lodash-has',
+        },
+      ],
+    });
+
+    const pkg = await helper.readJSON(path.join(root, 'node_modules/lodash-has/package.json'));
+    assert.strictEqual(pkg.name, 'lodash.has');
+  });
+
+  it('should install local alias package.json ok', async () => {
+    const aliasRoot = path.join(root, 'alias');
+    await npminstall({
+      root: aliasRoot,
+      pkgs: [],
+    });
+
+    const pkg1 = await helper.readJSON(path.join(aliasRoot, 'node_modules/lodash-has/package.json'));
+    const pkg2 = await helper.readJSON(path.join(aliasRoot, 'node_modules/lodash-has-deprecated/package.json'));
+    assert.strictEqual(pkg1.name, 'lodash.has');
+    assert.strictEqual(semver(pkg1.version).major, 4);
+    assert.strictEqual(pkg2.name, 'lodash.has');
+    assert.strictEqual(semver(pkg2.version).major, 3);
   });
 
   if (process.platform !== 'win32') {

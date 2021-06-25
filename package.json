@@ -52,7 +52,8 @@
     "tar": "^4.4.8",
     "urllib": "^2.33.3",
     "utility": "^1.16.1",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "validate-npm-package-name": "^3.0.0"
   },
   "devDependencies": {
     "autod": "3",

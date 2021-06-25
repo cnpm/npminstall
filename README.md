@@ -54,6 +54,7 @@ Usage:
   npminstall <pkg>@<tag>
   npminstall <pkg>@<version>
   npminstall <pkg>@<version range>
+  npminstall <alias>@npm:<name>
   npminstall <folder>
   npminstall <tarball file>
   npminstall <tarball url>

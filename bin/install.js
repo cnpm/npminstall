@@ -14,6 +14,7 @@ const utils = require('../lib/utils');
 const globalConfig = require('../lib/config');
 const installLocal = require('..').installLocal;
 const installGlobal = require('..').installGlobal;
+const { parsePackageName } = require('../lib/alias');
 
 const orignalArgv = process.argv.slice(2);
 const argv = parseArgs(orignalArgv, {
@@ -139,8 +140,12 @@ if (process.env.NPMINSTALL_BY_UPDATE) {
 }
 
 for (const name of argv._) {
-  const p = npa(String(name));
-  pkgs.push({ name: p.name, version: p.rawSpec, type: p.type });
+  const [
+    aliasPackageName,
+    realPackageName,
+  ] = parsePackageName(name);
+  const p = npa(String(realPackageName));
+  pkgs.push({ name: p.name, version: p.rawSpec, type: p.type, alias: aliasPackageName });
 }
 
 let root = argv.root || process.cwd();

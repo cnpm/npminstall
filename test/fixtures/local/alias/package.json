@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "lodash-has": "npm:lodash.has@^4",
+    "lodash-has-deprecated": "npm:lodash.has@^3"
+  }
+}
