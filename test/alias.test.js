@@ -4,7 +4,6 @@ const assert = require('assert');
 const mm = require('mm');
 const {
   parsePackageName,
-  // checkAliasConflict,
   getAliasPackageName,
 } = require('../lib/alias');
 
@@ -27,7 +26,7 @@ describe('test/alias.test.js', () => {
       ] = parsePackageName('chair@release-1.5');
 
       assert.strictEqual(aliasPackageName, undefined);
-      assert.strictEqual(realPackageName, 'chair@release-1.5');
+      assert.strictEqual(realPackageName, 'chair');
     });
 
     it('should work when form of pkg is `alias@npm:name`', () => {
@@ -47,7 +46,7 @@ describe('test/alias.test.js', () => {
       ] = parsePackageName('chair-latest@npm:chair@release-1.5');
 
       assert.strictEqual(aliasPackageName, 'chair-latest');
-      assert.strictEqual(realPackageName, 'chair@release-1.5');
+      assert.strictEqual(realPackageName, 'chair');
     });
 
     it('should print wranings when form of pkg is `alias@npm:name@version`', () => {
@@ -60,7 +59,7 @@ describe('test/alias.test.js', () => {
       ] = parsePackageName('chair_latest!!!@npm:chair@release-1.5');
 
       assert.strictEqual(aliasPackageName, 'chair_latest!!!');
-      assert.strictEqual(realPackageName, 'chair@release-1.5');
+      assert.strictEqual(realPackageName, 'chair');
 
       mm.restore();
     });
@@ -69,13 +68,9 @@ describe('test/alias.test.js', () => {
       try {
         parsePackageName('__chair_latest@npm:chair@release-1.5');
       } catch (error) {
-        assert.strictEqual(error.message, '[npminstall] alias name (__chair_latest) invalid. errors: name cannot start with an underscore');
+        assert.strictEqual(error.message, 'Invalid package name "__chair_latest": name cannot start with an underscore');
       }
     });
-  });
-
-  describe('checkAliasConflict', () => {
-
   });
 
   describe('getAliasPackageName', () => {
