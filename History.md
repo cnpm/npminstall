@@ -1,4 +1,10 @@
 
+4.11.0 / 2021-03-26
+==================
+
+**others**
+  * [[`1a0aee2`](http://github.com/cnpm/npminstall/commit/1a0aee269895fae4dd94e2263060477a7762033b)] - chore: exports local_install/runPostInstallTasks function (#338) (Ke Wu <<gemwuu@163.com>>)
+
 4.10.0 / 2020-10-30
 ==================
 
