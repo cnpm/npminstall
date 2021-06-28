@@ -16,6 +16,7 @@ const installLocal = require('..').installLocal;
 const installGlobal = require('..').installGlobal;
 const {
   LOCAL_TYPES,
+  REMOTE_TYPES,
 } = require('../lib/npa_types');
 
 const orignalArgv = process.argv.slice(2);
@@ -436,7 +437,7 @@ async function updateDependencies(root, pkgs, propName, saveExact, remoteNames) 
   const pkg = await utils.readJSON(pkgFile);
   const deps = pkg[propName] = pkg[propName] || {};
   for (const item of pkgs) {
-    if ([ 'remote', 'git' ].includes(item.type)) {
+    if (REMOTE_TYPES.includes(item.type)) {
       // if install from remote or git and don't specified name
       // get package's name from `remoteNames`
       item.name
