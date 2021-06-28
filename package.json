@@ -1,7 +1,7 @@
 {
   "name": "npminstall",
   "version": "4.10.0",
-  "description": "Let npm install fast and easy",
+  "description": "Make npm install fast and handy",
   "main": "lib/index.js",
   "files": [
     "lib",
@@ -80,7 +80,7 @@
     "npm install",
     "yarn",
     "pnpm",
-    "fatest npm install"
+    "fastest npm install"
   ],
   "engines": {
     "node": ">=10.0.0"
