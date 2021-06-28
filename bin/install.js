@@ -14,6 +14,9 @@ const utils = require('../lib/utils');
 const globalConfig = require('../lib/config');
 const installLocal = require('..').installLocal;
 const installGlobal = require('..').installGlobal;
+const {
+  LOCAL_TYPES,
+} = require('../lib/npa_types');
 
 const orignalArgv = process.argv.slice(2);
 const argv = parseArgs(orignalArgv, {
@@ -139,7 +142,7 @@ if (process.env.NPMINSTALL_BY_UPDATE) {
 }
 
 for (const name of argv._) {
-  const p = npa(String(name));
+  const p = npa(String(name), argv.root);
   pkgs.push({ name: p.name, version: p.rawSpec, type: p.type });
 }
 
@@ -433,14 +436,14 @@ async function updateDependencies(root, pkgs, propName, saveExact, remoteNames) 
   const pkg = await utils.readJSON(pkgFile);
   const deps = pkg[propName] = pkg[propName] || {};
   for (const item of pkgs) {
-    if ([ 'remote', 'hosted', 'git' ].indexOf(item.type) >= 0) {
+    if ([ 'remote', 'git' ].includes(item.type)) {
       // if install from remote or git and don't specified name
       // get package's name from `remoteNames`
       item.name
         ? deps[item.name] = item.version
         : deps[remoteNames[item.version]] = item.version;
     } else {
-      const pkgDir = item.type === 'local' ? item.version : path.join(root, 'node_modules', item.name);
+      const pkgDir = LOCAL_TYPES.includes(item.type) ? item.version : path.join(root, 'node_modules', item.name);
       const itemPkg = await utils.readJSON(path.join(pkgDir, 'package.json'));
       deps[itemPkg.name] = `${savePrefix}${itemPkg.version}`;
     }
