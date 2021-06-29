@@ -163,7 +163,7 @@ const npminstall = require('npminstall');
 - [x] support `ignore-scripts`
 - [x] uninstall
 - [x] resolutions
-- [x] npm alias
+- [x] [npm alias](https://github.com/npm/rfcs/blob/latest/implemented/0001-package-aliases.md)
 
 ## Different with NPM
 
