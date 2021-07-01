@@ -35,7 +35,7 @@ describe('test/production.test.js', () => {
     await coffee.fork(helper.npminstall, [ '--production' ], { cwd })
       .debug()
       .expect('code', 0)
-      .expect('stdout', /koa@latest is skipped because it already exists at/)
+      .expect('stdout', /koa@\* is skipped because it already exists at/)
       .expect('stderr', /npminstall WARN node_modules exists: .+?node_modules/)
       .end();
   });
