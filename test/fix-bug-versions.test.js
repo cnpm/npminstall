@@ -102,7 +102,7 @@ describe('test/fix-bug-versions.test.js', () => {
     ], { cwd: tmp })
       .debug()
       .expect('code', 0)
-      .expect('stdout', /mm@\* installed/)
+      .expect('stdout', /mm@latest installed/)
       .end(done);
   });
 });

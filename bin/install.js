@@ -149,7 +149,13 @@ for (const name of argv._) {
     realPackageName,
   ] = parsePackageName(name);
   const p = npa(String(realPackageName), argv.root);
-  pkgs.push({ name: p.name, version: p.rawSpec, type: p.type, alias: aliasPackageName });
+  pkgs.push({
+    name: p.name,
+    // `mozilla/nunjucks#0f8b21b8df7e8e852b2e1889388653b7075f0d09` should be rawSpec
+    version: p.fetchSpec || p.rawSpec,
+    type: p.type,
+    alias: aliasPackageName,
+  });
 }
 
 let root = argv.root || process.cwd();

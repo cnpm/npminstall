@@ -26,7 +26,7 @@ describe('test/alias.test.js', () => {
       ] = parsePackageName('chair@release-1.5');
 
       assert.strictEqual(aliasPackageName, undefined);
-      assert.strictEqual(realPackageName, 'chair');
+      assert.strictEqual(realPackageName, 'chair@release-1.5');
     });
 
     it('should work when form of pkg is `alias@npm:name`', () => {
@@ -46,7 +46,7 @@ describe('test/alias.test.js', () => {
       ] = parsePackageName('chair-latest@npm:chair@release-1.5');
 
       assert.strictEqual(aliasPackageName, 'chair-latest');
-      assert.strictEqual(realPackageName, 'chair');
+      assert.strictEqual(realPackageName, 'chair@release-1.5');
     });
 
     it('should print wranings when form of pkg is `alias@npm:name@version`', () => {
@@ -59,7 +59,7 @@ describe('test/alias.test.js', () => {
       ] = parsePackageName('chair_latest!!!@npm:chair@release-1.5');
 
       assert.strictEqual(aliasPackageName, 'chair_latest!!!');
-      assert.strictEqual(realPackageName, 'chair');
+      assert.strictEqual(realPackageName, 'chair@release-1.5');
 
       mm.restore();
     });
