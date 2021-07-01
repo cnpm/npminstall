@@ -22,4 +22,16 @@ describe('test/flow-bin.test.js', () => {
       binaryMirrors,
     });
   });
+
+  it('should install cypress from china mirror', async () => {
+    const registry = process.env.local ? 'https://r.npm.taobao.org' : 'https://registry.npmjs.org';
+    const binaryMirrors = await utils.getBinaryMirrors(registry);
+    await npminstall({
+      root: tmp,
+      pkgs: [
+        { name: 'cypress' },
+      ],
+      binaryMirrors,
+    });
+  });
 });
