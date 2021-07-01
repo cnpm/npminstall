@@ -89,6 +89,7 @@ Usage:
   npmuninstall <pkg>
   npmuninstall <pkg>@<version>
   npmuninstall <pkg>@<version> [<pkg>@<version>]
+  npminstall <alias>@npm:<name>
 ```
 
 #### npmlink
@@ -162,6 +163,7 @@ const npminstall = require('npminstall');
 - [x] support `ignore-scripts`
 - [x] uninstall
 - [x] resolutions
+- [x] [npm alias](https://github.com/npm/rfcs/blob/latest/implemented/0001-package-aliases.md)
 
 ## Different with NPM
 
