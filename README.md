@@ -23,7 +23,7 @@
 [download-image]: https://img.shields.io/npm/dm/npminstall.svg?style=flat-square
 [download-url]: https://npmjs.org/package/npminstall
 
-Let `npm install` fast and easy.
+Make `npm install` fast and handy.
 
 ## Use as Cli
 
