@@ -1,4 +1,11 @@
 
+5.0.0 / 2021-07-02
+==================
+
+**features**
+  * [[`ded46fe`](http://github.com/cnpm/npminstall/commit/ded46fe13c97ae44ddc3dd74c41d558c0ea8d86a)] - feat: support npm alias (#341) (Ke Wu <<gemwuu@163.com>>)
+  * [[`6cc5548`](http://github.com/cnpm/npminstall/commit/6cc5548876614f73133f6842796597befb49da16)] - feat: upgrade npm-package-arg to v8 (#344) (Ke Wu <<gemwuu@163.com>>)
+
 4.11.0 / 2021-03-26
 ==================
 
