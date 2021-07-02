@@ -14,6 +14,7 @@ const utils = require('../lib/utils');
 const globalConfig = require('../lib/config');
 const installLocal = require('..').installLocal;
 const installGlobal = require('..').installGlobal;
+const { parsePackageName } = require('../lib/alias');
 const {
   LOCAL_TYPES,
   REMOTE_TYPES,
@@ -143,8 +144,18 @@ if (process.env.NPMINSTALL_BY_UPDATE) {
 }
 
 for (const name of argv._) {
-  const p = npa(String(name), argv.root);
-  pkgs.push({ name: p.name, version: p.rawSpec, type: p.type });
+  const [
+    aliasPackageName,
+    realPackageName,
+  ] = parsePackageName(name);
+  const p = npa(String(realPackageName), argv.root);
+  pkgs.push({
+    name: p.name,
+    // `mozilla/nunjucks#0f8b21b8df7e8e852b2e1889388653b7075f0d09` should be rawSpec
+    version: p.fetchSpec || p.rawSpec,
+    type: p.type,
+    alias: aliasPackageName,
+  });
 }
 
 let root = argv.root || process.cwd();

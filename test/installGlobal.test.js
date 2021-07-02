@@ -92,4 +92,18 @@ describe('test/installGlobal.test.js', () => {
     assert(await fs.exists(path.join(libDir, 'node_modules/egg-bin')));
     assert((await fs.stat(path.join(libDir, 'node_modules/egg-bin'))).isDirectory());
   });
+
+  it('should install success with alias package', async () => {
+    await coffee.fork(helper.npminstall, [
+      `--prefix=${tmp}`,
+      '-g',
+      'lodash-has@npm:lodash.has@4',
+    ])
+      .debug()
+      .expect('stdout', /Downloading lodash-has\(lodash.has\) to /)
+      .expect('stdout', /Installing lodash.has's dependencies to /)
+      .expect('stdout', /All packages installed/)
+      .expect('code', 0)
+      .end();
+  });
 });

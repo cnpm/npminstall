@@ -17,7 +17,7 @@ if (process.platform !== 'win32') {
       ], {
         cwd: tmp,
       })
-        .expect('stdout', /pedding@\* installed/)
+        .expect('stdout', /pedding@latest installed/)
         .expect('code', 0)
         .end();
     });
@@ -28,7 +28,7 @@ if (process.platform !== 'win32') {
       ], {
         cwd: tmp,
       })
-        .notExpect('stdout', /pedding@\* installed/)
+        .notExpect('stdout', /pedding@latest installed/)
         .expect('code', 0)
         .end();
     });
