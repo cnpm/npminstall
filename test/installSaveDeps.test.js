@@ -82,6 +82,33 @@ if (process.platform !== 'win32') {
         });
     });
 
+    it('should install --save alias and update dependencies', done => {
+      coffee.fork(helper.npminstall, [
+        '--save',
+        'lodash-has-v3@npm:lodash.has@^3',
+        'lodash-has-v4@npm:lodash.has@^4',
+      ], {
+        cwd: tmp,
+      })
+        // .debug()
+        .expect('code', 0)
+        .end(err => {
+          assert(!err, err && err.message);
+          const deps = JSON.parse(fs.readFileSync(path.join(tmp, 'package.json'))).dependencies;
+          const lodashHashV3 = JSON.parse(fs.readFileSync(path.join(tmp, 'node_modules/lodash-has-v3', 'package.json')));
+          const lodashHashV4 = JSON.parse(fs.readFileSync(path.join(tmp, 'node_modules/lodash-has-v4', 'package.json')));
+
+          assert(deps);
+          assert.strictEqual(deps['lodash-has-v3'], 'npm:lodash.has@^3');
+          assert.strictEqual(deps['lodash-has-v4'], 'npm:lodash.has@^4');
+          assert(/^3\.\d+\.\d+$/.test(lodashHashV3.version));
+          assert.strictEqual(lodashHashV3.name, 'lodash.has');
+          assert(/^4\.\d+\.\d+$/.test(lodashHashV4.version));
+          assert.strictEqual(lodashHashV4.name, 'lodash.has');
+          done();
+        });
+    });
+
     it('should install --save-optional pedding and update optionalDependencies', done => {
       coffee.fork(helper.npminstall, [
         '--save-optional',
