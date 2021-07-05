@@ -21,7 +21,7 @@ describe('test/tarball-url-mapping.test.js', () => {
     ], { cwd })
       .debug()
       .expect('code', 0)
-      .expect('stdout', /pedding@\* installed/)
+      .expect('stdout', /pedding@latest installed/)
       .end();
   });
 });

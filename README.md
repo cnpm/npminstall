@@ -23,7 +23,7 @@
 [download-image]: https://img.shields.io/npm/dm/npminstall.svg?style=flat-square
 [download-url]: https://npmjs.org/package/npminstall
 
-Let `npm install` fast and easy.
+Make `npm install` fast and handy.
 
 ## Use as Cli
 
@@ -54,6 +54,7 @@ Usage:
   npminstall <pkg>@<tag>
   npminstall <pkg>@<version>
   npminstall <pkg>@<version range>
+  npminstall <alias>@npm:<name>
   npminstall <folder>
   npminstall <tarball file>
   npminstall <tarball url>
@@ -89,6 +90,7 @@ Usage:
   npmuninstall <pkg>
   npmuninstall <pkg>@<version>
   npmuninstall <pkg>@<version> [<pkg>@<version>]
+  npminstall <alias>@npm:<name>
 ```
 
 #### npmlink
@@ -162,6 +164,7 @@ const npminstall = require('npminstall');
 - [x] support `ignore-scripts`
 - [x] uninstall
 - [x] resolutions
+- [x] [npm alias](https://github.com/npm/rfcs/blob/latest/implemented/0001-package-aliases.md)
 
 ## Different with NPM
 

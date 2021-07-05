@@ -23,7 +23,7 @@ if (process.platform !== 'win32') {
       ], {
         cwd: tmp,
       })
-        .expect('stdout', /pedding@\* installed/)
+        .expect('stdout', /pedding@latest installed/)
         .expect('code', 0)
         .end(err => {
           assert(!err, err && err.message);
@@ -48,7 +48,7 @@ if (process.platform !== 'win32') {
         cwd: tmp,
       })
         .debug()
-        .expect('stdout', /pedding@\* installed/)
+        .expect('stdout', /pedding@latest installed/)
         .expect('code', 0)
         .end(err => {
           assert(!err, err && err.message);

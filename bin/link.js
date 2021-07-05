@@ -12,6 +12,7 @@ const fs = require('mz/fs');
 const parseArgs = require('minimist');
 const utils = require('../lib/utils');
 const bin = require('../lib/bin');
+const { REGISTRY_TYPES } = require('../lib/npa_types');
 
 const orignalArgv = process.argv.slice(2);
 const argv = parseArgs(orignalArgv, {
@@ -105,7 +106,7 @@ const folders = argv._.map(name => utils.formatPath(name));
     let pkg;
     debug('link %s', folder);
     // try to parse it as a package, if it is a path(./module/path), pkgInfo.name will be null
-    const pkgInfo = npa(folder);
+    const pkgInfo = npa(folder, root);
     if (pkgInfo.name) {
       debug('link source %s is a npm module', folder);
       folder = path.join(globalModuleDir, pkgInfo.name);
@@ -118,7 +119,7 @@ const folders = argv._.map(name => utils.formatPath(name));
 
       const pkgNotExist = !pkg.name;
       const specIsTag = pkgInfo.type === 'tag' && !!pkgInfo.rawSpec;
-      const specNotSemver = [ 'tag', 'range', 'version' ].indexOf(pkgInfo.type) === -1;
+      const specNotSemver = !REGISTRY_TYPES.includes(pkgInfo.type);
       const specNotSatisfies = (pkgInfo.type === 'range' || pkgInfo.type === 'version') && !semver.satisfies(pkg.version, pkgInfo.spec);
 
       if (pkgNotExist || specIsTag || specNotSemver || specNotSatisfies) {
