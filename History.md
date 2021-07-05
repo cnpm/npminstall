@@ -1,4 +1,10 @@
 
+5.0.1 / 2021-07-05
+==================
+
+**fixes**
+  * [[`1e365c8`](http://github.com/cnpm/npminstall/commit/1e365c8f9b001ecc12d9f94dbafd6205b90da4c3)] - fix: fix save alias error (#346) (Ke Wu <<gemwuu@163.com>>)
+
 5.0.0 / 2021-07-02
 ==================
 
