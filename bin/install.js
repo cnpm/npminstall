@@ -18,6 +18,7 @@ const { parsePackageName } = require('../lib/alias');
 const {
   LOCAL_TYPES,
   REMOTE_TYPES,
+  ALIAS_TYPES,
 } = require('../lib/npa_types');
 
 const orignalArgv = process.argv.slice(2);
@@ -146,9 +147,8 @@ if (process.env.NPMINSTALL_BY_UPDATE) {
 for (const name of argv._) {
   const [
     aliasPackageName,
-    realPackageName,
   ] = parsePackageName(name);
-  const p = npa(String(realPackageName), argv.root);
+  const p = npa(name, argv.root);
   pkgs.push({
     name: p.name,
     // `mozilla/nunjucks#0f8b21b8df7e8e852b2e1889388653b7075f0d09` should be rawSpec
@@ -454,6 +454,8 @@ async function updateDependencies(root, pkgs, propName, saveExact, remoteNames) 
       item.name
         ? deps[item.name] = item.version
         : deps[remoteNames[item.version]] = item.version;
+    } else if (item.type === ALIAS_TYPES) {
+      deps[item.name] = item.version;
     } else {
       const pkgDir = LOCAL_TYPES.includes(item.type) ? item.version : path.join(root, 'node_modules', item.name);
       const itemPkg = await utils.readJSON(path.join(pkgDir, 'package.json'));
