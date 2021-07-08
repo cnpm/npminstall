@@ -1,0 +1,8 @@
+{
+  "name": "skip-peer-dependencies-installation",
+  "dependencies": {
+    "react": "^17",
+    "react-dom": "^17",
+    "react-hovertable": "0.3.0"
+  }
+}
