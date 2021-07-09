@@ -36,7 +36,7 @@ describe('test/concurrency-install.test.js', () => {
         detail: true,
       }),
     ]);
-    assert(await fs.exists(path.join(root1, 'node_modules/browserify')));
-    assert(await fs.exists(path.join(root2, 'node_modules/browserify')));
+    assert(await fs.exists(path.join(root1, 'node_modules/lodash.has')));
+    assert(await fs.exists(path.join(root2, 'node_modules/lodash.has')));
   });
 });

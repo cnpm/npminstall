@@ -1,33 +1,6 @@
 {
   "name": "concurrency2",
   "devDependencies": {
-    "browserify": "14",
-    "gulp": "3",
-    "npm": "4",
-    "grunt-cli": "1",
-    "cordova": "6",
-    "bower": "1",
-    "forever": "*",
-    "yo": "1",
-    "react": "15",
-    "bootstrap": "3",
-    "hapi": "16",
-    "serverless": "1",
-    "ionic-angular": "2",
-    "riot": "3",
-    "pomelo": "2",
-    "vux": "2",
-    "next": "1",
-    "koa": "1",
-    "express": "4",
-    "loopback": "3",
-    "sails": "0.12.11",
-    "thinkjs": "2",
-    "egg": "*",
-    "antd": "2",
-    "vue": "2",
-    "karma": "1",
-    "mocha": "^2.3.4",
-    "standard": "^6.0.3"
+    "lodash.has": "^4"
   }
 }

@@ -30,7 +30,6 @@ module.exports = require('./webpack.config.base')({
       'decko',
       'moment',
       'mobx',
-      'antd',
     ],
   },
   output: {
