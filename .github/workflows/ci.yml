@@ -18,7 +18,7 @@ jobs:
         platform:
           - os: ubuntu-latest
             shell: bash
-          - os: windows-2016
+          - os: windows-latest
             shell: powershell
 
     runs-on: ${{ matrix.platform.os }}
