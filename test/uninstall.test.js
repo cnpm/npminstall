@@ -85,9 +85,8 @@ describe('test/uninstall.test.js', () => {
     })
       .end();
     const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json')));
-    assert(!pkg.dependencies.pkg);
-    assert(!pkg.devDependencies.pkg);
-    assert(!pkg.optionalDependencies.pkg);
+    const depKeys = [ 'dependencies', 'devDependencies', 'optionalDependencies', 'peerDependencies' ];
+    depKeys.forEach(key => assert(!pkg[key].pkg));
   });
 
   it('should not uninstall when version not match', async () => {
