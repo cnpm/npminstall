@@ -79,7 +79,7 @@ describe('test/uninstall.test.js', () => {
   });
 
   it('should prune package.json by default', async () => {
-    await coffee.fork(npmuninstall, [ 'pkg@1.0.0', '--save-optional' ], {
+    await coffee.fork(npmuninstall, [ 'pkg@1.0.0' ], {
       cwd: root,
       stdio: 'pipe',
     })
@@ -87,6 +87,7 @@ describe('test/uninstall.test.js', () => {
     const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json')));
     assert(!pkg.dependencies.pkg);
     assert(!pkg.devDependencies.pkg);
+    assert(!pkg.optionalDependencies.pkg);
   });
 
   it('should not uninstall when version not match', async () => {
