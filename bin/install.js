@@ -398,13 +398,23 @@ debug('argv: %j, env: %j', argv, env);
         'save-isomorphic': 'isomorphicDependencies',
       };
 
+      const updateStack = [];
       //    install saves any specified packages into dependencies by default.
       if (argv.noOpt) {
         await updateDependencies(root, pkgs, map.save, argv['save-exact'], config.remoteNames);
       }
       for (const key in map) {
-        if (argv[key]) await updateDependencies(root, pkgs, map[key], argv['save-exact'], config.remoteNames);
+        if (argv[key]) updateStack.push(map[key]);
       }
+      await Promise.all(
+        updateStack.map(depKey =>
+          updateDependencies(
+            root,
+            pkgs,
+            depKey,
+            argv['save-exact'],
+            config.remoteNames)
+        ));
     }
   }
 
