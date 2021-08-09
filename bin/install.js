@@ -67,8 +67,6 @@ const argv = parseArgs(originalArgv, {
     'disable-dedupe',
     'save-dependencies-tree',
     'force-link-latest',
-    // detect if there exist option
-    'noOpt',
   ],
   default: {
     optional: true,
@@ -398,23 +396,25 @@ debug('argv: %j, env: %j', argv, env);
         'save-isomorphic': 'isomorphicDependencies',
       };
 
-      const updateStack = [];
       //    install saves any specified packages into dependencies by default.
-      if (argv.noOpt) {
+      if (Object.keys(map).every(key => !argv[key])) {
         await updateDependencies(root, pkgs, map.save, argv['save-exact'], config.remoteNames);
+      } else {
+        const updateStack = [];
+        for (const key in map) {
+          if (argv[key]) updateStack.push(map[key]);
+        }
+        await Promise.all(
+          updateStack.map(depKey =>
+            updateDependencies(
+              root,
+              pkgs,
+              depKey,
+              argv['save-exact'],
+              config.remoteNames)
+          ));
       }
-      for (const key in map) {
-        if (argv[key]) updateStack.push(map[key]);
-      }
-      await Promise.all(
-        updateStack.map(depKey =>
-          updateDependencies(
-            root,
-            pkgs,
-            depKey,
-            argv['save-exact'],
-            config.remoteNames)
-        ));
+
     }
   }
 

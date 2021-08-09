@@ -18,7 +18,6 @@ if (process.platform !== 'win32') {
     it('should install saves any specified packages into dependencies by default', done => {
       coffee.fork(helper.npminstall, [
         'pedding',
-        '--noOpt', // just hack test, in real scenario, tnpm will pass this option internally
       ], {
         cwd: tmp,
       })
