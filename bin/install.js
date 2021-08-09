@@ -21,8 +21,8 @@ const {
   ALIAS_TYPES,
 } = require('../lib/npa_types');
 
-const orignalArgv = process.argv.slice(2);
-const argv = parseArgs(orignalArgv, {
+const originalArgv = process.argv.slice(2);
+const argv = parseArgs(originalArgv, {
   string: [
     'root',
     'registry',
@@ -201,8 +201,8 @@ const env = {
   // see https://github.com/cnpm/npminstall/issues/121#issuecomment-247836741
   npm_config_argv: JSON.stringify({
     remain: [],
-    cooked: orignalArgv,
-    original: orignalArgv,
+    cooked: originalArgv,
+    original: originalArgv,
   }),
   // user-agent
   npm_config_user_agent: globalConfig.userAgent,
