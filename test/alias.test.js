@@ -68,7 +68,7 @@ describe('test/alias.test.js', () => {
       try {
         parsePackageName('__chair_latest@npm:chair@release-1.5');
       } catch (error) {
-        assert.strictEqual(error.message, 'Invalid package name "__chair_latest": name cannot start with an underscore');
+        assert.strictEqual(error.message, 'Invalid package name "__chair_latest": name cannot start with an underscore package: \'__chair_latest@npm: chair@release-1.5\'');
       }
     });
   });
