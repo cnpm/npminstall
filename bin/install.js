@@ -390,7 +390,7 @@ debug('argv: %j, env: %j', argv, env);
       }
     }
     await installLocal(config);
-    if (pkgs.length > 0 && !argv['no-save']) {
+    if (pkgs.length > 0) {
       // support --save, --save-dev, --save-optional, --save-client, --save-build and --save-isomorphic
       const map = {
         save: 'dependencies',
@@ -402,7 +402,7 @@ debug('argv: %j, env: %j', argv, env);
       };
 
       //    install saves any specified packages into dependencies by default.
-      if (Object.keys(map).every(key => !argv[key])) {
+      if (Object.keys(map).every(key => !argv[key]) && !argv['no-save']) {
         await updateDependencies(root, pkgs, map.save, argv['save-exact'], config.remoteNames);
       } else {
         const updateStack = [];
