@@ -3,7 +3,7 @@
 'use strict';
 
 const debug = require('debug')('npminstall:bin:install');
-const npa = require('npm-package-arg');
+const npa = require('../lib/npa');
 const chalk = require('chalk');
 const path = require('path');
 const util = require('util');
@@ -20,6 +20,7 @@ const {
   REMOTE_TYPES,
   ALIAS_TYPES,
 } = require('../lib/npa_types');
+const Nested = require('../lib/nested');
 
 const orignalArgv = process.argv.slice(2);
 const argv = parseArgs(orignalArgv, {
@@ -144,11 +145,14 @@ if (process.env.NPMINSTALL_BY_UPDATE) {
   argv._ = [];
 }
 
+const nested = new Nested([]);
 for (const name of argv._) {
+
+  nested.update([ name ]);
   const [
     aliasPackageName,
-  ] = parsePackageName(name);
-  const p = npa(name, argv.root);
+  ] = parsePackageName(name, nested);
+  const p = npa(name, argv.root)(nested);
   pkgs.push({
     name: p.name,
     // `mozilla/nunjucks#0f8b21b8df7e8e852b2e1889388653b7075f0d09` should be rawSpec
@@ -259,6 +263,7 @@ debug('argv: %j, env: %j', argv, env);
     proxy,
     prune,
     disableDedupe: argv['disable-dedupe'],
+    nested,
   };
   config.strictSSL = getStrictSSL();
   config.ignoreScripts = argv['ignore-scripts'] || getIgnoreScripts();
