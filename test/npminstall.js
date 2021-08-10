@@ -3,6 +3,7 @@
 const npminstall = require('..');
 const config = require('../lib/config');
 const utils = require('../lib/utils');
+const Nested = require('../lib/nested');
 
 module.exports = async options => {
   await formatOptions(options);
@@ -29,4 +30,6 @@ async function formatOptions(options) {
       options.binaryMirrors[key] = options.customBinaryMirrors[key];
     }
   }
+
+  options.nested = new Nested([]);
 }
