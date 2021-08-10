@@ -405,19 +405,9 @@ debug('argv: %j, env: %j', argv, env);
       if (Object.keys(map).every(key => !argv[key]) && !argv['no-save']) {
         await updateDependencies(root, pkgs, map.save, argv['save-exact'], config.remoteNames);
       } else {
-        const updateStack = [];
         for (const key in map) {
-          if (argv[key]) updateStack.push(map[key]);
+          if (argv[key]) await updateDependencies(root, pkgs, map[key], argv['save-exact'], config.remoteNames);
         }
-        await Promise.all(
-          updateStack.map(depKey =>
-            updateDependencies(
-              root,
-              pkgs,
-              depKey,
-              argv['save-exact'],
-              config.remoteNames)
-          ));
       }
 
     }
