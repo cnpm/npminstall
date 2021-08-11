@@ -2,8 +2,12 @@
 
 const dependencies = require('../lib/dependencies');
 const assert = require('assert');
+const Nested = require('../lib/nested');
 
 describe('test/dependencies.test.js', () => {
+  const options = {
+    nested: new Nested([]),
+  };
   it('should work with dependencies and devDependencies', () => {
     const pkg = {
       dependencies: {
@@ -17,7 +21,7 @@ describe('test/dependencies.test.js', () => {
       },
     };
 
-    const parsed = dependencies(pkg, {});
+    const parsed = dependencies(pkg, options);
     assert.deepEqual(parsed.all, [
       { name: 'koa', version: '1', optional: false },
       { name: 'express', version: '2', optional: false },
@@ -49,7 +53,7 @@ describe('test/dependencies.test.js', () => {
       },
     };
 
-    const parsed = dependencies(pkg, {});
+    const parsed = dependencies(pkg, options);
     assert.deepEqual(parsed.all, [
       { name: 'koa', version: '1', optional: false },
       { name: 'express', version: '3', optional: true },
@@ -83,7 +87,7 @@ describe('test/dependencies.test.js', () => {
       },
     };
 
-    const parsed = dependencies(pkg, { ignoreOptionalDependencies: true });
+    const parsed = dependencies(pkg, { ignoreOptionalDependencies: true, ...options });
     assert.deepEqual(parsed.all, [
       { name: 'koa', version: '1', optional: false },
       { name: 'connect', version: '3', optional: false },
@@ -120,7 +124,7 @@ describe('test/dependencies.test.js', () => {
       },
     };
 
-    const parsed = dependencies(pkg, {});
+    const parsed = dependencies(pkg, options);
     assert.deepEqual(parsed.all, [
       { name: 'koa', version: '1', optional: false },
       { name: 'express', version: '2', optional: false },
