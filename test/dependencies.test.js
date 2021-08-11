@@ -5,9 +5,7 @@ const assert = require('assert');
 const Nested = require('../lib/nested');
 
 describe('test/dependencies.test.js', () => {
-  const options = {
-    nested: new Nested([]),
-  };
+  const nested = new Nested([]);
   it('should work with dependencies and devDependencies', () => {
     const pkg = {
       dependencies: {
@@ -21,7 +19,7 @@ describe('test/dependencies.test.js', () => {
       },
     };
 
-    const parsed = dependencies(pkg, options);
+    const parsed = dependencies(pkg, {}, nested);
     assert.deepEqual(parsed.all, [
       { name: 'koa', version: '1', optional: false },
       { name: 'express', version: '2', optional: false },
@@ -53,7 +51,7 @@ describe('test/dependencies.test.js', () => {
       },
     };
 
-    const parsed = dependencies(pkg, options);
+    const parsed = dependencies(pkg, {}, nested);
     assert.deepEqual(parsed.all, [
       { name: 'koa', version: '1', optional: false },
       { name: 'express', version: '3', optional: true },
@@ -87,7 +85,7 @@ describe('test/dependencies.test.js', () => {
       },
     };
 
-    const parsed = dependencies(pkg, { ignoreOptionalDependencies: true, ...options });
+    const parsed = dependencies(pkg, { ignoreOptionalDependencies: true }, nested);
     assert.deepEqual(parsed.all, [
       { name: 'koa', version: '1', optional: false },
       { name: 'connect', version: '3', optional: false },
@@ -124,7 +122,7 @@ describe('test/dependencies.test.js', () => {
       },
     };
 
-    const parsed = dependencies(pkg, options);
+    const parsed = dependencies(pkg, {}, nested);
     assert.deepEqual(parsed.all, [
       { name: 'koa', version: '1', optional: false },
       { name: 'express', version: '2', optional: false },
@@ -200,7 +198,7 @@ describe('test/dependencies.test.js', () => {
     };
 
     try {
-      dependencies(pkg, {});
+      dependencies(pkg, {}, nested);
       throw new Error('should not excute');
     } catch (err) {
       assert(err.message === `duplicate dependencies error, put isomorphic dependency into isomorphicDependencies:

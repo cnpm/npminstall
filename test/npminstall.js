@@ -3,16 +3,18 @@
 const npminstall = require('..');
 const config = require('../lib/config');
 const utils = require('../lib/utils');
-const Nested = require('../lib/nested');
+const Context = require('../lib/context');
+
+const context = new Context();
 
 module.exports = async options => {
   await formatOptions(options);
-  return await npminstall(options);
+  return await npminstall(options, context);
 };
 
 module.exports.installGlobal = async options => {
   await formatOptions(options);
-  return await npminstall.installGlobal(options);
+  return await npminstall.installGlobal(options, context);
 };
 
 async function formatOptions(options) {
@@ -30,6 +32,4 @@ async function formatOptions(options) {
       options.binaryMirrors[key] = options.customBinaryMirrors[key];
     }
   }
-
-  options.nested = new Nested([]);
 }
