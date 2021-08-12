@@ -6,6 +6,7 @@ const {
   parsePackageName,
   getAliasPackageName,
 } = require('../lib/alias');
+const Nested = require('../lib/nested');
 
 describe('test/alias.test.js', () => {
   describe('parsePackageName', () => {
@@ -69,6 +70,13 @@ describe('test/alias.test.js', () => {
         parsePackageName('__chair_latest@npm:chair@release-1.5');
       } catch (error) {
         assert.strictEqual(error.message, 'Invalid package name "__chair_latest": name cannot start with an underscore');
+      }
+    });
+    it('should throw errors when form of pkg is `alias@npm:name@version`', () => {
+      try {
+        parsePackageName('__chair_latest@npm:chair@release-1.5', new Nested([ '__chair_latest@npm:chair@release-1.5' ]));
+      } catch (error) {
+        assert.strictEqual(error.message, 'Invalid package name "__chair_latest": name cannot start with an underscore package: root › __chair_latest@npm:chair@release-1.5');
       }
     });
   });

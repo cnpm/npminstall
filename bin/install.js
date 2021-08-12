@@ -3,7 +3,7 @@
 'use strict';
 
 const debug = require('debug')('npminstall:bin:install');
-const npa = require('npm-package-arg');
+const npa = require('../lib/npa');
 const chalk = require('chalk');
 const path = require('path');
 const util = require('util');
@@ -20,6 +20,7 @@ const {
   REMOTE_TYPES,
   ALIAS_TYPES,
 } = require('../lib/npa_types');
+const Context = require('../lib/context');
 
 const orignalArgv = process.argv.slice(2);
 const argv = parseArgs(orignalArgv, {
@@ -144,11 +145,14 @@ if (process.env.NPMINSTALL_BY_UPDATE) {
   argv._ = [];
 }
 
+const context = new Context();
 for (const name of argv._) {
+
+  context.nested.update([ name ]);
   const [
     aliasPackageName,
-  ] = parsePackageName(name);
-  const p = npa(name, argv.root);
+  ] = parsePackageName(name, context.nested);
+  const p = npa(name, { where: argv.root, nested: context.nested });
   pkgs.push({
     name: p.name,
     // `mozilla/nunjucks#0f8b21b8df7e8e852b2e1889388653b7075f0d09` should be rawSpec
@@ -316,7 +320,7 @@ debug('argv: %j, env: %j', argv, env);
     const meta = utils.getGlobalInstallMeta(argv.prefix);
     config.targetDir = meta.targetDir;
     config.binDir = meta.binDir;
-    await installGlobal(config);
+    await installGlobal(config, context);
   } else {
     if (pkgs.length === 0) {
       if (config.production) {
@@ -384,7 +388,7 @@ debug('argv: %j, env: %j', argv, env);
         }
       }
     }
-    await installLocal(config);
+    await installLocal(config, context);
     if (pkgs.length > 0) {
       // support --save, --save-dev, --save-optional, --save-client, --save-build and --save-isomorphic
       const map = {
