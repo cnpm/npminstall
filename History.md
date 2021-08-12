@@ -1,4 +1,10 @@
 
+5.0.2 / 2021-08-12
+==================
+
+**fixes**
+  * [[`6166be2`](http://github.com/cnpm/npminstall/commit/6166be2ba362642c871da2585e46f2e293aeac36)] - fix: make npa error more clear (#352) (Ke Wu <<gemwuu@163.com>>)
+
 5.0.1 / 2021-07-05
 ==================
 
