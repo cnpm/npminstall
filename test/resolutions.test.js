@@ -76,4 +76,26 @@ describe('test/resolutions.test.js', () => {
       await checkPkg('@koa/cors/node_modules/vary', '1.0.0');
     });
   });
+
+  describe('resolutions alias', () => {
+    before(() => {
+      root = helper.fixtures('resolutions-alias');
+      cleanup();
+    });
+
+    // afterEach(cleanup);
+
+    it('should work', async () => {
+      await coffee.fork(helper.npminstall, {
+        cwd: root,
+      })
+        .debug()
+        .expect('code', 0)
+        .end();
+
+      const pkgJSON = require(path.join(root, 'node_modules', 'object-pipeline/node_modules/lodash.has/package.json'));
+      assert.strictEqual(pkgJSON.name, 'lodash.get');
+      assert.strictEqual(pkgJSON.version, '4.4.2');
+    });
+  });
 });
