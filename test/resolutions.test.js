@@ -83,7 +83,7 @@ describe('test/resolutions.test.js', () => {
       cleanup();
     });
 
-    // afterEach(cleanup);
+    afterEach(cleanup);
 
     it('should work', async () => {
       await coffee.fork(helper.npminstall, {
