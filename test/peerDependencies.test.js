@@ -13,6 +13,7 @@ describe('test/peerDependencies.test.js', () => {
   it('should show peerDependencies warning message', async () => {
     await npminstall({
       root,
+      ignoreScripts: true,
     });
   });
 });

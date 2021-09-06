@@ -15,6 +15,7 @@ describe('test/css-loader.test.js', () => {
   it('should work on css-loader', async () => {
     await npminstall({
       root: tmp,
+      ignoreScripts: true,
     });
     assert(await fs.exists(tmp, 'node_modules/css-loader'));
   });

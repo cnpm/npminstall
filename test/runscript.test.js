@@ -16,6 +16,7 @@ describe('test/runscript.test.js', () => {
   it('should run preinstall and postinstall', async () => {
     await npminstall({
       root,
+      ignoreScripts: true,
     });
     const pkg = await readJSON(path.join(root, 'node_modules', 'pedding', 'package.json'));
     assert(pkg.name === 'pedding');
