@@ -22,8 +22,6 @@ jobs:
             shell: powershell
 
     runs-on: ${{ matrix.platform.os }}
-    env:
-      NODE_OPTIONS: --max_old_space_size=4096
 
     defaults:
       run:
@@ -39,4 +37,7 @@ jobs:
       run: npm i
     - name: Run CI
       run: npm run ci
+      env:
+        NODE_OPTIONS: --max_old_space_size=6144
+
 
