@@ -28,6 +28,8 @@ jobs:
         shell: ${{ matrix.platform.shell }}
 
     steps:
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
@@ -37,7 +39,4 @@ jobs:
       run: npm i
     - name: Run CI
       run: npm run ci
-    - name: Setup tmate session
-      if: ${{ failure() }}
-      uses: mxschmitt/action-tmate@v3
 
