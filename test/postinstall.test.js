@@ -62,7 +62,7 @@ describe('test/postinstall.test.js', () => {
     });
   });
 
-  if (semver.satisfies(process.version, '< 13.0.0')) {
+  if (semver.satisfies(process.version, '< 13.0.0') && process.platform !== 'win32') {
     describe('node-gyp', () => {
       const root = helper.fixtures('node-gyp-hello');
 
@@ -81,31 +81,29 @@ describe('test/postinstall.test.js', () => {
       });
     });
 
-    if (process.platform !== 'win32') {
-      describe('test/installSaveDeps.test.js', () => {
-        const root = helper.fixtures('auto-set-npm-env');
-        const cleanup = helper.cleanup(root);
+    describe('test/installSaveDeps.test.js', () => {
+      const root = helper.fixtures('auto-set-npm-env');
+      const cleanup = helper.cleanup(root);
 
-        beforeEach(cleanup);
-        afterEach(cleanup);
+      beforeEach(cleanup);
+      afterEach(cleanup);
 
-        it('should install --save pedding and update dependencies', async () => {
-          await coffee.fork(helper.npminstall, [
-            '--foo_bar_haha=okok',
-            '-d',
-          ], {
-            cwd: root,
-          })
-            .debug()
-            .expect('stdout', /pedding@1\.0\.0 installed/)
-            .expect('stdout', /npm_config_foo_bar_haha = okok/)
-            .expect('code', 0)
-            .end();
+      it('should install --save pedding and update dependencies', async () => {
+        await coffee.fork(helper.npminstall, [
+          '--foo_bar_haha=okok',
+          '-d',
+        ], {
+          cwd: root,
+        })
+          .debug()
+          .expect('stdout', /pedding@1\.0\.0 installed/)
+          .expect('stdout', /npm_config_foo_bar_haha = okok/)
+          .expect('code', 0)
+          .end();
 
-          const pkg = await readJSON(path.join(root, 'node_modules', 'pedding', 'package.json'));
-          assert(pkg.version === '1.0.0');
-        });
+        const pkg = await readJSON(path.join(root, 'node_modules', 'pedding', 'package.json'));
+        assert(pkg.version === '1.0.0');
       });
-    }
+    });
   }
 });
