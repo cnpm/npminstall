@@ -20,7 +20,7 @@ jobs:
             shell: bash
           - os: windows-latest
             shell: powershell
-        python-version: '3.6'
+        python-version: 3.6
 
     runs-on: ${{ matrix.platform.os }}
 
