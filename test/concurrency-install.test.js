@@ -29,11 +29,13 @@ describe('test/concurrency-install.test.js', () => {
         root: root1,
         cacheDir,
         detail: true,
+        registry: 'https://registry.npmjs.com',
       }),
       npminstall({
         root: root2,
         cacheDir,
         detail: true,
+        registry: 'https://registry.npmjs.com',
       }),
     ]);
     assert(await fs.exists(path.join(root1, 'node_modules/browserify')));
