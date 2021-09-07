@@ -16,6 +16,9 @@ describe('test/css-loader.test.js', () => {
     await npminstall({
       root: tmp,
       registry: 'https://registry.npmjs.com',
+      env: {
+        NODE_OPTIONS: '--max_old_space_size=4096',
+      },
     });
     assert(await fs.exists(tmp, 'node_modules/css-loader'));
   });

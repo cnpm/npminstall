@@ -14,6 +14,9 @@ describe('test/peerDependencies.test.js', () => {
     await npminstall({
       root,
       registry: 'https://registry.npmjs.com',
+      env: {
+        NODE_OPTIONS: '--max_old_space_size=4096',
+      },
     });
   });
 });

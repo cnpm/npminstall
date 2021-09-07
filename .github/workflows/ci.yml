@@ -20,6 +20,7 @@ jobs:
             shell: bash
           - os: windows-latest
             shell: powershell
+        python-version: '3.6'
 
     runs-on: ${{ matrix.platform.os }}
 
@@ -28,16 +29,27 @@ jobs:
         shell: ${{ matrix.platform.shell }}
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Install dependencies
-      run: npm i
-    - name: Run CI
-      run: npm run ci
-      env:
-        NODE_OPTIONS: --max_old_space_size=6144
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+        env:
+          PYTHON_VERSION: ${{ matrix.python-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Set Windows environment
+        if: matrix.os == 'windows-latest'
+        run: |
+          echo 'GYP_MSVS_VERSION=2015' >> $Env:GITHUB_ENV
+          echo 'GYP_MSVS_OVERRIDE_PATH=C:\\Dummy' >> $Env:GITHUB_ENV
+      - name: Install dependencies
+        run: npm i
+      - name: Run CI
+        run: npm run ci
+        env:
+          NODE_OPTIONS: --max_old_space_size=6144
 
 
