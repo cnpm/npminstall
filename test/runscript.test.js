@@ -16,6 +16,7 @@ describe('test/runscript.test.js', () => {
   it('should run preinstall and postinstall', async () => {
     await npminstall({
       root,
+      registry: 'https://registry.npmjs.com',
       env: {
         NODE_OPTIONS: '--max_old_space_size=4096',
       },
