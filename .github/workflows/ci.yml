@@ -21,6 +21,7 @@ jobs:
           - os: windows-latest
             shell: powershell
         python-version: [ 3.6 ]
+        vs-version: [ 15.0 ]
 
     runs-on: ${{ matrix.platform.os }}
 
@@ -42,9 +43,9 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Set Windows environment
         if: matrix.os == 'windows-latest'
-        run: |
-          echo 'GYP_MSVS_VERSION=2015' >> $Env:GITHUB_ENV
-          echo 'GYP_MSVS_OVERRIDE_PATH=C:\\Dummy' >> $Env:GITHUB_ENV
+        uses: microsoft/setup-msbuild@v1.0.3
+        with:
+          vs-version: ${{ matrix.vs-version }}
       - name: Install dependencies
         run: npm i
       - name: Run CI
