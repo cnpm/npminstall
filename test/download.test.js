@@ -141,7 +141,7 @@ describe('test/download.test.js', () => {
         .debug()
         .beforeScript(path.join(__dirname, './download.mockScript.js'))
         .expect('stderr', /skip download for reason darwin dont includes your platform/)
-        .expect('code', 0)
+        .expect('code', 1)
         .end();
     });
   });
