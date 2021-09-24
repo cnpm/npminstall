@@ -13,6 +13,10 @@ describe('test/peerDependencies.test.js', () => {
   it('should show peerDependencies warning message', async () => {
     await npminstall({
       root,
+      registry: 'https://registry.npmjs.com',
+      env: {
+        NODE_OPTIONS: '--max_old_space_size=4096',
+      },
     });
   });
 });
