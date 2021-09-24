@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "object-pipeline": "^1"
+  },
+  "resolutions": {
+    "lodash.has": "npm:lodash.get@4.4.2"
+  }
+}
