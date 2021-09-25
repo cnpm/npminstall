@@ -1,4 +1,14 @@
 
+5.1.0 / 2021-09-25
+==================
+
+**features**
+  * [[`11589da`](http://github.com/cnpm/npminstall/commit/11589da122a348fec1a990e3eaeb6db49d8ca307)] - feat: add resolutions alias support (#354) (Ke Wu <<gemwuu@163.com>>)
+  * [[`e8bd485`](http://github.com/cnpm/npminstall/commit/e8bd485bd320848b475505c0de82322f1a651b52)] - feat: migrate to github actions (#355) (Ke Wu <<gemwuu@163.com>>)
+
+**others**
+  * [[`ac7feaa`](http://github.com/cnpm/npminstall/commit/ac7feaa52e96a03d4162a96f2542aabaf5de7a2c)] - add skip download logic (#357) (Solais <<924615994@qq.com>>)
+
 5.0.2 / 2021-08-12
 ==================
 
