@@ -2,9 +2,11 @@
 
 const assert = require('assert');
 const mm = require('mm');
+const path = require('path');
 const urllib = require('urllib');
 const install = require('./npminstall');
 const helper = require('./helper');
+const coffee = require('coffee');
 
 describe('test/download.test.js', () => {
   const [ tmp, cleanup ] = helper.tmp();
@@ -125,6 +127,22 @@ describe('test/download.test.js', () => {
       } catch (err) {
         assert(/response 502 status/.test(err.message), err.message);
       }
+    });
+  });
+
+  describe('mock platform not matched', () => {
+
+    it('should skip download', async () => {
+      return coffee.fork(helper.npminstall, [
+        '@napi-rs/canvas-darwin-x64',
+      ], {
+        cwd: tmp,
+      })
+        .debug()
+        .beforeScript(path.join(__dirname, './download.mockScript.js'))
+        .expect('stderr', /skip download for reason darwin dont includes your platform/)
+        .expect('code', 1)
+        .end();
     });
   });
 });
