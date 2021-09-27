@@ -11,6 +11,8 @@ describe('test/peerDependencies.test.js', () => {
   afterEach(cleanup);
 
   it('should show peerDependencies warning message', async () => {
+    // ignore windows
+    if (process.platform === 'win32') return;
     await npminstall({
       root,
       registry: 'https://registry.npmjs.com',

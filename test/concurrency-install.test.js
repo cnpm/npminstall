@@ -24,6 +24,8 @@ describe('test/concurrency-install.test.js', () => {
   afterEach(cleanup);
 
   it('should concurrency install success', async () => {
+    // ignore windows
+    if (process.platform === 'win32') return;
     await Promise.all([
       npminstall({
         root: root1,

@@ -13,6 +13,8 @@ describe('test/css-loader.test.js', () => {
   // afterEach(cleanup);
 
   it('should work on css-loader', async () => {
+    // ignore windows
+    if (process.platform === 'win32') return;
     await npminstall({
       root: tmp,
       registry: 'https://registry.npmjs.com',
