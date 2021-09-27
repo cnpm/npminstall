@@ -22,7 +22,6 @@ describe('test/install-ignore-optional.test.js', () => {
     cwd = path.join(__dirname, 'fixtures', 'ignore-optional');
     await coffee.fork(npminstall, [ '--no-optional', '--production', '-d' ], { cwd })
       .debug()
-      .notExpect('stderr', /optional install error/)
       .notExpect('stderr', /node-gyp rebuild/)
       .expect('stdout', /pinyin@2.8.3 installed/)
       .expect('code', 0)
@@ -35,7 +34,6 @@ describe('test/install-ignore-optional.test.js', () => {
     cwd = path.join(__dirname, 'fixtures', 'ignore-optional');
     await coffee.fork(npmupdate, [ '--no-optional', '--production', '-d' ], { cwd })
       .debug()
-      .notExpect('stderr', /optional install error/)
       .notExpect('stderr', /node-gyp rebuild/)
       .expect('stdout', /pinyin@2.8.3 installed/)
       .expect('code', 0)

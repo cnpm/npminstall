@@ -18,6 +18,19 @@ describe('test/utils.test.js', () => {
       assert(utils.matchPlatform('darwin', [ 'darwin', '!darwin' ]));
     });
 
+    it('should match cpu names', () => {
+      assert(utils.matchPlatform('x64', []));
+      assert(utils.matchPlatform('x64', [ 'x64' ]));
+      assert(utils.matchPlatform('x64', [ 'x64', 'ia32' ]));
+      assert(utils.matchPlatform('x64', [ 'x64', 'ia32', 'arm' ]));
+      assert(utils.matchPlatform('ia32', [ 'ia32' ]));
+      assert(utils.matchPlatform('mips', [ 'mips' ]));
+      assert(utils.matchPlatform('x64', [ '!mips' ]));
+      assert(utils.matchPlatform('x64', [ '!ia32' ]));
+      assert(utils.matchPlatform('x64', [ '!ia32', 'x64' ]));
+      assert(utils.matchPlatform('x64', [ 'x64', '!x64' ]));
+    });
+
     it('should not match os names', () => {
       assert(!utils.matchPlatform('darwin', [ 'linux' ]));
       assert(!utils.matchPlatform('darwin', [ 'win32' ]));
@@ -29,6 +42,16 @@ describe('test/utils.test.js', () => {
       assert(!utils.matchPlatform('darwin', [ '!linux', '!darwin' ]));
       assert(!utils.matchPlatform('win32', [ '!win32' ]));
       assert(!utils.matchPlatform('win32', [ '!win32', 'win32' ]));
+    });
+
+    it('should not match cpu names', () => {
+      assert(!utils.matchPlatform('x64', [ 'ia32' ]));
+      assert(!utils.matchPlatform('ia32', [ 'x64' ]));
+      assert(!utils.matchPlatform('ia32', [ 'mips', 'arm' ]));
+      assert(!utils.matchPlatform('arm', [ '!arm' ]));
+      assert(!utils.matchPlatform('mips', [ '!mips' ]));
+      assert(!utils.matchPlatform('mips', [ '!x64', '!mips' ]));
+      assert(!utils.matchPlatform('x64', [ '!x64' ]));
     });
   });
 
