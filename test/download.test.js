@@ -131,7 +131,6 @@ describe('test/download.test.js', () => {
   });
 
   describe('mock platform not matched', () => {
-
     it('should skip download', async () => {
       return coffee.fork(helper.npminstall, [
         '@napi-rs/canvas-darwin-x64',
@@ -141,6 +140,21 @@ describe('test/download.test.js', () => {
         .debug()
         .beforeScript(path.join(__dirname, './download.mockScript.js'))
         .expect('stderr', /skip download for reason darwin dont includes your platform/)
+        .expect('code', 1)
+        .end();
+    });
+  });
+
+  describe('mock arch not matched', () => {
+    it('should skip download', async () => {
+      return coffee.fork(helper.npminstall, [
+        '@napi-rs/canvas-darwin-x64',
+      ], {
+        cwd: tmp,
+      })
+        .debug()
+        .beforeScript(path.join(__dirname, './download.mockArchScript.js'))
+        .expect('stderr', /skip download for reason x64 dont includes your arch/)
         .expect('code', 1)
         .end();
     });
