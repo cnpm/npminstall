@@ -75,6 +75,8 @@ describe('test/postinstall.test.js', () => {
       afterEach(cleanup);
 
       it('should auto run node-gyp rebuild', async () => {
+        // ingore windows
+        if (process.platform === 'win32') return;
         await npminstall({
           root,
         });
