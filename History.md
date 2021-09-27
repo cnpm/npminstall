@@ -1,4 +1,13 @@
 
+5.1.1 / 2021-09-27
+==================
+
+**fixes**
+  * [[`3d170c2`](http://github.com/cnpm/npminstall/commit/3d170c2e80ebb47bb04b4ad572cfd888f8539e25)] - fix: should check cpu on process.arch too (#359) (fengmk2 <<fengmk2@gmail.com>>)
+
+**others**
+  * [[`451b1a2`](http://github.com/cnpm/npminstall/commit/451b1a270e7ec72f944cacc3136a59cf655a91cc)] - chore: fix tag to latest (fengmk2 <<fengmk2@gmail.com>>)
+
 5.1.0 / 2021-09-25
 ==================
 
