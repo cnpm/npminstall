@@ -18,7 +18,8 @@ describe('test/flatten.test.js', () => {
   beforeEach(cleanup);
   afterEach(cleanup);
 
-  it('should force all koa to 1.1.0', async () => {
+  // unstable on node 14 https://github.com/cnpm/npminstall/pull/360/checks?check_run_id=3721928838
+  it.skip('should force all koa to 1.1.0', async () => {
     await coffee.fork(bin, [ '-d', '--flatten', './mod1' ], { cwd: tmp })
       .debug()
       .expect('code', 0)
