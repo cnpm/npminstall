@@ -8,7 +8,7 @@ const fs = require('mz/fs');
 const npminstall = require('./npminstall');
 const helper = require('./helper');
 
-const registry = process.env.npm_china ? 'https://r.npm.taobao.org' : 'https://registry.npmjs.org';
+const registry = process.env.npm_china ? 'https://registry.npmmirror.com' : 'https://registry.npmjs.com';
 
 describe('test/installRemote.test.js', () => {
   const root = path.join(__dirname, 'fixtures', 'github');
