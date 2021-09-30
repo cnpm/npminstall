@@ -14,6 +14,8 @@ describe('test/runscript.test.js', () => {
   // afterEach(cleanup);
 
   it('should run preinstall and postinstall', async () => {
+    // ignore windows
+    if (process.platform === 'win32') return;
     await npminstall({
       root,
       registry: 'https://registry.npmjs.com',

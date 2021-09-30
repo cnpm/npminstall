@@ -57,7 +57,7 @@
     "autod": "3",
     "coffee": "^5.2.1",
     "egg-bin": "^4.13.1",
-    "eslint": "5",
+    "eslint": "7",
     "eslint-config-egg": "7",
     "git-contributor": "^1.0.10",
     "http-proxy": "1",
