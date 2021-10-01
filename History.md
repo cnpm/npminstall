@@ -1,4 +1,13 @@
 
+5.1.2 / 2021-10-01
+==================
+
+**fixes**
+  * [[`bca0b88`](http://github.com/cnpm/npminstall/commit/bca0b884257119f68f6fff25c626651bfbfaf9d6)] - fix: streamingTimeout not work on tar download (#362) (fengmk2 <<fengmk2@gmail.com>>)
+
+**others**
+  * [[`de255f2`](http://github.com/cnpm/npminstall/commit/de255f211910c5c6d6ff6f8519ace3a423893d45)] - test: run node 16 (#360) (fengmk2 <<fengmk2@gmail.com>>)
+
 5.1.1 / 2021-09-27
 ==================
 
