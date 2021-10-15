@@ -46,17 +46,29 @@ describe('test/bin.test.js', () => {
     const pkg = await readJSON(path.join(root, 'node_modules', 'windows-shebang', 'package.json'));
     assert.equal(pkg.name, 'windows-shebang');
     assert.equal(pkg.version, '1.0.0');
-    /* eslint-disable no-bitwise */
-    assert.equal(fs.statSync(path.join(root, 'node_modules/.bin/crlf')).mode & 0o755, 0o755 & (~umask));
-    assert.equal(
-      fs.readFileSync(path.join(root, 'node_modules/.bin/crlf'), 'utf-8'),
-      '#!/usr/bin/env node\nconsole.log(\'crlf\');\r\n'
-    );
-    /* eslint-disable no-bitwise */
-    assert.equal(fs.statSync(path.join(root, 'node_modules/.bin/lf')).mode & 0o755, 0o755 & (~umask));
-    assert.equal(
-      fs.readFileSync(path.join(root, 'node_modules/.bin/lf'), 'utf-8'),
-      '#!/usr/bin/env node\nconsole.log(\'lf\');\n'
-    );
+    if (process.platform !== 'win32') {
+      /* eslint-disable no-bitwise */
+      assert.equal(fs.statSync(path.join(root, 'node_modules/.bin/crlf')).mode & 0o755, 0o755 & (~umask));
+      assert.equal(
+        fs.readFileSync(path.join(root, 'node_modules/.bin/crlf'), 'utf-8'),
+        '#!/usr/bin/env node\nconsole.log(\'crlf\');\r\n'
+      );
+      /* eslint-disable no-bitwise */
+      assert.equal(fs.statSync(path.join(root, 'node_modules/.bin/lf')).mode & 0o755, 0o755 & (~umask));
+      assert.equal(
+        fs.readFileSync(path.join(root, 'node_modules/.bin/lf'), 'utf-8'),
+        '#!/usr/bin/env node\nconsole.log(\'lf\');\n'
+      );
+    } else {
+      // don't change shebang file line
+      assert.equal(
+        fs.readFileSync(path.join(root, 'node_modules/.bin/crlf'), 'utf-8'),
+        '#!/usr/bin/env node\r\nconsole.log(\'crlf\');\r\n'
+      );
+      assert.equal(
+        fs.readFileSync(path.join(root, 'node_modules/.bin/lf'), 'utf-8'),
+        '#!/usr/bin/env node\r\nconsole.log(\'lf\');\n'
+      );
+    }
   });
 });
