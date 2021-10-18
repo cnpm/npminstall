@@ -1,4 +1,10 @@
 
+5.2.1 / 2021-10-18
+==================
+
+**fixes**
+  * [[`d37416f`](http://github.com/cnpm/npminstall/commit/d37416f0373c46580e7b7f54774fa04a59866f61)] - fix: do `fixBin` in windows (#367) (vagusX <<vagusX@users.noreply.github.com>>)
+
 5.2.0 / 2021-10-18
 ==================
 
