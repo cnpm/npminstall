@@ -1,4 +1,10 @@
 
+5.2.0 / 2021-10-18
+==================
+
+**features**
+  * [[`202c9fe`](http://github.com/cnpm/npminstall/commit/202c9fe65da0cd46b61508773c6a171ae8b51cf0)] - feat: support windows shebang (#366) (vagusX <<vagusX@users.noreply.github.com>>)
+
 5.1.2 / 2021-10-01
 ==================
 
