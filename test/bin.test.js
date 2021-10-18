@@ -3,7 +3,6 @@
 const assert = require('assert');
 const path = require('path');
 const fs = require('fs');
-const umask = process.umask();
 const readJSON = require('../lib/utils').readJSON;
 const npminstall = require('./npminstall');
 const helper = require('./helper');
@@ -38,7 +37,10 @@ describe('test/bin.test.js', () => {
   });
 
   it('fix windows hashbang', async () => {
-    const pkgs = [{ version: '../windows-shebang', type: 'local' }];
+    const pkgs = [
+      { version: '../windows-shebang', type: 'local' },
+      { version: '0.13.0', name: 'jscodeshift' },
+    ];
     await npminstall({
       root,
       pkgs,
@@ -46,28 +48,51 @@ describe('test/bin.test.js', () => {
     const pkg = await readJSON(path.join(root, 'node_modules', 'windows-shebang', 'package.json'));
     assert.equal(pkg.name, 'windows-shebang');
     assert.equal(pkg.version, '1.0.0');
+    // chmod `755` cannot work in win32 😂 always return `666`
     if (process.platform !== 'win32') {
-      /* eslint-disable no-bitwise */
-      assert.equal(fs.statSync(path.join(root, 'node_modules/.bin/crlf')).mode & 0o755, 0o755 & (~umask));
       assert.equal(
         fs.readFileSync(path.join(root, 'node_modules/.bin/crlf'), 'utf-8'),
         '#!/usr/bin/env node\nconsole.log(\'crlf\');\r\n'
       );
-      /* eslint-disable no-bitwise */
-      assert.equal(fs.statSync(path.join(root, 'node_modules/.bin/lf')).mode & 0o755, 0o755 & (~umask));
       assert.equal(
         fs.readFileSync(path.join(root, 'node_modules/.bin/lf'), 'utf-8'),
         '#!/usr/bin/env node\nconsole.log(\'lf\');\n'
       );
-    } else {
-      // don't change shebang file line
+      // make sense for `jscodeshift`
+      assert(
+        fs.readFileSync(path.join(root, 'node_modules/.bin/jscodeshift'), 'utf-8').startsWith(
+          '#!/usr/bin/env node\n'
+        )
+      );
+
       assert.equal(
-        fs.readFileSync(path.join(root, 'node_modules/.bin/crlf'), 'utf-8'),
-        '#!/usr/bin/env node\r\nconsole.log(\'crlf\');\r\n'
+        fs.statSync(path.join(root, 'node_modules/.bin/crlf')).mode.toString(8),
+        '100755'
       );
       assert.equal(
-        fs.readFileSync(path.join(root, 'node_modules/.bin/lf'), 'utf-8'),
-        '#!/usr/bin/env node\r\nconsole.log(\'lf\');\n'
+        fs.statSync(path.join(root, 'node_modules/.bin/lf')).mode.toString(8),
+        '100755'
+      );
+      assert.equal(
+        fs.statSync(path.join(root, 'node_modules/.bin/jscodeshift')).mode.toString(8),
+        '100755'
+      );
+    } else {
+      assert(
+        fs.readFileSync(path.join(root, 'node_modules/windows-shebang/bin/crlf.js'), 'utf-8').startsWith(
+          '#!/usr/bin/env node\n'
+        )
+      );
+      assert(
+        fs.readFileSync(path.join(root, 'node_modules/windows-shebang/bin/lf.js'), 'utf-8').startsWith(
+          '#!/usr/bin/env node\n'
+        )
+      );
+      // make sense for `jscodeshift`
+      assert(
+        fs.readFileSync(path.join(root, 'node_modules/jscodeshift/bin/jscodeshift.js'), 'utf-8').startsWith(
+          '#!/usr/bin/env node\n'
+        )
       );
     }
   });
