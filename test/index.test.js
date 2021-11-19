@@ -149,7 +149,7 @@ describe('test/index.test.js', () => {
 
       const bytesPkg = await readJSON(path.join(root, 'node_modules', 'bytes', 'package.json'));
       assert.equal(bytesPkg._from, 'bytes@https://github.com/visionmedia/bytes.js.git');
-      assert.match(bytesPkg._resolved, /git\+ssh\:\/\/git@github.com\/visionmedia\/bytes\.js\.git#a66d1b578f3e6fceb518f7e6a83827f7b2f17ac1/);
+      assert(/git\+ssh\:\/\/git@github.com\/visionmedia\/bytes\.js\.git#a66d1b578f3e6fceb518f7e6a83827f7b2f17ac1/.test(bytesPkg._resolved));
     });
   });
 });
