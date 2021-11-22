@@ -1,4 +1,14 @@
 
+5.2.2 / 2021-11-22
+==================
+
+**fixes**
+  * [[`7859046`](http://github.com/cnpm/npminstall/commit/78590466ea8fde12e876b3582516f5ef0be43445)] - fix: use pacote to install git repo deps (#370) (Ke Wu <<gemwuu@163.com>>)
+  * [[`5e633bd`](http://github.com/cnpm/npminstall/commit/5e633bd21049be4d419da8b258055878ea990558)] - fix: local_install  with default param context (Emma.ou <<1061344584@qq.com>>)
+
+**others**
+  * [[`b7bd336`](http://github.com/cnpm/npminstall/commit/b7bd33696ab4e1b6062023bf553e1a6670d527ac)] - chore: update contributors (fengmk2 <<fengmk2@gmail.com>>)
+
 5.2.1 / 2021-10-18
 ==================
 
