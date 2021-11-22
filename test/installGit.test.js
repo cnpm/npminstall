@@ -167,4 +167,23 @@ describe('test/installGit.test.js', () => {
         done();
       });
   });
+  it('should install with https success', done => {
+    coffee.fork(helper.npminstall, [
+      'a@git+https://git@bitbucket.org/saibotsivad/demo-npm-git-semver.git#semver:1.0.3',
+    ], {
+      cwd: tmp,
+    })
+      .debug()
+      .expect('code', 0)
+      .end(() => {
+        const nodeModulesDir = path.join(tmp, 'node_modules');
+        // check package installed and linked
+        const symlink = fs.readlinkSync(path.join(nodeModulesDir, 'a'));
+        assert.strictEqual(require(path.join(nodeModulesDir, 'a/package.json')).name, 'demo-npm-git-semver');
+        // check package real package existed
+        assert.strictEqual(require(path.join(nodeModulesDir, `${symlink}/package.json`)).name, 'demo-npm-git-semver');
+        done();
+      });
+  });
+
 });
