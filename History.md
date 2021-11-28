@@ -1,4 +1,10 @@
 
+3.28.1 / 2021-11-28
+==================
+
+**fixes**
+  * [[`3711d49`](http://github.com/cnpm/npminstall/commit/3711d497ff29bb0de0840326e1d9eb84108c36ae)] - fix: upgrade node-gyp from ^3 to ^6 (#371) (Ke Wu <<gemwuu@163.com>>)
+
 3.28.0 / 2020-10-30
 ==================
 
