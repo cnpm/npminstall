@@ -26,7 +26,8 @@ describe('test/bigPackage.test.js', () => {
   if (process.platform !== 'win32' && semver.satisfies(process.version, '< 16.0.0')) {
     [
       'spmtest',
-      'spmwebpacktest',
+      // too slow, ignore spmwebpacktest
+      // 'spmwebpacktest',
     ].forEach(testcase);
   }
 
