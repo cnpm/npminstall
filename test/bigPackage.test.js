@@ -1,6 +1,5 @@
 'use strict';
 
-const semver = require('semver');
 const npminstall = require('./npminstall');
 const helper = require('./helper');
 
