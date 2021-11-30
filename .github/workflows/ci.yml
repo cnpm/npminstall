@@ -18,8 +18,6 @@ jobs:
         platform:
           - os: ubuntu-latest
             shell: bash
-          - os: macos-latest
-            shell: bash
           - os: windows-latest
             shell: powershell
         python-version: [ 3.6 ]
