@@ -61,7 +61,7 @@
     "eslint": "7",
     "eslint-config-egg": "7",
     "eslint-plugin-jsdoc": "^4.1.1",
-    "http-proxy": "1",
+    "http-proxy": "^1.18.1",
     "mm": "^2.5.0"
   },
   "homepage": "https://github.com/cnpm/npminstall",
