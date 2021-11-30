@@ -20,8 +20,7 @@
     "test-local": "npm_china=true local=true egg-bin test -t 2000000",
     "lint": "eslint . --fix",
     "ci": "npm run lint && npm run test-cov",
-    "autod": "autod",
-    "contributor": "git-contributor"
+    "autod": "autod"
   },
   "dependencies": {
     "agentkeepalive": "^4.0.2",
@@ -62,7 +61,6 @@
     "eslint": "7",
     "eslint-config-egg": "7",
     "eslint-plugin-jsdoc": "^4.1.1",
-    "git-contributor": "^1.0.10",
     "http-proxy": "1",
     "mm": "^2.5.0"
   },
@@ -88,6 +86,6 @@
   "engines": {
     "node": ">=10.0.0"
   },
-  "author": "fengmk2 <fengmk2@gmail.com> (https://fengmk2.com)",
+  "author": "fengmk2 <fengmk2@gmail.com> (https://github.com/fengmk2)",
   "license": "MIT"
 }
