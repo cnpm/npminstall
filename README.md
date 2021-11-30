@@ -1,23 +1,15 @@
 # npminstall
 
 [![NPM version][npm-image]][npm-url]
-[![build status][travis-image]][travis-url]
-[![appveyor build status][appveyor-image]][appveyor-url]
+[![Node CI](https://github.com/cnpm/npminstall/actions/workflows/ci.yml/badge.svg)](https://github.com/cnpm/npminstall/actions/workflows/ci.yml)
 [![Test coverage][codecov-image]][codecov-url]
-[![David deps][david-image]][david-url]
 [![Known Vulnerabilities][snyk-image]][snyk-url]
 [![npm download][download-image]][download-url]
 
 [npm-image]: https://img.shields.io/npm/v/npminstall.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/npminstall
-[travis-image]: https://img.shields.io/travis/cnpm/npminstall.svg?style=flat-square
-[travis-url]: https://travis-ci.org/cnpm/npminstall
-[appveyor-image]: https://ci.appveyor.com/api/projects/status/xyn5tj86tvdy4cfe/branch/master?svg=true
-[appveyor-url]: https://ci.appveyor.com/project/eggjs/npminstall
 [codecov-image]: https://codecov.io/gh/cnpm/npminstall/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/cnpm/npminstall
-[david-image]: https://img.shields.io/david/cnpm/npminstall.svg?style=flat-square
-[david-url]: https://david-dm.org/cnpm/npminstall
 [snyk-image]: https://snyk.io/test/npm/npminstall/badge.svg?style=flat-square
 [snyk-url]: https://snyk.io/test/npm/npminstall
 [download-image]: https://img.shields.io/npm/dm/npminstall.svg?style=flat-square
@@ -41,7 +33,8 @@ It is integrated in [cnpm](https://github.com/cnpm/cnpm).
 
 ```bash
 $ npm install cnpm -g
-$ cnpm install  // will use npminstall
+# will use npminstall
+$ cnpm install
 ```
 
 #### npminstall
