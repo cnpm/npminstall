@@ -310,4 +310,4 @@ npm i babel-preset-es2015 browserify chalk debug minimist mkdirp
 
 ## Contributors
 
-[![](https://badges.implements.io/api/contributors?org=cnpm&repo=npminstall&width=1250&size=48&padding=6)](https://github.com/cnpm/npminstall/graphs/contributors)
+[![](https://badges.implements.io/api/contributors?org=cnpm&repo=npminstall&width=1250&size=96&padding=6)](https://github.com/cnpm/npminstall/graphs/contributors)
