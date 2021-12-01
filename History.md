@@ -1,4 +1,14 @@
 
+5.3.0 / 2021-12-01
+==================
+
+**others**
+  * [[`94a192d`](http://github.com/cnpm/npminstall/commit/94a192df543ea49b7bd1c30ad523abf20e4aed5a)] - deps: upgrade ora@5 for security (#373) (fengmk2 <<fengmk2@gmail.com>>)
+  * [[`21bb03a`](http://github.com/cnpm/npminstall/commit/21bb03a700f5099392b1948430998415e25602cf)] - test: skip fail tests on Windows (#372) (fengmk2 <<fengmk2@gmail.com>>)
+  * [[`48737ad`](http://github.com/cnpm/npminstall/commit/48737ad1c6651a1305da1da6b5c3ea111867cdbc)] - deps: fix http-proxy security (fengmk2 <<fengmk2@gmail.com>>)
+  * [[`46e9357`](http://github.com/cnpm/npminstall/commit/46e9357b85a83b7afa6ddd47388567aa627f4848)] - chore: add 96px width badge image (fengmk2 <<fengmk2@gmail.com>>)
+  * [[`4389560`](http://github.com/cnpm/npminstall/commit/43895602d9871abc3672bc109ed49c7eb9aaaed3)] - chore: use badges service (fengmk2 <<fengmk2@gmail.com>>)
+
 5.2.2 / 2021-11-22
 ==================
 
