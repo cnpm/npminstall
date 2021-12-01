@@ -1,4 +1,10 @@
 
+5.3.1 / 2021-12-01
+==================
+
+**fixes**
+  * [[`160217d`](http://github.com/cnpm/npminstall/commit/160217d27c4101e12bbe610d2d12355ea0c8b125)] - fix: use ora 4.0.5 to support node 8 (#374) (fengmk2 <<fengmk2@gmail.com>>)
+
 5.3.0 / 2021-12-01
 ==================
 
