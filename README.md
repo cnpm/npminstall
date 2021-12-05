@@ -303,4 +303,4 @@ npm i babel-preset-es2015 browserify chalk debug minimist mkdirp
 
 ## Contributors
 
-[![](https://ergatejs.implements.io/badges/contributors/cnpm/npminstall.svg?org=cnpm&repo=npminstall&width=1250&size=96&padding=6)](https://github.com/cnpm/npminstall/graphs/contributors)
+[![](https://ergatejs.implements.io/badges/contributors/cnpm/npminstall.svg?width=1250&size=96&padding=6)](https://github.com/cnpm/npminstall/graphs/contributors)
