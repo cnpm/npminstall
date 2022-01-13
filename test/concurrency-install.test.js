@@ -24,16 +24,26 @@ describe('test/concurrency-install.test.js', () => {
   afterEach(cleanup);
 
   it('should concurrency install success', async () => {
+    // ignore windows
+    if (process.platform === 'win32') return;
     await Promise.all([
       npminstall({
         root: root1,
         cacheDir,
         detail: true,
+        registry: 'https://registry.npmjs.com',
+        env: {
+          NODE_OPTIONS: '--max_old_space_size=4096',
+        },
       }),
       npminstall({
         root: root2,
         cacheDir,
         detail: true,
+        registry: 'https://registry.npmjs.com',
+        env: {
+          NODE_OPTIONS: '--max_old_space_size=4096',
+        },
       }),
     ]);
     assert(await fs.exists(path.join(root1, 'node_modules/browserify')));

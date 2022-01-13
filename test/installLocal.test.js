@@ -235,7 +235,7 @@ describe('test/installLocal.test.js', () => {
         const cli = require.resolve('../bin/install');
         return coffee.fork(cli, [
           'phantomjs-prebuilt',
-          '--custom-china-mirror-url=http://cdn.npm.taobao.org/dist',
+          '--custom-china-mirror-url=https://npmmirror.com/mirrors',
         ], {
           cwd: root,
         })

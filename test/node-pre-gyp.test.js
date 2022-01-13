@@ -21,7 +21,7 @@ if (semver.satisfies(process.version, '< 12.0.0')) {
         cacheDir: '',
         customBinaryMirrors: {
           sqlite3: {
-            host: process.env.CI ? 'https://cnpmjs.org/mirrors' : 'http://cdn.npm.taobao.org/dist',
+            host: process.env.CI ? 'https://cnpmjs.org/mirrors' : 'https://npmmirror.com/mirrors',
           },
         },
       });

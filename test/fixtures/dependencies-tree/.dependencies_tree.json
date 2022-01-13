@@ -46,7 +46,7 @@
       "shasum": "57ba4d049b0a99cae0d594e6144e2931949a7ce1",
       "size": 19478,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/koa/download/koa-2.6.2.tgz"
+      "tarball": "https://registry.npmmirror.com/koa/download/koa-2.6.2.tgz"
     },
     "scripts": {
       "test": "jest",
@@ -113,7 +113,7 @@
       "shasum": "1e0480fe36d2da5858d1eb6acc38418b26eaa20d",
       "size": 209904,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/mocha/download/mocha-3.5.3.tgz"
+      "tarball": "https://registry.npmmirror.com/mocha/download/mocha-3.5.3.tgz"
     },
     "scripts": {
       "lint": "eslint . bin/*",
@@ -146,7 +146,7 @@
       "shasum": "035cde2b08ee2129f4a8315ea8f00a00dba1453c",
       "size": 1140,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/cache-content-type/download/cache-content-type-1.0.1.tgz"
+      "tarball": "https://registry.npmmirror.com/cache-content-type/download/cache-content-type-1.0.1.tgz"
     },
     "scripts": {
       "test": "egg-bin test",
@@ -182,7 +182,7 @@
       "shasum": "eb777df6011723a3b14e8a72c0805c8e86746bd2",
       "size": 5409,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/accepts/download/accepts-1.3.5.tgz"
+      "tarball": "https://registry.npmmirror.com/accepts/download/accepts-1.3.5.tgz"
     },
     "scripts": {
       "lint": "eslint --plugin markdown --ext js,md .",
@@ -206,7 +206,7 @@
       "shasum": "84c6e159b81904fdca59a0ef44cd870d31250f9a",
       "size": 2848,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/delegates/download/delegates-1.0.0.tgz"
+      "tarball": "https://registry.npmmirror.com/delegates/download/delegates-1.0.0.tgz"
     },
     "_id": "delegates@1.0.0"
   },
@@ -232,7 +232,7 @@
       "shasum": "e138cc75e040c727b1966fe5e5f8c9aee256fe3b",
       "size": 4655,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/content-type/download/content-type-1.0.4.tgz"
+      "tarball": "https://registry.npmmirror.com/content-type/download/content-type-1.0.4.tgz"
     },
     "scripts": {
       "lint": "eslint .",
@@ -255,7 +255,7 @@
       "shasum": "978857442c44749e4206613e37946205826abd80",
       "size": 2331,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/destroy/download/destroy-1.0.4.tgz"
+      "tarball": "https://registry.npmmirror.com/destroy/download/destroy-1.0.4.tgz"
     },
     "scripts": {
       "test": "mocha --reporter spec",
@@ -291,7 +291,7 @@
       "shasum": "e130caf7e7279087c5616c2007d0485698984fbd",
       "size": 6755,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/content-disposition/download/content-disposition-0.5.3.tgz"
+      "tarball": "https://registry.npmmirror.com/content-disposition/download/content-disposition-0.5.3.tgz"
     },
     "scripts": {
       "lint": "eslint --plugin markdown --ext js,md .",
@@ -310,7 +310,7 @@
       "shasum": "e2b3d91b54aed672f309d950d154850fa11d4f37",
       "size": 704,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/error-inject/download/error-inject-1.0.0.tgz"
+      "tarball": "https://registry.npmmirror.com/error-inject/download/error-inject-1.0.0.tgz"
     },
     "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1"
@@ -341,7 +341,7 @@
       "shasum": "7912ce21fbf2e8c2da70cf1c3f351aecf59dadfa",
       "size": 7133,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/cookies/download/cookies-0.7.3.tgz"
+      "tarball": "https://registry.npmmirror.com/cookies/download/cookies-0.7.3.tgz"
     },
     "scripts": {
       "lint": "eslint .",
@@ -374,7 +374,7 @@
       "shasum": "9bcd52e14c097763e749b274c4346ed2e560b5a9",
       "size": 9026,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/depd/download/depd-1.1.2.tgz"
+      "tarball": "https://registry.npmmirror.com/depd/download/depd-1.1.2.tgz"
     },
     "scripts": {
       "bench": "node benchmark/index.js",
@@ -415,7 +415,7 @@
       "shasum": "5bb5a0672628b64149566ba16819e61518c67261",
       "size": 17183,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/debug/download/debug-3.1.0.tgz"
+      "tarball": "https://registry.npmmirror.com/debug/download/debug-3.1.0.tgz"
     },
     "_id": "debug@3.1.0"
   },
@@ -442,7 +442,7 @@
       "shasum": "f576b63341547989c1de7ba288760923b27fe84f",
       "size": 2997,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/ylru/download/ylru-1.2.1.tgz"
+      "tarball": "https://registry.npmmirror.com/ylru/download/ylru-1.2.1.tgz"
     },
     "scripts": {
       "lint": "eslint test *.js",
@@ -479,7 +479,7 @@
       "shasum": "28995aa1ecb770742fe6ae7e58f9181c744b3f96",
       "size": 4962,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/mime-types/download/mime-types-2.1.21.tgz"
+      "tarball": "https://registry.npmmirror.com/mime-types/download/mime-types-2.1.21.tgz"
     },
     "scripts": {
       "lint": "eslint .",
@@ -514,7 +514,7 @@
       "shasum": "28995aa1ecb770742fe6ae7e58f9181c744b3f96",
       "size": 4962,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/mime-types/download/mime-types-2.1.21.tgz"
+      "tarball": "https://registry.npmmirror.com/mime-types/download/mime-types-2.1.21.tgz"
     },
     "scripts": {
       "lint": "eslint .",
@@ -547,7 +547,7 @@
       "shasum": "9bcd52e14c097763e749b274c4346ed2e560b5a9",
       "size": 9026,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/depd/download/depd-1.1.2.tgz"
+      "tarball": "https://registry.npmmirror.com/depd/download/depd-1.1.2.tgz"
     },
     "scripts": {
       "bench": "node benchmark/index.js",
@@ -574,7 +574,7 @@
       "shasum": "2b327184e8992101177b28563fb5e7102acd0ca9",
       "size": 6625,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/negotiator/download/negotiator-0.6.1.tgz"
+      "tarball": "https://registry.npmmirror.com/negotiator/download/negotiator-0.6.1.tgz"
     },
     "scripts": {
       "test": "mocha --reporter spec --check-leaks --bail test/",
@@ -596,7 +596,7 @@
       "shasum": "991ec69d296e0313747d59bdfd2b745c35f8828d",
       "size": 9822,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/safe-buffer/download/safe-buffer-5.1.2.tgz"
+      "tarball": "https://registry.npmmirror.com/safe-buffer/download/safe-buffer-5.1.2.tgz"
     },
     "scripts": {
       "test": "standard && tape test/*.js"
@@ -619,7 +619,7 @@
       "shasum": "399d709f0aed2bab0a059e0cdd3a5023a053e1dc",
       "size": 3566,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/keygrip/download/keygrip-1.0.3.tgz"
+      "tarball": "https://registry.npmmirror.com/keygrip/download/keygrip-1.0.3.tgz"
     },
     "scripts": {
       "test": "mocha --reporter spec test/",
@@ -641,7 +641,7 @@
       "shasum": "0258eae4d3d0c0974de1c169188ef0051d1d1988",
       "size": 1917,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/escape-html/download/escape-html-1.0.3.tgz"
+      "tarball": "https://registry.npmmirror.com/escape-html/download/escape-html-1.0.3.tgz"
     },
     "scripts": {
       "bench": "node benchmark/index.js"
@@ -673,7 +673,7 @@
       "shasum": "3d8cadd90d976569fa835ab1f8e4b23a105605a7",
       "size": 4229,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/fresh/download/fresh-0.5.2.tgz"
+      "tarball": "https://registry.npmmirror.com/fresh/download/fresh-0.5.2.tgz"
     },
     "scripts": {
       "bench": "node benchmark/index.js",
@@ -714,7 +714,7 @@
       "shasum": "6a4ffe5d35188e1c39f872534690585852e1f027",
       "size": 5899,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/http-errors/download/http-errors-1.7.1.tgz"
+      "tarball": "https://registry.npmmirror.com/http-errors/download/http-errors-1.7.1.tgz"
     },
     "scripts": {
       "lint": "eslint --plugin markdown --ext js,md .",
@@ -751,7 +751,7 @@
       "shasum": "0e550b4fca6adf121bbeed83248c17e62f593a9a",
       "size": 3085,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/http-assert/download/http-assert-1.4.0.tgz"
+      "tarball": "https://registry.npmmirror.com/http-assert/download/http-assert-1.4.0.tgz"
     },
     "scripts": {
       "lint": "eslint --plugin markdown --ext js,md .",
@@ -791,7 +791,7 @@
       "shasum": "e731531ca2ede27d188222427da17821d68ff4fc",
       "size": 16335,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/debug/download/debug-2.6.8.tgz"
+      "tarball": "https://registry.npmmirror.com/debug/download/debug-2.6.8.tgz"
     },
     "_id": "debug@2.6.8"
   },
@@ -811,7 +811,7 @@
       "shasum": "5608aeadfc00be6c2901df5f9861788de0d597c8",
       "size": 2874,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/ms/download/ms-2.0.0.tgz"
+      "tarball": "https://registry.npmmirror.com/ms/download/ms-2.0.0.tgz"
     },
     "scripts": {
       "precommit": "lint-staged",
@@ -846,7 +846,7 @@
       "shasum": "d2132e529bb0000a7f80794d4bdf5cd5e5813522",
       "size": 7947,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/is-generator-function/download/is-generator-function-1.0.7.tgz"
+      "tarball": "https://registry.npmmirror.com/is-generator-function/download/is-generator-function-1.0.7.tgz"
     },
     "scripts": {
       "pretest": "npm run lint",
@@ -872,7 +872,7 @@
       "shasum": "3c0434743df93e2f5c42aee7b19bcb483575f4e1",
       "size": 19398,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/json3/download/json3-3.3.2.tgz"
+      "tarball": "https://registry.npmmirror.com/json3/download/json3-3.3.2.tgz"
     },
     "scripts": {
       "test": "node test/test_*.js"
@@ -898,7 +898,7 @@
       "shasum": "9c99094176e12240cb22d6c5146098400fe0f7d4",
       "size": 13425,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/commander/download/commander-2.9.0.tgz"
+      "tarball": "https://registry.npmmirror.com/commander/download/commander-2.9.0.tgz"
     },
     "scripts": {
       "test": "make test"
@@ -928,7 +928,7 @@
       "shasum": "93410fd21b009735151f8868c2f271f3427e23fd",
       "size": 34193,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/he/download/he-1.1.1.tgz"
+      "tarball": "https://registry.npmmirror.com/he/download/he-1.1.1.tgz"
     },
     "scripts": {
       "test": "node tests/tests.js",
@@ -945,7 +945,7 @@
       "shasum": "0ea7743715db8d8de2c5ede1775e1b45ac85c02f",
       "size": 4734,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/growl/download/growl-1.9.2.tgz"
+      "tarball": "https://registry.npmmirror.com/growl/download/growl-1.9.2.tgz"
     },
     "_id": "growl@1.9.2"
   },
@@ -965,7 +965,7 @@
       "shasum": "1b61c0562190a8dff6ae3bb2cf0200ca130b86d4",
       "size": 1578,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/escape-string-regexp/download/escape-string-regexp-1.0.5.tgz"
+      "tarball": "https://registry.npmmirror.com/escape-string-regexp/download/escape-string-regexp-1.0.5.tgz"
     },
     "scripts": {
       "test": "xo && ava"
@@ -981,7 +981,7 @@
       "shasum": "f351d32969d32fa5d7a5567154263d928ae3bd1f",
       "size": 1533,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/browser-stdout/download/browser-stdout-1.3.0.tgz"
+      "tarball": "https://registry.npmmirror.com/browser-stdout/download/browser-stdout-1.3.0.tgz"
     },
     "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1"
@@ -1014,7 +1014,7 @@
       "shasum": "805211df04faaf1c63a3600306cdf5ade50b2ec8",
       "size": 15617,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/glob/download/glob-7.1.1.tgz"
+      "tarball": "https://registry.npmmirror.com/glob/download/glob-7.1.1.tgz"
     },
     "scripts": {
       "prepublish": "npm run benchclean",
@@ -1077,7 +1077,7 @@
       "shasum": "c9ce393a4b7cbd0b058a725c93df299027868ff9",
       "size": 103103,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/diff/download/diff-3.2.0.tgz"
+      "tarball": "https://registry.npmmirror.com/diff/download/diff-3.2.0.tgz"
     },
     "scripts": {
       "test": "grunt"
@@ -1098,7 +1098,7 @@
       "shasum": "d7f2849f0dbda7e04682bb8cd72ab022461debe7",
       "size": 2261,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/lodash.create/download/lodash.create-3.1.1.tgz"
+      "tarball": "https://registry.npmmirror.com/lodash.create/download/lodash.create-3.1.1.tgz"
     },
     "scripts": {
       "test": "echo \"See https://travis-ci.org/lodash/lodash-cli for testing details.\""
@@ -1134,7 +1134,7 @@
       "shasum": "0b6a0ce6fdbe9576e25f1f2d2fde8830dc0ad0d8",
       "size": 25548,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/mime-db/download/mime-db-1.37.0.tgz"
+      "tarball": "https://registry.npmmirror.com/mime-db/download/mime-db-1.37.0.tgz"
     },
     "scripts": {
       "build": "node scripts/build",
@@ -1177,7 +1177,7 @@
       "shasum": "6a4ffe5d35188e1c39f872534690585852e1f027",
       "size": 5899,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/http-errors/download/http-errors-1.7.1.tgz"
+      "tarball": "https://registry.npmmirror.com/http-errors/download/http-errors-1.7.1.tgz"
     },
     "scripts": {
       "lint": "eslint --plugin markdown --ext js,md .",
@@ -1213,7 +1213,7 @@
       "shasum": "161c7dac177659fd9811f43771fa99381478628c",
       "size": 5482,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/statuses/download/statuses-1.5.0.tgz"
+      "tarball": "https://registry.npmmirror.com/statuses/download/statuses-1.5.0.tgz"
     },
     "scripts": {
       "build": "node scripts/build.js",
@@ -1238,7 +1238,7 @@
       "shasum": "633c2c83e3da42a502f52466022480f4208261de",
       "size": 2028,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/inherits/download/inherits-2.0.3.tgz"
+      "tarball": "https://registry.npmmirror.com/inherits/download/inherits-2.0.3.tgz"
     },
     "scripts": {
       "test": "node test"
@@ -1261,7 +1261,7 @@
       "shasum": "507306b9371901db41121c812e923d0d67d3e877",
       "size": 1816,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/koa-compose/download/koa-compose-4.1.0.tgz"
+      "tarball": "https://registry.npmmirror.com/koa-compose/download/koa-compose-4.1.0.tgz"
     },
     "scripts": {
       "bench": "matcha bench/bench.js",
@@ -1293,7 +1293,7 @@
       "shasum": "7e1be3470f1e77948bc43d94a3c8f4d7752ba553",
       "size": 2210,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/toidentifier/download/toidentifier-1.0.0.tgz"
+      "tarball": "https://registry.npmmirror.com/toidentifier/download/toidentifier-1.0.0.tgz"
     },
     "scripts": {
       "lint": "eslint --plugin markdown --ext js,md .",
@@ -1311,7 +1311,7 @@
       "shasum": "d0bd85536887b6fe7c0d818cb962d9d91c54e656",
       "size": 1428,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/setprototypeof/download/setprototypeof-1.1.0.tgz"
+      "tarball": "https://registry.npmmirror.com/setprototypeof/download/setprototypeof-1.1.0.tgz"
     },
     "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1"
@@ -1341,7 +1341,7 @@
       "shasum": "da40875df49de0539098d1700b50820cebcd21d0",
       "size": 3806,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/koa-convert/download/koa-convert-1.2.0.tgz"
+      "tarball": "https://registry.npmmirror.com/koa-convert/download/koa-convert-1.2.0.tgz"
     },
     "scripts": {
       "test": "standard && mocha test.js"
@@ -1360,7 +1360,7 @@
       "shasum": "f5d260292b660e084eff4cdbc9f08ad3247448b5",
       "size": 3797,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/deep-equal/download/deep-equal-1.0.1.tgz"
+      "tarball": "https://registry.npmmirror.com/deep-equal/download/deep-equal-1.0.1.tgz"
     },
     "scripts": {
       "test": "tape test/*.js"
@@ -1376,7 +1376,7 @@
       "shasum": "273c07edcdcb8df6a2c1ab7d59ee76491451ec14",
       "size": 1517,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/koa-is-json/download/koa-is-json-1.0.0.tgz"
+      "tarball": "https://registry.npmmirror.com/koa-is-json/download/koa-is-json-1.0.0.tgz"
     },
     "_id": "koa-is-json@1.0.0"
   },
@@ -1399,7 +1399,7 @@
       "shasum": "20f1336481b083cd75337992a16971aa2d906947",
       "size": 4552,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/on-finished/download/on-finished-2.3.0.tgz"
+      "tarball": "https://registry.npmmirror.com/on-finished/download/on-finished-2.3.0.tgz"
     },
     "scripts": {
       "test": "mocha --reporter spec --bail --check-leaks test/",
@@ -1421,7 +1421,7 @@
       "shasum": "2afde84d03e50b9a8edc444e30610a70295edfb4",
       "size": 1580,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/only/download/only-0.0.2.tgz"
+      "tarball": "https://registry.npmmirror.com/only/download/only-0.0.2.tgz"
     },
     "_id": "only@0.0.2"
   },
@@ -1438,7 +1438,7 @@
       "shasum": "8c38a099500f215ad09e59f1722fd0c52bfe0a4e",
       "size": 1931,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/lodash._baseassign/download/lodash._baseassign-3.2.0.tgz"
+      "tarball": "https://registry.npmmirror.com/lodash._baseassign/download/lodash._baseassign-3.2.0.tgz"
     },
     "scripts": {
       "test": "echo \"See https://travis-ci.org/lodash/lodash-cli for testing details.\""
@@ -1454,7 +1454,7 @@
       "shasum": "1bc661614daa7fc311b7d03bf16806a0213cf821",
       "size": 2248,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/lodash._basecreate/download/lodash._basecreate-3.0.3.tgz"
+      "tarball": "https://registry.npmmirror.com/lodash._basecreate/download/lodash._basecreate-3.0.3.tgz"
     },
     "scripts": {
       "test": "echo \"See https://travis-ci.org/lodash/lodash-cli for testing details.\""
@@ -1470,7 +1470,7 @@
       "shasum": "5203ad7ba425fae842460e696db9cf3e6aac057c",
       "size": 2924,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/lodash._isiterateecall/download/lodash._isiterateecall-3.0.9.tgz"
+      "tarball": "https://registry.npmmirror.com/lodash._isiterateecall/download/lodash._isiterateecall-3.0.9.tgz"
     },
     "scripts": {
       "test": "echo \"See https://travis-ci.org/lodash/lodash-cli for testing details.\""
@@ -1489,7 +1489,7 @@
       "shasum": "633c2c83e3da42a502f52466022480f4208261de",
       "size": 2028,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/inherits/download/inherits-2.0.3.tgz"
+      "tarball": "https://registry.npmmirror.com/inherits/download/inherits-2.0.3.tgz"
     },
     "scripts": {
       "test": "node test"
@@ -1522,7 +1522,7 @@
       "shasum": "161c7dac177659fd9811f43771fa99381478628c",
       "size": 5482,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/statuses/download/statuses-1.5.0.tgz"
+      "tarball": "https://registry.npmmirror.com/statuses/download/statuses-1.5.0.tgz"
     },
     "scripts": {
       "build": "node scripts/build.js",
@@ -1560,7 +1560,7 @@
       "shasum": "fc289d4ed8993119460c156253262cdc8de65bf3",
       "size": 3789,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/parseurl/download/parseurl-1.3.2.tgz"
+      "tarball": "https://registry.npmmirror.com/parseurl/download/parseurl-1.3.2.tgz"
     },
     "scripts": {
       "bench": "node benchmark/index.js",
@@ -1580,7 +1580,7 @@
       "shasum": "4cafad76bc62f02fa039b2f94e9a3dd3a391a725",
       "size": 1531,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/graceful-readlink/download/graceful-readlink-1.0.1.tgz"
+      "tarball": "https://registry.npmmirror.com/graceful-readlink/download/graceful-readlink-1.0.1.tgz"
     },
     "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1"
@@ -1603,7 +1603,7 @@
       "shasum": "30057438eac6cf7f8c4767f38648d6697d75c903",
       "size": 4991,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/mkdirp/download/mkdirp-0.5.1.tgz"
+      "tarball": "https://registry.npmmirror.com/mkdirp/download/mkdirp-0.5.1.tgz"
     },
     "scripts": {
       "test": "tap test/*.js"
@@ -1630,7 +1630,7 @@
       "shasum": "72a262894d9d408b956ca05ff37b2ed8a6e2a2d5",
       "size": 2394,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/supports-color/download/supports-color-3.1.2.tgz"
+      "tarball": "https://registry.npmmirror.com/supports-color/download/supports-color-3.1.2.tgz"
     },
     "scripts": {
       "test": "xo && mocha",
@@ -1653,7 +1653,7 @@
       "shasum": "583b1aa775961d4b113ac17d9c50baef9dd76bd1",
       "size": 1979,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/once/download/once-1.4.0.tgz"
+      "tarball": "https://registry.npmmirror.com/once/download/once-1.4.0.tgz"
     },
     "scripts": {
       "test": "tap test/*.js"
@@ -1675,7 +1675,7 @@
       "shasum": "174b9268735534ffbc7ace6bf53a5a9e1b5c5f5f",
       "size": 1882,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/path-is-absolute/download/path-is-absolute-1.0.1.tgz"
+      "tarball": "https://registry.npmmirror.com/path-is-absolute/download/path-is-absolute-1.0.1.tgz"
     },
     "scripts": {
       "test": "xo && node test.js"
@@ -1698,7 +1698,7 @@
       "shasum": "49bd6331d7d02d0c09bc910a1075ba8165b56df9",
       "size": 2041,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/inflight/download/inflight-1.0.6.tgz"
+      "tarball": "https://registry.npmmirror.com/inflight/download/inflight-1.0.6.tgz"
     },
     "scripts": {
       "test": "tap test.js --100"
@@ -1723,7 +1723,7 @@
       "shasum": "5166e286457f03306064be5497e8dbb0c3d32083",
       "size": 11423,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/minimatch/download/minimatch-3.0.4.tgz"
+      "tarball": "https://registry.npmmirror.com/minimatch/download/minimatch-3.0.4.tgz"
     },
     "scripts": {
       "test": "tap test/*.js --cov",
@@ -1744,7 +1744,7 @@
       "shasum": "1504ad2523158caa40db4a2787cb01411994ea4f",
       "size": 4434,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/fs.realpath/download/fs.realpath-1.0.0.tgz"
+      "tarball": "https://registry.npmmirror.com/fs.realpath/download/fs.realpath-1.0.0.tgz"
     },
     "scripts": {
       "test": "tap test/*.js --cov"
@@ -1771,7 +1771,7 @@
       "shasum": "a85ccb40b7d986d8e5a345b3a1ace8eabcf54de7",
       "size": 1856,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/koa-compose/download/koa-compose-3.2.1.tgz"
+      "tarball": "https://registry.npmmirror.com/koa-compose/download/koa-compose-3.2.1.tgz"
     },
     "scripts": {
       "bench": "matcha bench/bench.js",
@@ -1809,7 +1809,7 @@
       "shasum": "f89ce341541c672b25ee7ae3c73dee3b2be50194",
       "size": 5621,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/type-is/download/type-is-1.6.16.tgz"
+      "tarball": "https://registry.npmmirror.com/type-is/download/type-is-1.6.16.tgz"
     },
     "scripts": {
       "lint": "eslint --plugin markdown --ext js,md .",
@@ -1838,7 +1838,7 @@
       "shasum": "6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184",
       "size": 5880,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/co/download/co-4.6.0.tgz"
+      "tarball": "https://registry.npmmirror.com/co/download/co-4.6.0.tgz"
     },
     "scripts": {
       "test": "mocha --harmony",
@@ -1862,7 +1862,7 @@
       "shasum": "590c61156b0ae2f4f0255732a158b266bc56b21d",
       "size": 2733,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/ee-first/download/ee-first-1.1.1.tgz"
+      "tarball": "https://registry.npmmirror.com/ee-first/download/ee-first-1.1.1.tgz"
     },
     "scripts": {
       "test": "mocha --reporter spec --bail --check-leaks test/",
@@ -1897,7 +1897,7 @@
       "shasum": "2299f02c6ded30d4a5961b0b9f74524a18f634fc",
       "size": 3772,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/vary/download/vary-1.1.2.tgz"
+      "tarball": "https://registry.npmmirror.com/vary/download/vary-1.1.2.tgz"
     },
     "scripts": {
       "bench": "node benchmark/index.js",
@@ -1917,7 +1917,7 @@
       "shasum": "8da0e6a876cf344c0ad8a54882111dd3c5c7ca36",
       "size": 1914,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/lodash._basecopy/download/lodash._basecopy-3.0.1.tgz"
+      "tarball": "https://registry.npmmirror.com/lodash._basecopy/download/lodash._basecopy-3.0.1.tgz"
     },
     "scripts": {
       "test": "echo \"See https://travis-ci.org/lodash/lodash-cli for testing details.\""
@@ -1938,7 +1938,7 @@
       "shasum": "4dbc0472b156be50a0b286855d1bd0b0c656098a",
       "size": 3605,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/lodash.keys/download/lodash.keys-3.1.2.tgz"
+      "tarball": "https://registry.npmmirror.com/lodash.keys/download/lodash.keys-3.1.2.tgz"
     },
     "scripts": {
       "test": "echo \"See https://travis-ci.org/lodash/lodash-cli for testing details.\""
@@ -1960,7 +1960,7 @@
       "shasum": "9d9e793165ce017a00f00418c43f942a7b1d11fa",
       "size": 1831,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/has-flag/download/has-flag-1.0.0.tgz"
+      "tarball": "https://registry.npmmirror.com/has-flag/download/has-flag-1.0.0.tgz"
     },
     "scripts": {
       "test": "node test.js"
@@ -1980,7 +1980,7 @@
       "shasum": "b5243d8f3ec1aa35f1364605bc0d1036e30ab69f",
       "size": 1676,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/wrappy/download/wrappy-1.0.2.tgz"
+      "tarball": "https://registry.npmmirror.com/wrappy/download/wrappy-1.0.2.tgz"
     },
     "scripts": {
       "test": "tap --coverage test/*.js"
@@ -2004,7 +2004,7 @@
       "shasum": "3c7fcbf529d87226f3d2f52b966ff5271eb441dd",
       "size": 4239,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/brace-expansion/download/brace-expansion-1.1.11.tgz"
+      "tarball": "https://registry.npmmirror.com/brace-expansion/download/brace-expansion-1.1.11.tgz"
     },
     "scripts": {
       "test": "tape test/*.js",
@@ -2026,7 +2026,7 @@
       "shasum": "857fcabfc3397d2625b8228262e86aa7a011b05d",
       "size": 5990,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/minimist/download/minimist-0.0.8.tgz"
+      "tarball": "https://registry.npmmirror.com/minimist/download/minimist-0.0.8.tgz"
     },
     "scripts": {
       "test": "tap test/*.js"
@@ -2060,7 +2060,7 @@
       "shasum": "abc6afeedcea52e809cdc0376aed3ce39635d17f",
       "size": 7611,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/any-promise/download/any-promise-1.3.0.tgz"
+      "tarball": "https://registry.npmmirror.com/any-promise/download/any-promise-1.3.0.tgz"
     },
     "scripts": {
       "test": "ava"
@@ -2076,7 +2076,7 @@
       "shasum": "79e4eb88c36a8122af86f844aa9bcd851b5fbb55",
       "size": 3215,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/lodash.isarray/download/lodash.isarray-3.0.4.tgz"
+      "tarball": "https://registry.npmmirror.com/lodash.isarray/download/lodash.isarray-3.0.4.tgz"
     },
     "scripts": {
       "test": "echo \"See https://travis-ci.org/lodash/lodash-cli for testing details.\""
@@ -2092,7 +2092,7 @@
       "shasum": "570bc7dede46d61cdcde687d65d3eecbaa3aaff5",
       "size": 2887,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/lodash._getnative/download/lodash._getnative-3.9.1.tgz"
+      "tarball": "https://registry.npmmirror.com/lodash._getnative/download/lodash._getnative-3.9.1.tgz"
     },
     "scripts": {
       "test": "echo \"See https://travis-ci.org/lodash/lodash-cli for testing details.\""
@@ -2116,7 +2116,7 @@
       "shasum": "8710d7af0aa626f8fffa1ce00168545263255748",
       "size": 4189,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/media-typer/download/media-typer-0.3.0.tgz"
+      "tarball": "https://registry.npmmirror.com/media-typer/download/media-typer-0.3.0.tgz"
     },
     "scripts": {
       "test": "mocha --reporter spec --check-leaks --bail test/",
@@ -2134,7 +2134,7 @@
       "shasum": "2f573d85c6a24289ff00663b491c1d338ff3458a",
       "size": 3304,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/lodash.isarguments/download/lodash.isarguments-3.1.0.tgz"
+      "tarball": "https://registry.npmmirror.com/lodash.isarguments/download/lodash.isarguments-3.1.0.tgz"
     },
     "scripts": {
       "test": "echo \"See https://travis-ci.org/lodash/lodash-cli for testing details.\""
@@ -2153,7 +2153,7 @@
       "shasum": "d8a96bd77fd68df7793a73036a3ba0d5405d477b",
       "size": 2263,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/concat-map/download/concat-map-0.0.1.tgz"
+      "tarball": "https://registry.npmmirror.com/concat-map/download/concat-map-0.0.1.tgz"
     },
     "scripts": {
       "test": "tape test/*.js"
@@ -2174,7 +2174,7 @@
       "shasum": "89b4d199ab2bee49de164ea02b89ce462d71b767",
       "size": 2566,
       "noattachment": false,
-      "tarball": "http://registry.npm.taobao.org/balanced-match/download/balanced-match-1.0.0.tgz"
+      "tarball": "https://registry.npmmirror.com/balanced-match/download/balanced-match-1.0.0.tgz"
     },
     "scripts": {
       "test": "make test",

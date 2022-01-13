@@ -13,7 +13,7 @@ describe('test/tarball-url-mapping.test.js', () => {
     await coffee.fork(helper.npminstall, [
       'pedding',
       '--tarball-url-mapping=' + JSON.stringify({
-        'https://cdn.npm.taobao.org': 'https://tnpm-hz.oss-cn-hangzhou.aliyuncs.com',
+        'https://oss.npmmirror.com': 'https://tnpm-hz.oss-cn-hangzhou.aliyuncs.com',
         'https://registry.npmjs.com': 'https://registry.npmjs.org',
       }),
       '-d',

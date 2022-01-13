@@ -1,4 +1,76 @@
 
+5.3.1 / 2021-12-01
+==================
+
+**fixes**
+  * [[`160217d`](http://github.com/cnpm/npminstall/commit/160217d27c4101e12bbe610d2d12355ea0c8b125)] - fix: use ora 4.0.5 to support node 8 (#374) (fengmk2 <<fengmk2@gmail.com>>)
+
+5.3.0 / 2021-12-01
+==================
+
+**others**
+  * [[`94a192d`](http://github.com/cnpm/npminstall/commit/94a192df543ea49b7bd1c30ad523abf20e4aed5a)] - deps: upgrade ora@5 for security (#373) (fengmk2 <<fengmk2@gmail.com>>)
+  * [[`21bb03a`](http://github.com/cnpm/npminstall/commit/21bb03a700f5099392b1948430998415e25602cf)] - test: skip fail tests on Windows (#372) (fengmk2 <<fengmk2@gmail.com>>)
+  * [[`48737ad`](http://github.com/cnpm/npminstall/commit/48737ad1c6651a1305da1da6b5c3ea111867cdbc)] - deps: fix http-proxy security (fengmk2 <<fengmk2@gmail.com>>)
+  * [[`46e9357`](http://github.com/cnpm/npminstall/commit/46e9357b85a83b7afa6ddd47388567aa627f4848)] - chore: add 96px width badge image (fengmk2 <<fengmk2@gmail.com>>)
+  * [[`4389560`](http://github.com/cnpm/npminstall/commit/43895602d9871abc3672bc109ed49c7eb9aaaed3)] - chore: use badges service (fengmk2 <<fengmk2@gmail.com>>)
+
+5.2.2 / 2021-11-22
+==================
+
+**fixes**
+  * [[`7859046`](http://github.com/cnpm/npminstall/commit/78590466ea8fde12e876b3582516f5ef0be43445)] - fix: use pacote to install git repo deps (#370) (Ke Wu <<gemwuu@163.com>>)
+  * [[`5e633bd`](http://github.com/cnpm/npminstall/commit/5e633bd21049be4d419da8b258055878ea990558)] - fix: local_install  with default param context (Emma.ou <<1061344584@qq.com>>)
+
+**others**
+  * [[`b7bd336`](http://github.com/cnpm/npminstall/commit/b7bd33696ab4e1b6062023bf553e1a6670d527ac)] - chore: update contributors (fengmk2 <<fengmk2@gmail.com>>)
+
+5.2.1 / 2021-10-18
+==================
+
+**fixes**
+  * [[`d37416f`](http://github.com/cnpm/npminstall/commit/d37416f0373c46580e7b7f54774fa04a59866f61)] - fix: do `fixBin` in windows (#367) (vagusX <<vagusX@users.noreply.github.com>>)
+
+5.2.0 / 2021-10-18
+==================
+
+**features**
+  * [[`202c9fe`](http://github.com/cnpm/npminstall/commit/202c9fe65da0cd46b61508773c6a171ae8b51cf0)] - feat: support windows shebang (#366) (vagusX <<vagusX@users.noreply.github.com>>)
+
+5.1.2 / 2021-10-01
+==================
+
+**fixes**
+  * [[`bca0b88`](http://github.com/cnpm/npminstall/commit/bca0b884257119f68f6fff25c626651bfbfaf9d6)] - fix: streamingTimeout not work on tar download (#362) (fengmk2 <<fengmk2@gmail.com>>)
+
+**others**
+  * [[`de255f2`](http://github.com/cnpm/npminstall/commit/de255f211910c5c6d6ff6f8519ace3a423893d45)] - test: run node 16 (#360) (fengmk2 <<fengmk2@gmail.com>>)
+
+5.1.1 / 2021-09-27
+==================
+
+**fixes**
+  * [[`3d170c2`](http://github.com/cnpm/npminstall/commit/3d170c2e80ebb47bb04b4ad572cfd888f8539e25)] - fix: should check cpu on process.arch too (#359) (fengmk2 <<fengmk2@gmail.com>>)
+
+**others**
+  * [[`451b1a2`](http://github.com/cnpm/npminstall/commit/451b1a270e7ec72f944cacc3136a59cf655a91cc)] - chore: fix tag to latest (fengmk2 <<fengmk2@gmail.com>>)
+
+5.1.0 / 2021-09-25
+==================
+
+**features**
+  * [[`11589da`](http://github.com/cnpm/npminstall/commit/11589da122a348fec1a990e3eaeb6db49d8ca307)] - feat: add resolutions alias support (#354) (Ke Wu <<gemwuu@163.com>>)
+  * [[`e8bd485`](http://github.com/cnpm/npminstall/commit/e8bd485bd320848b475505c0de82322f1a651b52)] - feat: migrate to github actions (#355) (Ke Wu <<gemwuu@163.com>>)
+
+**others**
+  * [[`ac7feaa`](http://github.com/cnpm/npminstall/commit/ac7feaa52e96a03d4162a96f2542aabaf5de7a2c)] - add skip download logic (#357) (Solais <<924615994@qq.com>>)
+
+5.0.2 / 2021-08-12
+==================
+
+**fixes**
+  * [[`6166be2`](http://github.com/cnpm/npminstall/commit/6166be2ba362642c871da2585e46f2e293aeac36)] - fix: make npa error more clear (#352) (Ke Wu <<gemwuu@163.com>>)
+
 5.0.1 / 2021-07-05
 ==================
 

@@ -2,9 +2,11 @@
 
 const assert = require('assert');
 const mm = require('mm');
+const path = require('path');
 const urllib = require('urllib');
 const install = require('./npminstall');
 const helper = require('./helper');
+const coffee = require('coffee');
 
 describe('test/download.test.js', () => {
   const [ tmp, cleanup ] = helper.tmp();
@@ -72,7 +74,7 @@ describe('test/download.test.js', () => {
   describe('mock tarball error', () => {
     it('should throw sha1 error', async () => {
       this.timeout = 15000;
-      const registry = process.env.npm_registry || 'https://r.npm.taobao.org';
+      const registry = process.env.npm_registry || 'https://registry.npmmirror.com';
       const res = await urllib.request(`${registry}/pedding`, { dataType: 'json', timeout: 10000 });
       const pkg = res.data;
       pkg.versions['1.0.0'].dist.shasum = '00098d60307b4ef7240c3d693cb20a9473c111';
@@ -125,6 +127,36 @@ describe('test/download.test.js', () => {
       } catch (err) {
         assert(/response 502 status/.test(err.message), err.message);
       }
+    });
+  });
+
+  describe('mock platform not matched', () => {
+    it('should skip download', async () => {
+      return coffee.fork(helper.npminstall, [
+        '@napi-rs/canvas-darwin-x64',
+      ], {
+        cwd: tmp,
+      })
+        .debug()
+        .beforeScript(path.join(__dirname, './download.mockScript.js'))
+        .expect('stderr', /skip download for reason darwin dont includes your platform/)
+        .expect('code', 1)
+        .end();
+    });
+  });
+
+  describe('mock arch not matched', () => {
+    it('should skip download', async () => {
+      return coffee.fork(helper.npminstall, [
+        '@napi-rs/canvas-darwin-x64',
+      ], {
+        cwd: tmp,
+      })
+        .debug()
+        .beforeScript(path.join(__dirname, './download.mockArchScript.js'))
+        .expect('stderr', /skip download for reason x64 dont includes your arch/)
+        .expect('code', 1)
+        .end();
     });
   });
 });
