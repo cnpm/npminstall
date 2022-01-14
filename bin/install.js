@@ -22,8 +22,11 @@ const {
 } = require('../lib/npa_types');
 const Context = require('../lib/context');
 
-const orignalArgv = process.argv.slice(2);
-const argv = parseArgs(orignalArgv, {
+const originalArgv = process.argv.slice(2);
+
+// since minimist consider --no-xx is xx:false, we handle it manually here
+const argv = { 'no-save': originalArgv.includes('--no-save') };
+Object.assign(argv, parseArgs(originalArgv, {
   string: [
     'root',
     'registry',
@@ -85,7 +88,8 @@ const argv = parseArgs(orignalArgv, {
     r: 'registry',
     d: 'detail',
   },
-});
+})
+);
 
 if (argv.version) {
   console.log(`npminstall v${require('../package.json').version}`);
@@ -116,6 +120,7 @@ Options:
   --production: won't install devDependencies
   --client: install clientDependencies and buildDependencies
   --save, --save-dev, --save-optional, --save-exact, --save-client, --save-build, --save-isomorphic: save installed dependencies into package.json
+  --no-save: Prevents saving to dependencies
   -g, --global: install devDependencies to global directory which specified in '$npm config get prefix'
   -r, --registry: specify custom registry
   -c, --china: specify in china, will automatically using chinese npm registry and other binary's mirrors
@@ -203,8 +208,8 @@ const env = {
   // see https://github.com/cnpm/npminstall/issues/121#issuecomment-247836741
   npm_config_argv: JSON.stringify({
     remain: [],
-    cooked: orignalArgv,
-    original: orignalArgv,
+    cooked: originalArgv,
+    original: originalArgv,
   }),
   // user-agent
   npm_config_user_agent: globalConfig.userAgent,
@@ -399,9 +404,16 @@ debug('argv: %j, env: %j', argv, env);
         'save-build': 'buildDependencies',
         'save-isomorphic': 'isomorphicDependencies',
       };
-      for (const key in map) {
-        if (argv[key]) await updateDependencies(root, pkgs, map[key], argv['save-exact'], config.remoteNames);
+
+      //    install saves any specified packages into dependencies by default.
+      if (Object.keys(map).every(key => !argv[key]) && !argv['no-save']) {
+        await updateDependencies(root, pkgs, map.save, argv['save-exact'], config.remoteNames);
+      } else {
+        for (const key in map) {
+          if (argv[key]) await updateDependencies(root, pkgs, map[key], argv['save-exact'], config.remoteNames);
+        }
       }
+
     }
   }
 

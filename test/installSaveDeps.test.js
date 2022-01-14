@@ -15,6 +15,62 @@ if (process.platform !== 'win32') {
     beforeEach(cleanup);
     afterEach(cleanup);
 
+    it('should install saves any specified packages into dependencies by default', done => {
+      coffee.fork(helper.npminstall, [
+        'pedding',
+      ], {
+        cwd: tmp,
+      })
+        .expect('code', 0)
+        .end(err => {
+          assert(!err, err && err.message);
+
+          const deps = require(path.join(tmp, 'package.json')).dependencies;
+          assert(deps);
+          assert(deps.pedding);
+          assert.equal(typeof deps.pedding, 'string');
+          assert(/^[\^~]{1}\d+\.\d+\.\d+/.test(deps.pedding), deps.pedding);
+
+          done();
+        });
+    });
+
+    it('should install --no-save prevent saving to dependencies', done => {
+      coffee.fork(helper.npminstall, [
+        'pedding',
+      ], {
+        cwd: tmp,
+      })
+        .expect('code', 0)
+        .end(err => {
+          assert(!err, err && err.message);
+
+          const deps = require(path.join(tmp, 'package.json')).dependencies;
+          assert(deps);
+          assert(deps.pedding);
+          assert.equal(typeof deps.pedding, 'string');
+          assert(/^[\^~]{1}\d+\.\d+\.\d+/.test(deps.pedding), deps.pedding);
+
+          coffee.fork(helper.npminstall, [
+            'nunjucks',
+            '--no-save',
+          ], {
+            cwd: tmp,
+          })
+            .expect('code', 0)
+            .end(err => {
+              assert(!err, err && err.message);
+
+              const deps = require(path.join(tmp, 'package.json')).dependencies;
+              assert.equal(Object.keys(deps).length, 1);
+              assert.equal(typeof deps.pedding1, 'undefined');
+
+              done();
+            });
+
+        });
+    });
+
     it('should install --save pedding and update dependencies', done => {
       coffee.fork(helper.npminstall, [
         '--save',
@@ -90,7 +146,7 @@ if (process.platform !== 'win32') {
       ], {
         cwd: tmp,
       })
-        // .debug()
+      // .debug()
         .expect('code', 0)
         .end(err => {
           assert(!err, err && err.message);

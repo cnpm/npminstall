@@ -16,6 +16,9 @@
   "optionalDependencies": {
     "pkg": "./pkg"
   },
+  "peerDependencies": {
+    "pkg": "./pkg"
+  },
   "author": "",
   "license": "ISC"
 }
