@@ -1,4 +1,13 @@
 
+5.4.0 / 2022-01-14
+==================
+
+**features**
+  * [[`a05e1fa`](http://github.com/cnpm/npminstall/commit/a05e1fa5b19fd608ff55cb874af9116a227c88aa)] - feat: add/remove dependency info from package.json by default (#348) (Homyee King <<HomyeeKing@gmail.com>>)
+
+**others**
+  * [[`9dbcde4`](http://github.com/cnpm/npminstall/commit/9dbcde48d855c71e1e619460152692825f765eea)] - docs: update contributors (#376) (Suyi <<thonatos.yang@gmail.com>>)
+
 5.3.1 / 2021-12-01
 ==================
 
