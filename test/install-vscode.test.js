@@ -17,10 +17,10 @@ describe('test/install-vscode.test.js', () => {
     await coffee.fork(helper.npminstall, [ '-c', '-d' ], { cwd, env: { NPMINSTALL_TEST_LOCAL_PKG: '1' } })
       .debug()
       .expect('code', 0)
-      .expect('stdout', /download from mirrors: {/)
+      .expect('stdout', /All packages installed/)
       .end();
     const installFile = path.join(cwd, 'node_modules/vscode/bin/install');
     const content = await fs.readFile(installFile, 'utf8');
-    assert(!content.includes('https://raw.githubusercontent.com/'));
+    assert(content.includes('process.env.npm_package_engines_vscode'));
   });
 });
