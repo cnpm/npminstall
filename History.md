@@ -1,4 +1,14 @@
 
+5.4.1 / 2022-02-08
+==================
+
+**fixes**
+  * [[`2026a73`](http://github.com/cnpm/npminstall/commit/2026a73871e1e970181fd8378669394612b63380)] - fix: skip pruneJSON when package.json file not exists (#378) (fengmk2 <<fengmk2@gmail.com>>)
+  * [[`69fa07a`](http://github.com/cnpm/npminstall/commit/69fa07a81232ee1f31c0769be69ba525d2483cfc)] - fix: npminstall multi-registry options (#377) (Ink <<chceyes@gmail.com>>)
+
+**others**
+  * [[`2622607`](http://github.com/cnpm/npminstall/commit/2622607548b72af22e5128fd560f1f40b32ff3b6)] - test: Create codeql-analysis.yml (#379) (fengmk2 <<fengmk2@gmail.com>>)
+
 5.4.0 / 2022-01-14
 ==================
 
