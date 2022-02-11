@@ -5,6 +5,7 @@
 [![Test coverage][codecov-image]][codecov-url]
 [![Known Vulnerabilities][snyk-image]][snyk-url]
 [![npm download][download-image]][download-url]
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fcnpm%2Fnpminstall.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fcnpm%2Fnpminstall?ref=badge_shield)
 
 [npm-image]: https://img.shields.io/npm/v/npminstall.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/npminstall
@@ -74,6 +75,9 @@ Options:
   --registry-only: make sure all packages install from registry. Any package is installed from remote(e.g.: git, remote url) cause install fail.
   --cache-strict: use disk cache even on production env
 ```
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fcnpm%2Fnpminstall.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fcnpm%2Fnpminstall?ref=badge_large)
 
 #### npmuninstall
 
