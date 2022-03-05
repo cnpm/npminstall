@@ -1,4 +1,12 @@
 
+5.5.0 / 2022-03-05
+==================
+
+**others**
+  * [[`6e2d051`](http://github.com/cnpm/npminstall/commit/6e2d0519a1df120643c73409e88dc092282a5a48)] - 📦 NEW: Support manifests cache control (#383) (fengmk2 <<fengmk2@gmail.com>>)
+  * [[`ead249f`](http://github.com/cnpm/npminstall/commit/ead249ffd692a773fe0305d9d3cbdf1cb3290e86)] - chore: Add license scan report and status (#381) (fossabot <<badges@fossa.io>>)
+  * [[`3aa8295`](http://github.com/cnpm/npminstall/commit/3aa82950948d5415e89f178afc252a360875d298)] - 📖 DOC: Use git-contributor instead (fengmk2 <<fengmk2@gmail.com>>)
+
 5.4.1 / 2022-02-08
 ==================
 
