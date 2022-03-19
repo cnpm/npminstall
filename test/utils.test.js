@@ -31,6 +31,20 @@ describe('test/utils.test.js', () => {
       assert(utils.matchPlatform('x64', [ 'x64', '!x64' ]));
     });
 
+    it('should match libc names', () => {
+      assert(utils.matchPlatform('glibc', []));
+      assert(utils.matchPlatform('musl', []));
+      assert(utils.matchPlatform(null, []));
+      assert(utils.matchPlatform('glibc', [ 'glibc' ]));
+      assert(utils.matchPlatform('glibc', [ 'glibc', 'musl' ]));
+      assert(utils.matchPlatform('musl', [ 'glibc', 'musl' ]));
+      assert(utils.matchPlatform('musl', [ 'musl' ]));
+      assert(utils.matchPlatform('glibc', [ '!glibc' ]));
+      assert(utils.matchPlatform('musl', [ '!musl' ]));
+      assert(utils.matchPlatform('glibc', [ '!musl', 'glibc' ]));
+      assert(utils.matchPlatform('glibc', [ 'glibc', '!glibc' ]));
+    });
+
     it('should not match os names', () => {
       assert(!utils.matchPlatform('darwin', [ 'linux' ]));
       assert(!utils.matchPlatform('darwin', [ 'win32' ]));
@@ -52,6 +66,15 @@ describe('test/utils.test.js', () => {
       assert(!utils.matchPlatform('mips', [ '!mips' ]));
       assert(!utils.matchPlatform('mips', [ '!x64', '!mips' ]));
       assert(!utils.matchPlatform('x64', [ '!x64' ]));
+    });
+
+    it('should not match libc names', () => {
+      assert(!utils.matchPlatform(null, [ 'musl' ]));
+      assert(!utils.matchPlatform(null, [ 'glibc' ]));
+      assert(!utils.matchPlatform('glibc', [ 'musl' ]));
+      assert(!utils.matchPlatform('musl', [ 'glibc' ]));
+      assert(!utils.matchPlatform('glibc', [ '!glibc' ]));
+      assert(!utils.matchPlatform('musl', [ '!musl' ]));
     });
   });
 
