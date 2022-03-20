@@ -1,4 +1,10 @@
 
+5.6.1 / 2022-03-20
+==================
+
+**others**
+  * [[`d58a37b`](http://github.com/cnpm/npminstall/commit/d58a37b74ea2db7b6adbf1c91d12fd9ea9a6b0b8)] - 🐛 FIX: Use detect-libc to get libc family (#388) (fengmk2 <<fengmk2@gmail.com>>)
+
 5.6.0 / 2022-03-20
 ==================
 
