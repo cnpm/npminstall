@@ -39,8 +39,8 @@ describe('test/utils.test.js', () => {
       assert(utils.matchPlatform('glibc', [ 'glibc', 'musl' ]));
       assert(utils.matchPlatform('musl', [ 'glibc', 'musl' ]));
       assert(utils.matchPlatform('musl', [ 'musl' ]));
-      assert(utils.matchPlatform('glibc', [ '!glibc' ]));
-      assert(utils.matchPlatform('musl', [ '!musl' ]));
+      assert(utils.matchPlatform('glibc', [ '!musl' ]));
+      assert(utils.matchPlatform('musl', [ '!glibc' ]));
       assert(utils.matchPlatform('glibc', [ '!musl', 'glibc' ]));
       assert(utils.matchPlatform('glibc', [ 'glibc', '!glibc' ]));
     });
