@@ -1,4 +1,10 @@
 
+5.6.0 / 2022-03-20
+==================
+
+**others**
+  * [[`a34f2b4`](http://github.com/cnpm/npminstall/commit/a34f2b4980fa3b184f6f34b457cf53db321dcefd)] - 📦 NEW: Support libc field on conditions install (#387) (fengmk2 <<fengmk2@gmail.com>>)
+
 5.5.0 / 2022-03-05
 ==================
 
