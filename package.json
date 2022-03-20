@@ -33,6 +33,7 @@
     "cmd-shim-hotfix": "^3.0.3",
     "debug": "^4.1.1",
     "destroy": "^1.0.4",
+    "detect-libc": "^2.0.1",
     "fs-extra": "^7.0.1",
     "minimatch": "^3.0.4",
     "minimist": "^1.2.0",
