@@ -35,6 +35,8 @@ describe('test/utils.test.js', () => {
       assert(utils.matchPlatform('glibc', []));
       assert(utils.matchPlatform('musl', []));
       assert(utils.matchPlatform(null, []));
+      assert(utils.matchPlatform(null, [ 'musl' ]));
+      assert(utils.matchPlatform(null, [ 'glibc' ]));
       assert(utils.matchPlatform('glibc', [ 'glibc' ]));
       assert(utils.matchPlatform('glibc', [ 'glibc', 'musl' ]));
       assert(utils.matchPlatform('musl', [ 'glibc', 'musl' ]));
@@ -69,8 +71,6 @@ describe('test/utils.test.js', () => {
     });
 
     it('should not match libc names', () => {
-      assert(!utils.matchPlatform(null, [ 'musl' ]));
-      assert(!utils.matchPlatform(null, [ 'glibc' ]));
       assert(!utils.matchPlatform('glibc', [ 'musl' ]));
       assert(!utils.matchPlatform('musl', [ 'glibc' ]));
       assert(!utils.matchPlatform('glibc', [ '!glibc' ]));
