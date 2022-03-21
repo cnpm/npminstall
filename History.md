@@ -1,4 +1,10 @@
 
+5.7.0 / 2022-03-21
+==================
+
+**features**
+  * [[`d02fa24`](http://github.com/cnpm/npminstall/commit/d02fa246dc096d8237ea63693ede9c88e607e2b1)] - feat: upgrade node-gyp@8 to support python3 (#385) (Eason <<tobewhatwewant@gmail.com>>)
+
 5.6.1 / 2022-03-20
 ==================
 
