@@ -1,4 +1,10 @@
 
+5.7.1 / 2022-03-22
+==================
+
+**others**
+  * [[`b220ec3`](http://github.com/cnpm/npminstall/commit/b220ec35bcd22a7e1985ec988bfe535f2823e15e)] - 🐛 FIX: Reduce http request retry warning message log (#389) (fengmk2 <<fengmk2@gmail.com>>)
+
 5.7.0 / 2022-03-21
 ==================
 
