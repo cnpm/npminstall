@@ -16,6 +16,7 @@ describe('test/custom-registry.test.js', () => {
   it('should install with custom registry', async () => {
     const args = [
       '--registry=https://r.cnpmjs.org?bucket=foo',
+      '--registry=https://r.cnpmjs.org?bucket=bar',
       '-d',
     ];
     await coffee.fork(helper.npminstall, args, { cwd: tmp })

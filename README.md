@@ -5,6 +5,7 @@
 [![Test coverage][codecov-image]][codecov-url]
 [![Known Vulnerabilities][snyk-image]][snyk-url]
 [![npm download][download-image]][download-url]
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fcnpm%2Fnpminstall.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fcnpm%2Fnpminstall?ref=badge_shield)
 
 [npm-image]: https://img.shields.io/npm/v/npminstall.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/npminstall
@@ -74,6 +75,9 @@ Options:
   --registry-only: make sure all packages install from registry. Any package is installed from remote(e.g.: git, remote url) cause install fail.
   --cache-strict: use disk cache even on production env
 ```
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fcnpm%2Fnpminstall.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fcnpm%2Fnpminstall?ref=badge_large)
 
 #### npmuninstall
 
@@ -300,7 +304,17 @@ npm i babel-preset-es2015 browserify chalk debug minimist mkdirp
 ## License
 
 [MIT](LICENSE.txt)
+<!-- GITCONTRIBUTOR_START -->
 
 ## Contributors
 
-[![](https://ergatejs.implements.io/badges/contributors/cnpm/npminstall.svg?width=1250&size=96&padding=6)](https://github.com/cnpm/npminstall/graphs/contributors)
+|[<img src="https://avatars.githubusercontent.com/u/156269?v=4" width="100px;"/><br/><sub><b>fengmk2</b></sub>](https://github.com/fengmk2)<br/>|[<img src="https://avatars.githubusercontent.com/u/985607?v=4" width="100px;"/><br/><sub><b>dead-horse</b></sub>](https://github.com/dead-horse)<br/>|[<img src="https://avatars.githubusercontent.com/u/4635838?v=4" width="100px;"/><br/><sub><b>gemwuu</b></sub>](https://github.com/gemwuu)<br/>|[<img src="https://avatars.githubusercontent.com/u/543405?v=4" width="100px;"/><br/><sub><b>ibigbug</b></sub>](https://github.com/ibigbug)<br/>|[<img src="https://avatars.githubusercontent.com/u/6897780?v=4" width="100px;"/><br/><sub><b>killagu</b></sub>](https://github.com/killagu)<br/>|[<img src="https://avatars.githubusercontent.com/u/507615?v=4" width="100px;"/><br/><sub><b>afc163</b></sub>](https://github.com/afc163)<br/>|
+| :---: | :---: | :---: | :---: | :---: | :---: |
+|[<img src="https://avatars.githubusercontent.com/u/465125?v=4" width="100px;"/><br/><sub><b>yesmeck</b></sub>](https://github.com/yesmeck)<br/>|[<img src="https://avatars.githubusercontent.com/u/6828924?v=4" width="100px;"/><br/><sub><b>vagusX</b></sub>](https://github.com/vagusX)<br/>|[<img src="https://avatars.githubusercontent.com/u/360661?v=4" width="100px;"/><br/><sub><b>popomore</b></sub>](https://github.com/popomore)<br/>|[<img src="https://avatars.githubusercontent.com/u/319494?v=4" width="100px;"/><br/><sub><b>we11adam</b></sub>](https://github.com/we11adam)<br/>|[<img src="https://avatars.githubusercontent.com/u/7463687?v=4" width="100px;"/><br/><sub><b>whatwewant</b></sub>](https://github.com/whatwewant)<br/>|[<img src="https://avatars.githubusercontent.com/u/18736572?v=4" width="100px;"/><br/><sub><b>emma-owen</b></sub>](https://github.com/emma-owen)<br/>|
+|[<img src="https://avatars.githubusercontent.com/u/7336582?v=4" width="100px;"/><br/><sub><b>weihong1028</b></sub>](https://github.com/weihong1028)<br/>|[<img src="https://avatars.githubusercontent.com/u/49113249?v=4" width="100px;"/><br/><sub><b>HomyeeKing</b></sub>](https://github.com/HomyeeKing)<br/>|[<img src="https://avatars.githubusercontent.com/u/2972143?v=4" width="100px;"/><br/><sub><b>nightink</b></sub>](https://github.com/nightink)<br/>|[<img src="https://avatars.githubusercontent.com/u/2842176?v=4" width="100px;"/><br/><sub><b>XadillaX</b></sub>](https://github.com/XadillaX)<br/>|[<img src="https://avatars.githubusercontent.com/u/1195765?v=4" width="100px;"/><br/><sub><b>LeoYuan</b></sub>](https://github.com/LeoYuan)<br/>|[<img src="https://avatars.githubusercontent.com/u/13602053?v=4" width="100px;"/><br/><sub><b>cnlon</b></sub>](https://github.com/cnlon)<br/>|
+|[<img src="https://avatars.githubusercontent.com/u/6613538?v=4" width="100px;"/><br/><sub><b>Moudicat</b></sub>](https://github.com/Moudicat)<br/>|[<img src="https://avatars.githubusercontent.com/u/6753092?v=4" width="100px;"/><br/><sub><b>hanzhao</b></sub>](https://github.com/hanzhao)<br/>|[<img src="https://avatars.githubusercontent.com/u/431376?v=4" width="100px;"/><br/><sub><b>marcbachmann</b></sub>](https://github.com/marcbachmann)<br/>|[<img src="https://avatars.githubusercontent.com/u/19733683?v=4" width="100px;"/><br/><sub><b>snyk-bot</b></sub>](https://github.com/snyk-bot)<br/>|[<img src="https://avatars.githubusercontent.com/u/11251401?v=4" width="100px;"/><br/><sub><b>Solais</b></sub>](https://github.com/Solais)<br/>|[<img src="https://avatars.githubusercontent.com/u/958063?v=4" width="100px;"/><br/><sub><b>thonatos</b></sub>](https://github.com/thonatos)<br/>|
+[<img src="https://avatars.githubusercontent.com/u/227713?v=4" width="100px;"/><br/><sub><b>atian25</b></sub>](https://github.com/atian25)<br/>|[<img src="https://avatars.githubusercontent.com/u/3364271?v=4" width="100px;"/><br/><sub><b>tommytroylin</b></sub>](https://github.com/tommytroylin)<br/>|[<img src="https://avatars.githubusercontent.com/u/3922719?v=4" width="100px;"/><br/><sub><b>wssgcg1213</b></sub>](https://github.com/wssgcg1213)<br/>|[<img src="https://avatars.githubusercontent.com/u/4136679?v=4" width="100px;"/><br/><sub><b>yibn2008</b></sub>](https://github.com/yibn2008)<br/>|[<img src="https://avatars.githubusercontent.com/u/29791463?v=4" width="100px;"/><br/><sub><b>fossabot</b></sub>](https://github.com/fossabot)<br/>|[<img src="https://avatars.githubusercontent.com/u/1908773?v=4" width="100px;"/><br/><sub><b>hugohua</b></sub>](https://github.com/hugohua)<br/>
+
+This project follows the git-contributor [spec](https://github.com/xudafeng/git-contributor), auto updated at `Mon Mar 21 2022 17:06:36 GMT+0800`.
+
+<!-- GITCONTRIBUTOR_END -->

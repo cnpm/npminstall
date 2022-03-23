@@ -1,4 +1,46 @@
 
+5.7.1 / 2022-03-22
+==================
+
+**others**
+  * [[`b220ec3`](http://github.com/cnpm/npminstall/commit/b220ec35bcd22a7e1985ec988bfe535f2823e15e)] - 🐛 FIX: Reduce http request retry warning message log (#389) (fengmk2 <<fengmk2@gmail.com>>)
+
+5.7.0 / 2022-03-21
+==================
+
+**features**
+  * [[`d02fa24`](http://github.com/cnpm/npminstall/commit/d02fa246dc096d8237ea63693ede9c88e607e2b1)] - feat: upgrade node-gyp@8 to support python3 (#385) (Eason <<tobewhatwewant@gmail.com>>)
+
+5.6.1 / 2022-03-20
+==================
+
+**others**
+  * [[`d58a37b`](http://github.com/cnpm/npminstall/commit/d58a37b74ea2db7b6adbf1c91d12fd9ea9a6b0b8)] - 🐛 FIX: Use detect-libc to get libc family (#388) (fengmk2 <<fengmk2@gmail.com>>)
+
+5.6.0 / 2022-03-20
+==================
+
+**others**
+  * [[`a34f2b4`](http://github.com/cnpm/npminstall/commit/a34f2b4980fa3b184f6f34b457cf53db321dcefd)] - 📦 NEW: Support libc field on conditions install (#387) (fengmk2 <<fengmk2@gmail.com>>)
+
+5.5.0 / 2022-03-05
+==================
+
+**others**
+  * [[`6e2d051`](http://github.com/cnpm/npminstall/commit/6e2d0519a1df120643c73409e88dc092282a5a48)] - 📦 NEW: Support manifests cache control (#383) (fengmk2 <<fengmk2@gmail.com>>)
+  * [[`ead249f`](http://github.com/cnpm/npminstall/commit/ead249ffd692a773fe0305d9d3cbdf1cb3290e86)] - chore: Add license scan report and status (#381) (fossabot <<badges@fossa.io>>)
+  * [[`3aa8295`](http://github.com/cnpm/npminstall/commit/3aa82950948d5415e89f178afc252a360875d298)] - 📖 DOC: Use git-contributor instead (fengmk2 <<fengmk2@gmail.com>>)
+
+5.4.1 / 2022-02-08
+==================
+
+**fixes**
+  * [[`2026a73`](http://github.com/cnpm/npminstall/commit/2026a73871e1e970181fd8378669394612b63380)] - fix: skip pruneJSON when package.json file not exists (#378) (fengmk2 <<fengmk2@gmail.com>>)
+  * [[`69fa07a`](http://github.com/cnpm/npminstall/commit/69fa07a81232ee1f31c0769be69ba525d2483cfc)] - fix: npminstall multi-registry options (#377) (Ink <<chceyes@gmail.com>>)
+
+**others**
+  * [[`2622607`](http://github.com/cnpm/npminstall/commit/2622607548b72af22e5128fd560f1f40b32ff3b6)] - test: Create codeql-analysis.yml (#379) (fengmk2 <<fengmk2@gmail.com>>)
+
 5.4.0 / 2022-01-14
 ==================
 

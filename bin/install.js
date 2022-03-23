@@ -193,7 +193,8 @@ const inChina = argv.china || !!process.env.npm_china;
 // if exists, override default china mirror url
 const customChinaMirrorUrl = argv['custom-china-mirror-url'];
 
-let registry = argv.registry || process.env.npm_registry;
+// example: npminstall --registry xx --registry xxxx
+let registry = (Array.isArray(argv.registry) ? argv.registry[0] : argv.registry) || process.env.npm_registry;
 if (inChina) {
   registry = registry || globalConfig.chineseRegistry;
 }
