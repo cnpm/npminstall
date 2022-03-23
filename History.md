@@ -1,4 +1,10 @@
 
+5.7.2 / 2022-03-23
+==================
+
+**fixes**
+  * [[`9a60297`](http://github.com/cnpm/npminstall/commit/9a60297a4d6b8fa621863c130896c61e5cba5a27)] - fix: use pacote@^11 for Node.js@^10 (#390) (Ke Wu <<gemwuu@163.com>>)
+
 5.7.1 / 2022-03-22
 ==================
 
