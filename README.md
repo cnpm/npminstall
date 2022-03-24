@@ -148,7 +148,7 @@ const npminstall = require('npminstall');
 - [x] All platform support
 - [x] global install (`-g, --global`)
 - [x] `preinstall`, `install`, `postinstall` scripts
-- [x] node-gyp
+- [x] node-gyp@9, only support Python@3
   - [x] node-pre-gyp
 - [x] bin (yo@1.6.0, fsevents@1.0.6)
 - [x] scoped package
