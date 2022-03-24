@@ -3,7 +3,7 @@
 const coffee = require('coffee');
 const helper = require('./helper');
 
-describe.only('test/install-with-python3.test.js', () => {
+describe('test/install-with-python3.test.js', () => {
   const cwd = helper.fixtures('install-raw-socket');
   const cleanup = helper.cleanup(cwd);
 
