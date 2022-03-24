@@ -41,7 +41,7 @@
     "ms": "^2.1.1",
     "mz": "^2.7.0",
     "mz-modules": "^2.1.0",
-    "node-gyp": "^8.4.1",
+    "node-gyp": "^4.0.0",
     "node-homedir": "^1.1.1",
     "normalize-package-data": "^2.5.0",
     "npm-normalize-package-bin": "^1.0.1",
