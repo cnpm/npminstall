@@ -46,7 +46,7 @@ describe('test/get.test.js', () => {
     } catch (err) {
       const headers = options.headers;
       assert(headers.Authorization);
-      assert(err.name === 'RequestError');
+      assert(err.name === 'RequestError' || err.name === 'ConnectionTimeoutError');
       assert(err.res.requestUrls.length === 5);
     }
   });

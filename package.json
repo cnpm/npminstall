@@ -41,7 +41,7 @@
     "ms": "^2.1.1",
     "mz": "^2.7.0",
     "mz-modules": "^2.1.0",
-    "node-gyp": "^4.0.0",
+    "node-gyp": "^9.0.0",
     "node-homedir": "^1.1.1",
     "normalize-package-data": "^2.5.0",
     "npm-normalize-package-bin": "^1.0.1",
@@ -87,7 +87,7 @@
     "fastest npm install"
   ],
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=14.0.0"
   },
   "author": "fengmk2 <fengmk2@gmail.com> (https://github.com/fengmk2)",
   "license": "MIT"

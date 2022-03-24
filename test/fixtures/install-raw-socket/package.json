@@ -1,0 +1,6 @@
+{
+  "name": "install-raw-socket",
+  "dependencies": {
+    "raw-socket": "^1.7.0"
+  }
+}
