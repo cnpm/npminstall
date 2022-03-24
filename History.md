@@ -1,4 +1,10 @@
 
+6.0.0 / 2022-03-24
+==================
+
+**features**
+  * [[`0dc0f9e`](http://github.com/cnpm/npminstall/commit/0dc0f9eeb40909ab72ec6e41c05bc84518a4a24b)] - feat: upgrade node-gyp@9 to support python3 (#392) (fengmk2 <<fengmk2@gmail.com>>)
+
 5.7.3 / 2022-03-24
 ==================
 
