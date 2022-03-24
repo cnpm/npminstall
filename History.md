@@ -1,4 +1,10 @@
 
+5.7.3 / 2022-03-24
+==================
+
+**others**
+  * [[`161d297`](http://github.com/cnpm/npminstall/commit/161d2972c063d99a635fe9b23e6fdbab2bf56c7e)] - Revert "feat: upgrade node-gyp@8 to support python3 (#385)" (#391) (fengmk2 <<fengmk2@gmail.com>>)
+
 5.7.2 / 2022-03-23
 ==================
 
