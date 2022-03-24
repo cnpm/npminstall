@@ -77,7 +77,7 @@
     "url": "https://github.com/cnpm/npminstall/issues"
   },
   "publishConfig": {
-    "tag": "latest"
+    "tag": "latest-5"
   },
   "keywords": [
     "npminstall",
