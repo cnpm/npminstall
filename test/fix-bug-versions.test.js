@@ -9,7 +9,7 @@ const helper = require('./helper');
 const bin = helper.npminstall;
 const update = path.join(path.dirname(helper.npminstall), 'update.js');
 
-describe.only('test/fix-bug-versions.test.js', () => {
+describe('test/fix-bug-versions.test.js', () => {
   const demo = helper.fixtures('fix-bug-versions-app');
   const cleanupModules = helper.cleanup(demo);
   const [ tmp, cleanupTmp ] = helper.tmp();
@@ -58,7 +58,7 @@ describe.only('test/fix-bug-versions.test.js', () => {
     assert(getPkg('node_modules/accord/node_modules/less/package.json').version.split('.')[0] === '2');
   });
 
-  it('should use fix "allow-scripts"', async () => {
+  it('should use fix "scripts"', async () => {
     await coffee.fork(bin, [
       'styled-components@5.3.5',
       '-d',
@@ -67,10 +67,14 @@ describe.only('test/fix-bug-versions.test.js', () => {
     ], { cwd: tmp })
       .debug()
       .expect('code', 0)
-      .expect('stderr', /\[styled-components@05\.3\.5\] allow-scripts: false, reason:/)
+      .expect('stderr', /use scripts: {\"postinstall\":\"\"} instead, reason:/)
+      .notExpect('stderr', /scripts.postinstall styled-components@5.3.5 finished/)
+      .notExpect('stdout', /scripts.postinstall styled-components@5.3.5 finished/)
       .end();
 
-    assert(getPkg('node_modules/styled-components/package.json').version === '5.3.5');
+    const pkg = getPkg('node_modules/styled-components/package.json');
+    assert(pkg.version === '5.3.5');
+    assert(pkg.scripts.postinstall === 'node ./postinstall.js');
   });
 
   it('should support on install and update', async () => {
