@@ -58,6 +58,25 @@ describe('test/fix-bug-versions.test.js', () => {
     assert(getPkg('node_modules/accord/node_modules/less/package.json').version.split('.')[0] === '2');
   });
 
+  it('should use fix "scripts"', async () => {
+    await coffee.fork(bin, [
+      'styled-components@5.3.5',
+      '-d',
+      '--fix-bug-versions',
+      '--no-cache',
+    ], { cwd: tmp })
+      .debug()
+      .expect('code', 0)
+      .expect('stderr', /use scripts: {\"postinstall\":\"\"} instead, reason:/)
+      .notExpect('stderr', /scripts.postinstall styled-components@5.3.5 finished/)
+      .notExpect('stdout', /scripts.postinstall styled-components@5.3.5 finished/)
+      .end();
+
+    const pkg = getPkg('node_modules/styled-components/package.json');
+    assert(pkg.version === '5.3.5');
+    assert(pkg.scripts.postinstall === 'node ./postinstall.js');
+  });
+
   it('should support on install and update', async () => {
     await coffee.fork(bin, [
       '-d',
