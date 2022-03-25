@@ -1,4 +1,11 @@
 
+5.8.0 / 2022-03-25
+==================
+
+**others**
+  * [[`809a5f1`](http://github.com/cnpm/npminstall/commit/809a5f13b708c8ff15c1e8d481505cd71f9f8ec5)] - 📦 NEW: Support override custom scripts on bug-versions (#393) (#394) (fengmk2 <<fengmk2@gmail.com>>)
+  * [[`dcc42c9`](http://github.com/cnpm/npminstall/commit/dcc42c9f6432dc3f99fe1ba45487c05143d34a97)] - chore: change npm publish tag to latest-5 (fengmk2 <<fengmk2@gmail.com>>)
+
 5.7.3 / 2022-03-24
 ==================
 
