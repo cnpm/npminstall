@@ -1,4 +1,11 @@
 
+6.1.0 / 2022-03-25
+==================
+
+**others**
+  * [[`c05046a`](http://github.com/cnpm/npminstall/commit/c05046abaab6a6bf67a37712082dfc69acd9f5a3)] - 📦 NEW: Support override custom scripts on bug-versions (#393) (fengmk2 <<fengmk2@gmail.com>>)
+  * [[`d760c2b`](http://github.com/cnpm/npminstall/commit/d760c2ba0a7832793ec7e9c519be9eb33bc67b91)] - chore: update contributors (fengmk2 <<fengmk2@gmail.com>>)
+
 6.0.0 / 2022-03-24
 ==================
 
