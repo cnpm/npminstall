@@ -1,4 +1,10 @@
 
+5.8.1 / 2022-04-21
+==================
+
+**fixes**
+  * [[`08b5f88`](http://github.com/cnpm/npminstall/commit/08b5f880eaea2df2ea32876cf4afec642e455cb4)] - fix: fix parallel install from local directory (#398) (Yiyu He <<dead_horse@qq.com>>)
+
 5.8.0 / 2022-03-25
 ==================
 
