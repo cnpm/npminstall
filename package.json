@@ -46,6 +46,7 @@
     "normalize-package-data": "^2.5.0",
     "npm-normalize-package-bin": "^1.0.1",
     "npm-package-arg": "^8.1.5",
+    "npm-packlist": "^5.0.2",
     "ora": "^4.0.5",
     "p-map": "^2.1.0",
     "pacote": "^11.3.5",

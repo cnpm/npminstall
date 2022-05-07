@@ -1,0 +1,9 @@
+{
+  "name": "foo1",
+  "version": "1.0.0",
+  "dependencies": {
+    "foo": "file:../foo",
+    "bar": "file:../bar",
+    "bar1": "file:../bar1"
+  }
+}

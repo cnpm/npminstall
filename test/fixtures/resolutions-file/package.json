@@ -1,0 +1,15 @@
+{
+  "name": "resolutions-file",
+  "resolutions": {
+    "foo": "file:./packages/foo",
+    "bar": "file:./packages/bar",
+    "foo1": "file:./packages/foo1",
+    "bar1": "file:./packages/bar1"
+  },
+  "dependencies": {
+    "foo": "file:./packages/foo",
+    "bar": "file:./packages/bar",
+    "foo1": "file:./packages/foo1",
+    "bar1": "file:./packages/bar1"
+  }
+}

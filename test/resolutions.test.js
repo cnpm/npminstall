@@ -98,4 +98,26 @@ describe('test/resolutions.test.js', () => {
       assert.strictEqual(pkgJSON.version, '4.4.2');
     });
   });
+
+  describe('resolutions file', () => {
+    before(() => {
+      root = helper.fixtures('resolutions-file');
+      cleanup();
+    });
+
+    afterEach(cleanup);
+
+    it('should work', async () => {
+      await coffee.fork(helper.npminstall, {
+        cwd: root,
+      })
+        .debug()
+        .expect('code', 0)
+        .end();
+
+      await checkPkg('foo', '1.0.0');
+      await checkPkg('bar', '1.0.0');
+      await checkPkg('bar/node_modules/foo', '1.0.0');
+    });
+  });
 });

@@ -27,6 +27,17 @@ describe('test/installLocal.test.js', () => {
     assert.equal(pkg.name, 'pkg');
   });
 
+  it('should install local folder ok with relative path', async () => {
+    await npminstall({
+      root,
+      pkgs: [
+        { name: null, version: 'file:./pkg' },
+      ],
+    });
+    const pkg = await helper.readJSON(path.join(root, 'node_modules/pkg/package.json'));
+    assert.equal(pkg.name, 'pkg');
+  });
+
   it('should install local folder with copy ok', async () => {
     mm.error(cp, 'exec');
     await npminstall({
