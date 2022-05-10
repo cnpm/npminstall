@@ -3,8 +3,9 @@
 const assert = require('assert');
 const rimraf = require('mz-modules/rimraf');
 const path = require('path');
+const fs = require('fs');
 const coffee = require('coffee');
-const readJSON = require('../lib/utils').readJSON;
+const { readJSON } = require('../lib/utils');
 const helper = require('./helper');
 
 let root;
@@ -15,6 +16,10 @@ async function cleanup() {
 async function checkPkg(name, version) {
   const pkg = await readJSON(path.join(root, 'node_modules', name, 'package.json'));
   assert(pkg.version === version);
+}
+
+function checkFileExisted(pathname) {
+  return fs.existsSync(path.join(root, pathname));
 }
 
 describe('test/resolutions.test.js', () => {
@@ -100,12 +105,17 @@ describe('test/resolutions.test.js', () => {
   });
 
   describe('resolutions file', () => {
-    before(() => {
+    before(async () => {
       root = helper.fixtures('resolutions-file');
       cleanup();
+      // prepare a gitignore file `index.js` for `packages/foo`
+      await fs.promises.writeFile(path.join(root, 'packages/foo/index.js'), 'module.exports = "foo";');
     });
 
-    afterEach(cleanup);
+    afterEach(() => {
+      cleanup();
+      rimraf(path.join(root, 'packages/foo/index.js'));
+    });
 
     it('should work', async () => {
       await coffee.fork(helper.npminstall, {
@@ -115,9 +125,29 @@ describe('test/resolutions.test.js', () => {
         .expect('code', 0)
         .end();
 
-      await checkPkg('foo', '1.0.0');
       await checkPkg('bar', '1.0.0');
+      await checkPkg('bar1', '1.0.0');
+      await checkPkg('foo', '1.0.0');
+      await checkPkg('foo1', '1.0.0');
       await checkPkg('bar/node_modules/foo', '1.0.0');
+      await checkPkg('bar1/node_modules/foo', '1.0.0');
+      await checkPkg('bar1/node_modules/bar', '1.0.0');
+      await checkPkg('foo1/node_modules/bar', '1.0.0');
+      await checkPkg('foo1/node_modules/bar1', '1.0.0');
+      await checkPkg('foo1/node_modules/foo', '1.0.0');
+
+      assert(checkFileExisted('packages/bar/src/index.js'), true);
+      assert(checkFileExisted('packages/bar/main.js'), false);
+
+      assert(checkFileExisted('packages/bar1/src/index.js'), true);
+      assert(checkFileExisted('packages/bar1/main.js'), false);
+      assert(checkFileExisted('packages/bar1/README.md'), false);
+
+      assert(checkFileExisted('packages/foo/main.js'), false);
+      assert(checkFileExisted('packages/foo/.gitignore'), false);
+
+      assert(checkFileExisted('packages/foo1/main.js'), true);
+      assert(checkFileExisted('packages/foo1/.npmrc'), true);
     });
   });
 });
