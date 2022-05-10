@@ -90,7 +90,8 @@ describe('test/download.test.js', () => {
         throw new Error('should not run this');
       } catch (err) {
         assert(err.name === 'ShasumNotMatchError');
-        assert(/real sha1:7f5098d60307b4ef7240c3d693cb20a9473c6074 not equal to remote:00098d60307b4ef7240c3d693cb20a9473c111/.test(err.message));
+        assert(/real sha1:7f5098d60307b4ef7240c3d693cb20a9473c6074 not equal to remote:00098d60307b4ef7240c3d693cb20a9473c111, download url https:\/\/registry.npmmirror.com\/pedding\/-\/pedding-1.0.0.tgz, download size 2107 \(pedding@1.0.0\)/
+          .test(err.message));
       }
     });
 
