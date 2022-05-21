@@ -10,7 +10,6 @@ module.exports = {
     'binary-mirror-config',
   ],
   exclude: [
-    './benchmark',
     './test/fixtures',
     '.tmp',
   ],
