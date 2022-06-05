@@ -1,11 +1,11 @@
 'use strict';
 
 const coffee = require('coffee');
-const rimraf = require('mz-modules/rimraf');
 const path = require('path');
 const assert = require('assert');
-const fs = require('mz/fs');
+const fs = require('fs/promises');
 const helper = require('./helper');
+const { rimraf } = require('../lib/utils');
 
 describe('test/high-speed-store.test.js', () => {
   const cwd = helper.fixtures('high-speed-store');

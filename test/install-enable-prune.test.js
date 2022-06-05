@@ -1,10 +1,10 @@
 'use strict';
 
 const assert = require('assert');
-const fs = require('mz/fs');
 const path = require('path');
 const coffee = require('coffee');
 const helper = require('./helper');
+const utils = require('../lib/utils');
 
 describe('test/install-enable-prune.test.js', () => {
   describe('--prune', () => {
@@ -19,7 +19,7 @@ describe('test/install-enable-prune.test.js', () => {
         .debug()
         .expect('code', 0)
         .end();
-      const exists = await fs.exists(path.join(cwd, 'node_modules/egg/README.md'));
+      const exists = await utils.exists(path.join(cwd, 'node_modules/egg/README.md'));
       assert(!exists);
     });
   });
@@ -36,10 +36,10 @@ describe('test/install-enable-prune.test.js', () => {
         .debug()
         .expect('code', 0)
         .end();
-      const exists = await fs.exists(path.join(cwd, 'node_modules/egg/README.md'));
+      const exists = await utils.exists(path.join(cwd, 'node_modules/egg/README.md'));
       assert(!exists);
       // should keep ts file
-      assert(await fs.exists(path.join(cwd, 'node_modules/egg/index.d.ts')));
+      assert(await utils.exists(path.join(cwd, 'node_modules/egg/index.d.ts')));
     });
   });
 });

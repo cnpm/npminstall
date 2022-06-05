@@ -2,10 +2,10 @@
 
 const assert = require('assert');
 const path = require('path');
-const rimraf = require('mz-modules/rimraf');
 const coffee = require('coffee');
 const helper = require('./helper');
 const npminstall = require('./npminstall');
+const { rimraf } = require('../lib/utils');
 
 describe('test/postInstallError.test.js', () => {
   const [ root, cleanup ] = helper.tmp();

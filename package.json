@@ -18,7 +18,7 @@
     "contributor": "git-contributor",
     "test": "npm run lint && egg-bin test -t 2000000",
     "test-cov": "egg-bin cov -t 2000000",
-    "test-local": "npm_china=true local=true egg-bin test -t 2000000",
+    "test-local": "npm_china=true local=true egg-bin test -t 2000000 --full-trace",
     "lint": "eslint . --fix",
     "ci": "npm run lint && npm run test-cov"
   },
@@ -39,7 +39,6 @@
     "moment": "^2.24.0",
     "ms": "^2.1.1",
     "mz": "^2.7.0",
-    "mz-modules": "^2.1.0",
     "node-gyp": "^9.0.0",
     "node-homedir": "^1.1.1",
     "normalize-package-data": "^2.5.0",
@@ -52,8 +51,7 @@
     "semver": "^6.0.0",
     "tar": "^4.4.8",
     "urllib": "^2.33.3",
-    "utility": "^1.16.1",
-    "uuid": "^3.3.2"
+    "utility": "^1.16.1"
   },
   "devDependencies": {
     "coffee": "5",

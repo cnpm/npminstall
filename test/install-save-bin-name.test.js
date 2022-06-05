@@ -2,9 +2,9 @@
 
 const assert = require('assert');
 const path = require('path');
-const fs = require('mz/fs');
 const coffee = require('coffee');
 const helper = require('./helper');
+const { exists } = require('../lib/utils');
 
 describe('test/install-save-bin-name.test.js', () => {
   const root = helper.fixtures('same-bin-name');
@@ -21,6 +21,6 @@ describe('test/install-save-bin-name.test.js', () => {
       .expect('code', 0)
       .end();
 
-    assert(await fs.exists(path.join(root, 'node_modules/webpack-parallel-uglify-plugin/node_modules/.bin/uglifyjs')));
+    assert(await exists(path.join(root, 'node_modules/webpack-parallel-uglify-plugin/node_modules/.bin/uglifyjs')));
   });
 });

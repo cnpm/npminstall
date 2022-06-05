@@ -1,7 +1,6 @@
 'use strict';
 
-const rimraf = require('mz-modules/rimraf');
-const mkdirp = require('mz-modules/mkdirp');
+const { rimraf, mkdirp } = require('../lib/utils');
 const path = require('path');
 
 const fixtures = path.join(__dirname, 'fixtures');

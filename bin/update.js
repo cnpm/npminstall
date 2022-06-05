@@ -3,26 +3,10 @@
 'use strict';
 
 const path = require('path');
-const rimraf = require('mz-modules/rimraf');
 const parseArgs = require('minimist');
+const { rimraf } = require('../lib/utils');
 
-const argv = parseArgs(process.argv.slice(2), {
-  string: [
-    'root',
-  ],
-  boolean: [
-    'help',
-  ],
-  alias: {
-    h: 'help',
-  },
-});
-
-if (argv.help) return help();
-
-const root = argv.root || process.cwd();
-
-function help() {
+function help(root) {
   console.log(`
 Usage:
 
@@ -33,6 +17,20 @@ Usage:
 }
 
 (async () => {
+  const argv = parseArgs(process.argv.slice(2), {
+    string: [
+      'root',
+    ],
+    boolean: [
+      'help',
+    ],
+    alias: {
+      h: 'help',
+    },
+  });
+
+  const root = argv.root || process.cwd();
+  if (argv.help) return help(root);
   const nodeModules = path.join(root, 'node_modules');
   console.log('[npmupdate] removing %s', nodeModules);
   await rimraf(nodeModules);

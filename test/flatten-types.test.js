@@ -3,7 +3,7 @@
 const coffee = require('coffee');
 const path = require('path');
 const assert = require('assert');
-const fs = require('mz/fs');
+const fs = require('fs/promises');
 const helper = require('./helper');
 
 describe('test/flatten-types.test.js', () => {

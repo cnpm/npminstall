@@ -2,10 +2,10 @@
 
 const assert = require('assert');
 const path = require('path');
-const rimraf = require('mz-modules/rimraf');
 const coffee = require('coffee');
 const fs = require('mz/fs');
 const helper = require('./helper');
+const { rimraf } = require('../lib/utils');
 
 describe('test/uninstall.test.js', () => {
   const npmuninstall = path.join(__dirname, '../bin/uninstall.js');

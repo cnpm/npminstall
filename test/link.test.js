@@ -2,9 +2,9 @@
 
 const assert = require('assert');
 const path = require('path');
-const mkdirp = require('mz-modules/mkdirp');
-const fs = require('mz/fs');
+const fs = require('fs/promises');
 const link = require('../lib/link');
+const { mkdirp } = require('../lib/utils');
 const helper = require('./helper');
 
 describe('test/link.test.js', () => {

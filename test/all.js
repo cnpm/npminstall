@@ -1,10 +1,10 @@
 'use strict';
 
 const path = require('path');
-const rimraf = require('mz-modules/rimraf');
 const semver = require('semver');
 const spawn = require('child_process').spawn;
 const npminstall = require('./npminstall');
+const { rimraf } = require('../lib/utils');
 
 if (semver.satisfies(process.version, '< 6.0.0')) {
   process.exit(0);

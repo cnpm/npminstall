@@ -1,17 +1,12 @@
 'use strict';
 
 const assert = require('assert');
-const fs = require('mz/fs');
 const npminstall = require('./npminstall');
 const helper = require('./helper');
+const { exists } = require('../lib/utils');
 
 describe('test/css-loader.test.js', () => {
   const tmp = helper.fixtures('css-loader-example2');
-  // const cleanup = helper.cleanup(tmp);
-
-  // beforeEach(cleanup);
-  // afterEach(cleanup);
-
   it('should work on css-loader', async () => {
     // ignore windows
     if (process.platform === 'win32') return;
@@ -22,6 +17,6 @@ describe('test/css-loader.test.js', () => {
         NODE_OPTIONS: '--max_old_space_size=4096',
       },
     });
-    assert(await fs.exists(tmp, 'node_modules/css-loader'));
+    assert(await exists(tmp, 'node_modules/css-loader'));
   });
 });

@@ -1,10 +1,11 @@
 'use strict';
 
 const assert = require('assert');
-const fs = require('mz/fs');
+const fs = require('fs/promises');
 const path = require('path');
 const coffee = require('coffee');
 const helper = require('./helper');
+const { exists } = require('../lib/utils');
 
 describe('test/installGlobal.test.js', () => {
   const registry = process.env.npm_registry || 'https://r.cnpmjs.org';
@@ -33,13 +34,13 @@ describe('test/installGlobal.test.js', () => {
       .expect('code', 0)
       .end();
 
-    assert(await fs.exists(path.join(binDir, 'contributors')));
-    assert(await fs.exists(path.join(binDir, 'egg-bin')));
-    assert(await fs.exists(path.join(libDir, 'node_modules/contributors')));
-    assert(await fs.exists(path.join(libDir, 'node_modules/taffydb')));
-    assert(await fs.exists(path.join(libDir, 'node_modules/pedding')));
-    assert(await fs.exists(path.join(libDir, 'node_modules/egg-bin')));
-    assert(!(await fs.exists(path.join(libDir, 'node_modules/.contributors_npminstall/node_modules'))));
+    assert(await exists(path.join(binDir, 'contributors')));
+    assert(await exists(path.join(binDir, 'egg-bin')));
+    assert(await exists(path.join(libDir, 'node_modules/contributors')));
+    assert(await exists(path.join(libDir, 'node_modules/taffydb')));
+    assert(await exists(path.join(libDir, 'node_modules/pedding')));
+    assert(await exists(path.join(libDir, 'node_modules/egg-bin')));
+    assert(!(await exists(path.join(libDir, 'node_modules/.contributors_npminstall/node_modules'))));
 
     await coffee.fork(require.resolve('../bin/install.js'), [
       `--prefix=${tmp}`,
@@ -53,12 +54,12 @@ describe('test/installGlobal.test.js', () => {
       .expect('code', 0)
       .end();
 
-    assert(await fs.exists(path.join(binDir, 'contributors')));
-    assert(await fs.exists(path.join(binDir, 'egg-bin')));
-    assert(await fs.exists(path.join(binDir, 'mocha')));
-    assert(await fs.exists(path.join(libDir, 'node_modules/contributors')));
-    assert(await fs.exists(path.join(libDir, 'node_modules/b')));
-    assert(await fs.exists(path.join(libDir, 'node_modules/egg-bin')));
+    assert(await exists(path.join(binDir, 'contributors')));
+    assert(await exists(path.join(binDir, 'egg-bin')));
+    assert(await exists(path.join(binDir, 'mocha')));
+    assert(await exists(path.join(libDir, 'node_modules/contributors')));
+    assert(await exists(path.join(libDir, 'node_modules/b')));
+    assert(await exists(path.join(libDir, 'node_modules/egg-bin')));
 
     await coffee.fork(require.resolve('../bin/install.js'), [
       `--prefix=${tmp}`,
@@ -70,8 +71,8 @@ describe('test/installGlobal.test.js', () => {
       .expect('code', 0)
       .end();
 
-    assert(await fs.exists(path.join(binDir, 'contributors')));
-    assert(await fs.exists(path.join(libDir, 'node_modules/contributors')));
+    assert(await exists(path.join(binDir, 'contributors')));
+    assert(await exists(path.join(libDir, 'node_modules/contributors')));
   });
 
   // will fail on Windows, ignore it
@@ -89,9 +90,9 @@ describe('test/installGlobal.test.js', () => {
         .expect('code', 0)
         .end();
 
-      assert(await fs.exists(path.join(binDir, 'egg-bin')));
-      assert(await fs.exists(path.join(binDir, 'mocha')));
-      assert(await fs.exists(path.join(libDir, 'node_modules/egg-bin')));
+      assert(await exists(path.join(binDir, 'egg-bin')));
+      assert(await exists(path.join(binDir, 'mocha')));
+      assert(await exists(path.join(libDir, 'node_modules/egg-bin')));
       assert((await fs.stat(path.join(libDir, 'node_modules/egg-bin'))).isDirectory());
     });
   }

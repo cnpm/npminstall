@@ -1,17 +1,19 @@
 'use strict';
 
 const path = require('path');
-const fs = require('mz/fs');
-const mkdirp = require('mz-modules/mkdirp');
+const fs = require('fs/promises');
 const utility = require('utility');
 const urllib = require('urllib');
 
 exports.getStream = async url => {
   const dir = path.join(__dirname, 'tmp');
-  await mkdirp(dir);
+  await fs.mkdir(dir, { recursive: true });
   const file = path.join(dir, utility.md5(url) + path.extname(url));
-  if (await fs.exists(file)) {
+  try {
+    await fs.access(file);
     return fs.createReadStream(file);
+  } catch {
+    // ignore here
   }
 
   const writeStream = fs.createWriteStream(file);

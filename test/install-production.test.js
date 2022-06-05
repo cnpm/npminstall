@@ -2,7 +2,7 @@
 
 const path = require('path');
 const coffee = require('coffee');
-const rimraf = require('mz-modules/rimraf');
+const { rimraf } = require('../lib/utils');
 const helper = require('./helper');
 
 describe('test/install-production.test.js', () => {

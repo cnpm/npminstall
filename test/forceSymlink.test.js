@@ -2,8 +2,7 @@
 
 const assert = require('assert');
 const path = require('path');
-const mkdirp = require('mz-modules/mkdirp');
-const readJSON = require('../lib/utils').readJSON;
+const { mkdirp, readJSON } = require('../lib/utils');
 const npminstall = require('./npminstall');
 const helper = require('./helper');
 

@@ -1,12 +1,11 @@
 'use strict';
 
 const assert = require('assert');
-const fs = require('mz/fs');
+const fs = require('fs/promises');
 const path = require('path');
-const rimraf = require('mz-modules/rimraf');
 const npminstall = require('./npminstall');
 const utils = require('../lib/utils');
-const readJSON = require('../lib/utils').readJSON;
+const { readJSON, rimraf, exists } = require('../lib/utils');
 const helper = require('./helper');
 
 describe('test/index.test.js', () => {
@@ -36,7 +35,7 @@ describe('test/index.test.js', () => {
       ],
     });
     assert(await utils.isInstallDone(path.join(tmp, 'node_modules/@types/escodegen')));
-    assert(await fs.exists(path.join(tmp, 'node_modules/@types/escodegen/package.json')));
+    assert(await exists(path.join(tmp, 'node_modules/@types/escodegen/package.json')));
     assert(require(path.join(tmp, 'node_modules/@types/escodegen/package.json')).name === '@types/escodegen');
   });
 
@@ -137,7 +136,7 @@ describe('test/index.test.js', () => {
         root,
       });
       // node_modules/.debug@2.2.0 should exists
-      assert(await fs.exists(path.join(root, 'node_modules', '_debug@2.2.0@debug')));
+      assert(await exists(path.join(root, 'node_modules', '_debug@2.2.0@debug')));
 
       const debugPkg = await readJSON(path.join(root, 'node_modules', 'debug', 'package.json'));
       assert.equal(debugPkg._from, 'debug@2.2.0');
