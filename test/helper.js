@@ -18,7 +18,11 @@ exports.fixtures = name => {
 exports.tmp = name => {
   const dir = exports.fixtures(name || 'tmp');
   const cleanup = async () => {
-    await rimraf(dir);
+    try {
+      await rimraf(dir);
+    } catch {
+      // ignore error
+    }
     await mkdirp(dir);
   };
   return [ dir, cleanup ];
