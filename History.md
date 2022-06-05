@@ -1,4 +1,11 @@
 
+6.2.1 / 2022-06-05
+==================
+
+**others**
+  * [[`ce04b97`](http://github.com/cnpm/npminstall/commit/ce04b979114d388e8116870277af9ec3735d2d03)] - 🐛 FIX: Remove disk cache when version not found (#404) (fengmk2 <<fengmk2@gmail.com>>)
+  * [[`dbceaee`](http://github.com/cnpm/npminstall/commit/dbceaee3489eafe7134b616f6d5bb4cb5485215d)] - deps: Security upgrade pacote from 11.3.5 to 13.0.0 (#402) (fengmk2 <<fengmk2@gmail.com>>)
+
 6.2.0 / 2022-05-16
 ==================
 
