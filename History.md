@@ -1,4 +1,14 @@
 
+6.2.0 / 2022-05-16
+==================
+
+**features**
+  * [[`dad3dcf`](http://github.com/cnpm/npminstall/commit/dad3dcf0799abffdb29f5fc8c6d72dc97ddc9285)] - feat: add download url and size for ShasumNotMatchError (#400) (killa <<killa123@126.com>>)
+
+**others**
+  * [[`f692927`](http://github.com/cnpm/npminstall/commit/f692927b3e1ba8cf14125b901342926562cc9896)] - 🤖 TEST: CI add Node.js 18 (#397) (fengmk2 <<fengmk2@gmail.com>>)
+  * [[`1364e29`](http://github.com/cnpm/npminstall/commit/1364e293a23aeee95a552e2c846a592d009897fd)] - 🤖 TEST: Run action on 5.x (fengmk2 <<fengmk2@gmail.com>>)
+
 6.1.0 / 2022-03-25
 ==================
 
