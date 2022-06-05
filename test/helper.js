@@ -19,6 +19,7 @@ exports.tmp = name => {
   const dir = exports.fixtures(name || 'tmp');
   const cleanup = async () => {
     try {
+      // avoid Error: ENOTEMPTY: directory not empty, rmdir
       await rimraf(dir);
     } catch {
       // ignore error
