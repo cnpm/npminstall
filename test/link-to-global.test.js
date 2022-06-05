@@ -2,9 +2,8 @@
 
 const assert = require('assert');
 const path = require('path');
-const rimraf = require('mz-modules/rimraf');
 const coffee = require('coffee');
-const fs = require('mz/fs');
+const { rimraf, exists } = require('../lib/utils');
 
 const npmlink = path.join(__dirname, '../bin/link.js');
 
@@ -32,7 +31,7 @@ describe('test/link-to-global.test.js', () => {
       .debug()
       .end();
 
-    assert(await fs.exists(path.join(libDir, 'node_modules/linked-package')));
+    assert(await exists(path.join(libDir, 'node_modules/linked-package')));
   });
 
   it('should link with bin', async () => {
@@ -42,8 +41,8 @@ describe('test/link-to-global.test.js', () => {
       .debug()
       .end();
 
-    assert(await fs.exists(path.join(libDir, 'node_modules/linked-package-2')));
+    assert(await exists(path.join(libDir, 'node_modules/linked-package-2')));
     // bin file should be exists
-    assert(await fs.exists(path.join(binDir, 'linked-package-2')));
+    assert(await exists(path.join(binDir, 'linked-package-2')));
   });
 });

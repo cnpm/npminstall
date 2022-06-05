@@ -1,15 +1,14 @@
 'use strict';
 
 const assert = require('assert');
-const rimraf = require('mz-modules/rimraf');
 const path = require('path');
 const coffee = require('coffee');
-const readJSON = require('../lib/utils').readJSON;
+const { rimraf, readJSON } = require('../lib/utils');
 const helper = require('./helper');
 
 let root;
 async function cleanup() {
-  rimraf(path.join(root, 'node_modules'));
+  await rimraf(path.join(root, 'node_modules'));
 }
 
 async function checkPkg(name, version) {
@@ -19,9 +18,9 @@ async function checkPkg(name, version) {
 
 describe('test/resolutions.test.js', () => {
   describe('resolutions-error-format', () => {
-    before(() => {
+    before(async () => {
       root = helper.fixtures('resolutions-error-format');
-      cleanup();
+      await cleanup();
     });
     afterEach(cleanup);
 

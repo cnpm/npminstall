@@ -2,10 +2,9 @@
 
 const assert = require('assert');
 const path = require('path');
-const rimraf = require('mz-modules/rimraf');
 const coffee = require('coffee');
-const fs = require('mz/fs');
 const helper = require('./helper');
+const { rimraf, exists } = require('../lib/utils');
 
 const npmlink = path.join(__dirname, '../bin/link.js');
 
@@ -29,7 +28,7 @@ describe('test/link-folder.test.js', () => {
       .expect('stderr', /npm_rootpath:.+link\-demo!!!!!/)
       .end();
 
-    assert(await fs.exists(path.join(root, 'node_modules/linked-package')));
+    assert(await exists(path.join(root, 'node_modules/linked-package')));
   });
 
   it('should link two folder work', async () => {
@@ -39,9 +38,9 @@ describe('test/link-folder.test.js', () => {
       .debug()
       .end();
 
-    assert(await fs.exists(path.join(root, 'node_modules/linked-package')));
-    assert(await fs.exists(path.join(root, 'node_modules/linked-package-2')));
+    assert(await exists(path.join(root, 'node_modules/linked-package')));
+    assert(await exists(path.join(root, 'node_modules/linked-package-2')));
     // bin file should be exists
-    assert(await fs.exists(path.join(root, 'node_modules/.bin/linked-package-2')));
+    assert(await exists(path.join(root, 'node_modules/.bin/linked-package-2')));
   });
 });

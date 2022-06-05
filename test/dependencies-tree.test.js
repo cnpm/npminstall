@@ -2,7 +2,8 @@
 
 const path = require('path');
 const coffee = require('coffee');
-const fs = require('mz/fs');
+const { existsSync } = require('fs');
+const fs = require('fs/promises');
 const assert = require('assert');
 const helper = require('./helper');
 
@@ -31,6 +32,6 @@ describe('test/dependencies-tree.test.js', () => {
       .expect('stderr', /json 0\(0B\)/)
       .end();
     const file = path.join(cwd, 'node_modules/.dependencies_tree.json');
-    assert(!fs.existsSync(file));
+    assert(!existsSync(file));
   });
 });

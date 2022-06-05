@@ -1,11 +1,11 @@
 'use strict';
 
 const assert = require('assert');
-const rimraf = require('mz-modules/rimraf');
 const path = require('path');
 const coffee = require('coffee');
 const pkg = require('../package.json');
 const helper = require('./helper');
+const { rimraf } = require('../lib/utils');
 
 describe('test/npm_package_env.test.js', () => {
   const root = helper.fixtures('npm_package_env');

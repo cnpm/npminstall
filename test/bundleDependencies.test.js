@@ -2,10 +2,11 @@
 
 const assert = require('assert');
 const path = require('path');
-const fs = require('mz/fs');
+const fs = require('fs/promises');
 const semver = require('semver');
 const npminstall = require('./npminstall');
 const helper = require('./helper');
+const { exists } = require('../lib/utils');
 
 describe('test/bundleDependencies.test.js', () => {
   const [ tmp, cleanup ] = helper.tmp();
@@ -36,8 +37,8 @@ describe('test/bundleDependencies.test.js', () => {
         { name: 'nyc', version: '6.4.2' },
       ],
     });
-    const exists = await fs.exists(path.join(tmp, 'node_modules/nyc/node_modules/foreground-child'));
-    assert(exists);
+    const e = await exists(path.join(tmp, 'node_modules/nyc/node_modules/foreground-child'));
+    assert(e);
   });
 
   if (semver.satisfies(process.version, '< 12.0.0')) {

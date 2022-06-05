@@ -2,11 +2,10 @@
 
 const assert = require('assert');
 const path = require('path');
-const rimraf = require('mz-modules/rimraf');
-const mkdirp = require('mz-modules/mkdirp');
-const fs = require('mz/fs');
+const fs = require('fs/promises');
 const npminstall = require('./npminstall');
 const helper = require('./helper');
+const { rimraf, mkdirp } = require('../lib/utils');
 
 const registry = process.env.npm_china ? 'https://registry.npmmirror.com' : 'https://registry.npmjs.com';
 

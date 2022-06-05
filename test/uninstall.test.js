@@ -2,10 +2,10 @@
 
 const assert = require('assert');
 const path = require('path');
-const rimraf = require('mz-modules/rimraf');
 const coffee = require('coffee');
-const fs = require('mz/fs');
+const fs = require('fs/promises');
 const helper = require('./helper');
+const { rimraf, existsSync } = require('../lib/utils');
 
 describe('test/uninstall.test.js', () => {
   const npmuninstall = path.join(__dirname, '../bin/uninstall.js');
@@ -35,9 +35,9 @@ describe('test/uninstall.test.js', () => {
       stdio: 'pipe',
     })
       .end();
-    assert(!fs.existsSync(path.join(root, 'node_modules/koa')));
-    assert(!fs.existsSync(path.join(root, 'node_modules/pkg')));
-    assert(!fs.existsSync(path.join(root, 'node_modules/_pkg@1.0.0@pkg')));
+    assert(!existsSync(path.join(root, 'node_modules/koa')));
+    assert(!existsSync(path.join(root, 'node_modules/pkg')));
+    assert(!existsSync(path.join(root, 'node_modules/_pkg@1.0.0@pkg')));
   });
 
   it('should uninstall --save', async () => {
@@ -47,8 +47,8 @@ describe('test/uninstall.test.js', () => {
     })
       .end();
 
-    assert(!fs.existsSync(path.join(root, 'node_modules/_pkg@1.0.0@pkg')));
-    const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json')));
+    assert(!existsSync(path.join(root, 'node_modules/_pkg@1.0.0@pkg')));
+    const pkg = JSON.parse(await fs.readFile(path.join(root, 'package.json')));
     assert(!pkg.dependencies.pkg);
   });
 
@@ -59,9 +59,9 @@ describe('test/uninstall.test.js', () => {
     })
       .end();
 
-    assert(!fs.existsSync(path.join(path.join(root, 'node_modules/pkg'))));
-    assert(!fs.existsSync(path.join(path.join(root, 'node_modules/_pkg@1.0.0@pkg'))));
-    const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json')));
+    assert(!existsSync(path.join(path.join(root, 'node_modules/pkg'))));
+    assert(!existsSync(path.join(path.join(root, 'node_modules/_pkg@1.0.0@pkg'))));
+    const pkg = JSON.parse(await fs.readFile(path.join(root, 'package.json')));
     assert(!pkg.devDependencies.pkg);
   });
 
@@ -72,9 +72,9 @@ describe('test/uninstall.test.js', () => {
     })
       .end();
 
-    assert(!fs.existsSync(path.join(path.join(root, 'node_modules/pkg'))));
-    assert(!fs.existsSync(path.join(path.join(root, 'node_modules/_pkg@1.0.0@pkg'))));
-    const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json')));
+    assert(!existsSync(path.join(path.join(root, 'node_modules/pkg'))));
+    assert(!existsSync(path.join(path.join(root, 'node_modules/_pkg@1.0.0@pkg'))));
+    const pkg = JSON.parse(await fs.readFile(path.join(root, 'package.json')));
     assert(!pkg.optionalDependencies.pkg);
   });
 
@@ -84,7 +84,7 @@ describe('test/uninstall.test.js', () => {
       stdio: 'pipe',
     })
       .end();
-    const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json')));
+    const pkg = JSON.parse(await fs.readFile(path.join(root, 'package.json')));
     const depKeys = [ 'dependencies', 'devDependencies', 'optionalDependencies', 'peerDependencies' ];
     depKeys.forEach(key => assert(!pkg[key].pkg));
   });
@@ -96,8 +96,8 @@ describe('test/uninstall.test.js', () => {
     })
       .end();
 
-    assert(fs.existsSync(path.join(root, 'node_modules/pkg')));
-    assert(fs.existsSync(path.join(root, 'node_modules/_pkg@1.0.0@pkg')));
+    assert(existsSync(path.join(root, 'node_modules/pkg')));
+    assert(existsSync(path.join(root, 'node_modules/_pkg@1.0.0@pkg')));
   });
 
   it('should not uninstall when name not match', async () => {
@@ -107,6 +107,6 @@ describe('test/uninstall.test.js', () => {
     })
       .end();
 
-    assert(fs.existsSync(path.join(root, 'node_modules/_pkg@1.0.0@pkg')));
+    assert(existsSync(path.join(root, 'node_modules/_pkg@1.0.0@pkg')));
   });
 });

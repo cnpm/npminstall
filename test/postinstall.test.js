@@ -1,12 +1,11 @@
 'use strict';
 
 const assert = require('assert');
-const rimraf = require('mz-modules/rimraf');
 const path = require('path');
 const fs = require('fs');
 const coffee = require('coffee');
 const semver = require('semver');
-const readJSON = require('../lib/utils').readJSON;
+const { rimraf, readJSON } = require('../lib/utils');
 const npminstall = require('./npminstall');
 const helper = require('./helper');
 

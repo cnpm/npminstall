@@ -1,10 +1,9 @@
 'use strict';
 
 const assert = require('assert');
-const fs = require('mz/fs');
 const path = require('path');
 const coffee = require('coffee');
-const rimraf = require('mz-modules/rimraf');
+const { rimraf, exists } = require('../lib/utils');
 const npminstall = path.join(__dirname, '..', 'bin', 'install.js');
 const npmupdate = path.join(__dirname, '..', 'bin', 'update.js');
 
@@ -26,8 +25,8 @@ describe('test/install-ignore-optional.test.js', () => {
       .expect('stdout', /pinyin@2.8.3 installed/)
       .expect('code', 0)
       .end();
-    const exists = await fs.exists(path.join(cwd, 'node_modules/pinyin/node_modules/nodejieba'));
-    assert(!exists);
+    const e = await exists(path.join(cwd, 'node_modules/pinyin/node_modules/nodejieba'));
+    assert(!e);
   });
 
   it('should update ignore optionalDependencies', async () => {
@@ -38,7 +37,7 @@ describe('test/install-ignore-optional.test.js', () => {
       .expect('stdout', /pinyin@2.8.3 installed/)
       .expect('code', 0)
       .end();
-    const exists = await fs.exists(path.join(cwd, 'node_modules/pinyin/node_modules/nodejieba'));
-    assert(!exists);
+    const e = await exists(path.join(cwd, 'node_modules/pinyin/node_modules/nodejieba'));
+    assert(!e);
   });
 });

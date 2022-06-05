@@ -4,10 +4,10 @@ const mm = require('mm');
 const assert = require('assert');
 const path = require('path');
 const coffee = require('coffee');
+const semver = require('semver');
 const npminstall = require('./npminstall');
 const helper = require('./helper');
-const cp = require('mz/child_process');
-const semver = require('semver');
+const utils = require('../lib/utils');
 
 describe('test/installLocal.test.js', () => {
   const root = helper.fixtures('local');
@@ -28,7 +28,7 @@ describe('test/installLocal.test.js', () => {
   });
 
   it('should install local folder with copy ok', async () => {
-    mm.error(cp, 'exec');
+    mm.error(utils, 'exec');
     await npminstall({
       root,
       pkgs: [

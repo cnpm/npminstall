@@ -2,9 +2,9 @@
 
 const assert = require('assert');
 const path = require('path');
-const fs = require('mz/fs');
 const coffee = require('coffee');
 const helper = require('./helper');
+const { exists } = require('../lib/utils');
 
 describe('test/update.test.js', () => {
   const npmupdate = path.join(__dirname, '../bin/update.js');
@@ -29,8 +29,8 @@ describe('test/update.test.js', () => {
     })
       .debug()
       .end();
-    assert(await fs.exists(path.join(cwd, 'node_modules/pedding')));
-    assert(await fs.exists(path.join(cwd, 'node_modules/pkg')));
+    assert(await exists(path.join(cwd, 'node_modules/pedding')));
+    assert(await exists(path.join(cwd, 'node_modules/pkg')));
   });
 
   it('should update pedding ok', async () => {
@@ -40,7 +40,7 @@ describe('test/update.test.js', () => {
     })
       .debug()
       .end();
-    assert(await fs.exists(path.join(cwd, 'node_modules/pedding')));
-    assert(await fs.exists(path.join(cwd, 'node_modules/pkg')));
+    assert(await exists(path.join(cwd, 'node_modules/pedding')));
+    assert(await exists(path.join(cwd, 'node_modules/pkg')));
   });
 });

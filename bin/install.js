@@ -3,17 +3,17 @@
 'use strict';
 
 const debug = require('debug')('npminstall:bin:install');
-const npa = require('../lib/npa');
 const chalk = require('chalk');
 const path = require('path');
 const util = require('util');
-const execSync = require('child_process').execSync;
-const fs = require('mz/fs');
+const { execSync } = require('child_process');
+const fs = require('fs/promises');
+const { writeFileSync } = require('fs');
 const parseArgs = require('minimist');
+const { installLocal, installGlobal } = require('..');
+const npa = require('../lib/npa');
 const utils = require('../lib/utils');
 const globalConfig = require('../lib/config');
-const installLocal = require('..').installLocal;
-const installGlobal = require('..').installGlobal;
 const { parsePackageName } = require('../lib/alias');
 const {
   LOCAL_TYPES,
@@ -306,7 +306,7 @@ debug('argv: %j, env: %j', argv, env);
   const dependenciesTree = argv['dependencies-tree'];
   if (dependenciesTree) {
     try {
-      const content = fs.readFileSync(dependenciesTree);
+      const content = await fs.readFile(dependenciesTree);
       config.dependenciesTree = JSON.parse(content);
     } catch (err) {
       console.warn(chalk.yellow('npminstall WARN load dependencies tree %s error: %s'), dependenciesTree, err.message);
@@ -332,7 +332,7 @@ debug('argv: %j, env: %j', argv, env);
       if (config.production) {
         // warning when `${root}/node_modules` exists
         const nodeModulesDir = path.join(root, 'node_modules');
-        if (await fs.exists(nodeModulesDir)) {
+        if (await utils.exists(nodeModulesDir)) {
           const dirs = await fs.readdir(nodeModulesDir);
           // ignore [ '.bin', 'node' ], it will install first by https://github.com/cnpm/nodeinstall
           if (!(dirs.length === 2 && dirs.indexOf('.bin') >= 0 && dirs.indexOf('node') >= 0)) {
@@ -341,7 +341,7 @@ debug('argv: %j, env: %j', argv, env);
         }
       }
       const pkgFile = path.join(root, 'package.json');
-      const exists = await fs.exists(pkgFile);
+      const exists = await utils.exists(pkgFile);
       if (!exists) {
         console.warn(chalk.yellow(`npminstall WARN package.json not exists: ${pkgFile}`));
       } else {
@@ -420,7 +420,7 @@ debug('argv: %j, env: %j', argv, env);
 
   process.on('exit', code => {
     if (code !== 0) {
-      fs.writeFileSync(path.join(root, 'npminstall-debug.log'), util.inspect(config, { depth: 2 }));
+      writeFileSync(path.join(root, 'npminstall-debug.log'), util.inspect(config, { depth: 2 }));
     }
   });
 })().catch(err => {

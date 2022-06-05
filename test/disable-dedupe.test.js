@@ -1,11 +1,11 @@
 'use strict';
 
 const assert = require('assert');
-const fs = require('mz/fs');
-const rimraf = require('mz-modules/rimraf');
+const fs = require('fs/promises');
 const path = require('path');
 const coffee = require('coffee');
 const helper = require('./helper');
+const { rimraf } = require('../lib/utils');
 
 const npminstall = path.join(__dirname, '..', 'bin', 'install.js');
 
@@ -49,7 +49,7 @@ describe('test/disable-dedupe.test.js', () => {
       .expect('code', 0)
       .expect('stderr', /Linked \d+ latest versions/)
       .end();
-    let names = (await fs.readdirSync(path.join(root, 'node_modules')))
+    let names = (await fs.readdir(path.join(root, 'node_modules')))
       .filter(n => !/^[\.\_]/.test(n));
     assert(names.length > 1);
 

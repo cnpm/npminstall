@@ -8,7 +8,6 @@ const semver = require('semver');
 const assert = require('assert');
 const chalk = require('chalk');
 const path = require('path');
-const fs = require('mz/fs');
 const parseArgs = require('minimist');
 const utils = require('../lib/utils');
 const bin = require('../lib/bin');
@@ -139,7 +138,7 @@ const folders = argv._.map(name => utils.formatPath(name));
         folder = path.join(root, folder);
       }
       // read from folder
-      if (!(await fs.exists(folder))) {
+      if (!(await utils.exists(folder))) {
         throw new Error(`${folder} not exists`);
       }
 
