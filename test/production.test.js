@@ -2,7 +2,7 @@
 
 const assert = require('assert');
 const path = require('path');
-const fs = require('mz/fs');
+const fs = require('fs/promises');
 const coffee = require('coffee');
 const npminstall = require('./npminstall');
 const helper = require('./helper');

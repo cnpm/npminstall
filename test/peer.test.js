@@ -3,8 +3,9 @@
 const coffee = require('coffee');
 const path = require('path');
 const assert = require('assert');
-const fs = require('mz/fs');
+const fs = require('fs/promises');
 const helper = require('./helper');
+const { existsSync } = require('../lib/utils');
 
 describe('test/peer.test.js', () => {
   describe('unmet root and link', () => {
@@ -59,9 +60,9 @@ describe('test/peer.test.js', () => {
         .debug()
         .expect('code', 0)
         .end();
-      assert(!fs.existsSync(path.join(tmp, 'node_modules/react-dom/node_modules/react')));
-      assert(fs.existsSync(path.join(tmp, 'node_modules/react-dom')));
-      assert(fs.existsSync(path.join(tmp, 'node_modules/react')));
+      assert(!existsSync(path.join(tmp, 'node_modules/react-dom/node_modules/react')));
+      assert(existsSync(path.join(tmp, 'node_modules/react-dom')));
+      assert(existsSync(path.join(tmp, 'node_modules/react')));
     });
   });
 });

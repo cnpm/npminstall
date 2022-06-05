@@ -1,11 +1,10 @@
 'use strict';
 
-const fs = require('mz/fs');
 const path = require('path');
 const assert = require('assert');
-const exec = require('mz/child_process').exec;
 const helper = require('./helper');
 const npminstall = require('./npminstall');
+const { exists, exec } = require('../lib/utils');
 
 // make sure https://github.com/cnpm/cnpm/issues/194 work!
 describe.skip('test/next.test.js', () => {
@@ -15,13 +14,13 @@ describe.skip('test/next.test.js', () => {
   afterEach(cleanup);
 
   it('should next build success', async () => {
-    await exec(`git clone https://github.com/now-examples/next-news.git ${tmp}`);
+    await exec(`git clone --depth=1 git://github.com/now-examples/next-news.git ${tmp}`);
     await npminstall({
       root: tmp,
     });
     await exec('npm run build', {
       cwd: tmp,
     });
-    assert(await fs.exists(path.join(tmp, '.next')));
+    assert(await exists(path.join(tmp, '.next')));
   });
 });

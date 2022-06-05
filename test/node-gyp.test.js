@@ -1,12 +1,12 @@
 'use strict';
 
-const fs = require('mz/fs');
 const assert = require('assert');
 const path = require('path');
 const mm = require('mm');
 const semver = require('semver');
 const npminstall = require('./npminstall');
 const helper = require('./helper');
+const { exists } = require('../lib/utils');
 
 if (process.platform !== 'win32' && semver.satisfies(process.version, '< 12.0.0')) {
   describe('test/node-gyp.test.js', () => {
@@ -29,7 +29,7 @@ if (process.platform !== 'win32' && semver.satisfies(process.version, '< 12.0.0'
       } catch (err) {
         // ignore
       }
-      assert(await fs.exists(path.join(tmp, 'node_modules/node-icu-charset-detector/build')));
+      assert(await exists(path.join(tmp, 'node_modules/node-icu-charset-detector/build')));
     });
   });
 }

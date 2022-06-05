@@ -2,6 +2,7 @@
 
 const path = require('path');
 const fs = require('fs/promises');
+const { createReadStream, createWriteStream } = require('fs');
 const utility = require('utility');
 const urllib = require('urllib');
 
@@ -11,16 +12,15 @@ exports.getStream = async url => {
   const file = path.join(dir, utility.md5(url) + path.extname(url));
   try {
     await fs.access(file);
-    return fs.createReadStream(file);
+    return createReadStream(file);
   } catch {
     // ignore here
   }
 
-  const writeStream = fs.createWriteStream(file);
   await urllib.request(url, {
-    writeStream,
+    writeStream: createWriteStream(file),
     timeout: 10000,
     followRedirect: true,
   });
-  return fs.createReadStream(file);
+  return createReadStream(file);
 };

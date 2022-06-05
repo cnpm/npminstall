@@ -2,9 +2,9 @@
 
 const assert = require('assert');
 const path = require('path');
-const fs = require('mz/fs');
 const npminstall = require('./npminstall');
 const helper = require('./helper');
+const { existsSync } = require('../lib/utils');
 
 describe('test/package-versions.test.js', () => {
   const root = helper.fixtures('package-versions');
@@ -20,8 +20,8 @@ describe('test/package-versions.test.js', () => {
         { name: 'koa', version: 'latest' },
       ],
     });
-    assert(!fs.existsSync(path.join(root, 'node_modules/.package_versions.json')));
-    assert(fs.existsSync(path.join(root, 'node_modules/koa')));
+    assert(!existsSync(path.join(root, 'node_modules/.package_versions.json')));
+    assert(existsSync(path.join(root, 'node_modules/koa')));
   });
 
   it('should record package version when installRoot', async () => {
