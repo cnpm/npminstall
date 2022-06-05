@@ -8,7 +8,7 @@ const path = require('path');
 const util = require('util');
 const { execSync } = require('child_process');
 const fs = require('fs/promises');
-const { readFileSync, writeFileSync } = require('fs');
+const { writeFileSync } = require('fs');
 const parseArgs = require('minimist');
 const { installLocal, installGlobal } = require('..');
 const npa = require('../lib/npa');
@@ -306,7 +306,7 @@ debug('argv: %j, env: %j', argv, env);
   const dependenciesTree = argv['dependencies-tree'];
   if (dependenciesTree) {
     try {
-      const content = readFileSync(dependenciesTree);
+      const content = await fs.readFile(dependenciesTree);
       config.dependenciesTree = JSON.parse(content);
     } catch (err) {
       console.warn(chalk.yellow('npminstall WARN load dependencies tree %s error: %s'), dependenciesTree, err.message);
