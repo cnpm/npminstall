@@ -1,4 +1,10 @@
 
+6.3.0 / 2022-06-05
+==================
+
+**others**
+  * [[`3787df9`](http://github.com/cnpm/npminstall/commit/3787df959dd83634e7fce679c4d2a51ea6307fbf)] - 👌 IMPROVE: Remove mz modules deps (#405) (fengmk2 <<fengmk2@gmail.com>>)
+
 6.2.1 / 2022-06-05
 ==================
 
