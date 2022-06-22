@@ -164,6 +164,7 @@ for (const name of argv._) {
     version: p.fetchSpec || p.rawSpec,
     type: p.type,
     alias: aliasPackageName,
+    arg: p,
   });
 }
 
@@ -460,7 +461,6 @@ function getIgnoreScripts() {
 }
 
 async function updateDependencies(root, pkgs, propName, saveExact, remoteNames) {
-  const savePrefix = saveExact ? '' : getVersionSavePrefix();
   const pkgFile = path.join(root, 'package.json');
   const pkg = await utils.readJSON(pkgFile);
   const deps = pkg[propName] = pkg[propName] || {};
@@ -476,7 +476,16 @@ async function updateDependencies(root, pkgs, propName, saveExact, remoteNames) 
     } else {
       const pkgDir = LOCAL_TYPES.includes(item.type) ? item.version : path.join(root, 'node_modules', item.name);
       const itemPkg = await utils.readJSON(path.join(pkgDir, 'package.json'));
-      deps[itemPkg.name] = `${savePrefix}${itemPkg.version}`;
+
+      let saveSpec;
+      // If install with `cnpm i foo`, the type is tag but rawSpec is empty string
+      if (item.arg.type === 'tag' && item.arg.rawSpec) {
+        saveSpec = item.arg.rawSpec;
+      } else {
+        const savePrefix = saveExact ? '' : getVersionSavePrefix();
+        saveSpec = `${savePrefix}${itemPkg.version}`;
+      }
+      deps[itemPkg.name] = saveSpec;
     }
   }
   // sort pkg[propName]
