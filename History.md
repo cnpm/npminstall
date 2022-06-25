@@ -1,4 +1,10 @@
 
+6.4.0 / 2022-06-25
+==================
+
+**features**
+  * [[`91ced98`](http://github.com/cnpm/npminstall/commit/91ced98da73d1aa22332afbebb35722cf318b33a)] - feat: save dep with tag if install with tag (#408) (killa <<killa123@126.com>>)
+
 6.3.0 / 2022-06-05
 ==================
 
