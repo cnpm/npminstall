@@ -245,5 +245,21 @@ if (process.platform !== 'win32') {
           done();
         });
     });
+
+    it('install with dist-tag should update dependencies with tag', done => {
+      coffee.fork(helper.npminstall, [
+        'pedding@latest',
+      ], {
+        cwd: tmp,
+      })
+        .expect('code', 0)
+        .end(err => {
+          assert(!err, err && err.message);
+          const deps = JSON.parse(fs.readFileSync(path.join(tmp, 'package.json'))).dependencies;
+          assert(deps);
+          assert(deps.pedding === 'latest');
+          done();
+        });
+    });
   });
 }
