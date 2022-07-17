@@ -23,7 +23,6 @@
     "ci": "npm run lint && npm run test-cov"
   },
   "dependencies": {
-    "agentkeepalive": "^4.0.2",
     "await-event": "^2.1.0",
     "bin-links": "^2.3.0",
     "binary-mirror-config": "^1.19.0",
@@ -58,7 +57,6 @@
     "eslint": "8",
     "eslint-config-egg": "12",
     "git-contributor": "1",
-    "http-proxy": "1",
     "mm": "3"
   },
   "homepage": "https://github.com/cnpm/npminstall",
