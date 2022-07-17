@@ -4,30 +4,39 @@ const assert = require('assert');
 const mm = require('mm');
 const path = require('path');
 const urllib = require('urllib');
+const { MockAgent, setGlobalDispatcher, getGlobalDispatcher } = require('urllib');
 const install = require('./npminstall');
 const helper = require('./helper');
 const coffee = require('coffee');
 
 describe('test/download.test.js', () => {
   const [ tmp, cleanup ] = helper.tmp();
-
+  const globalAgent = getGlobalDispatcher();
   beforeEach(cleanup);
-  afterEach(cleanup);
+  afterEach(() => {
+    cleanup();
+    setGlobalDispatcher(globalAgent);
+  });
   afterEach(mm.restore);
 
   describe('mock tarball not exists', () => {
     it('should throw error when status === 404', async () => {
-      const request = urllib.request;
-      mm(urllib, 'request', async (url, options) => {
-        // if (url.endsWith('.tgz')) {
-        //   mm.restore();
-        // }
-        const result = await request.call(urllib, url, options);
-        if (url.endsWith('.tgz')) {
-          result.status = 404;
-        }
-        return result;
-      });
+      const mockAgent = new MockAgent();
+      setGlobalDispatcher(mockAgent);
+      const mockPool = mockAgent.get('https://registry.npmjs.org');
+      // will auto retry 3 times
+      mockPool.intercept({
+        path: /\.tgz$/,
+        method: 'GET',
+      }).reply(404, Buffer.alloc(10));
+      mockPool.intercept({
+        path: /\.tgz$/,
+        method: 'GET',
+      }).reply(404, Buffer.alloc(10));
+      mockPool.intercept({
+        path: /\.tgz$/,
+        method: 'GET',
+      }).reply(404, Buffer.alloc(10));
 
       try {
         await install({
@@ -44,17 +53,22 @@ describe('test/download.test.js', () => {
     });
 
     it('should throw error when status === 206', async () => {
-      const request = urllib.request;
-      mm(urllib, 'request', async (url, options) => {
-        // if (url.endsWith('.tgz')) {
-        //   mm.restore();
-        // }
-        const result = await request.call(urllib, url, options);
-        if (url.endsWith('.tgz')) {
-          result.status = 206;
-        }
-        return result;
-      });
+      const mockAgent = new MockAgent();
+      setGlobalDispatcher(mockAgent);
+      const mockPool = mockAgent.get('https://registry.npmjs.org');
+      // will auto retry 3 times
+      mockPool.intercept({
+        path: /\.tgz$/,
+        method: 'GET',
+      }).reply(206, Buffer.alloc(10));
+      mockPool.intercept({
+        path: /\.tgz$/,
+        method: 'GET',
+      }).reply(206, Buffer.alloc(10));
+      mockPool.intercept({
+        path: /\.tgz$/,
+        method: 'GET',
+      }).reply(206, Buffer.alloc(10));
 
       try {
         await install({
@@ -78,7 +92,24 @@ describe('test/download.test.js', () => {
       const res = await urllib.request(`${registry}/pedding`, { dataType: 'json', timeout: 10000 });
       const pkg = res.data;
       pkg.versions['1.0.0'].dist.shasum = '00098d60307b4ef7240c3d693cb20a9473c111';
-      mm.https.request(/^\/pedding$/, JSON.stringify(pkg));
+
+      const mockAgent = new MockAgent();
+      setGlobalDispatcher(mockAgent);
+      const mockPool = mockAgent.get(/^https:\/\/registry\./);
+      // will auto retry 3 times
+      mockPool.intercept({
+        path: /^\/pedding$/,
+        method: 'GET',
+      }).reply(200, pkg);
+      mockPool.intercept({
+        path: /^\/pedding$/,
+        method: 'GET',
+      }).reply(200, pkg);
+      mockPool.intercept({
+        path: /^\/pedding$/,
+        method: 'GET',
+      }).reply(200, pkg);
+
       try {
         await install({
           root: tmp,
@@ -96,8 +127,22 @@ describe('test/download.test.js', () => {
     });
 
     it('should throw 500 error', async () => {
-      mm.http.request(/\.tgz/, 'hello', { statusCode: 500 });
-      mm.https.request(/\.tgz/, 'hello', { statusCode: 500 });
+      const mockAgent = new MockAgent();
+      setGlobalDispatcher(mockAgent);
+      const mockPool = mockAgent.get('https://registry.npmjs.org');
+      // will auto retry 3 times
+      mockPool.intercept({
+        path: /\.tgz$/,
+        method: 'GET',
+      }).reply(500, Buffer.alloc(10));
+      mockPool.intercept({
+        path: /\.tgz$/,
+        method: 'GET',
+      }).reply(500, Buffer.alloc(10));
+      mockPool.intercept({
+        path: /\.tgz$/,
+        method: 'GET',
+      }).reply(500, Buffer.alloc(10));
       try {
         await install({
           root: tmp,
@@ -113,8 +158,22 @@ describe('test/download.test.js', () => {
     });
 
     it('should throw 502 error', async () => {
-      mm.http.request(/\.tgz/, 'hello', { statusCode: 502 });
-      mm.https.request(/\.tgz/, 'hello', { statusCode: 502 });
+      const mockAgent = new MockAgent();
+      setGlobalDispatcher(mockAgent);
+      const mockPool = mockAgent.get('https://registry.npmjs.org');
+      // will auto retry 3 times
+      mockPool.intercept({
+        path: /\.tgz$/,
+        method: 'GET',
+      }).reply(502, Buffer.alloc(10));
+      mockPool.intercept({
+        path: /\.tgz$/,
+        method: 'GET',
+      }).reply(502, Buffer.alloc(10));
+      mockPool.intercept({
+        path: /\.tgz$/,
+        method: 'GET',
+      }).reply(502, Buffer.alloc(10));
 
       try {
         await install({
