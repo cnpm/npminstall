@@ -1,4 +1,10 @@
 
+6.5.0 / 2022-07-18
+==================
+
+**others**
+  * [[`0d880c6`](http://github.com/cnpm/npminstall/commit/0d880c6fad5bbde29a3bc3132e328f11adf8382a)] - 📦 NEW: Use urllib@3 (#407) (fengmk2 <<fengmk2@gmail.com>>)
+
 6.4.0 / 2022-06-25
 ==================
 
