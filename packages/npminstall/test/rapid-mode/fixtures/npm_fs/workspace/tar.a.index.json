@@ -1,0 +1,117 @@
+{
+  "blobIds": [
+    "bucket_0.stgz"
+  ],
+  "entries": [
+    {
+      "blobId": "bucket_0.stgz",
+      "entry": {
+        "name": "lodash.has/package.json",
+        "type": "reg",
+        "size": 734,
+        "linkName": "",
+        "mode": 420,
+        "uid": 500,
+        "gid": 505,
+        "userName": "",
+        "groupName": "",
+        "offset": 512,
+        "devMajor": 0,
+        "devMinor": 0,
+        "xattrs": {},
+        "digest": "sha256:e2dddb92bee0641b0b1bccde8a0ac0cd6b70fdd1ab1af970a016da320f29be61",
+        "chunkOffset": 0,
+        "chunkSize": 0,
+        "uname": "admin",
+        "gname": "admin"
+      }
+    },
+    {
+      "blobId": "bucket_0.stgz",
+      "entry": {
+        "name": "lodash.has/README.md",
+        "type": "reg",
+        "size": 432,
+        "linkName": "",
+        "mode": 420,
+        "uid": 500,
+        "gid": 505,
+        "userName": "",
+        "groupName": "",
+        "offset": 2048,
+        "devMajor": 0,
+        "devMinor": 0,
+        "xattrs": {},
+        "digest": "sha256:8b37f65e464fe80b0f898ad216294690f51438b59bb1c5b24392eaa8916a1cdb",
+        "chunkOffset": 0,
+        "chunkSize": 0,
+        "uname": "admin",
+        "gname": "admin"
+      }
+    },
+    {
+      "blobId": "bucket_0.stgz",
+      "entry": {
+        "name": "lodash.has/LICENSE",
+        "type": "reg",
+        "size": 1951,
+        "linkName": "",
+        "mode": 420,
+        "uid": 500,
+        "gid": 505,
+        "userName": "",
+        "groupName": "",
+        "offset": 3072,
+        "devMajor": 0,
+        "devMinor": 0,
+        "xattrs": {},
+        "digest": "sha256:ffd8b33b354585f4ce119f19c53728281e48a97b074491eb6bf6d5c5ff305272",
+        "chunkOffset": 0,
+        "chunkSize": 0,
+        "uname": "admin",
+        "gname": "admin"
+      }
+    },
+    {
+      "blobId": "bucket_0.stgz",
+      "entry": {
+        "name": "lodash.has/index.js",
+        "type": "reg",
+        "size": 29560,
+        "linkName": "",
+        "mode": 420,
+        "uid": 500,
+        "gid": 505,
+        "userName": "",
+        "groupName": "",
+        "offset": 5632,
+        "devMajor": 0,
+        "devMinor": 0,
+        "xattrs": {},
+        "digest": "sha256:597d634568cf028bdb1489148cf58cbde814c391aa093204edd12143ebfc0a6f",
+        "chunkOffset": 0,
+        "chunkSize": 0,
+        "uname": "admin",
+        "gname": "admin"
+      }
+    },
+    {
+      "blobId": "bucket_0.stgz",
+      "entry": {
+        "name": "",
+        "type": "dir",
+        "size": 0,
+        "mode": 493,
+        "uid": 500,
+        "gid": 505,
+        "uname": "admin",
+        "gname": "admin",
+        "offset": 0,
+        "devMajor": 0,
+        "devMinor": 0,
+        "NumLink": 0,
+        "digest": ""
+      }
+    }
+  ]
+}

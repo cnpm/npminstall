@@ -1,0 +1,13 @@
+{
+  "name": "npm-mode",
+  "dependencies": {
+    "pedding": "*",
+    "koa": "*"
+  },
+  "scripts": {
+    "postinstall": "npm -v"
+  },
+  "tnpm": {
+    "mode": "npm"
+  }
+}

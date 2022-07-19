@@ -1,85 +1,57 @@
 {
-  "name": "npminstall",
-  "version": "6.5.0",
-  "description": "Make npm install fast and handy.",
-  "main": "lib/index.js",
-  "files": [
-    "lib",
-    "bin",
-    "node-gyp-bin"
-  ],
-  "bin": {
-    "npminstall": "bin/install.js",
-    "npmlink": "bin/link.js",
-    "npmuninstall": "bin/uninstall.js",
-    "npmupdate": "bin/update.js"
-  },
+  "name": "npminstall-monorepo",
+  "version": "1.0.0",
+  "description": "npminstall monorepo",
   "scripts": {
-    "contributor": "git-contributor",
-    "test": "npm run lint && egg-bin test -t 2000000",
-    "test-cov": "egg-bin cov -t 2000000",
-    "test-local": "npm_china=true local=true egg-bin test -t 2000000 --full-trace",
-    "lint": "eslint . --fix",
-    "ci": "npm run lint && npm run test-cov"
+    "init": "npm run init:lerna && npm run init:test",
+    "init:ci": "npm run init:lerna && npm run init:test && npm run build && npm run cp:binary",
+    "cp:binary": "npm run cp:linux:x64-binding && npm run cp:linux:x64-binary",
+    "cp:linux:x64-binding": "cp packages/binding/index.node packages/binding-linux-x64/index.node",
+    "cp:linux:x64-binary": "cp target/release/bootstrap packages/binding-linux-x64/nydusd-bootstrap",
+    "init:lerna": "lerna bootstrap --force-local --npm-client tnpm",
+    "init:test": "lerna run prepare-test",
+    "build": "npm run build:binary && npm run build:binding",
+    "build:binary": "cargo build --workspace --release",
+    "build:binding": "cd packages/binding && npm run build-release",
+    "autod": "autod -w --prefix '^' -e 'test/fixtures'",
+    "contributor": "ali-contributors",
+    "clean": "rm -rf mochawesome-reports coverage",
+    "lint": "eslint bin lib test/*.js",
+    "lint:fix": "eslint bin lib test/*.js --fix",
+    "tar:check": "node scripts/tar_checker.js",
+    "test": "npm run lint -- --fix && npm run test-local",
+    "test-local": "NODE_ENV=test mocha",
+    "test:rust": "cargo test --workspace --exclude tokio-tar",
+    "test:integration": "NODE_ENV=test mocha --config ./.mocharc-integration.yml",
+    "cov": "nyc npm run test",
+    "ci": "npm run init:ci && npm run cov",
+    "ci:integration": "npm run init:ci && npm run test:integration",
+    "ci:rust": "npm run init:ci && npm run test:rust",
+    "pack": "lerna run pack"
   },
-  "dependencies": {
-    "await-event": "^2.1.0",
-    "bin-links": "^2.3.0",
-    "binary-mirror-config": "^1.19.0",
-    "bytes": "^3.1.0",
-    "chalk": "^2.4.2",
-    "cmd-shim-hotfix": "^3.0.3",
-    "debug": "^4.1.1",
-    "destroy": "^1.0.4",
-    "detect-libc": "^2.0.1",
-    "fs-extra": "^7.0.1",
-    "minimatch": "^3.0.4",
-    "minimist": "^1.2.0",
-    "moment": "^2.24.0",
-    "ms": "^2.1.1",
-    "node-gyp": "^9.0.0",
-    "node-homedir": "^1.1.1",
-    "normalize-package-data": "^2.5.0",
-    "npm-normalize-package-bin": "^1.0.1",
-    "npm-package-arg": "^8.1.5",
-    "ora": "^4.0.5",
-    "p-map": "^2.1.0",
-    "pacote": "^13.0.0",
-    "runscript": "^1.3.0",
-    "semver": "^6.0.0",
-    "tar": "^4.4.8",
-    "urllib": "^3.0.3",
-    "utility": "^1.16.1"
-  },
+  "preferGlobal": true,
   "devDependencies": {
-    "coffee": "5",
-    "egg-bin": "5",
-    "eslint": "8",
-    "eslint-config-egg": "12",
-    "git-contributor": "1",
-    "mm": "3"
+    "egg-bin": "^5.1.1",
+    "lerna": "^5.1.6",
+    "ali-contributors": "2",
+    "alicov": "^2.10.0",
+    "autod": "^2.7.1",
+    "coffee": "^4.0.1",
+    "eslint": "^4.19.1",
+    "eslint-config-egg": "^7.0.0",
+    "fs-extra": "^8.1.0",
+    "mm": "^2.2.0",
+    "mocha": "^7.2.0",
+    "nock": "^13.0.9",
+    "nyc": "^15.1.0",
+    "pedding": "^1.0.0",
+    "power-assert": "^1.6.1",
+    "utility": "^1.16.1",
+    "intelli-espower-loader": "^1.0.1",
+    "test-exclude": "^6.0.0"
   },
-  "homepage": "https://github.com/cnpm/npminstall",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/cnpm/npminstall.git"
-  },
-  "bugs": {
-    "url": "https://github.com/cnpm/npminstall/issues"
-  },
-  "publishConfig": {
-    "tag": "latest"
-  },
-  "keywords": [
-    "npminstall",
-    "npm install",
-    "yarn",
-    "pnpm",
-    "fastest npm install"
-  ],
   "engines": {
-    "node": ">=14.0.0"
-  },
-  "author": "fengmk2 <fengmk2@gmail.com> (https://github.com/fengmk2)",
-  "license": "MIT"
+    "node": ">=14.19.3"
+  }
 }
+

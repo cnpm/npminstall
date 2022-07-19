@@ -1,0 +1,7 @@
+{
+  "name": "local-resolver",
+  "dependencies": {
+    "lodash.get": "latest",
+    "lodash.set": "latest"
+  }
+}

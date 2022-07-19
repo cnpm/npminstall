@@ -1,0 +1,17 @@
+{
+  "name": "npm-mode-with-lockfile",
+  "dependencies": {
+    "pedding": "*",
+    "koa": "*"
+  },
+  "scripts": {
+    "postinstall": "npm -v"
+  },
+  "tnpm": {
+    "mode": "npm",
+    "lockfile": "enable"
+  },
+  "engines": {
+    "install-alinode": "3"
+  }
+}

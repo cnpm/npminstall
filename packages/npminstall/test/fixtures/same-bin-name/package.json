@@ -1,0 +1,7 @@
+{
+  "name": "same-bin-name",
+  "version": "1.0.0",
+  "dependencies": {
+    "webpack-parallel-uglify-plugin": "^1.0.0"
+  }
+}

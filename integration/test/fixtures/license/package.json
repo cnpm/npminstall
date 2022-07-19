@@ -1,0 +1,7 @@
+{
+  "name": "fake-pkg",
+  "version": "1.0.0",
+  "dependencies": {
+    "osl": "^1.0.0"
+  }
+}

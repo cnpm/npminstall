@@ -1,0 +1,29 @@
+[package]
+name = "nydus-bootstrap"
+version = "0.1.0"
+authors = ["The Nydus Developers"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies]
+sha2 = "0.9.1"
+nix = "0.17"
+anyhow = "1.0.35"
+serde = { version = ">=1.0.27", features = ["serde_derive", "rc"] }
+serde_json = "1.0.51"
+serde_with = { version="1.6.0", features = [ "macros" ] }
+log = "0.4.8"
+flexi_logger = { version = "0.17"}
+clap = "2.33"
+lazy_static = "1.4.0"
+tar = {version = "0.4"}
+flate2 = { version = "1.0", features = ["miniz-sys"], default-features = false }
+rafs = { path = "../rafs" }
+nydus-utils = { path = "../utils" }
+xattr = "0.2.2"
+libc = "0.2"
+base64 = { version = ">=0.12.0" }
+simple_logger = "1.13.0"
+
+[dev-dependencies]
+env_logger = "0.8.2"

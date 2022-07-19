@@ -1,0 +1,9 @@
+{
+  "name": "npm-demo",
+  "dependencies": {
+    "colorful": "^2.1.0"
+  },
+  "tnpm": {
+    "mode": "npm"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "lodash.get": "4.4.2"
+  },
+  "tnpm": {
+    "fs": "native",
+    "mode": "npminstall"
+  }
+}

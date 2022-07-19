@@ -1,0 +1,14 @@
+{
+  "name": "fake-project",
+  "version": "1.0.0",
+  "dependencies": {},
+  "scripts": {
+    "preinstall": "echo preinstall >> 1",
+    "install": "echo install >> 1",
+    "postinstall": "echo postinstall >> 1",
+    "prepublish": "echo prepublish >> 1",
+    "preprepare": "echo preprepare >> 1",
+    "prepare": "echo prepare >> 1",
+    "postprepare": "echo postprepare >> 1"
+  }
+}

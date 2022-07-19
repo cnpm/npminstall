@@ -1,0 +1,277 @@
+{
+  "blobIds": [
+    "bucket_0.stgz"
+  ],
+  "entries": [
+    {
+      "blobId": "bucket_0.stgz",
+      "entry": {
+        "name": "lodash.get/package.json",
+        "type": "reg",
+        "size": 734,
+        "linkName": "",
+        "mode": 420,
+        "uid": 500,
+        "gid": 505,
+        "uname": "admin",
+        "gname": "admin",
+        "offset": 512,
+        "devMajor": 0,
+        "devMinor": 0,
+        "xattrs": {},
+        "digest": "sha256:8a30f2e98f80d83ece76ca1031f75df6db855bcf75143f9ecccfda7b507623c5",
+        "chunkOffset": 0,
+        "chunkSize": 0
+      }
+    },
+    {
+      "blobId": "bucket_0.stgz",
+      "entry": {
+        "name": "lodash.get/README.md",
+        "type": "reg",
+        "size": 432,
+        "linkName": "",
+        "mode": 420,
+        "uid": 500,
+        "gid": 505,
+        "uname": "admin",
+        "gname": "admin",
+        "offset": 2048,
+        "devMajor": 0,
+        "devMinor": 0,
+        "xattrs": {},
+        "digest": "sha256:1d65faa1c0d5a089d0efdb7051fe10ce1f22130370ae297b9f8b777e861a9a5f",
+        "chunkOffset": 0,
+        "chunkSize": 0
+      }
+    },
+    {
+      "blobId": "bucket_0.stgz",
+      "entry": {
+        "name": "lodash.get/LICENSE",
+        "type": "reg",
+        "size": 1951,
+        "linkName": "",
+        "mode": 420,
+        "uid": 500,
+        "gid": 505,
+        "uname": "admin",
+        "gname": "admin",
+        "offset": 3072,
+        "devMajor": 0,
+        "devMinor": 0,
+        "xattrs": {},
+        "digest": "sha256:ffd8b33b354585f4ce119f19c53728281e48a97b074491eb6bf6d5c5ff305272",
+        "chunkOffset": 0,
+        "chunkSize": 0
+      }
+    },
+    {
+      "blobId": "bucket_0.stgz",
+      "entry": {
+        "name": "lodash.get/index.js",
+        "type": "reg",
+        "size": 23398,
+        "linkName": "",
+        "mode": 420,
+        "uid": 500,
+        "gid": 505,
+        "uname": "admin",
+        "gname": "admin",
+        "offset": 5632,
+        "devMajor": 0,
+        "devMinor": 0,
+        "xattrs": {},
+        "digest": "sha256:7e6eda802e4079bf2345f03fd81430595fc80c4820e9983d7ac5a42377816648",
+        "chunkOffset": 0,
+        "chunkSize": 0
+      }
+    },
+    {
+      "blobId": "bucket_0.stgz",
+      "entry": {
+        "name": "lodash.foo/package.json",
+        "type": "reg",
+        "size": 734,
+        "linkName": "",
+        "mode": 420,
+        "uid": 500,
+        "gid": 505,
+        "uname": "admin",
+        "gname": "admin",
+        "offset": 512,
+        "devMajor": 0,
+        "devMinor": 0,
+        "xattrs": {},
+        "digest": "sha256:8a30f2e98f80d83ece76ca1031f75df6db855bcf75143f9ecccfda7b507623c5",
+        "chunkOffset": 0,
+        "chunkSize": 0
+      }
+    },
+    {
+      "blobId": "bucket_0.stgz",
+      "entry": {
+        "name": "lodash.foo/README.md",
+        "type": "reg",
+        "size": 432,
+        "linkName": "",
+        "mode": 420,
+        "uid": 500,
+        "gid": 505,
+        "uname": "admin",
+        "gname": "admin",
+        "offset": 2048,
+        "devMajor": 0,
+        "devMinor": 0,
+        "xattrs": {},
+        "digest": "sha256:1d65faa1c0d5a089d0efdb7051fe10ce1f22130370ae297b9f8b777e861a9a5f",
+        "chunkOffset": 0,
+        "chunkSize": 0
+      }
+    },
+    {
+      "blobId": "bucket_0.stgz",
+      "entry": {
+        "name": "lodash.foo/LICENSE",
+        "type": "reg",
+        "size": 1951,
+        "linkName": "",
+        "mode": 420,
+        "uid": 500,
+        "gid": 505,
+        "uname": "admin",
+        "gname": "admin",
+        "offset": 3072,
+        "devMajor": 0,
+        "devMinor": 0,
+        "xattrs": {},
+        "digest": "sha256:ffd8b33b354585f4ce119f19c53728281e48a97b074491eb6bf6d5c5ff305272",
+        "chunkOffset": 0,
+        "chunkSize": 0
+      }
+    },
+    {
+      "blobId": "bucket_0.stgz",
+      "entry": {
+        "name": "lodash.foo/index.js",
+        "type": "reg",
+        "size": 23398,
+        "linkName": "",
+        "mode": 420,
+        "uid": 500,
+        "gid": 505,
+        "uname": "admin",
+        "gname": "admin",
+        "offset": 5632,
+        "devMajor": 0,
+        "devMinor": 0,
+        "xattrs": {},
+        "digest": "sha256:7e6eda802e4079bf2345f03fd81430595fc80c4820e9983d7ac5a42377816648",
+        "chunkOffset": 0,
+        "chunkSize": 0
+      }
+    },
+    {
+      "blobId": "bucket_0.stgz",
+      "entry": {
+        "name": "lodash.get/node_modules/lodash.set/package.json",
+        "type": "reg",
+        "size": 734,
+        "linkName": "",
+        "mode": 420,
+        "uid": 500,
+        "gid": 505,
+        "uname": "admin",
+        "gname": "admin",
+        "offset": 512,
+        "devMajor": 0,
+        "devMinor": 0,
+        "xattrs": {},
+        "digest": "sha256:8a30f2e98f80d83ece76ca1031f75df6db855bcf75143f9ecccfda7b507623c5",
+        "chunkOffset": 0,
+        "chunkSize": 0
+      }
+    },
+    {
+      "blobId": "bucket_0.stgz",
+      "entry": {
+        "name": "lodash.get/node_modules/lodash.set/README.md",
+        "type": "reg",
+        "size": 432,
+        "linkName": "",
+        "mode": 420,
+        "uid": 500,
+        "gid": 505,
+        "uname": "admin",
+        "gname": "admin",
+        "offset": 2048,
+        "devMajor": 0,
+        "devMinor": 0,
+        "xattrs": {},
+        "digest": "sha256:1d65faa1c0d5a089d0efdb7051fe10ce1f22130370ae297b9f8b777e861a9a5f",
+        "chunkOffset": 0,
+        "chunkSize": 0
+      }
+    },
+    {
+      "blobId": "bucket_0.stgz",
+      "entry": {
+        "name": "lodash.get/node_modules/lodash.set/LICENSE",
+        "type": "reg",
+        "size": 1951,
+        "linkName": "",
+        "mode": 420,
+        "uid": 500,
+        "gid": 505,
+        "uname": "admin",
+        "gname": "admin",
+        "offset": 3072,
+        "devMajor": 0,
+        "devMinor": 0,
+        "xattrs": {},
+        "digest": "sha256:ffd8b33b354585f4ce119f19c53728281e48a97b074491eb6bf6d5c5ff305272",
+        "chunkOffset": 0,
+        "chunkSize": 0
+      }
+    },
+    {
+      "blobId": "bucket_0.stgz",
+      "entry": {
+        "name": "lodash.get/node_modules/lodash.set/index.js",
+        "type": "reg",
+        "size": 23398,
+        "linkName": "",
+        "mode": 420,
+        "uid": 500,
+        "gid": 505,
+        "uname": "admin",
+        "gname": "admin",
+        "offset": 5632,
+        "devMajor": 0,
+        "devMinor": 0,
+        "xattrs": {},
+        "digest": "sha256:7e6eda802e4079bf2345f03fd81430595fc80c4820e9983d7ac5a42377816648",
+        "chunkOffset": 0,
+        "chunkSize": 0
+      }
+    },
+    {
+      "blobId": "bucket_0.stgz",
+      "entry": {
+        "name": "",
+        "type": "dir",
+        "size": 0,
+        "mode": 493,
+        "uid": 500,
+        "gid": 505,
+        "uname": "admin",
+        "gname": "admin",
+        "offset": 0,
+        "devMajor": 0,
+        "devMinor": 0,
+        "NumLink": 0,
+        "digest": ""
+      }
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "force-link-latest",
+  "dependencies": {
+    "debug": "~2.2.0",
+    "toshihiko": "^1.0.0-alpha.10",
+    "urllib": "2.7.1"
+  }
+}

@@ -27,7 +27,15 @@ test/fixtures/css-loader-example2/webpack*.json
 !test/fixtures/warn-node-modules-exists/node_modules
 !test/fixtures/ignore-warn-node-modules-exists/node_modules
 test/fixtures/high-speed-store/tmp
+packages/binding*/index.node
+packages/binding*/nydusd-bootstrap
+packages/binding*/nydusd
+packages/downloader/test/fixtures/tar
 .nyc_output
 .npminstall_tarball
+.npmrc
+.tnpmrc
+.npm_updater.json
 
 .editorconfig
+target

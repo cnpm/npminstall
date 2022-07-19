@@ -1,0 +1,25 @@
+{
+  "name": "@cnpmcore/binding-linux-x64",
+  "version": "1.0.0",
+  "description": "downloader linux x64 binding",
+  "main": "index.node",
+  "files": [
+    "index.node",
+    "nydusd",
+    "nydusd-bootstrap"
+  ],
+  "engines": {
+    "node": ">=14.19.3"
+  },
+  "os": [
+    "linux"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "scripts": {
+    "pack": "npm pack",
+    "check:bin": "node check.js",
+    "prepublishOnly": "npm run check:bin"
+  }
+}

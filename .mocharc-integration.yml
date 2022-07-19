@@ -1,0 +1,12 @@
+timeout: 120000
+spec:
+  - integration/test/**/*.test.js
+ignore:
+  - integration/test/fixtures/**
+recursive: true
+extension:
+  - js
+require:
+  - intelli-espower-loader
+full-trace: true
+exit: true

@@ -1,0 +1,10 @@
+{
+  "name": "update-demo-npm",
+  "dependencies": {
+    "install": "^0.13.0",
+    "pedding": "*"
+  },
+  "tnpm": {
+    "mode": "npm"
+  }
+}

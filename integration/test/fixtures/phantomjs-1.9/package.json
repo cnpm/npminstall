@@ -1,0 +1,12 @@
+{
+  "name": "phantomjs-test",
+  "scripts": {
+    "postinstall": "node index.js"
+  },
+  "tnpm": {
+    "mode": "npminstall"
+  },
+  "dependencies": {
+    "phantomjs": "~1.9.20"
+  }
+}

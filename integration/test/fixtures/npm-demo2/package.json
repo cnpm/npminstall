@@ -1,0 +1,6 @@
+{
+  "name": "npm-demo2",
+  "dependencies": {
+    "colorful": "^2.1.0"
+  }
+}

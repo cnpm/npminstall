@@ -1,0 +1,30 @@
+  {
+    "lockfileVersion": 2,
+    "requires": true,
+    "packages": {
+      "": {
+        "dependencies": {
+          "@mockscope/ci": "4.37.1"
+        }
+      },
+      "node_modules/@mockscope/ci": {
+        "version": "4.37.1",
+        "engines": {
+          "node": ">=4.0.0"
+        },
+        "integrity": "sha512-yEBVnQ7l1mKaa33EZ/WYPBNZn3MLYjenE0XZGiVGyz2MLteQ5CUNgQqp9P9wgdz+170rpSh6IilCpYB3sh/gMg==",
+        "bin": {
+          "alicov-report": "bin/alicov-report.js"
+        },
+        "resolved": "https://registry.npmmirror.com/@mockscope/ci/download/@mockscope/ci-4.37.1.tgz"
+      }
+    },
+    "dependencies": {
+      "@mockscope/ci": {
+        "version": "4.37.1",
+        "resolved": "https://registry.npmmirror.com/@mockscope/ci/download/@mockscope/ci-4.37.1.tgz",
+        "integrity": "sha512-yEBVnQ7l1mKaa33EZ/WYPBNZn3MLYjenE0XZGiVGyz2MLteQ5CUNgQqp9P9wgdz+170rpSh6IilCpYB3sh/gMg=="
+      }
+    },
+    "name": "d9e41c8a-a9ea-41e0-a3f8-b302e5036272"
+  }

@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "lodash.has": "^4"
+  },
+  "tnpm": {
+    "mode": "npm"
+  }
+}

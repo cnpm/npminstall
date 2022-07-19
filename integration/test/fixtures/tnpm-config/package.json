@@ -1,0 +1,9 @@
+{
+  "name": "foo",
+  "dependencies": {
+    "pedding": "1.0.0"
+  },
+  "tnpm": {
+    "mode": "npminstall"
+  }
+}

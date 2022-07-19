@@ -1,0 +1,8 @@
+{
+  "name": "tmppackage",
+  "dependencies": {
+    "koa": "^2.13.4",
+    "npminstall": "^6.4.0",
+    "tnpm": "^9.1.6"
+  }
+}

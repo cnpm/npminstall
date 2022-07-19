@@ -1,0 +1,6 @@
+{
+  "name": "local-install-pkgs",
+  "dependencies": {
+    "koa": "^2.13.4"
+  }
+}
