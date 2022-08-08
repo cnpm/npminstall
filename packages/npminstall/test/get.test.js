@@ -24,7 +24,7 @@ describe('test/get.test.js', () => {
       },
     };
     try {
-      await get('https://cnpmjs.org', { dataType: 'json' }, { console: logger });
+      await get('https://npmmirror.com', { dataType: 'json' }, { console: logger });
       assert(false, 'should not run this');
     } catch (err) {
       assert(err.name === 'JSONResponseFormatError');

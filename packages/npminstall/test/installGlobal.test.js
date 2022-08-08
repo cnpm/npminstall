@@ -8,7 +8,7 @@ const helper = require('./helper');
 const { exists } = require('../lib/utils');
 
 describe('test/installGlobal.test.js', () => {
-  const registry = process.env.npm_registry || 'https://r.cnpmjs.org';
+  const registry = process.env.npm_registry || 'https://registry.npmmirror.com';
   const [ tmp, cleanup ] = helper.tmp();
 
   let binDir = path.join(tmp, 'bin');

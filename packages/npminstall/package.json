@@ -62,6 +62,7 @@
     "eslint": "8",
     "eslint-config-egg": "12",
     "git-contributor": "1",
+    "http-proxy": "^1.18.1",
     "mm": "3"
   },
   "homepage": "https://github.com/cnpm/npminstall",

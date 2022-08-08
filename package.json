@@ -3,12 +3,11 @@
   "version": "1.0.0",
   "description": "npminstall monorepo",
   "scripts": {
-    "init": "npm run init:lerna && npm run init:test",
-    "init:ci": "npm run init:lerna && npm run init:test && npm run build && npm run cp:binary",
+    "init": "npm run init:test",
+    "init:ci": "npm run init:test && npm run build && npm run cp:binary",
     "cp:binary": "npm run cp:linux:x64-binding && npm run cp:linux:x64-binary",
     "cp:linux:x64-binding": "cp packages/binding/index.node packages/binding-linux-x64/index.node",
     "cp:linux:x64-binary": "cp target/release/bootstrap packages/binding-linux-x64/nydusd-bootstrap",
-    "init:lerna": "lerna bootstrap --force-local --npm-client tnpm",
     "init:test": "lerna run prepare-test",
     "build": "npm run build:binary && npm run build:binding",
     "build:binary": "cargo build --workspace --release",
@@ -29,6 +28,16 @@
     "ci:rust": "npm run init:ci && npm run test:rust",
     "pack": "lerna run pack"
   },
+  "workspaces": [
+    "integration",
+    "packages/binding",
+    "packages/binding-darwin-arm64",
+    "packages/binding-darwin-x64",
+    "packages/binding-linux-arm64",
+    "packages/binding-linux-x64",
+    "packages/downloader",
+    "packages/npminstall"
+  ],
   "preferGlobal": true,
   "devDependencies": {
     "egg-bin": "^5.1.1",
@@ -51,7 +60,7 @@
     "test-exclude": "^6.0.0"
   },
   "engines": {
-    "node": ">=14.19.3"
+    "node": ">=14.20.0"
   }
 }
 

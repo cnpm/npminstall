@@ -454,7 +454,6 @@ exports.getTarballStream = async (url, options) => {
 async function getRemotePackage(name, registry, globalOptions) {
   const registries = [ registry ].concat([
     'https://registry.npmmirror.com',
-    'https://r.cnpmjs.org',
     'https://registry.npmjs.com',
   ]);
   let lastErr;
