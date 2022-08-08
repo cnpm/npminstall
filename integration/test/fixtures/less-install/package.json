@@ -1,0 +1,12 @@
+{
+  "name": "less-install",
+  "dependencies": {
+    "less": "2.5.3"
+  },
+  "scripts": {
+    "postinstall": "node index.js"
+  },
+  "engines": {
+    "install-node": "8"
+  }
+}

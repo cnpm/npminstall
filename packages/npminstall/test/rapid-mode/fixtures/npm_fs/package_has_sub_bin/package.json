@@ -1,0 +1,8 @@
+{
+  "name": "foo",
+  "version": "1.0.0",
+  "dependencies": {
+    "@mockscope/gemwuu-1": "1.0.2",
+    "@mockscope/tnpm-scripts-test": "1.0.2"
+  }
+}

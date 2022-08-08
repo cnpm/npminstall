@@ -1,0 +1,36 @@
+{
+  "name": "@cnpmcore/binding",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "napi": {
+    "name": "index"
+  },
+  "scripts": {
+    "build-release": "napi build --release",
+    "prepare-test": "npm run build-release",
+    "test:rs": "cargo test",
+    "test": "npm run prepare-test && egg-bin test",
+    "pack": "npm pack"
+  },
+  "author": "",
+  "dependencies": {
+    "@cnpmcore/binding-darwin-x64": "^1.0.0",
+    "@cnpmcore/binding-darwin-arm64": "^1.0.0",
+    "@cnpmcore/binding-linux-arm64": "^1.0.0",
+    "@cnpmcore/binding-linux-x64": "^1.0.0"
+  },
+  "optionalDependencies": {
+    "@cnpmcore/binding-darwin-x64": "^1.0.0",
+    "@cnpmcore/binding-darwin-arm64": "^1.0.0",
+    "@cnpmcore/binding-linux-arm64": "^1.0.0",
+    "@cnpmcore/binding-linux-x64": "^1.0.0"
+  },
+  "devDependencies": {
+    "@napi-rs/cli": "^2.4.2"
+  }
+}

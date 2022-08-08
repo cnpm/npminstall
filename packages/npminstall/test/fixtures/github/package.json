@@ -1,0 +1,7 @@
+{
+  "name": "remote-demo",
+  "dependencies": {
+    "pedding": "~1.0.0",
+    "taffydb": "https://registry.npmmirror.com/taffydb/-/taffydb-2.7.2.tgz"
+  }
+}

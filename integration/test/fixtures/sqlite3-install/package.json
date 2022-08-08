@@ -1,0 +1,9 @@
+{
+  "name": "sqlite3-install",
+  "dependencies": {
+    "sqlite3": "4"
+  },
+  "engines": {
+    "install-node": "8.0.0"
+  }
+}

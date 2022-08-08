@@ -1,0 +1,85 @@
+{
+  "name": "foo",
+  "lockfileVersion": 2,
+  "requires": true,
+  "packages": {
+    "": {
+      "name": "foo",
+      "optionalDependencies": {
+        "fsevents": "^1.0.0"
+      }
+    },
+    "node_modules/bindings": {
+      "version": "1.5.0",
+      "resolved": "https://registry.npmmirror.com/bindings/download/bindings-1.5.0.tgz",
+      "integrity": "sha1-EDU8npRTNLwFEabZCzj7x8nFBN8=",
+      "optional": true,
+      "dependencies": {
+        "file-uri-to-path": "1.0.0"
+      }
+    },
+    "node_modules/file-uri-to-path": {
+      "version": "1.0.0",
+      "resolved": "https://registry.npmmirror.com/file-uri-to-path/download/file-uri-to-path-1.0.0.tgz",
+      "integrity": "sha1-VTp7hEb/b2hDWcRF8eN6BdrMM90=",
+      "optional": true
+    },
+    "node_modules/fsevents": {
+      "version": "1.2.13",
+      "resolved": "https://registry.npmmirror.com/fsevents/download/fsevents-1.2.13.tgz",
+      "integrity": "sha1-8yXLBFVZJCi88Rs4M3DvcOO/zDg=",
+      "deprecated": "fsevents 1 will break on node v14+ and could be using insecure binaries. Upgrade to fsevents 2.",
+      "hasInstallScript": true,
+      "optional": true,
+      "os": [
+        "darwin"
+      ],
+      "dependencies": {
+        "bindings": "^1.5.0",
+        "nan": "^2.12.1"
+      },
+      "engines": {
+        "node": ">= 4.0"
+      }
+    },
+    "node_modules/nan": {
+      "version": "2.15.0",
+      "resolved": "https://registry.npmmirror.com/nan/download/nan-2.15.0.tgz",
+      "integrity": "sha1-PzSkc/8Y4VwbVia2KQO1rW5mX+4=",
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "bindings": {
+      "version": "1.5.0",
+      "resolved": "https://registry.npmmirror.com/bindings/download/bindings-1.5.0.tgz",
+      "integrity": "sha1-EDU8npRTNLwFEabZCzj7x8nFBN8=",
+      "optional": true,
+      "requires": {
+        "file-uri-to-path": "1.0.0"
+      }
+    },
+    "file-uri-to-path": {
+      "version": "1.0.0",
+      "resolved": "https://registry.npmmirror.com/file-uri-to-path/download/file-uri-to-path-1.0.0.tgz",
+      "integrity": "sha1-VTp7hEb/b2hDWcRF8eN6BdrMM90=",
+      "optional": true
+    },
+    "fsevents": {
+      "version": "1.2.13",
+      "resolved": "https://registry.npmmirror.com/fsevents/download/fsevents-1.2.13.tgz",
+      "integrity": "sha1-8yXLBFVZJCi88Rs4M3DvcOO/zDg=",
+      "optional": true,
+      "requires": {
+        "bindings": "^1.5.0",
+        "nan": "^2.12.1"
+      }
+    },
+    "nan": {
+      "version": "2.15.0",
+      "resolved": "https://registry.npmmirror.com/nan/download/nan-2.15.0.tgz",
+      "integrity": "sha1-PzSkc/8Y4VwbVia2KQO1rW5mX+4=",
+      "optional": true
+    }
+  }
+}

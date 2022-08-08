@@ -1,0 +1,6 @@
+{
+  "name": "lodash-1",
+  "dependencies": {
+    "lodash": "^1.0.0"
+  }
+}

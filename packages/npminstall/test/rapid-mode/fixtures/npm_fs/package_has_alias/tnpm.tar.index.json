@@ -1,0 +1,332 @@
+{
+  "blobIds": [
+    "bucket_0.stgz",
+    "bucket_1.stgz"
+  ],
+  "entries": [
+    {
+      "blobId": "bucket_0.stgz",
+      "entry": {
+        "name": "_lodash.has@4.5.2@lodash.has/package.json",
+        "type": "reg",
+        "size": 734,
+        "linkName": "",
+        "mode": 420,
+        "uid": 500,
+        "gid": 505,
+        "userName": "",
+        "groupName": "",
+        "offset": 512,
+        "devMajor": 0,
+        "devMinor": 0,
+        "xattrs": {},
+        "digest": "sha256:e369eee2a8801f507b24550adf66031e9b6c80032621e91c641d841dc8b89530",
+        "chunkOffset": 0,
+        "chunkSize": 0,
+        "uname": "admin",
+        "gname": "admin"
+      }
+    },
+    {
+      "blobId": "bucket_0.stgz",
+      "entry": {
+        "name": "_lodash.has@4.5.2@lodash.has/README.md",
+        "type": "reg",
+        "size": 432,
+        "linkName": "",
+        "mode": 420,
+        "uid": 500,
+        "gid": 505,
+        "userName": "",
+        "groupName": "",
+        "offset": 2048,
+        "devMajor": 0,
+        "devMinor": 0,
+        "xattrs": {},
+        "digest": "sha256:31e957e1420039782f4505ea08135e7d25ed982750fd084cf807cba898219db2",
+        "chunkOffset": 0,
+        "chunkSize": 0,
+        "uname": "admin",
+        "gname": "admin"
+      }
+    },
+    {
+      "blobId": "bucket_0.stgz",
+      "entry": {
+        "name": "_lodash.has@4.5.2@lodash.has/LICENSE",
+        "type": "reg",
+        "size": 1951,
+        "linkName": "",
+        "mode": 420,
+        "uid": 500,
+        "gid": 505,
+        "userName": "",
+        "groupName": "",
+        "offset": 3072,
+        "devMajor": 0,
+        "devMinor": 0,
+        "xattrs": {},
+        "digest": "sha256:ffd8b33b354585f4ce119f19c53728281e48a97b074491eb6bf6d5c5ff305272",
+        "chunkOffset": 0,
+        "chunkSize": 0,
+        "uname": "admin",
+        "gname": "admin"
+      }
+    },
+    {
+      "blobId": "bucket_0.stgz",
+      "entry": {
+        "name": "_lodash.has@4.5.2@lodash.has/index.js",
+        "type": "reg",
+        "size": 27253,
+        "linkName": "",
+        "mode": 420,
+        "uid": 500,
+        "gid": 505,
+        "userName": "",
+        "groupName": "",
+        "offset": 5632,
+        "devMajor": 0,
+        "devMinor": 0,
+        "xattrs": {},
+        "digest": "sha256:e4c9579430e9d265db043152e4f070d8f9705ad43ee4994b580276248bb8342d",
+        "chunkOffset": 0,
+        "chunkSize": 0,
+        "uname": "admin",
+        "gname": "admin"
+      }
+    },
+    {
+      "blobId": "bucket_1.stgz",
+      "entry": {
+        "name": "_@mockscope_tnpm-scripts-test@1.0.9@@mockscope/tnpm-scripts-test/a",
+        "type": "reg",
+        "size": 11,
+        "linkName": "",
+        "mode": 493,
+        "uid": 500,
+        "gid": 505,
+        "userName": "",
+        "groupName": "",
+        "offset": 512,
+        "devMajor": 0,
+        "devMinor": 0,
+        "xattrs": {},
+        "digest": "sha256:0282f76a4dc18a92bd8961e754874bc456191edfd08455f4cef50dba1cadaa50",
+        "chunkOffset": 0,
+        "chunkSize": 0,
+        "uname": "admin",
+        "gname": "admin"
+      }
+    },
+    {
+      "blobId": "bucket_1.stgz",
+      "entry": {
+        "name": "_@mockscope_tnpm-scripts-test@1.0.9@@mockscope/tnpm-scripts-test/node_modules/lodash.has/LICENSE",
+        "type": "reg",
+        "size": 1951,
+        "linkName": "",
+        "mode": 420,
+        "uid": 500,
+        "gid": 505,
+        "userName": "",
+        "groupName": "",
+        "offset": 1536,
+        "devMajor": 0,
+        "devMinor": 0,
+        "xattrs": {},
+        "digest": "sha256:ffd8b33b354585f4ce119f19c53728281e48a97b074491eb6bf6d5c5ff305272",
+        "chunkOffset": 0,
+        "chunkSize": 0,
+        "uname": "admin",
+        "gname": "admin"
+      }
+    },
+    {
+      "blobId": "bucket_1.stgz",
+      "entry": {
+        "name": "_@mockscope_tnpm-scripts-test@1.0.9@@mockscope/tnpm-scripts-test/node_modules/lodash.has/index.js",
+        "type": "reg",
+        "size": 27253,
+        "linkName": "",
+        "mode": 420,
+        "uid": 500,
+        "gid": 505,
+        "userName": "",
+        "groupName": "",
+        "offset": 4096,
+        "devMajor": 0,
+        "devMinor": 0,
+        "xattrs": {},
+        "digest": "sha256:e4c9579430e9d265db043152e4f070d8f9705ad43ee4994b580276248bb8342d",
+        "chunkOffset": 0,
+        "chunkSize": 0,
+        "uname": "admin",
+        "gname": "admin"
+      }
+    },
+    {
+      "blobId": "bucket_1.stgz",
+      "entry": {
+        "name": "_@mockscope_tnpm-scripts-test@1.0.9@@mockscope/tnpm-scripts-test/node_modules/lodash.has/package.json",
+        "type": "reg",
+        "size": 895,
+        "linkName": "",
+        "mode": 420,
+        "uid": 500,
+        "gid": 505,
+        "userName": "",
+        "groupName": "",
+        "offset": 32256,
+        "devMajor": 0,
+        "devMinor": 0,
+        "xattrs": {},
+        "digest": "sha256:26c7d7de67d12a9d73fb25d0b012cb19f30a1e607ed38ed234110f73b5351000",
+        "chunkOffset": 0,
+        "chunkSize": 0,
+        "uname": "admin",
+        "gname": "admin"
+      }
+    },
+    {
+      "blobId": "bucket_1.stgz",
+      "entry": {
+        "name": "_@mockscope_tnpm-scripts-test@1.0.9@@mockscope/tnpm-scripts-test/package.json",
+        "type": "reg",
+        "size": 470,
+        "linkName": "",
+        "mode": 420,
+        "uid": 500,
+        "gid": 505,
+        "userName": "",
+        "groupName": "",
+        "offset": 33792,
+        "devMajor": 0,
+        "devMinor": 0,
+        "xattrs": {},
+        "digest": "sha256:aaafe35657a49ad6278b021e39de1f9f99efa3cec54738276c029a0b610ca7e9",
+        "chunkOffset": 0,
+        "chunkSize": 0,
+        "uname": "admin",
+        "gname": "admin"
+      }
+    },
+    {
+      "blobId": "bucket_1.stgz",
+      "entry": {
+        "name": "_@mockscope_tnpm-scripts-test@1.0.9@@mockscope/tnpm-scripts-test/node_modules/lodash.has/README.md",
+        "type": "reg",
+        "size": 432,
+        "linkName": "",
+        "mode": 420,
+        "uid": 500,
+        "gid": 505,
+        "userName": "",
+        "groupName": "",
+        "offset": 34816,
+        "devMajor": 0,
+        "devMinor": 0,
+        "xattrs": {},
+        "digest": "sha256:31e957e1420039782f4505ea08135e7d25ed982750fd084cf807cba898219db2",
+        "chunkOffset": 0,
+        "chunkSize": 0,
+        "uname": "admin",
+        "gname": "admin"
+      }
+    },
+    {
+      "blobId": "bucket_0.stgz",
+      "entry": {
+        "name": "@mockscope/a",
+        "type": "symlink",
+        "size": 0,
+        "linkName": "../_lodash.has@4.5.2@lodash.has",
+        "mode": 511,
+        "uid": 500,
+        "gid": 505,
+        "uname": "admin",
+        "gname": "admin",
+        "offset": 0,
+        "devMajor": 0,
+        "devMinor": 0,
+        "NumLink": 0,
+        "digest": ""
+      }
+    },
+    {
+      "blobId": "bucket_0.stgz",
+      "entry": {
+        "name": "@mockscope/b",
+        "type": "symlink",
+        "size": 0,
+        "linkName": "../_@mockscope_tnpm-scripts-test@1.0.9@@mockscope/tnpm-scripts-test",
+        "mode": 511,
+        "uid": 500,
+        "gid": 505,
+        "uname": "admin",
+        "gname": "admin",
+        "offset": 0,
+        "devMajor": 0,
+        "devMinor": 0,
+        "NumLink": 0,
+        "digest": ""
+      }
+    },
+    {
+      "blobId": "bucket_0.stgz",
+      "entry": {
+        "name": "canvas",
+        "type": "symlink",
+        "size": 0,
+        "linkName": "_@mockscope_tnpm-scripts-test@1.0.9@@mockscope/tnpm-scripts-test",
+        "mode": 511,
+        "uid": 500,
+        "gid": 505,
+        "uname": "admin",
+        "gname": "admin",
+        "offset": 0,
+        "devMajor": 0,
+        "devMinor": 0,
+        "NumLink": 0,
+        "digest": ""
+      }
+    },
+    {
+      "blobId": "bucket_0.stgz",
+      "entry": {
+        "name": "l",
+        "type": "symlink",
+        "size": 0,
+        "linkName": "_lodash.has@4.5.2@lodash.has",
+        "mode": 511,
+        "uid": 500,
+        "gid": 505,
+        "uname": "admin",
+        "gname": "admin",
+        "offset": 0,
+        "devMajor": 0,
+        "devMinor": 0,
+        "NumLink": 0,
+        "digest": ""
+      }
+    },
+    {
+      "blobId": "bucket_0.stgz",
+      "entry": {
+        "name": "",
+        "type": "dir",
+        "size": 0,
+        "mode": 493,
+        "uid": 500,
+        "gid": 505,
+        "uname": "admin",
+        "gname": "admin",
+        "offset": 0,
+        "devMajor": 0,
+        "devMinor": 0,
+        "NumLink": 0,
+        "digest": ""
+      }
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "test-app",
+  "scripts": {
+    "postinstall": "node index.js"
+  },
+  "dependencies": {
+    "chair": "^1.5.54"
+  }
+}

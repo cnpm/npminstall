@@ -1,0 +1,40 @@
+{
+  "bucket_0.stgz": {
+    "version": 1,
+    "entries": [{
+      "name": "@mockscope_tnpm-scripts-test@1.0.5/a",
+      "type": "reg",
+      "size": 11,
+      "linkName": "",
+      "mode": 493,
+      "uid": 0,
+      "gid": 0,
+      "userName": "",
+      "groupName": "",
+      "offset": 512,
+      "devMajor": 0,
+      "devMinor": 0,
+      "xattrs": {},
+      "digest": "sha256:0282f76a4dc18a92bd8961e754874bc456191edfd08455f4cef50dba1cadaa50",
+      "chunkOffset": 0,
+      "chunkSize": 0
+    }, {
+      "name": "@mockscope_tnpm-scripts-test@1.0.5/package.json",
+      "type": "reg",
+      "size": 286,
+      "linkName": "",
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "userName": "",
+      "groupName": "",
+      "offset": 1536,
+      "devMajor": 0,
+      "devMinor": 0,
+      "xattrs": {},
+      "digest": "sha256:83ba280abeab0e8d41d1ef0a091e0070490ba7a67d65ddd218189fe205558d96",
+      "chunkOffset": 0,
+      "chunkSize": 0
+    }]
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "blobIds": [
+    "bucket_0.stgz"
+  ],
+  "entries": [
+    {
+      "blobId": "bucket_0.stgz",
+      "entry": {
+        "name": "lodash.chunk",
+        "type": "symlink",
+        "size": 0,
+        "linkName": "../../../node_modules/_lodash.chunk@4.2.0@lodash.chunk",
+        "mode": 511,
+        "uid": 500,
+        "gid": 505,
+        "uname": "admin",
+        "gname": "admin",
+        "offset": 0,
+        "devMajor": 0,
+        "devMinor": 0,
+        "NumLink": 0,
+        "digest": ""
+      }
+    },
+    {
+      "blobId": "bucket_0.stgz",
+      "entry": {
+        "name": "",
+        "type": "dir",
+        "size": 0,
+        "mode": 493,
+        "uid": 500,
+        "gid": 505,
+        "uname": "admin",
+        "gname": "admin",
+        "offset": 0,
+        "devMajor": 0,
+        "devMinor": 0,
+        "NumLink": 0,
+        "digest": ""
+      }
+    }
+  ]
+}

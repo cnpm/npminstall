@@ -1,0 +1,7 @@
+{
+  "name": "@mockscope/b",
+  "version": "1.0.0",
+  "dependencies": {
+    "lodash.chunk": "4.2.0"
+  }
+}

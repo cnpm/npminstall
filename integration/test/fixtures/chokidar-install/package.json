@@ -1,0 +1,9 @@
+{
+  "name": "chokidar-install",
+  "dependencies": {
+    "chokidar": "^1.0.0"
+  },
+  "scripts": {
+    "postinstall": "node index.js"
+  }
+}

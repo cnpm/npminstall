@@ -1,0 +1,16 @@
+{
+  "name": "peer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "antd-tools": "0.16.1",
+    "bisheng-plugin-antd": "0.12.1",
+    "react-countup": "^1.3.0"
+  }
+}

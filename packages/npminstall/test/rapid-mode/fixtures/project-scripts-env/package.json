@@ -1,0 +1,8 @@
+{
+  "name": "fake-project",
+  "version": "1.0.0",
+  "dependencies": {},
+  "scripts": {
+    "install": "node ./env.js "
+  }
+}

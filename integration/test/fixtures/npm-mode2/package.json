@@ -1,0 +1,10 @@
+{
+  "name": "npm-mode2",
+  "dependencies": {
+    "pedding": "*",
+    "koa": "*"
+  },
+  "scripts": {
+    "postinstall": "npm -v"
+  }
+}

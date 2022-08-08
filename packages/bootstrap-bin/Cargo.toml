@@ -1,0 +1,17 @@
+[package]
+name = "nydus-rs"
+version = "0.1.0"
+authors = ["The Nydus Developers"]
+edition = "2018"
+
+[dependencies]
+clap = "2.33"
+rafs = { path = "../rafs" }
+nydus-utils = { path = "../utils" }
+nydus-bootstrap = { path = "../bootstrap" }
+simple_logger = "1.13.0"
+
+[dev-dependencies]
+sendfd = "0.3.3"
+vmm-sys-util = ">=0.3.1"
+env_logger = "0.8.2"

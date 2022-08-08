@@ -1,0 +1,14 @@
+{
+  "name": "tnpm-install",
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "i": "^0.2.0",
+    "ii": "^0.1.0",
+    "install": "^0.8.1",
+    "pedding": "^1.0.0",
+    "tnpm": "^8.3.17"
+  },
+  "scripts": {
+    "postinstall": "node index.js"
+  }
+}

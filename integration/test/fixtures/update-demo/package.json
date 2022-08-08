@@ -1,0 +1,9 @@
+{
+  "name": "update-demo",
+  "dependencies": {
+    "install": "^0.13.0",
+    "is-my-json-valid": "^2.17.1",
+    "pedding": "^1.1.0",
+    "update": "^0.7.4"
+  }
+}

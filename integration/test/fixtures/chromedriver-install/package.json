@@ -1,0 +1,6 @@
+{
+  "name": "chromedriver-install",
+  "dependencies": {
+    "chromedriver": "*"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "npminstall-integration",
+  "private": true,
+  "description": "npminstall integration test",
+  "devDependencies": {
+    "mz-modules": "^2.1.0",
+    "runscript": "^1.5.1",
+    "npminstall": "^6"
+  },
+  "dependencies": {
+    "coffee": "^5.4.0"
+  }
+}

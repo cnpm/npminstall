@@ -1,0 +1,9 @@
+{
+  "name": "fsevents-install",
+  "dependencies": {
+    "fsevents": "1"
+  },
+  "scripts": {
+    "postinstall": "node index.js"
+  }
+}

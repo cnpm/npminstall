@@ -1,7 +1,0 @@
-{
-  "name": "remote-demo",
-  "dependencies": {
-    "pedding": "~1.0.0",
-    "taffydb": "https://r.cnpmjs.org/taffydb/-/taffydb-2.7.2.tgz"
-  }
-}
