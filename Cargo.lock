@@ -603,7 +603,7 @@ dependencies = [
  "libc",
  "log",
  "neon",
- "nix 0.23.0",
+ "nix",
  "nydus-bootstrap",
  "rand",
  "reqwest 0.11.6",
@@ -1564,19 +1564,6 @@ dependencies = [
 
 [[package]]
 name = "nix"
-version = "0.17.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "50e4785f2c3b7589a0d0c1dd60285e1188adac4006e8abd6dd578e1567027363"
-dependencies = [
- "bitflags",
- "cc",
- "cfg-if 0.1.10",
- "libc",
- "void",
-]
-
-[[package]]
-name = "nix"
 version = "0.23.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f305c2c2e4c39a82f7bf0bf65fb557f9070ce06781d4f2454295cc34b1c43188"
@@ -1667,7 +1654,7 @@ dependencies = [
  "lazy_static",
  "libc",
  "log",
- "nix 0.17.0",
+ "nix",
  "nydus-utils",
  "rafs",
  "serde",
@@ -1703,7 +1690,7 @@ dependencies = [
  "flexi_logger",
  "libc",
  "log",
- "nix 0.17.0",
+ "nix",
  "num-traits",
  "serde",
  "serde_json",
@@ -1921,7 +1908,7 @@ dependencies = [
  "libc",
  "log",
  "lz4-sys",
- "nix 0.17.0",
+ "nix",
  "nydus-utils",
  "reqwest 0.10.10",
  "serde",
@@ -2834,12 +2821,6 @@ dependencies = [
  "bitflags",
  "libc",
 ]
-
-[[package]]
-name = "void"
-version = "1.0.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6a02e4885ed3bc0f2de90ea6dd45ebcbb66dacffe03547fadbb0eeae2770887d"
 
 [[package]]
 name = "waker-fn"
