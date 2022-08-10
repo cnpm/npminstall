@@ -36,6 +36,6 @@ async-trait = "0.1.52"
 log = "0.4.16"
 
 [dependencies.neon]
-version = "0.9"
+version = "0.10"
 default-features = false
 features = ["napi-5", "channel-api"]
