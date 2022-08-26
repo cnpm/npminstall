@@ -30,10 +30,13 @@ module.exports = async (pkg, options) => {
 async function localFolder(filepath, pkg, options) {
   debug(`install ${pkg.name}@${pkg.rawSpec} from local folder ${filepath}`);
   try {
+    // everytime copy to a different directory to avoid parallel install
+    const tmpDir = path.join(options.storeDir, '.tmp', randomUUID());
+    await utils.mkdirp(tmpDir);
     // use npm pack to ensure npmignore/gitignore/package.files work fine
-    const res = await utils.exec('npm pack', { cwd: filepath });
+    const res = await utils.exec(`npm pack --pack-destination ${tmpDir}`, { cwd: filepath });
     if (res && res.stdout) {
-      const tarball = path.join(filepath, res.stdout.trim());
+      const tarball = path.join(tmpDir, res.stdout.trim());
       try {
         return await localTarball(tarball, pkg, options);
       } finally {
