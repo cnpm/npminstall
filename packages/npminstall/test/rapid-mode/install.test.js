@@ -3,7 +3,6 @@
 
 const { forceFallbackInstall, install } = require('../../lib/rapid-mode/install');
 const path = require('path');
-const nock = require('nock');
 const assert = require('assert');
 const mm = require('mm');
 const { rimraf, mkdirp } = require('../../lib/utils');
@@ -25,7 +24,7 @@ describe('test/rapid-mode/install.test.js', () => {
 
   afterEach(() => mm.restore);
 
-  it('should save existing package-lock.json to package-lock.json.bak', async () => {
+  it.skip('should save existing package-lock.json to package-lock.json.bak', async () => {
     const fixtures = path.join(__dirname, './fixtures/force_fallback_install_bak');
     await forceFallbackInstall({
       pkg: {

@@ -23,7 +23,7 @@
     "ci": "npm run lint && npm run test-cov"
   },
   "dependencies": {
-    "@cnpmcore/binding": "^1.0.0",
+    "@cnpmjs/binding": "^1.0.0",
     "@npmcli/arborist": "^4.3.0",
     "@npmcli/map-workspaces": "^2.0.3",
     "agentkeepalive": "^4.0.2",

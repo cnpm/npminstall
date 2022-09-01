@@ -47,5 +47,5 @@ describe('test/concurrency-install.test.js', () => {
     ]);
     assert(await exists(path.join(root1, 'node_modules/browserify')));
     assert(await exists(path.join(root2, 'node_modules/browserify')));
-  });
+  }).timeout(300000);
 });

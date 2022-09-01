@@ -26,7 +26,7 @@ class DepResolver {
   }
 
   async resolve() {
-   if (this.ctx.depsTreePath) {
+    if (this.ctx.depsTreePath) {
       try {
         const resolver = new LocalCacheResolver(this.ctx, this.options);
         return await resolver.resolve();

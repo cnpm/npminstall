@@ -8,9 +8,9 @@ const platform = process.platform;
 const arch = process.arch;
 let rsBindingPath;
 try {
-  rsBindingPath = path.dirname(require.resolve(`@cnpmcore/binding-${platform}-${arch}`, {
+  rsBindingPath = path.dirname(require.resolve(`@cnpmjs/binding-${platform}-${arch}`, {
     paths: [
-      require.resolve('@cnpmcore/binding'),
+      require.resolve('@cnpmjs/binding'),
     ],
   }));
 } catch (_) {

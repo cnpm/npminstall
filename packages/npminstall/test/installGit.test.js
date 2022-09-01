@@ -149,7 +149,7 @@ describe('test/installGit.test.js', () => {
           assert(require(path.join(tmp, 'node_modules/error/package.json')).name === 'nunjucks');
           done(err);
         });
-    });
+    }).timeout(300000);
 
     it('should install success', done => {
       coffee.fork(helper.npminstall, [

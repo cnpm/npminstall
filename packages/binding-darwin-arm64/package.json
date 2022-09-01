@@ -1,5 +1,5 @@
 {
-  "name": "@cnpmcore/binding-darwin-arm64",
+  "name": "@cnpmjs/binding-darwin-arm64",
   "version": "1.0.0",
   "description": "downloader darwin arm64 binding",
   "main": "index.node",

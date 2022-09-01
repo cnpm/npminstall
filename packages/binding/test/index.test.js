@@ -2,32 +2,31 @@
 
 const assert = require('assert');
 const path = require('path');
-const util = require('util');
 const tnpm = require('..');
 const { download, Downloader } = tnpm;
 
 describe('test/index.test.js', () => {
   const tasks = [
-    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/a-sync-waterfall-1.0.1.tgz', name: 'a-sync-waterfall', version: '1.0.1' },
-    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/abbrev-1.1.1.tgz', name: 'abbrev', version: '1.1.1' },
-    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/accepts-1.3.7.tgz', name: 'accepts', version: '1.3.7' },
-    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/acorn-5.7.4.tgz', name: 'acorn', version: '5.7.4' },
-    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/acorn-es7-plugin-1.1.7.tgz', name: 'acorn-es7-plugin', version: '1.1.7' },
-    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/address-0.0.3.tgz', name: 'address', version: '0.0.3' },
-    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/address-1.1.2.tgz', name: 'address', version: '1.1.2' },
-    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/agent-base-6.0.2.tgz', name: 'agent-base', version: '6.0.2' },
-    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/agentkeepalive-3.5.2.tgz', name: 'agentkeepalive', version: '3.5.2' },
-    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/agentkeepalive-4.1.3.tgz', name: 'agentkeepalive', version: '4.1.3' },
-    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/agentx-1.10.7.tgz', name: 'agentx', version: '1.10.7' },
-    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/aggregate-error-3.1.0.tgz', name: 'aggregate-error', version: '3.1.0' },
-    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/ajv-6.12.6.tgz', name: 'ajv', version: '6.12.6' },
-    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/algorithmjs-1.0.0.tgz', name: 'algorithmjs', version: '1.0.0' },
-    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/ali-mc-1.3.0.tgz', name: 'ali-mc', version: '1.3.0' },
-    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/ali-oss-4.16.0.tgz', name: 'ali-oss', version: '4.16.0' },
-    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/ali-oss-6.12.0.tgz', name: 'ali-oss', version: '6.12.0' },
-    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/ali-rds-3.4.0.tgz', name: 'ali-rds', version: '3.4.0' },
-    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/ansi-escapes-3.2.0.tgz', name: 'ansi-escapes', version: '3.2.0' },
-    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/ansi-regex-2.1.1.tgz', name: 'ansi-regex', version: '2.1.1' },
+    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/antd-4.21.6.tgz', name: 'antd', version: '4.21.6' },
+    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/egg-2.36.0.tgz', name: 'egg-2.36.0', version: '2.36.0' },
+    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/umi-4.0.7.tgz', name: 'umi', version: '4.0.7' },
+    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/@ant-design/colors-6.0.0.tgz', name: '@ant-design/colors', version: '6.0.0' },
+    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/@ant-design/icons-4.7.0.tgz', name: '@ant-design/icons', version: '4.7.0' },
+    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/@ant-design/react-slick-0.29.2.tgz', name: '@ant-design/react-slick', version: '0.29.2' },
+    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/@babel/runtime-7.18.6.tgz', name: '@babel/runtime', version: '7.18.6' },
+    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/@ctrl/tinycolor-3.4.1.tgz', name: '@ctrl/tinycolor', version: '3.4.1' },
+    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/classnames-2.3.1.tgz', name: 'classnames', version: '2.3.1' },
+    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/copy-to-clipboard-3.3.1.tgz', name: 'copy-to-clipboard', version: '3.3.1' },
+    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/lodash-4.17.21.tgz', name: 'lodash', version: '14.17.21' },
+    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/memoize-one-6.0.0.tgz', name: 'memoize-one', version: '6.0.0' },
+    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/moment-2.29.4.tgz', name: 'moment', version: '2.29.4' },
+    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/rc-cascader-3.6.1.tgz', name: 'rc-cascader', version: '3.6.1' },
+    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/rc-checkbox-2.3.2.tgz', name: 'rc-checkbox', version: '2.3.2' },
+    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/rc-collapse-3.3.1.tgz', name: 'rc-collapse', version: '3.3.1' },
+    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/rc-dialog-8.9.0.tgz', name: 'rc-dialog', version: '8.9.0' },
+    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/rc-drawer-4.4.3.tgz', name: 'rc-drawer', version: '4.4.3' },
+    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/rc-dropdown-4.0.1.tgz', name: 'rc-dropdown', version: '4.0.1' },
+    { sha: 'mock_sha', url: 'http://127.0.0.1:8888/rc-field-form-1.26.7.tgz', name: 'rc-field-form', version: '1.26.7' },
   ];
 
   it('should work', async () => {
@@ -50,7 +49,7 @@ describe('test/index.test.js', () => {
 
   it('should work', async () => {
     const tasks = [
-      { sha: 'sha1-LRd/ZS+jHpObRDjVNBSZ36OCXpk=', url: 'http://127.0.0.1:8888/ansi-regex-2.1.1.tgz', name: 'lodash.get', version: '4.4.2' },
+      { sha: 'sha512-6sizu/2CT0ofxl0nEvWUg5x2z7UOXZV+OqNcnQvrp+nGYI3ySAyzu8rxPvWIoA7NIa3TYnbrFayGy2gAqDGpuA==', url: 'http://127.0.0.1:8888/antd-4.21.6.tgz', name: 'antd', version: '4.21.6' },
     ];
     const entries = [];
     const opts = {
