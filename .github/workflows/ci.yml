@@ -47,9 +47,9 @@ jobs:
         with:
           vs-version: ${{ matrix.vs-version }}
       - name: Install dependencies
-        run: npm i
+        run: npm i --force
       - name: Run CI
-        run: npm run ci
+        run: npm run ci && npm run ci:integration
         env:
           NODE_OPTIONS: --max_old_space_size=6144
 

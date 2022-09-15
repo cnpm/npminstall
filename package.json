@@ -13,7 +13,6 @@
     "build:binary": "cargo build --workspace --release",
     "build:binding": "cd packages/binding && npm run build-release",
     "autod": "autod -w --prefix '^' -e 'test/fixtures'",
-    "contributor": "ali-contributors",
     "clean": "rm -rf mochawesome-reports coverage",
     "lint": "eslint bin lib test/*.js",
     "lint:fix": "eslint bin lib test/*.js --fix",
@@ -42,8 +41,6 @@
   "devDependencies": {
     "egg-bin": "^5.1.1",
     "lerna": "^5.1.6",
-    "ali-contributors": "2",
-    "alicov": "^2.10.0",
     "autod": "^2.7.1",
     "coffee": "^4.0.1",
     "eslint": "^4.19.1",
