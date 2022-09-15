@@ -67,6 +67,7 @@ module.exports = async (options, context) => {
       root: targetDir,
       // don't install devDeps
       production: true,
+      pkg,
     });
 
     await installLocal(pkgOptions, context);

@@ -1,0 +1,22 @@
+{
+  "name": "@mockscope/tnpm-scripts-test",
+  "version": "1.0.6",
+  "scripts": {
+    "preinstall": "echo preinstall",
+    "install": "echo install",
+    "postinstall": "echo postinstall"
+  },
+  "bin": "./a",
+  "dependencies": {
+    "lodash.has": "4.5.2"
+  },
+  "bundledDependencies": [
+    "lodash.has"
+  ],
+  "engines": {
+    "install-alinode": "4.10.0"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmmirror.com"
+  }
+}

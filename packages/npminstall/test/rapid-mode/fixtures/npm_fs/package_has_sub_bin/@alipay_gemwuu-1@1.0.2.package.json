@@ -1,0 +1,10 @@
+{
+  "name": "@mockscope/gemwuu-1",
+  "version": "1.0.2",
+  "dependencies": {
+    "uuid": "7.0.3"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmmirror.com"
+  }
+}

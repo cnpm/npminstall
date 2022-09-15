@@ -1,0 +1,16 @@
+{
+  "name": "@mockscope/tnpm-scripts-test",
+  "version": "1.0.4",
+  "scripts": {
+    "preinstall": "echo preinstall",
+    "install": "echo install",
+    "postinstall": "echo postinstall"
+  },
+  "dependencies": {
+    "uuid": "8.3.2"
+  },
+  "bin": "./a",
+  "publishConfig": {
+    "registry": "https://registry.npmmirror.com"
+  }
+}
