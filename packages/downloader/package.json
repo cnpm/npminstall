@@ -4,7 +4,7 @@
   "scripts": {
     "prepare-test:tar": "node test/download.js",
     "prepare-test:nginx": "sh test/nginx.sh",
-    "prepare-test:echo": "ps -ef | grep nginx && curl -I http://127.0.0.1:8888/egg-2.36.0.tg",
+    "prepare-test:echo": "ps -ef | grep nginx && curl -I http://127.0.0.1:8888/egg-2.36.0.tgz",
     "prepare-test": "npm run prepare-test:tar && npm run prepare-test:nginx && npm run prepare-test:echo"
   },
   "devDependencies": {

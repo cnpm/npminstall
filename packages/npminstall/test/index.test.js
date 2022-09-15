@@ -147,7 +147,7 @@ describe('test/index.test.js', () => {
       assert.equal(peddingPkg._resolved, 'https://registry.npmjs.org/pedding/-/pedding-1.0.0.tgz');
 
       const bytesPkg = await readJSON(path.join(root, 'node_modules', 'bytes', 'package.json'));
-      assert.equal(bytesPkg._from, 'bytes@https://github.com/visionmedia/bytes.js.git');
+      assert.equal(bytesPkg._from, 'bytes@git+https://github.com/visionmedia/bytes.js.git');
       assert(/git\+ssh\:\/\/git@github.com\/visionmedia\/bytes\.js\.git#\w+/.test(bytesPkg._resolved));
     });
   });

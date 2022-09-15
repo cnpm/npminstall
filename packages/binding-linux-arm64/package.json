@@ -1,5 +1,5 @@
 {
-  "name": "@cnpmcore/binding-linux-arm64",
+  "name": "@cnpmjs/binding-linux-arm64",
   "version": "1.0.0",
   "description": "downloader linux arm64 binding",
   "main": "index.node",

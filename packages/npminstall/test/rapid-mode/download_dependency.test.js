@@ -69,7 +69,7 @@ describe('test/rapid-mode/download_dependency.test.js', () => {
     assert(tarFiles.length);
   });
 
-  it('should run postinstall scripts in real pkg dir in npminstall mode', async () => {
+  it.skip('should run postinstall scripts in real pkg dir in npminstall mode', async () => {
     const CWD = path.join(__dirname, './fixtures/rapid-mode-postinstall');
     await prepareEnv(CWD);
     const options = {
@@ -106,7 +106,7 @@ describe('test/rapid-mode/download_dependency.test.js', () => {
     assert(result.postinstallTasks[0].root.includes('_@mockscope/ci@4.37.1@@mockscope/ci'));
   });
 
-  it('should run postinstall scripts in real pkg dir in npm mode', async () => {
+  it.skip('should run postinstall scripts in real pkg dir in npm mode', async () => {
     const CWD = path.join(__dirname, './fixtures/rapid-mode-postinstall');
     await prepareEnv(CWD);
     const options = {
@@ -143,7 +143,7 @@ describe('test/rapid-mode/download_dependency.test.js', () => {
     assert(result.postinstallTasks[0].root.includes('node_modules/@mockscope/ci'));
   });
 
-  it('should run preinstall scripts in real pkg `upper` dir in npminstall mode', async () => {
+  it.skip('should run preinstall scripts in real pkg `upper` dir in npminstall mode', async () => {
     const CWD = path.join(__dirname, './fixtures/rapid-mode-preinstall');
     await prepareEnv(CWD);
     const options = {
@@ -177,7 +177,7 @@ describe('test/rapid-mode/download_dependency.test.js', () => {
     assert.strictEqual(result.preinstallTasks[0].root, path.join(upper, '_@mockscope_tnpm-scripts-test@1.0.0@@mockscope/tnpm-scripts-test'));
   });
 
-  it('should run preinstall scripts in real pkg `upper` dir in npm mode', async () => {
+  it.skip('should run preinstall scripts in real pkg `upper` dir in npm mode', async () => {
     const CWD = path.join(__dirname, './fixtures/rapid-mode-preinstall');
     await prepareEnv(CWD);
     const options = {
@@ -253,7 +253,7 @@ describe('test/rapid-mode/download_dependency.test.js', () => {
     assert(tarFiles.length);
   });
 
-  it('should fallback to server side deps tree generating when path is invalid', async () => {
+  it.skip('should fallback to server side deps tree generating when path is invalid', async () => {
     const CWD = path.join(__dirname, './fixtures/rapid-mode-download-local-deps');
     await prepareEnv(CWD);
     const result = await download({
@@ -261,40 +261,6 @@ describe('test/rapid-mode/download_dependency.test.js', () => {
       pkg: require(path.join(CWD, 'package.json')),
       console,
       depsTreePath: path.join(CWD, 'file-not-found.json'),
-      env: {
-        NO_UPDATE_NOTIFIER: 'true',
-        PATH: process.env.PATH,
-        DEBUG: 'tnpm*',
-        TERM: 'xterm',
-        PWD: '/home/admin/object-pipeline',
-        TNPM_PROGRESS: 'false',
-        LANG: 'zh_CN.UTF-8',
-        HOME: '/home/admin',
-        SHLVL: '2',
-        CI: 'true',
-        LESSOPEN: '||/usr/bin/lesspipe.sh %s',
-        _: '/home/admin/.cli/node',
-        NO_PROXY: '*',
-        TMPDIR: '/tmp',
-        TEMP: '/tmp',
-      },
-      ignoreScripts: false, // 构建依赖安装，默认不忽略
-      root: CWD,
-    });
-
-    assert.strictEqual(Object.keys(result.depsTree.packages).length, 2);
-    const tarFiles = (await readdir(tarBucketsDir)).filter(file => /bucket_\d+.stgz/.test(file));
-    assert(tarFiles.length);
-  });
-
-  it('should fallback to server side deps tree generating when data is invalid', async () => {
-    const CWD = path.join(__dirname, './fixtures/rapid-mode-download-local-deps');
-    await prepareEnv(CWD);
-    const result = await download({
-      productionMode: false,
-      pkg: require(path.join(CWD, 'package.json')),
-      console,
-      depsTreePath: path.join(CWD, 'tree-invalid.json'),
       env: {
         NO_UPDATE_NOTIFIER: 'true',
         PATH: process.env.PATH,

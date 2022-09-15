@@ -115,7 +115,7 @@ module.exports = async (options, context = new Context()) => {
 exports.runPostInstallTasks = runPostInstallTasks;
 
 async function _install(options, context) {
-  const rootPkg = options.pkg;
+  const rootPkg = await utils.readPackageJSON(options.root);
   const displayName = `${rootPkg.name}@${rootPkg.version}`;
   let pkgs = options.pkgs;
   const rootPkgDependencies = dependencies(rootPkg, options, context.nested);

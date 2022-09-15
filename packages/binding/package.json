@@ -1,5 +1,5 @@
 {
-  "name": "@cnpmcore/binding",
+  "name": "@cnpmjs/binding",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -19,16 +19,16 @@
   },
   "author": "",
   "dependencies": {
-    "@cnpmcore/binding-darwin-x64": "^1.0.0",
-    "@cnpmcore/binding-darwin-arm64": "^1.0.0",
-    "@cnpmcore/binding-linux-arm64": "^1.0.0",
-    "@cnpmcore/binding-linux-x64": "^1.0.0"
+    "@cnpmjs/binding-darwin-x64": "^1.0.0",
+    "@cnpmjs/binding-darwin-arm64": "^1.0.0",
+    "@cnpmjs/binding-linux-arm64": "^1.0.0",
+    "@cnpmjs/binding-linux-x64": "^1.0.0"
   },
   "optionalDependencies": {
-    "@cnpmcore/binding-darwin-x64": "^1.0.0",
-    "@cnpmcore/binding-darwin-arm64": "^1.0.0",
-    "@cnpmcore/binding-linux-arm64": "^1.0.0",
-    "@cnpmcore/binding-linux-x64": "^1.0.0"
+    "@cnpmjs/binding-darwin-x64": "^1.0.0",
+    "@cnpmjs/binding-darwin-arm64": "^1.0.0",
+    "@cnpmjs/binding-linux-arm64": "^1.0.0",
+    "@cnpmjs/binding-linux-x64": "^1.0.0"
   },
   "devDependencies": {
     "@napi-rs/cli": "^2.4.2"

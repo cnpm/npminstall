@@ -40,7 +40,7 @@ class Downloader {
   }
 
   createRapidDownloader() {
-    const { Downloader } = require('@cnpmcore/binding');
+    const { Downloader } = require('@cnpmjs/binding');
     return new Downloader({
       bucketCount: this.bucketCount,
       httpConcurrentCount: this.httpConcurrentCount,

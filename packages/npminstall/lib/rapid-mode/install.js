@@ -22,6 +22,7 @@ const {
   getEnv,
 } = require('./util');
 const util = require('./util');
+const utils = require('../utils');
 const nydusd = require('./nydusd');
 
 // 有依赖树（package-lock.json）走 npm i 安装
@@ -47,6 +48,8 @@ exports.install = async options => {
   if (nydusMode === NYDUS_TYPE.NONE) {
     await shouldFuseSupport();
   }
+
+  options.pkg = await utils.readPackageJSON(options.root);
 
   const allPkgs = await util.getAllPkgPaths(options.root, options.pkg);
   await Promise.all(allPkgs.map(pkgPath => async () => {

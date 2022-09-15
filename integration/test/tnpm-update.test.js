@@ -34,8 +34,8 @@ describe('test/tnpm-update.test.js', () => {
       cwd: root,
     })
       .debug()
-      .expect('stdout', /\[npminstall\] removing /)
-      .expect('stdout', /\[npminstall\] reinstall on /)
+      .expect('stdout', /\[npmupdate\] removing /)
+      .expect('stdout', /\[npmupdate\] reinstall on /)
       .expect('code', 0)
       .end();
   });
@@ -90,7 +90,7 @@ describe('test/tnpm-update.test.js', () => {
       cwd: root,
     })
       .debug()
-      .expect('stdout', /\[npminstall\] reinstall pedding on /)
+      .expect('stdout', /\[npmupdate\] reinstall on /)
       .expect('code', 0)
       .end();
   });

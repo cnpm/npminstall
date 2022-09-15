@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "phantomjs-prebuilt": "^2.1.16"
+  }
+}

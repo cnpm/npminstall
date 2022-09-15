@@ -63,7 +63,7 @@ async function download(options) {
   }
 
   const scripts = new Scripts(options);
-  for (const [ name, { version, resolved, optional, link }] of Object.entries(depsTree.packages)) {
+  for (const [ name, { version, resolved, dev, optional, link }] of Object.entries(depsTree.packages)) {
     if (!name.startsWith('node_modules') || link === true) {
       continue;
     }
@@ -72,7 +72,7 @@ async function download(options) {
     const pkg = blobManger.getPackage(pkgName, version);
 
     if (!pkg) {
-      if (!optional) {
+      if (!optional || (options.productionMode && !dev)) {
         const pkgId = Util.generatePackageId(pkgName, version);
         throw new Error(`not found package json for ${pkgId}`);
       }

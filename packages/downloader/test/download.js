@@ -52,7 +52,7 @@ async function downloadDependencies(pkg) {
       await urllib.request(pkg.resolved, {
         followRedirect: true,
         writeStream,
-        timeout: [ 30 * 1000, 30 * 1000 ],
+        timeout: [ 300 * 1000, 300 * 1000 ],
       });
       return;
     } catch (e) {

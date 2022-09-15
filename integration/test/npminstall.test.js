@@ -347,27 +347,6 @@ describe('test/npminstall.test.js', () => {
     });
   });
 
-  describe('deps tree', () => {
-
-    const cwd = path.join(fixtures, 'generate_deps_tree');
-
-    it('should generate deps tree', function(done) {
-      const tree = path.join(cwd, 'node_modules/.deps_tree.json');
-      coffee.fork(npminstall, [ '--deps-tree' ], { cwd })
-        .debug()
-        .expect('code', 0)
-        .end(function() {
-          assert(fs.existsSync(tree));
-          require(tree); // make sure it's a json file
-          done();
-        });
-    });
-
-    after(function() {
-      rimraf.sync(path.join(cwd, 'node_modules'));
-    });
-  });
-
   describe('installation pass env', () => {
     const cwd = path.join(fixtures, 'install-with-env');
     beforeEach(() => {
@@ -419,12 +398,9 @@ describe('test/npminstall.test.js', () => {
       coffee.fork(npminstall, [
         '--by=yarn',
         '-a',
-        '--aone_env_type=PROD',
-        '--aone_schema=a',
       ], { cwd })
         .debug()
         .expect('code', 0)
-        .expect('stdout', /aone_env_type: {2}undefined\naone_schema: {2}undefined/)
         .end(done);
     });
   });

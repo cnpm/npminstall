@@ -1,5 +1,5 @@
 {
-  "name": "@cnpmcore/binding-linux-x64",
+  "name": "@cnpmjs/binding-linux-x64",
   "version": "1.0.0",
   "description": "downloader linux x64 binding",
   "main": "index.node",
