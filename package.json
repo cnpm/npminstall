@@ -8,7 +8,7 @@
     "cp:binary": "npm run cp:linux:x64-binding && npm run cp:linux:x64-binary",
     "cp:linux:x64-binding": "cp packages/binding/index.node packages/binding-linux-x64/index.node",
     "cp:linux:x64-binary": "cp target/release/bootstrap packages/binding-linux-x64/nydusd-bootstrap",
-    "init:test": "lerna run prepare-test",
+    "init:test": "npm run prepare-test --workspaces --if-present",
     "build": "npm run build:binary && npm run build:binding",
     "build:binary": "cargo build --workspace --release",
     "build:binding": "cd packages/binding && npm run build-release",
@@ -25,7 +25,7 @@
     "ci": "npm run init:ci && npm run cov",
     "ci:integration": "npm run init:ci && npm run test:integration",
     "ci:rust": "npm run init:ci && npm run test:rust",
-    "pack": "lerna run pack"
+    "pack": "npm run pack"
   },
   "workspaces": [
     "integration",
