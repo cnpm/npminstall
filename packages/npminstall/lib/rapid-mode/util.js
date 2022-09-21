@@ -110,13 +110,16 @@ async function shouldFuseSupport() {
 }
 
 function parseTarballUrl(tarballUrl) {
-  // /@mockscope/a/download/@mockscope/a-1.0.0.tgz -> @mockscope/a/download/@mockscope/a-1.0.0 -> [ '@mockscope/a', '@mockscope/a-1.0.0' ]
+  // /@mockscope/a/download/a-1.0.0.tgz ->
+  // @mockscope/a/download/a-1.0.0 -> [ '@mockscope/a', 'a-1.0.0' ]
   const pathname = new url.URL(tarballUrl).pathname.substr(1).slice(0, -4);
-  // @mockscope/a/download/@mockscope/a-1.0.0 -> [ '@mockscope/a', '@mockscope/a-1.0.0' ]
-  // @mockscope/a/-/@mockscope/a-1.0.0 -> [ '@mockscope/a', '@mockscope/a-1.0.0' ]
-  const [ packageName, packpageNameAndVersion ] = pathname.split(/\/-\/|\/download\//);
-  // @mockscope/a-1.0.0 -> 1.0.0
-  const packageVersion = packpageNameAndVersion.substr(packageName.length + 1);
+  // @mockscope/a/download/a-1.0.0 -> [ '@mockscope/a', 'a-1.0.0' ]
+  // @mockscope/a/-/a-1.0.0 -> [ '@mockscope/a', 'a-1.0.0' ]
+  const [packageName, packageNameAndVersion] = pathname.split(/\/-\/|\/download\//);
+  // @mockscope/a -> a
+  const packageNameWithoutScope = packageName.replace(/(\S*)\//, '')
+  // a-1.0.0 -> 1.0.0
+  const packageVersion = packageNameAndVersion.substr(packageNameWithoutScope.length + 1);
   return {
     name: packageName,
     version: packageVersion,
