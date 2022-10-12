@@ -3,9 +3,9 @@
   "private": true,
   "scripts": {
     "prepare-test:tar": "node test/download.js",
-    "prepare-test:nginx": "s  erve test/fixtures/tar -p 8888 &",
+    "prepare-test:nginx": "serve test/fixtures/tar -p 8888 &",
     "prepare-test:echo": "curl -I http://127.0.0.1:8888/egg-2.36.0.tgz",
-    "prepare-test": "npm run prepare-test:tar && npm run prepare-test:nginx && npm run prepare-test:echo"
+    "prepare-test": "npm run prepare-test:tar && npm run prepare-test:nginx && sleep 10 && npm run prepare-test:echo"
   },
   "devDependencies": {
     "urllib": "^2.14.0",
