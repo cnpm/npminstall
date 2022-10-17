@@ -1,4 +1,10 @@
 
+6.5.2 / 2022-10-17
+==================
+
+**fixes**
+  * [[`8170ce2`](http://github.com/cnpm/npminstall/commit/8170ce25858d0e8f345130649d119fe4420f6761)] - fix: pick `fix parallel install from local directory (#398)` (#412) (#421) (vagusX <<vagusX@users.noreply.github.com>>)
+
 6.5.1 / 2022-08-26
 ==================
 
