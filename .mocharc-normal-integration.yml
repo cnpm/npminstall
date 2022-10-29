@@ -1,8 +1,8 @@
 timeout: 120000
 spec:
-  - integration/test/**/*.test.js
+  - integration/test/normal/**/*.test.js
 ignore:
-  - integration/test/fixtures/**
+  - integration/test/normal/fixtures/**
 recursive: true
 extension:
   - js

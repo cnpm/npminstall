@@ -4,8 +4,8 @@ const fs = require('fs');
 const fsPromise = require('fs/promises');
 const path = require('path');
 const runscript = require('runscript');
-const npminstall = path.join(__dirname, '../../packages/npminstall/bin/install.js');
-const clean = require('../../packages/npminstall/lib/clean');
+const npminstall = path.join(__dirname, '../../../packages/npminstall/bin/install.js');
+const clean = require('../../../packages/npminstall/lib/clean');
 const assert = require('assert');
 
 describe('test/tnpm-rapid-workspace.test.js', () => {

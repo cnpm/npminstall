@@ -1,0 +1,12 @@
+timeout: 120000
+spec:
+  - integration/test/rapid/**/*.test.js
+ignore:
+  - integration/test/rapid/fixtures/**
+recursive: true
+extension:
+  - js
+require:
+  - intelli-espower-loader
+full-trace: true
+exit: true

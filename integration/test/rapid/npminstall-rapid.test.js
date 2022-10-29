@@ -3,7 +3,7 @@
 const path = require('path');
 const rimraf = require('rimraf');
 const coffee = require('coffee');
-const npminstall = path.join(__dirname, '../../packages/npminstall/bin/install.js');
+const npminstall = path.join(__dirname, '../../../packages/npminstall/bin/install.js');
 const fixtures = path.join(__dirname, 'fixtures');
 const os = require('os');
 const fs = require('fs');

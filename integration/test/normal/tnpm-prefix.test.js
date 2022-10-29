@@ -1,7 +1,7 @@
 'use strict';
 
 const path = require('path');
-const npminstall = path.join(__dirname, '../../packages/npminstall/bin/install.js');
+const npminstall = path.join(__dirname, '../../../packages/npminstall/bin/install.js');
 const fixtures = path.join(__dirname, 'fixtures');
 const coffee = require('coffee');
 const fs = require('fs/promises');

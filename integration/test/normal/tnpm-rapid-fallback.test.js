@@ -6,7 +6,7 @@ const mm = require('mm');
 const assert = require('assert');
 const fs = require('fs/promises');
 const runscript = require('runscript');
-const npminstall = path.join(__dirname, '../../packages/npminstall/bin/install.js');
+const npminstall = path.join(__dirname, '../../../packages/npminstall/bin/install.js');
 const fixtures = path.join(__dirname, './fixtures');
 
 

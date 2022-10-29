@@ -20,10 +20,11 @@
     "test": "npm run lint -- --fix && npm run test-local",
     "test-local": "NODE_ENV=test mocha",
     "test:rust": "cargo test --workspace --exclude tokio-tar",
-    "test:integration": "NODE_ENV=test mocha --config ./.mocharc-integration.yml",
+    "test:integration": "npm run test:normal:integration && npm run test:rapid:integration",
+    "test:normal:integration": "NODE_ENV=test mocha --config ./.mocharc-normal-integration.yml",
+    "test:rapid:integration": "NODE_ENV=test mocha --config ./.mocharc-rapid-integration.yml",
     "cov": "nyc npm run test",
     "ci": "npm run init:ci && npm run cov",
-    "ci:integration": "npm run init:ci && npm run test:integration",
     "ci:rust": "npm run init:ci && npm run test:rust",
     "pack": "npm run pack"
   },

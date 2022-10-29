@@ -9,9 +9,9 @@ const mkdirp = require('mkdirp');
 const runscript = require('runscript');
 const coffee = require('coffee');
 const utility = require('utility');
-const npminstall = path.join(__dirname, '../../packages/npminstall/bin/install.js');
-const npmuninstall = path.join(__dirname, '../../packages/npminstall/bin/uninstall.js');
-const link = path.join(__dirname, '../../packages/npminstall/bin/link.js');
+const npminstall = path.join(__dirname, '../../../packages/npminstall/bin/install.js');
+const npmuninstall = path.join(__dirname, '../../../packages/npminstall/bin/uninstall.js');
+const link = path.join(__dirname, '../../../packages/npminstall/bin/link.js');
 const fixtures = path.join(__dirname, 'fixtures');
 
 describe('test/npminstall.test.js', () => {
