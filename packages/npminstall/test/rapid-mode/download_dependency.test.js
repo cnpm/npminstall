@@ -16,6 +16,7 @@ const {
   tarBucketsDir,
 } = require('../../lib/rapid-mode/constants');
 const util = require('../../lib/rapid-mode/util');
+const os = require('os');
 
 const readdir = promisify(fs.readdir);
 
@@ -25,6 +26,10 @@ async function prepareEnv(CWD) {
 }
 
 describe('test/rapid-mode/download_dependency.test.js', () => {
+  if (os.platform() === 'win32') {
+    return;
+  }
+
   before(async () => {
     await mkdirp(tarBucketsDir);
   });

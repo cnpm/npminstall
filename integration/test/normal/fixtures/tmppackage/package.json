@@ -2,7 +2,7 @@
   "name": "tmppackage",
   "dependencies": {
     "koa": "^2.13.4",
-    "npminstall": "^6.5.1",
+    "npminstall": "^6.5.2",
     "tnpm": "^9.1.6"
   }
 }

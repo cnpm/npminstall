@@ -5,9 +5,14 @@ const urllib = require('urllib');
 const assert = require('assert');
 const path = require('path');
 const fs = require('fs');
+const os = require('os');
 const nydusdBin = path.join(__dirname, `../../../../binding-${process.platform}-${process.arch}/nydusd`);
 
 describe('test/rapid-mode/nydusd/nydusd_api.test.js', () => {
+  if (os.platform() === 'win32') {
+    return;
+  }
+
   const cwd = process.cwd();
   if (process.env.CI) {
     return;

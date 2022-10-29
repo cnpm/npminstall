@@ -11,10 +11,16 @@ const util = require('../../lib/rapid-mode/util');
 const { install } = require('../../lib/rapid-mode/install');
 const nydusd = require('../../lib/rapid-mode/nydusd');
 const downloadDependency = require('../../lib/rapid-mode/download_dependency');
+const os = require('os');
 
 const fixture = path.join(__dirname, './fixtures/rapid-mode-scripts');
 
 describe('test/rapid-mode/scripts.test.js', () => {
+  if (os.platform() === 'win32') {
+    return;
+  }
+
+
   const fakePackage = 'fake-npm';
   const upperdir = path.join(fixture, 'upperdir');
   const projectDir = path.join(fixture, 'node_modules', fakePackage);

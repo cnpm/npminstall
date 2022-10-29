@@ -1,13 +1,15 @@
 'use strict';
 
 const assert = require('assert');
-const nock = require('nock');
 const path = require('path');
 const DepResolver = require('../../lib/rapid-mode/dep');
-const Tree = require('./fixtures/rapid-mode-download-local-deps/tree.json');
 const config = require('../../lib/config');
+const os = require('os');
 
 describe('test/rapid-node/dep.test.js', () => {
+  if (os.platform() === 'win32') {
+    return;
+  }
   describe('local cache resolve', () => {
     it('should read load cache', async () => {
       const resolver = new DepResolver({

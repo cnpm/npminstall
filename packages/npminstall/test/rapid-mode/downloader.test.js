@@ -3,8 +3,13 @@
 const assert = require('assert');
 const Downloader = require('../../lib/rapid-mode/downloader');
 const Util = require('./fixtures/util');
+const os = require('os');
 
 describe('test/rapid-mode/downloader.test.js', () => {
+  if (os.platform() === 'win32') {
+    return;
+  }
+
   describe('optional dep', () => {
     it('should skip cpu/os not match and optional dep', async () => {
       const pkgLockJson = await Util.readFixtureJson('package-locks', 'optional.json');

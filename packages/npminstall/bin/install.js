@@ -28,83 +28,85 @@ const {
 
 const originalArgv = process.argv.slice(2);
 
+(async () => {
+
 // since minimist consider --no-xx is xx:false, we handle it manually here
-const argv = { 'no-save': originalArgv.includes('--no-save') };
-Object.assign(argv, parseArgs(originalArgv, {
-  string: [
-    'root',
-    'registry',
-    'prefix',
-    'forbidden-licenses',
-    'custom-china-mirror-url',
-    // {"http://a.com":"http://b.com"}
-    'tarball-url-mapping',
-    'proxy',
-    // --high-speed-store=filepath
-    'high-speed-store',
-    'dependencies-tree',
-    'fs',
-    'deps-tree-path',
-    'mode',
-  ],
-  boolean: [
-    'version',
-    'help',
-    'production',
-    'client',
-    'global',
-    'save',
-    'save-dev',
-    'save-optional',
-    'save-client',
-    'save-build',
-    'save-isomorphic',
-    // Saved dependencies will be configured with an exact version rather than using npm's default semver range operator.
-    'save-exact',
-    'china',
-    'ignore-scripts',
-    // install ignore optionalDependencies
-    'optional',
-    'detail',
-    'trace',
-    'engine-strict',
-    'flatten',
-    'registry-only',
-    'cache-strict',
-    'fix-bug-versions',
-    'prune',
-    // disable dedupe mode https://docs.npmjs.com/cli/dedupe, back to npm@2 mode
-    // please don't use on frontend project
-    'disable-dedupe',
-    'save-dependencies-tree',
-    'force-link-latest',
-  ],
-  default: {
-    optional: true,
-  },
-  alias: {
+  const argv = { 'no-save': originalArgv.includes('--no-save') };
+  Object.assign(argv, parseArgs(originalArgv, {
+    string: [
+      'root',
+      'registry',
+      'prefix',
+      'forbidden-licenses',
+      'custom-china-mirror-url',
+      // {"http://a.com":"http://b.com"}
+      'tarball-url-mapping',
+      'proxy',
+      // --high-speed-store=filepath
+      'high-speed-store',
+      'dependencies-tree',
+      'fs',
+      'deps-tree-path',
+      'mode',
+    ],
+    boolean: [
+      'version',
+      'help',
+      'production',
+      'client',
+      'global',
+      'save',
+      'save-dev',
+      'save-optional',
+      'save-client',
+      'save-build',
+      'save-isomorphic',
+      // Saved dependencies will be configured with an exact version rather than using npm's default semver range operator.
+      'save-exact',
+      'china',
+      'ignore-scripts',
+      // install ignore optionalDependencies
+      'optional',
+      'detail',
+      'trace',
+      'engine-strict',
+      'flatten',
+      'registry-only',
+      'cache-strict',
+      'fix-bug-versions',
+      'prune',
+      // disable dedupe mode https://docs.npmjs.com/cli/dedupe, back to npm@2 mode
+      // please don't use on frontend project
+      'disable-dedupe',
+      'save-dependencies-tree',
+      'force-link-latest',
+    ],
+    default: {
+      optional: true,
+    },
+    alias: {
     // npm install [-S|--save|-D|--save-dev|-O|--save-optional] [-E|--save-exact] [-d|--detail]
-    S: 'save',
-    D: 'save-dev',
-    O: 'save-optional',
-    E: 'save-exact',
-    v: 'version',
-    h: 'help',
-    g: 'global',
-    c: 'china',
-    r: 'registry',
-    d: 'detail',
-  },
-})
-);
+      S: 'save',
+      D: 'save-dev',
+      O: 'save-optional',
+      E: 'save-exact',
+      v: 'version',
+      h: 'help',
+      g: 'global',
+      c: 'china',
+      r: 'registry',
+      d: 'detail',
+    },
+  })
+  );
 
-if (argv.version) {
-  console.log(`npminstall v${require('../package.json').version}`);
-  process.exit(0);
-}
+  if (argv.version) {
+    console.log(`npminstall v${require('../package.json').version}`);
+    process.exit(0);
+  }
 
-if (argv.help) {
-  console.log(`
+  if (argv.help) {
+    console.log(`
 Usage:
 
   npminstall
@@ -146,107 +148,106 @@ Options:
   --dependencies-tree: install with dependencies tree to restore the last install.
   --force-link-latest: force link latest version package to module root path.
 `
-  );
-  process.exit(0);
-}
-
-const pkgs = [];
-
-if (process.env.NPMINSTALL_BY_UPDATE) {
-  // ignore all package names on update
-  argv._ = [];
-}
-
-const context = new Context();
-for (const name of argv._) {
-
-  context.nested.update([ name ]);
-  const [
-    aliasPackageName,
-  ] = parsePackageName(name, context.nested);
-  const p = npa(name, { where: argv.root, nested: context.nested });
-  pkgs.push({
-    name: p.name,
-    // `mozilla/nunjucks#0f8b21b8df7e8e852b2e1889388653b7075f0d09` should be rawSpec
-    version: p.fetchSpec || p.rawSpec,
-    type: p.type,
-    alias: aliasPackageName,
-    arg: p,
-  });
-}
-
-let root = argv.root || process.cwd();
-if (Array.isArray(root)) {
-  // use last one, e.g.: $ npminstall --root=abc --root=def
-  root = root[root.length - 1];
-}
-const production = argv.production || process.env.NODE_ENV === 'production';
-let cacheDir = argv.cache === false ? '' : null;
-if (production) {
-  cacheDir = '';
-}
-// support npm_config_cache to change default cache dir
-if (cacheDir === null && process.env.npm_config_cache) {
-  cacheDir = process.env.npm_config_cache;
-}
-
-let forbiddenLicenses = argv['forbidden-licenses'];
-forbiddenLicenses = forbiddenLicenses ? forbiddenLicenses.split(',') : null;
-
-const flatten = argv.flatten;
-const prune = argv.prune;
-
-// if in china, will automatic using chines registry and mirros.
-const inChina = argv.china || !!process.env.npm_china;
-// if exists, override default china mirror url
-const customChinaMirrorUrl = argv['custom-china-mirror-url'];
-
-// example: npminstall --registry xx --registry xxxx
-let registry = (Array.isArray(argv.registry) ? argv.registry[0] : argv.registry) || process.env.npm_registry;
-if (inChina) {
-  registry = registry || globalConfig.chineseRegistry;
-}
-// for env.npm_config_registry
-registry = registry || 'https://registry.npmjs.com';
-
-const proxy = argv.proxy || process.env.npm_proxy || process.env.npm_config_proxy;
-const installFS = argv.fs || NpmFs.native;
-const installMode = argv.mode || NpmFsMode.NPM;
-let depsTreePath = argv['deps-tree-path'];
-if (depsTreePath) {
-  depsTreePath = fs.realpathSync(depsTreePath);
-}
-
-const env = {
-  npm_config_registry: registry,
-  // set npm_config_argv
-  // see https://github.com/cnpm/npminstall/issues/121#issuecomment-247836741
-  npm_config_argv: JSON.stringify({
-    remain: [],
-    cooked: originalArgv,
-    original: originalArgv,
-  }),
-  // user-agent
-  npm_config_user_agent: globalConfig.userAgent,
-};
-// https://github.com/npm/npm/blob/2005f4ce11f6cdf142f8a77f4f7ee4996000fb57/lib/utils/lifecycle.js#L67
-env.npm_node_execpath = env.NODE = process.env.NODE || process.execPath;
-env.npm_execpath = require.main.filename;
-
-// package's npm script can get root from `env.npm_rootpath`
-env.npm_rootpath = process.env.npm_rootpath || root;
-
-// npm cli will auto set options to npm_xx env.
-for (const key in argv) {
-  const value = argv[key];
-  if (value && typeof value === 'string') {
-    env['npm_config_' + key] = value;
+    );
+    process.exit(0);
   }
-}
 
-debug('argv: %j, env: %j', argv, env);
+  const pkgs = [];
 
-(async () => {
+  if (process.env.NPMINSTALL_BY_UPDATE) {
+  // ignore all package names on update
+    argv._ = [];
+  }
+
+  const context = new Context();
+  for (const name of argv._) {
+
+    context.nested.update([ name ]);
+    const [
+      aliasPackageName,
+    ] = parsePackageName(name, context.nested);
+    const p = npa(name, { where: argv.root, nested: context.nested });
+    pkgs.push({
+      name: p.name,
+      // `mozilla/nunjucks#0f8b21b8df7e8e852b2e1889388653b7075f0d09` should be rawSpec
+      version: p.fetchSpec || p.rawSpec,
+      type: p.type,
+      alias: aliasPackageName,
+      arg: p,
+    });
+  }
+
+  let root = argv.root || process.cwd();
+  if (Array.isArray(root)) {
+  // use last one, e.g.: $ npminstall --root=abc --root=def
+    root = root[root.length - 1];
+  }
+  const production = argv.production || process.env.NODE_ENV === 'production';
+  let cacheDir = argv.cache === false ? '' : null;
+  if (production) {
+    cacheDir = '';
+  }
+  // support npm_config_cache to change default cache dir
+  if (cacheDir === null && process.env.npm_config_cache) {
+    cacheDir = process.env.npm_config_cache;
+  }
+
+  let forbiddenLicenses = argv['forbidden-licenses'];
+  forbiddenLicenses = forbiddenLicenses ? forbiddenLicenses.split(',') : null;
+
+  const flatten = argv.flatten;
+  const prune = argv.prune;
+
+  // if in china, will automatic using chines registry and mirros.
+  const inChina = argv.china || !!process.env.npm_china;
+  // if exists, override default china mirror url
+  const customChinaMirrorUrl = argv['custom-china-mirror-url'];
+
+  // example: npminstall --registry xx --registry xxxx
+  let registry = (Array.isArray(argv.registry) ? argv.registry[0] : argv.registry) || process.env.npm_registry;
+  if (inChina) {
+    registry = registry || globalConfig.chineseRegistry;
+  }
+  // for env.npm_config_registry
+  registry = registry || 'https://registry.npmjs.com';
+
+  const proxy = argv.proxy || process.env.npm_proxy || process.env.npm_config_proxy;
+  const installFS = argv.fs || NpmFs.native;
+  const installMode = argv.mode || NpmFsMode.NPM;
+  let depsTreePath = argv['deps-tree-path'];
+  if (depsTreePath) {
+    depsTreePath = await fs.realpath(depsTreePath);
+  }
+
+  const env = {
+    npm_config_registry: registry,
+    // set npm_config_argv
+    // see https://github.com/cnpm/npminstall/issues/121#issuecomment-247836741
+    npm_config_argv: JSON.stringify({
+      remain: [],
+      cooked: originalArgv,
+      original: originalArgv,
+    }),
+    // user-agent
+    npm_config_user_agent: globalConfig.userAgent,
+  };
+  // https://github.com/npm/npm/blob/2005f4ce11f6cdf142f8a77f4f7ee4996000fb57/lib/utils/lifecycle.js#L67
+  env.npm_node_execpath = env.NODE = process.env.NODE || process.execPath;
+  env.npm_execpath = require.main.filename;
+
+  // package's npm script can get root from `env.npm_rootpath`
+  env.npm_rootpath = process.env.npm_rootpath || root;
+
+  // npm cli will auto set options to npm_xx env.
+  for (const key in argv) {
+    const value = argv[key];
+    if (value && typeof value === 'string') {
+      env['npm_config_' + key] = value;
+    }
+  }
+
+  debug('argv: %j, env: %j', argv, env);
+
   let binaryMirrors = {};
 
   if (inChina) {
@@ -426,7 +427,7 @@ debug('argv: %j, env: %j', argv, env);
         'save-isomorphic': 'isomorphicDependencies',
       };
 
-      //    install saves any specified packages into dependencies by default.
+        //    install saves any specified packages into dependencies by default.
       if (Object.keys(map).every(key => !argv[key]) && !argv['no-save']) {
         await updateDependencies(root, pkgs, map.save, argv['save-exact'], config.remoteNames);
       } else {
@@ -443,6 +444,7 @@ debug('argv: %j, env: %j', argv, env);
       writeFileSync(path.join(root, 'npminstall-debug.log'), util.inspect(config, { depth: 2 }));
     }
   });
+
 })().catch(err => {
   console.error(chalk.red(err.stack));
   console.error(chalk.yellow('npminstall version: %s'), require('../package.json').version);

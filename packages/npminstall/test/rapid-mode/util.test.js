@@ -22,6 +22,11 @@ const nydusConfigFilePath = '/tmp/nydus.json';
 
 
 describe('test/rapid-mode/util.test.js', () => {
+  if (os.platform() === 'win32') {
+    return;
+  }
+
+
   afterEach(async () => {
     await rimraf(nydusConfigFilePath);
   });

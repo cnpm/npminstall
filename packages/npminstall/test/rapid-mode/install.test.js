@@ -10,8 +10,13 @@ const fs = require('fs').promises;
 const nydusd = require('../../lib/rapid-mode/nydusd');
 const util = require('../../lib/rapid-mode/util');
 const downloadDependency = require('../../lib/rapid-mode/download_dependency');
+const os = require('os');
 
 describe('test/rapid-mode/install.test.js', () => {
+  if (os.platform() === 'win32') {
+    return;
+  }
+
   const fixtures = path.join(__dirname, './fixtures/force_fallback_install');
 
   beforeEach(() => {

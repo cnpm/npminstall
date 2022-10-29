@@ -8,8 +8,14 @@ const {
 const BlobManager = require('../../lib/rapid-mode/npm_blob_manager');
 const TestUtil = require('./fixtures/util');
 const path = require('path');
+const os = require('os');
 
 describe('test/rapid-mode/npm_fs.test.js', () => {
+  if (os.platform() === 'win32') {
+    return;
+  }
+
+
   let fixtureDir;
   let pkgLockJson;
   let depPkgs;

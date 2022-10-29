@@ -8,7 +8,6 @@ const rimraf = require('rimraf');
 const mkdirp = require('mkdirp');
 const runscript = require('runscript');
 const coffee = require('coffee');
-const utility = require('utility');
 const npminstall = path.join(__dirname, '../../../packages/npminstall/bin/install.js');
 const npmuninstall = path.join(__dirname, '../../../packages/npminstall/bin/uninstall.js');
 const link = path.join(__dirname, '../../../packages/npminstall/bin/link.js');
@@ -280,7 +279,7 @@ describe('test/npminstall.test.js', () => {
 
   });
 
-  describe('yarn link', () => {
+  describe.skip('yarn link', () => {
     const cwd = path.join(fixtures, 'yarn-link');
     beforeEach(() => rimraf.sync(path.join(cwd, 'node_modules')));
     afterEach(() => rimraf.sync(path.join(cwd, 'node_modules')));
@@ -293,57 +292,6 @@ describe('test/npminstall.test.js', () => {
       const lodashHas = require(path.join(cwd, 'node_modules/lodash.has/package.json'));
       assert.strictEqual(lodashHas.name, 'lodash.has');
       assert.strictEqual(lodashHas.version, '1.0.0');
-    });
-  });
-  describe('force-link-latest', () => {
-    const cwd = path.join(fixtures, 'force-link-latest');
-    beforeEach(() => rimraf.sync(path.join(cwd, 'node_modules')));
-    afterEach(() => rimraf.sync(path.join(cwd, 'node_modules')));
-
-    it('should support force-link-latest', done => {
-      coffee
-        .fork(npminstall, { cwd })
-        .debug()
-        .expect('code', 0)
-        .end(err => {
-          assert(!err);
-
-          const pkg = utility.readJSONSync(path.join(cwd, 'node_modules', 'urllib', 'package.json'));
-          assert.equal(pkg.version, '2.7.1');
-
-          const names = [ 'debug', 'ms', 'iconv-lite', 'utility' ];
-          const versions = {};
-          for (const name of names) {
-            const pkg = utility.readJSONSync(path.join(cwd, 'node_modules', name, 'package.json'));
-            versions[pkg.name] = pkg.version;
-          }
-
-          coffee
-            .fork(npminstall, [ 'toshihiko@1.0.0-alpha.10', '--force-link-latest' ], { cwd })
-            .debug()
-            .expect('code', 0)
-            .end(err => {
-              assert(!err);
-
-              for (const name of names) {
-                const pkg = utility.readJSONSync(path.join(cwd, 'node_modules', name, 'package.json'));
-                switch (name) {
-                  case 'debug':
-                  case 'iconv-lite':
-                    assert.strictEqual(pkg.version, versions[pkg.name]);
-                    break;
-
-                  case 'ms':
-                  case 'utility':
-                  default:
-                    assert(pkg.version !== versions[pkg.name]);
-                    break;
-                }
-              }
-
-              done();
-            });
-        });
     });
   });
 

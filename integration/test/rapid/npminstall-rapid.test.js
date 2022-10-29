@@ -9,11 +9,28 @@ const os = require('os');
 const fs = require('fs');
 const mm = require('mm');
 const clean = require('npminstall/lib/clean');
+const assert = require('assert');
+const runscript = require('runscript');
+
 
 describe('test/npminstall-rapid.test.js', () => {
   let fixture;
   afterEach(async () => {
     await clean(fixture);
+  });
+
+  describe('install-lodash', () => {
+    it('should install lodash succeed', async () => {
+      fixture = path.join(fixtures, 'rapid-lodash-test');
+      await coffee
+        .fork(npminstall, [ '--fs=rapid' ], { cwd: fixture })
+        .debug()
+        .expect('code', 0)
+        .end();
+      assert(fs.existsSync(path.join(fixture, 'node_modules/lodash/package.json')));
+      const { stdout } = await runscript('mount', { stdio: 'pipe' });
+      assert(stdout.indexOf(path.join(fixture)) > 0);
+    });
   });
 
   describe('nodeEnv is prod, test chair', () => {

@@ -5,8 +5,13 @@ const path = require('path');
 const PackageLock = require('../../lib/rapid-mode/package_lock').PackageLock;
 
 const fixture = path.join(__dirname, 'fixtures/lockfile');
+const os = require('os');
 
 describe('test/rapid-mode/package_lock.test.js', () => {
+  if (os.platform() === 'win32') {
+    return;
+  }
+
   it('should work', async () => {
     const packageLock = new PackageLock({
       cwd: fixture,

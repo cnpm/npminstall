@@ -18,11 +18,11 @@
     "lint:fix": "eslint bin lib test/*.js --fix",
     "tar:check": "node scripts/tar_checker.js",
     "test": "npm run lint -- --fix && npm run test-local",
-    "test-local": "NODE_ENV=test mocha",
+    "test-local": "mocha",
     "test:rust": "cargo test --workspace --exclude tokio-tar",
     "test:integration": "npm run test:normal:integration && npm run test:rapid:integration",
-    "test:normal:integration": "NODE_ENV=test mocha --config ./.mocharc-normal-integration.yml",
-    "test:rapid:integration": "NODE_ENV=test mocha --config ./.mocharc-rapid-integration.yml",
+    "test:normal:integration": "mocha --config ./.mocharc-normal-integration.yml",
+    "test:rapid:integration": "mocha --config ./.mocharc-rapid-integration.yml",
     "cov": "nyc npm run test",
     "ci": "npm run init:ci && npm run cov",
     "ci:rust": "npm run init:ci && npm run test:rust",
@@ -59,6 +59,6 @@
   },
   "engines": {
     "node": ">=14.17.0"
-  }
+  },
+  "repository": "git@github.com:cnpm/npminstall.git"
 }
-
