@@ -19,9 +19,13 @@ jobs:
           - os: ubuntu-latest
             shell: bash
         python-version: [ 3.6 ]
-        vs-version: [ 15.0 ]
 
     runs-on: ${{ matrix.platform.os }}
+
+    container:
+      if: matrix.os == 'ubuntu-latest'
+      image: rust:latest
+      options: --privileged --device /dev/fuse
 
     defaults:
       run:
@@ -35,24 +39,16 @@ jobs:
           python-version: ${{ matrix.python-version }}
         env:
           PYTHON_VERSION: ${{ matrix.python-version }}
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Set Windows environment
-        if: matrix.os == 'windows-latest'
-        uses: microsoft/setup-msbuild@v1.0.3
-        with:
-          vs-version: ${{ matrix.vs-version }}
-      - name: Install npm@8
-        run: npm i -g npm@8
-      - name: Show npm version
-        run: npm -v
+
       - name: Install dependencies
-        run: npm i --force
+        run: npm i
+
       - name: Run CI
         run: npm run ci:integration
         env:
           NODE_OPTIONS: --max_old_space_size=6144
-
-
