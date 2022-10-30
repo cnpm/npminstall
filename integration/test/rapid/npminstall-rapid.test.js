@@ -125,29 +125,6 @@ describe('test/npminstall-rapid.test.js', () => {
     });
   });
 
-  // TODO 这个目录迷之消失了。。
-  describe.skip('peerDependencies', () => {
-    const fixture = path.join(fixtures, 'tnpm-install-rapid-peer');
-    beforeEach(() => {
-      rimraf.sync(path.join(fixture, 'node_modules'));
-    });
-    afterEach(() => {
-      rimraf.sync(path.join(fixture, 'node_modules'));
-    });
-
-    it('should generate deps tree', done => {
-      coffee.fork(npminstall, [
-        '--fs=rapid',
-        '--deps-tree-path=./tree.json',
-      ], { cwd: fixture })
-        .debug()
-        .expect('code', 0)
-        .end(() => {
-          done();
-        });
-    });
-  });
-
   describe('--deps-tree-path args', () => {
     beforeEach(() => {
       fixture = path.join(fixtures, 'rapid-mode-download-local-deps');

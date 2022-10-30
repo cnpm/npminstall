@@ -85,34 +85,6 @@ describe('test/npminstall.test.js', () => {
   });
 
   if (process.platform === 'darwin') {
-    // gitlab ci 的 runner gcc 版本太低，无法编译
-    it.skip('should build cpp module', done => {
-      let name = 'fsevents';
-      if (/v0\.11\.12/.test(process.version)) {
-        // 只能测试这个模块
-        name = 'node-murmurhash@~0.0.4';
-      }
-
-      coffee
-        .fork(npminstall, [ name, '--build-from-source' ], { cwd: tmpcwd })
-        .debug()
-        .expect('code', 0)
-        .end(done);
-    });
-
-    // Node.js 4 不支持最新的 node-gyp 了，因为有
-    // [ '-2', ...this.argsExecutable ]
-    // https://github.com/npm/cli/blob/v6.11.2/node_modules/node-gyp/lib/find-python.js#L195
-    it.skip('should build cpp module on node-4', done => {
-      cwd = path.join(__dirname, 'fixtures', 'node-4');
-
-      coffee
-        .fork(npminstall, [ 'fsevents@1', '--build-from-source' ], { cwd })
-        .debug()
-        .expect('code', 0)
-        .end(done);
-    });
-
     it.skip('should install fsevents binary from mirror', done => {
       cwd = path.join(fixtures, 'fsevents-install');
 
@@ -277,22 +249,6 @@ describe('test/npminstall.test.js', () => {
         done();
       });
 
-  });
-
-  describe.skip('yarn link', () => {
-    const cwd = path.join(fixtures, 'yarn-link');
-    beforeEach(() => rimraf.sync(path.join(cwd, 'node_modules')));
-    afterEach(() => rimraf.sync(path.join(cwd, 'node_modules')));
-
-    it('should link success with yarn mode', async () => {
-      await runscript(`node ${link}`, {
-        cwd: path.join(cwd, 'mock_lodash.has'),
-      });
-      await runscript(`node ${link} lodash.has`, { cwd });
-      const lodashHas = require(path.join(cwd, 'node_modules/lodash.has/package.json'));
-      assert.strictEqual(lodashHas.name, 'lodash.has');
-      assert.strictEqual(lodashHas.version, '1.0.0');
-    });
   });
 
   describe('installation pass env', () => {

@@ -40,49 +40,6 @@ describe('test/tnpm-update.test.js', () => {
       .end();
   });
 
-  it.skip('should with update --by=npm', () => {
-    return coffee.fork(npmupdate, [
-      '--by=npm',
-    ], {
-      cwd: root2,
-    })
-      .debug()
-      .notExpect('stdout', /\[npminstall\] removing /)
-      .notExpect('stdout', /\[npminstall\] reinstall on /)
-      .notExpect('stdout', /\[npmupdate\] removing /)
-      .notExpect('stdout', /\[npmupdate\] reinstall on /)
-      .expect('code', 0)
-      .end();
-  });
-
-  it.skip('should with update on tnpm.mode=npm', () => {
-    return coffee.fork(npmupdate, {
-      cwd: root2,
-    })
-      .debug()
-      .notExpect('stdout', /\[npminstall\] removing /)
-      .notExpect('stdout', /\[npminstall\] reinstall on /)
-      .notExpect('stdout', /\[npmupdate\] removing /)
-      .notExpect('stdout', /\[npmupdate\] reinstall on /)
-      .expect('code', 0)
-      .end();
-  });
-
-  it.skip('should with update --by=yarn', () => {
-    return coffee.fork(npmupdate, [
-      '--by=yarn',
-    ], {
-      cwd: root2,
-    })
-      .debug()
-      .notExpect('stdout', /\[npminstall\] removing /)
-      .notExpect('stdout', /\[npminstall\] reinstall on /)
-      .notExpect('stdout', /\[npmupdate\] removing /)
-      .notExpect('stdout', /\[npmupdate\] reinstall on /)
-      .expect('code', 0)
-      .end();
-  });
-
   it('should update specify deps', async () => {
     return coffee.fork(npmupdate, [
       'pedding',
