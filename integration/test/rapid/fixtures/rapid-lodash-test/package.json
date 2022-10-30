@@ -1,7 +1,6 @@
 {
   "name": "lodash.test",
   "dependencies": {
-    "lodash": "*",
-    "undefined": "^undefined"
+    "lodash": "*"
   }
 }

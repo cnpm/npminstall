@@ -26,5 +26,5 @@ describe('test/node-sass.test.js', () => {
         npm_config_cache: undefined,
       },
     });
-  });
+  }).timeout(360000);
 });

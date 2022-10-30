@@ -29,7 +29,6 @@ packages/npminstall/test/fixtures/css-loader-example2/webpack*.json
 packages/npminstall/test/fixtures/high-speed-store/tmp
 packages/binding*/index.node
 packages/binding*/nydusd-bootstrap
-packages/binding*/nydusd
 packages/downloader/test/fixtures/tar
 .nyc_output
 .npminstall_tarball
