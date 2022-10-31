@@ -67,7 +67,7 @@ describe('test/rapid-mode/downloader.test.js', () => {
       const downloader = new Downloader({
         platform: 'linux',
         arch: 'aarch64',
-        productionMode: true,
+        production: true,
       });
       const tasks = downloader.createDownloadTask(pkgLockJson);
       assert.deepStrictEqual(tasks, []);

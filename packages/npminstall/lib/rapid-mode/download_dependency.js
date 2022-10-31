@@ -47,7 +47,7 @@ async function download(options) {
   const entryListener = entryListenerFactory(blobManger);
   const downloader = new Downloader({
     entryListener,
-    productionMode: options.productionMode,
+    production: options.production,
   });
   await downloader.init();
   options.downloader = downloader;
@@ -63,8 +63,8 @@ async function download(options) {
   }
 
   const scripts = new Scripts(options);
-  for (const [ name, { version, resolved, dev, optional, link }] of Object.entries(depsTree.packages)) {
-    if (!name.startsWith('node_modules') || link === true) {
+  for (const [ name, { version, resolved, dev, optional, link, inBundle }] of Object.entries(depsTree.packages)) {
+    if (!name.startsWith('node_modules') || link === true || inBundle === true) {
       continue;
     }
     const depPath = name.substr('node_modules/'.length);
@@ -72,7 +72,7 @@ async function download(options) {
     const pkg = blobManger.getPackage(pkgName, version);
 
     if (!pkg) {
-      if (!optional || (options.productionMode && !dev)) {
+      if (!optional || (options.production && !dev)) {
         const pkgId = Util.generatePackageId(pkgName, version);
         throw new Error(`not found package json for ${pkgId}`);
       }

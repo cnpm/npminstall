@@ -15,7 +15,7 @@ class Downloader {
    * @param {number} [options.httpConcurrentCount] -
    * @param {string} [options.platform] -
    * @param {string} [options.arch] -
-   * @param {boolean} [options.productionMode] -
+   * @param {boolean} [options.production] -
    * @param {{function(*)}} [options.entryListener] -
    */
   constructor(options) {
@@ -25,7 +25,7 @@ class Downloader {
     this.httpConcurrentCount = options.httpConcurrentCount || 20;
     this.platform = options.platform || platform;
     this.arch = options.arch || arch;
-    this.productionMode = options.productionMode;
+    this.production = options.production;
     this.rapidDownloader = this.createRapidDownloader();
     this.taskMap = new Map();
   }
@@ -91,7 +91,7 @@ class Downloader {
         }
       }
     }
-    if (this.productionMode === true && pkg.dev === true) {
+    if (this.production === true && pkg.dev === true) {
       return false;
     }
     return true;

@@ -44,7 +44,7 @@ describe('test/rapid-mode/download_dependency.test.js', () => {
     const CWD = path.join(__dirname, './fixtures/rapid-mode-download');
     await prepareEnv(CWD);
     const result = await download({
-      productionMode: false,
+      production: false,
       pkg: require(path.join(CWD, 'package.json')),
       console,
       env: {
@@ -78,7 +78,7 @@ describe('test/rapid-mode/download_dependency.test.js', () => {
     const CWD = path.join(__dirname, './fixtures/rapid-mode-postinstall');
     await prepareEnv(CWD);
     const options = {
-      productionMode: false,
+      production: false,
       depsTreePath: path.join(CWD, 'tree.json'),
       console,
       env: {
@@ -115,7 +115,7 @@ describe('test/rapid-mode/download_dependency.test.js', () => {
     const CWD = path.join(__dirname, './fixtures/rapid-mode-postinstall');
     await prepareEnv(CWD);
     const options = {
-      productionMode: false,
+      production: false,
       depsTreePath: path.join(CWD, 'tree.json'),
       console,
       env: {
@@ -152,7 +152,7 @@ describe('test/rapid-mode/download_dependency.test.js', () => {
     const CWD = path.join(__dirname, './fixtures/rapid-mode-preinstall');
     await prepareEnv(CWD);
     const options = {
-      productionMode: false,
+      production: false,
       depsTreePath: path.join(CWD, 'tree.json'),
       console,
       env: {
@@ -186,7 +186,7 @@ describe('test/rapid-mode/download_dependency.test.js', () => {
     const CWD = path.join(__dirname, './fixtures/rapid-mode-preinstall');
     await prepareEnv(CWD);
     const options = {
-      productionMode: false,
+      production: false,
       depsTreePath: path.join(CWD, 'tree.json'),
       console,
       env: {
@@ -220,7 +220,7 @@ describe('test/rapid-mode/download_dependency.test.js', () => {
     const CWD = path.join(__dirname, './fixtures/rapid-mode-download-local-deps');
     await prepareEnv(CWD);
     const result = await download({
-      productionMode: false,
+      production: false,
       pkg: require(path.join(CWD, 'package.json')),
       console,
       depsTreePath: path.join(CWD, 'package-lock.json'),
@@ -262,7 +262,7 @@ describe('test/rapid-mode/download_dependency.test.js', () => {
     const CWD = path.join(__dirname, './fixtures/rapid-mode-download-local-deps');
     await prepareEnv(CWD);
     const result = await download({
-      productionMode: false,
+      production: false,
       pkg: require(path.join(CWD, 'package.json')),
       console,
       depsTreePath: path.join(CWD, 'file-not-found.json'),
@@ -296,7 +296,7 @@ describe('test/rapid-mode/download_dependency.test.js', () => {
   it.skip('predownload should work', async () => {
     const CWD = path.join(__dirname, './fixtures/rapid-mode-download');
     const result = await download({
-      productionMode: false,
+      production: false,
       pkg: require(path.join(CWD, 'package.json')),
       console,
       env: {
