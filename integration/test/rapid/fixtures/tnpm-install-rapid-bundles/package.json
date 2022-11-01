@@ -4,6 +4,6 @@
     "postinstall": "node index.js"
   },
   "dependencies": {
-    "chair": "^1.5.54"
+    "npm": "6.14.11"
   }
 }

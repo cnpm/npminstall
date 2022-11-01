@@ -12,7 +12,7 @@ describe('test/tnpm-rapid-workspace.test.js', () => {
   let cwd;
 
   afterEach(async () => {
-    await clean(cwd);
+ //   await clean(cwd);
   });
 
   it('should install lodash succeed', async () => {

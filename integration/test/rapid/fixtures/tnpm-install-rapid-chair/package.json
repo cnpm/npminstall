@@ -5,8 +5,6 @@
     "postinstall": "node post.js"
   },
   "dependencies": {
-    "chair": "^1.5.54",
-    "undefined": "^undefined"
-  },
-  "__npminstall_done": false
+    "lodash.has": "4.5.2"
+  }
 }

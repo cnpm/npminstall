@@ -4,16 +4,13 @@
     "postinstall": "node index.js"
   },
   "dependencies": {
-    "chair": "^1.5.54"
+    "lodash.has": "4.5.2"
   },
   "devDependencies": {
     "object-pipeline": "1.0.1"
   },
   "peerDependencies": {
     "react": "18"
-  },
-  "optionalDependencies": {
-    "dva": "^2"
   },
   "__npminstall_done": false
 }
