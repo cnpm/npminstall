@@ -24,7 +24,7 @@ jobs:
 
     container:
       image: rust:latest
-      options: --cap-add=SYS_ADMIN --device /dev/fuse
+      options: --privileged --device /dev/fuse
 
     defaults:
       run:
