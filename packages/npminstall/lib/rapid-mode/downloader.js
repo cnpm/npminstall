@@ -107,6 +107,17 @@ class Downloader {
         version: pkgVersion,
       } = Util.parseTarballUrl(pkg.resolved);
       const taskId = Util.generatePackageId(pkgName, pkgVersion);
+      if (taskMap.has(taskId)) {
+        // 如果 semver@6.3.0 dev 来覆盖 semver@6.3.0 production 就非法
+        if (taskMap.get(taskId).pkg.dev !== true) {
+          continue;
+        }
+
+        // 同上
+        if (taskMap.get(taskId).pkg.optional !== true) {
+          continue;
+        }
+      }
       taskMap.set(taskId, {
         id: taskId,
         name: pkgName,

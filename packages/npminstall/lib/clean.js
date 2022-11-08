@@ -14,7 +14,7 @@ async function cleanProject(cwd) {
 
   try {
     await fs.stat(overlay);
-    await nydusd.endNydusFs(mode, cwd, readPkgJSON(cwd).pkg);
+    await nydusd.endNydusFs(mode, cwd, readPackageJSON(cwd).pkg);
   } catch (_) {
     await nativeClean(cwd);
   }
