@@ -1,6 +1,6 @@
 'use strict';
 
-require('chair');
+require('lodash.has');
 
 // should throw error
 require('object-pipeline');

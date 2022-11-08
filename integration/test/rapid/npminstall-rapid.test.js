@@ -7,6 +7,7 @@ const npminstall = path.join(__dirname, '../../../packages/npminstall/bin/instal
 const fixtures = path.join(__dirname, 'fixtures');
 const os = require('os');
 const fs = require('fs');
+const fsPromise = require('fs/promises');
 const mm = require('mm');
 const clean = require('npminstall/lib/clean');
 const assert = require('assert');
@@ -16,7 +17,7 @@ const runscript = require('runscript');
 describe('test/npminstall-rapid.test.js', () => {
   let fixture;
   afterEach(async () => {
-    await clean(fixture);
+ //   await clean(fixture);
   });
 
   describe('install-lodash', () => {
@@ -42,7 +43,6 @@ describe('test/npminstall-rapid.test.js', () => {
       coffee.fork(npminstall, [
         '--fs=rapid',
         '--production',
-        '--registry=https://registry.npmmirror.com',
         '--deps-tree-path=./tree.json',
       ], { cwd: fixture })
         .debug()
@@ -214,4 +214,25 @@ describe('test/npminstall-rapid.test.js', () => {
         .end(done);
     });
   });
+
+describe('test/tnpm-rapid-workspace.test.js', () => {
+  let cwd;
+
+  afterEach(async () => {
+ //   await clean(cwd);
+  });
+
+  it('should install lodash succeed', async () => {
+    cwd = path.join(__dirname, './fixtures/workspace');
+    await runscript(`node ${npminstall} --fs=rapid`, { cwd });
+
+    assert(fs.existsSync(path.join(cwd, 'node_modules/lodash/package.json')));
+    assert(!fs.existsSync(path.join(cwd, 'packages/lodash-1/node_modules/lodash/package.json')));
+    assert(fs.existsSync(path.join(cwd, 'packages/lodash-2/node_modules/lodash/package.json')));
+    const lodash1 = JSON.parse(await fsPromise.readFile(path.join(cwd, 'node_modules/lodash/package.json')));
+    const lodash2 = JSON.parse(await fsPromise.readFile(path.join(cwd, 'packages/lodash-2/node_modules/lodash/package.json')));
+    assert(lodash1.version.startsWith('1.'));
+    assert(lodash2.version.startsWith('2.'));
+  });
+});
 });

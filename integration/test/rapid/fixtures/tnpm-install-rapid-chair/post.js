@@ -1,5 +1,5 @@
 'use strict';
 
-require('chair');
+require('lodash.has');
 
 console.info('postinstall.');
