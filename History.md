@@ -1,4 +1,10 @@
 
+6.6.0 / 2022-11-09
+==================
+
+**features**
+  * [[`f720eff`](http://github.com/cnpm/npminstall/commit/f720eff70fd8b911f5ba4cd789c9188ef8752578)] - feat: add dns cache (#424) (Ke Wu <<gemwuu@163.com>>)
+
 6.5.2 / 2022-10-17
 ==================
 
