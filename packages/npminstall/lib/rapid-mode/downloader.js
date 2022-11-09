@@ -109,12 +109,7 @@ class Downloader {
       const taskId = Util.generatePackageId(pkgName, pkgVersion);
       if (taskMap.has(taskId)) {
         // 如果 semver@6.3.0 dev 来覆盖 semver@6.3.0 production 就非法
-        if (taskMap.get(taskId).pkg.dev !== true) {
-          continue;
-        }
-
-        // 同上
-        if (taskMap.get(taskId).pkg.optional !== true) {
+        if (taskMap.get(taskId).pkg.dev !== true && taskMap.get(taskId).pkg.optional !== true) {
           continue;
         }
       }

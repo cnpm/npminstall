@@ -29,7 +29,7 @@ describe('test/npminstall-rapid.test.js', () => {
         .expect('code', 0)
         .end();
       assert(fs.existsSync(path.join(fixture, 'node_modules/lodash/package.json')));
-      const { stdout } = await runscript('mount', { stdio: 'pipe' });
+      const { stdout } = await runscript('mount -l', { stdio: 'pipe' });
       assert(stdout.indexOf(path.join(fixture)) > 0);
     });
   });
@@ -39,14 +39,14 @@ describe('test/npminstall-rapid.test.js', () => {
       fixture = path.join(fixtures, 'tnpm-install-rapid-chair');
     });
 
-    it('should generate deps tree', done => {
-      coffee.fork(npminstall, [
+    it('should generate deps tree', async () => {
+      await coffee.fork(npminstall, [
         '--fs=rapid',
         '--production',
         '--deps-tree-path=./tree.json',
       ], { cwd: fixture })
         .debug()
-        .end(done);
+        .end();
     });
   });
   describe('nodeEnv is prod', () => {
@@ -54,17 +54,15 @@ describe('test/npminstall-rapid.test.js', () => {
       fixture = path.join(fixtures, 'tnpm-install-rapid-prod');
     });
 
-    it('should generate deps tree', done => {
-      coffee.fork(npminstall, [
+    it('should generate deps tree', async () => {
+      await coffee.fork(npminstall, [
         '--fs=rapid',
         '--production',
         '--deps-tree-path=./tree.json',
       ], { cwd: fixture })
         .debug()
         .expect('stdout', /Error: Cannot find module 'object-pipeline'/)
-        .end(() => {
-          done();
-        });
+        .end();
     });
   });
 
@@ -73,8 +71,8 @@ describe('test/npminstall-rapid.test.js', () => {
       fixture = path.join(fixtures, 'tnpm-install-rapid-all');
     });
 
-    it('should generate deps tree', done => {
-      coffee.fork(npminstall, [
+    it('should generate deps tree', async () => {
+      await coffee.fork(npminstall, [
         '--fs=rapid',
         '--deps-tree-path=./tree.json',
       ], { cwd: fixture })
@@ -82,9 +80,7 @@ describe('test/npminstall-rapid.test.js', () => {
         .expect('code', 0)
         .expect('stdout', /preinstall\./)
         .expect('stdout', /postinstall\./)
-        .end(() => {
-          done();
-        });
+        .end();
     });
   });
 
@@ -93,17 +89,15 @@ describe('test/npminstall-rapid.test.js', () => {
       fixture = path.join(fixtures, 'tnpm-install-rapid-prod');
     });
 
-    it('should work with argument abbreviation', done => {
-      coffee.fork(npminstall, [
+    it('should work with argument abbreviation', async () => {
+      await coffee.fork(npminstall, [
         '-sst',
         '--production',
         '--deps-tree-path=./tree.json',
       ], { cwd: fixture })
         .debug()
         .expect('code', 0)
-        .end(function() {
-          done();
-        });
+        .end();
     });
   });
 
@@ -112,16 +106,14 @@ describe('test/npminstall-rapid.test.js', () => {
       fixture = path.join(fixtures, 'tnpm-install-rapid-bundles');
     });
 
-    it('should generate deps tree', done => {
-      coffee.fork(npminstall, [
+    it('should generate deps tree', async () => {
+      await coffee.fork(npminstall, [
         '--fs=rapid',
         '--deps-tree-path=./tree.json',
       ], { cwd: fixture })
         .debug()
         .expect('code', 0)
-        .end(() => {
-          done();
-        });
+        .end();
     });
   });
 
@@ -156,13 +148,11 @@ describe('test/npminstall-rapid.test.js', () => {
       });
     });
 
-    it('should generate deps tree', done => {
-      coffee.fork(npminstall, [ '--by=rapid', '--deps-tree-path=./tree.json' ], { cwd: fixture })
+    it('should generate deps tree', async () => {
+      await coffee.fork(npminstall, [ '--by=rapid', '--deps-tree-path=./tree.json' ], { cwd: fixture })
         .debug()
         .expect('code', 0)
-        .end(() => {
-          done();
-        });
+        .end();
     });
   });
 
@@ -173,36 +163,34 @@ describe('test/npminstall-rapid.test.js', () => {
       fixture = path.join(fixtures, 'rapid-mode-force-to-yarn-mode');
     });
 
-    it('should use npm or yarn mode', done => {
-      coffee.fork(npminstall, [ '--by=rapid' ], { cwd: fixture })
+    it('should use npm or yarn mode', async () => {
+      await coffee.fork(npminstall, [ '--by=rapid' ], { cwd: fixture })
         .debug()
         .expect('code', 0)
         .expect('stdout', /added 1 package from 3 contributors/)
-        .end(() => {
-          done();
-        });
+        .end();
     });
   });
 
-  describe('--by=rapid using deps tree v2', done => {
+  describe('--by=rapid using deps tree v2', () => {
     beforeEach(() => {
       fixture = path.join(fixtures, 'rapid-mode-dep-tree-v2');
     });
     it('should work', async () => {
-      coffee.fork(npminstall, [ '--by=rapid', '--deps-tree-path=./tree-v2.json' ], { cwd: fixture })
+      await coffee.fork(npminstall, [ '--by=rapid', '--deps-tree-path=./tree-v2.json' ], { cwd: fixture })
         .debug()
         .expect('code', 0)
-        .end(done);
+        .end();
     });
   });
 
-  describe('--by=npminstall --fs=rapid', done => {
+  describe('--by=npminstall --fs=rapid', () => {
     beforeEach(() => {
       fixture = path.join(fixtures, 'rapid-mode-download-local-deps');
     });
 
     it('should work', async () => {
-      coffee.fork(npminstall, [
+      await coffee.fork(npminstall, [
         '--by=npminstall',
         '--fs=rapid',
         '--deps-tree-path=./package-lock.json',
@@ -211,7 +199,7 @@ describe('test/npminstall-rapid.test.js', () => {
       })
         .debug()
         .expect('code', 0)
-        .end(done);
+        .end();
     });
   });
 
