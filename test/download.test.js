@@ -1,29 +1,30 @@
-'use strict';
-
 const assert = require('assert');
 const mm = require('mm');
 const path = require('path');
+const coffee = require('coffee');
 const urllib = require('urllib');
 const { MockAgent, setGlobalDispatcher, getGlobalDispatcher } = require('urllib');
 const install = require('./npminstall');
 const helper = require('./helper');
-const coffee = require('coffee');
 
 describe('test/download.test.js', () => {
   const [ tmp, cleanup ] = helper.tmp();
   const globalAgent = getGlobalDispatcher();
-  beforeEach(cleanup);
-  afterEach(() => {
-    cleanup();
-    setGlobalDispatcher(globalAgent);
+  beforeEach(async () => {
+    mm(process.env, 'MOCK_AGENT', 'true');
+    await cleanup();
   });
-  afterEach(mm.restore);
+  afterEach(async () => {
+    await cleanup();
+    setGlobalDispatcher(globalAgent);
+    mm.restore();
+  });
 
   describe('mock tarball not exists', () => {
     it('should throw error when status === 404', async () => {
       const mockAgent = new MockAgent();
       setGlobalDispatcher(mockAgent);
-      const mockPool = mockAgent.get('https://registry.npmjs.org');
+      const mockPool = mockAgent.get(/registry\./);
       // will auto retry 3 times
       mockPool.intercept({
         path: /\.tgz$/,
@@ -55,7 +56,7 @@ describe('test/download.test.js', () => {
     it('should throw error when status === 206', async () => {
       const mockAgent = new MockAgent();
       setGlobalDispatcher(mockAgent);
-      const mockPool = mockAgent.get('https://registry.npmjs.org');
+      const mockPool = mockAgent.get(/registry\./);
       // will auto retry 3 times
       mockPool.intercept({
         path: /\.tgz$/,
@@ -129,7 +130,7 @@ describe('test/download.test.js', () => {
     it('should throw 500 error', async () => {
       const mockAgent = new MockAgent();
       setGlobalDispatcher(mockAgent);
-      const mockPool = mockAgent.get('https://registry.npmjs.org');
+      const mockPool = mockAgent.get(/registry\./);
       // will auto retry 3 times
       mockPool.intercept({
         path: /\.tgz$/,
@@ -160,7 +161,7 @@ describe('test/download.test.js', () => {
     it('should throw 502 error', async () => {
       const mockAgent = new MockAgent();
       setGlobalDispatcher(mockAgent);
-      const mockPool = mockAgent.get('https://registry.npmjs.org');
+      const mockPool = mockAgent.get(/registry\./);
       // will auto retry 3 times
       mockPool.intercept({
         path: /\.tgz$/,
@@ -192,13 +193,13 @@ describe('test/download.test.js', () => {
 
   describe('mock platform not matched', () => {
     it('should skip download', async () => {
-      return coffee.fork(helper.npminstall, [
+      await coffee.fork(helper.npminstall, [
         '@napi-rs/canvas-darwin-x64',
       ], {
         cwd: tmp,
       })
         .debug()
-        .beforeScript(path.join(__dirname, './download.mockScript.js'))
+        .beforeScript(path.join(__dirname, 'download.mockScript.js'))
         .expect('stderr', /skip download for reason darwin dont includes your platform/)
         .expect('code', 1)
         .end();
@@ -207,13 +208,13 @@ describe('test/download.test.js', () => {
 
   describe('mock arch not matched', () => {
     it('should skip download', async () => {
-      return coffee.fork(helper.npminstall, [
+      await coffee.fork(helper.npminstall, [
         '@napi-rs/canvas-darwin-x64',
       ], {
         cwd: tmp,
       })
         .debug()
-        .beforeScript(path.join(__dirname, './download.mockArchScript.js'))
+        .beforeScript(path.join(__dirname, 'download.mockArchScript.js'))
         .expect('stderr', /skip download for reason x64 dont includes your arch/)
         .expect('code', 1)
         .end();
