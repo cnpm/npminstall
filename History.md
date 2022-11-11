@@ -1,4 +1,10 @@
 
+6.6.1 / 2022-11-11
+==================
+
+**fixes**
+  * [[`304a579`](http://github.com/cnpm/npminstall/commit/304a5794afb53bf01bf55f7725e9ad0176156781)] - 🐛 FIX: Custom lookup on httpclient (#425) (fengmk2 <<fengmk2@gmail.com>>)
+
 6.6.0 / 2022-11-09
 ==================
 
