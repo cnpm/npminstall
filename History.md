@@ -1,4 +1,10 @@
 
+6.6.2 / 2022-11-30
+==================
+
+**features**
+  * [[`4286740`](http://github.com/cnpm/npminstall/commit/4286740aead2dd37322f6b7dff175a78417dc1c5)] - feat: update npm-related deps (#426) (Ke Wu <<gemwuu@163.com>>)
+
 6.6.1 / 2022-11-11
 ==================
 
