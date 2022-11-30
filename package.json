@@ -23,6 +23,7 @@
     "ci": "npm run lint && npm run test-cov"
   },
   "dependencies": {
+    "@npmcli/arborist": "^6.1.3",
     "await-event": "^2.1.0",
     "bin-links": "^2.3.0",
     "binary-mirror-config": "^1.19.0",

@@ -184,9 +184,9 @@ describe('test/installLocal.test.js', () => {
     const pkg1 = await helper.readJSON(path.join(aliasRoot, 'node_modules/lodash-has/package.json'));
     const pkg2 = await helper.readJSON(path.join(aliasRoot, 'node_modules/lodash-has-deprecated/package.json'));
     assert.strictEqual(pkg1.name, 'lodash.has');
-    assert.strictEqual(semver(pkg1.version).major, 4);
+    assert.strictEqual(semver.parse(pkg1.version).major, 4);
     assert.strictEqual(pkg2.name, 'lodash.has');
-    assert.strictEqual(semver(pkg2.version).major, 3);
+    assert.strictEqual(semver.parse(pkg2.version).major, 3);
   });
 
   if (process.platform !== 'win32') {
