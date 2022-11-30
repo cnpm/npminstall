@@ -127,7 +127,7 @@ describe('test/rapid-mode/scripts.test.js', () => {
         scripts: {
           postinstall: 'echo postinstall > 3',
         },
-      }, 'node_modules/fake-npm');
+      }, 'node_modules/fake-npm', true);
 
       assert.deepStrictEqual(scripts.postinstallTasks, [
         {

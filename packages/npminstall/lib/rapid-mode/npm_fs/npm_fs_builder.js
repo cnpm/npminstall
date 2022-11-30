@@ -19,6 +19,7 @@ class NpmFsMetaBuilder {
     this.uid = options.uid;
     this.gid = options.gid;
     this.cwd = options.root;
+    this.productionMode = options.productionMode;
   }
 
   async generateFsMeta(packageLockJson, currentPkgPath) {
@@ -26,7 +27,7 @@ class NpmFsMetaBuilder {
     await packageLock.load();
     const packages = packageLock.packages;
     for (const [ pkgPath, pkgItem ] of Object.entries(packages)) {
-      if (!pkgPath) continue;
+      if (!pkgPath || !Util.validDep(pkgItem, this.productionMode)) continue;
       // npm alias or normal npm package
       const name = Util.getAliasPackageNameFromPackagePath(pkgPath, packages);
       const version = pkgItem.version;

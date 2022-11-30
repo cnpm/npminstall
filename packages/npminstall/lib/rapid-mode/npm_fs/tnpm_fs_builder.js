@@ -19,6 +19,7 @@ class TnpmFsBuilder {
     this.uid = options.uid;
     this.gid = options.gid;
     this.mode = NpmFsMode.NPMINSTALL;
+    this.productionMode = options.productionMode;
     // fork from: https://github.com/cnpm/npminstall/blob/master/lib/install.js#L157
     this.latestVersions = new Map();
     this.projectVersions = new Map();
@@ -33,7 +34,7 @@ class TnpmFsBuilder {
     const blobId = this.fsMeta.blobIds[0];
     const packages = packageLockJson.packages;
     for (const [ pkgPath, pkgItem ] of Object.entries(packages)) {
-      if (!pkgPath) continue;
+      if (this.shouldSkipGenerate(pkgPath, pkgItem)) continue;
       const name = Util.getPackageNameFromPackagePath(pkgPath, packages);
       const version = pkgItem.version;
       const originName = Util.getAliasPackageNameFromPackagePath(pkgPath, packages);
@@ -48,7 +49,7 @@ class TnpmFsBuilder {
   createRealPkgs(packageLockJson) {
     const packages = packageLockJson.packages;
     for (const [ pkgPath, pkgItem ] of Object.entries(packages)) {
-      if (!pkgPath) continue;
+      if (this.shouldSkipGenerate(pkgPath, pkgItem)) continue;
       const name = Util.getAliasPackageNameFromPackagePath(pkgPath, packages);
       const version = pkgItem.version;
       this.createPackageMeta(name, version, pkgPath);
@@ -63,13 +64,13 @@ class TnpmFsBuilder {
       ...Object.keys(pkg.dependencies || {}),
       ...Object.keys(pkg.optionalDependencies || {}),
     ];
-    const bundledDependencies = pkg.bundledDependencies || [];
+    const bundledDependencies = pkg.bundledDependencies || pkg.bundleDependencies || [];
     for (const dependency of dependencies) {
       if (bundledDependencies.includes(dependency)) {
         continue;
       }
       const dependencyPath = this.findDependencyPath(pkgPath, dependency, pkgLockJson);
-      if (!dependencyPath) {
+      if (this.shouldSkipGenerate(dependencyPath, pkgLockJson.packages[dependencyPath])) {
         console.warn(`can not find dependency ${dependency} for ${name}@${version}`);
         continue;
       }
@@ -199,12 +200,16 @@ class TnpmFsBuilder {
     }
   }
 
+  shouldSkipGenerate(pkgPath, pkgItem) {
+    return !pkgPath || !Util.validDep(pkgItem, this.productionMode);
+  }
+
   // 直接根据依赖树算出需要打平的，每个最大版本的依赖
   // 1. 项目直接依赖强制打平
   // 2. 非项目直接依赖，打平最大版本号
   getLatestVersions(packageLockJson) {
     for (const [ pkgPath, pkgItem ] of Object.entries(packageLockJson.packages)) {
-      if (!pkgPath) continue;
+      if (this.shouldSkipGenerate(pkgPath, pkgItem)) continue;
       const name = Util.getPackageNameFromPackagePath(pkgPath);
       const version = pkgItem.version;
 

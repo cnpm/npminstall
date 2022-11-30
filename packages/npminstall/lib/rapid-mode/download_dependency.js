@@ -28,7 +28,13 @@ function entryListenerFactory(blobManger) {
     if (entry.entryName.split('/').length !== 2) {
       return;
     }
-    blobManger.addPackage(JSON.parse(entry.content));
+    // packages/binding.gyp
+    if (entry.entryName.includes('binding.gyp')) {
+      blobManger.setGyp(entry.pkgName);
+    } else {
+      // packages/package.json
+      blobManger.addPackage(JSON.parse(entry.content));
+    }
   };
 }
 
@@ -63,16 +69,19 @@ async function download(options) {
   }
 
   const scripts = new Scripts(options);
-  for (const [ name, { version, resolved, dev, optional, link, inBundle }] of Object.entries(depsTree.packages)) {
+  for (const [ name, depPkg ] of Object.entries(depsTree.packages)) {
+    const { version, resolved, dev, optional, link, inBundle } = depPkg;
     if (!name.startsWith('node_modules') || link === true || inBundle === true) {
       continue;
     }
     const depPath = name.substr('node_modules/'.length);
     const { name: pkgName } = parseTarballUrl(resolved);
     const pkg = blobManger.getPackage(pkgName, version);
+    const isValidDep = util.validDep(depPkg, options.productionMode);
+
 
     if (!pkg) {
-      if (!optional || (options.production && !dev)) {
+      if (isValidDep) {
         const pkgId = Util.generatePackageId(pkgName, version);
         throw new Error(`not found package json for ${pkgId}`);
       }
@@ -81,8 +90,11 @@ async function download(options) {
       if (options.mode === NpmFsMode.NPMINSTALL) {
         postinstallRoot = path.join('./node_modules', Util.getDisplayName(pkg, options.mode));
       }
-      await scripts.storePreinstallScripts(pkg, depPath);
-      scripts.storePostinstallScripts(pkg, postinstallRoot);
+      if (isValidDep) {
+        const pkgId = Util.generatePackageId(pkgName, version);
+        await scripts.storePreinstallScripts(pkg, depPath);
+        scripts.storePostinstallScripts(pkg, postinstallRoot, blobManger.hasGyp(pkgId));
+      }
     }
   }
   console.timeEnd('[npminstall] parallel download time');

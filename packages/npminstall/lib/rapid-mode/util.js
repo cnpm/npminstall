@@ -388,8 +388,23 @@ async function getWorkspaces(cwd, pkg) {
   return workspacesMap;
 }
 
-exports.getWorkdir = getWorkdir;
+function validDep(pkg, productionMode) {
+  const targetArch = process.arch;
+  const targetOS = process.platform;
 
+  if (pkg.optional === true) {
+    return verifyNpmConstraint(pkg.os, targetOS) && verifyNpmConstraint(pkg.cpu, targetArch);
+  }
+
+  if (productionMode === true && pkg.dev === true) {
+    return false;
+  }
+  return true;
+
+}
+
+exports.getWorkdir = getWorkdir;
+exports.validDep = validDep;
 exports.getDisplayName = getDisplayName;
 exports.wrapSudo = wrapSudo;
 exports.createNydusdConfigFile = createNydusdConfigFile;

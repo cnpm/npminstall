@@ -45,7 +45,7 @@ class Downloader {
       bucketCount: this.bucketCount,
       httpConcurrentCount: this.httpConcurrentCount,
       downloadDir: tarBucketsDir,
-      entryWhitelist: [ '*/package.json' ],
+      entryWhitelist: [ '*/package.json', '*/binding.gyp' ],
       entryListener: this.entryListener,
       downloadTimeout: this.downloadTimeout,
     });
@@ -71,30 +71,6 @@ class Downloader {
       pkg,
     };
     return await this.doDownloadTask(task);
-  }
-
-  verifyDownloadTask(task) {
-    const { pkg } = task;
-    if (pkg.os) {
-      if (!Util.verifyNpmConstraint(pkg.os, this.platform)) {
-        console.warn('package %s@%s only support %j current is %s', task.name, task.version, pkg.os, this.platform);
-        if (pkg.optional) {
-          return false;
-        }
-      }
-    }
-    if (pkg.cpu) {
-      if (!Util.verifyNpmConstraint(pkg.cpu, this.arch)) {
-        console.warn('package %s@%s only support %j current is %s', task.name, task.version, pkg.cpu, this.arch);
-        if (pkg.optional) {
-          return false;
-        }
-      }
-    }
-    if (this.production === true && pkg.dev === true) {
-      return false;
-    }
-    return true;
   }
 
   createDownloadTask(pkgLockJson) {
@@ -123,9 +99,7 @@ class Downloader {
       });
     }
     const tasks = Array.from(taskMap.values());
-    return tasks.filter(task => {
-      return this.verifyDownloadTask(task);
-    });
+    return tasks.filter(task => Util.validDep(task.pkg, this.productionMode));
   }
 
   async doDownloadTask(task) {

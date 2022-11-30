@@ -34,11 +34,19 @@ class NpmBlobManager {
     this.blobs = new Map();
     /** @type {Map<string, PackageJson>} */
     this.packages = new Map();
+    this.gyp = new Set();
   }
 
   addPackage(pkg) {
     const id = Util.generatePackageId(pkg.name, pkg.version);
     this.packages.set(id, pkg);
+  }
+
+  setGyp(pkgName) {
+    this.gyp.add(pkgName);
+  }
+  hasGyp(pkgName) {
+    return this.gyp.has(pkgName);
   }
 
   /**

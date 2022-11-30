@@ -4,7 +4,7 @@ const debug = require('debug')('npminstall:rapid_mode:scripts');
 const path = require('path');
 const pMap = require('p-map');
 const { mkdirp } = require('../utils');
-const fs = require('fs');
+const fs = require('fs/promises');
 const chalk = require('chalk');
 const ms = require('ms');
 const os = require('os');
@@ -75,7 +75,7 @@ exports.Scripts = class Scripts {
     }, { concurrency: 100 });
   }
 
-  static _storePostinstallScripts(pkg, packageStorePath, postinstallTasks) {
+  static _storePostinstallScripts(pkg, packageStorePath, postinstallTasks, hasGyp) {
     // packageStorePath: node_modules/@mockscope/bigfish
     const displayName = getDisplayName(pkg);
     // copy from npminstall/lib/postinstall
@@ -85,7 +85,7 @@ exports.Scripts = class Scripts {
     // "install": "node-gyp rebuild"
     // If there is a binding.gyp file in the root of your package,
     // npm will default the install command to compile using node-gyp.
-    if (!scripts.install && fs.existsSync(path.join(packageStorePath, 'binding.gyp'))) {
+    if (!scripts.install && hasGyp) {
 
       postinstallTasks.push({
         pkg: Object.assign({}, pkg, {
@@ -112,8 +112,8 @@ exports.Scripts = class Scripts {
     }
   }
 
-  storePostinstallScripts(pkg, packageStorePath) {
-    Scripts._storePostinstallScripts(pkg, packageStorePath, this.postinstallTasks);
+  storePostinstallScripts(pkg, packageStorePath, hasGyp) {
+    Scripts._storePostinstallScripts(pkg, packageStorePath, this.postinstallTasks, hasGyp);
   }
 
   static async runPostinstallScripts(postinstallTasks, options) {
@@ -146,17 +146,20 @@ exports.Scripts = class Scripts {
         // 如果不存在 binding.gyp 且 scripts.install 为`node-gyp install` 时跳过脚本执行
         if (installScript) {
           const defaultCmd = 'node-gyp rebuild';
-          if (installScript === defaultCmd && !(await fs.exists(path.join(root, 'binding.gyp')))) {
-            console.warn(
-              '%s %s skip running %j, root: %j',
-              chalk.yellow(`[${count}/${total}] scripts.install`),
-              chalk.gray(displayName),
-              installScript,
-              root
-            );
-            continue;
+          try {
+            await fs.stat(path.join(root, 'binding.gyp'));
+          } catch (_) {
+            if (installScript === defaultCmd) {
+              console.warn(
+                '%s %s skip running %j, root: %j',
+                chalk.yellow(`[${count}/${total}] scripts.install`),
+                chalk.gray(displayName),
+                installScript,
+                root
+              );
+              continue;
+            }
           }
-
           console.warn(
             '%s %s run %j, root: %j',
             chalk.yellow(`[${count}/${total}] scripts.install`),
