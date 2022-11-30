@@ -20,7 +20,7 @@ jobs:
             shell: bash
           - os: windows-latest
             shell: powershell
-        python-version: [ 3.6 ]
+        python-version: [ 3.7 ]
         vs-version: [ 15.0 ]
 
     runs-on: ${{ matrix.platform.os }}
@@ -32,7 +32,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
         env:
