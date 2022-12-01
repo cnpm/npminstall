@@ -34,6 +34,9 @@ describe('test/bin.test.js', () => {
     const pkg = await readJSON(path.join(root, 'node_modules', '@bigfunger/decompress-zip', 'package.json'));
     assert(pkg.name === '@bigfunger/decompress-zip');
     assert(fs.existsSync(path.join(root, 'node_modules', '.bin', 'decompress-zip')));
+    const pkg2 = await readJSON(path.join(root, 'node_modules',
+      `.pnpm/@bigfunger/decompress-zip@${pkg.version}`, 'package.json'));
+    assert.deepStrictEqual(pkg2, pkg);
   });
 
   it('fix windows hashbang', async () => {

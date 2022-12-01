@@ -21,5 +21,6 @@ describe('test/install-pedding.test.js', () => {
       ],
     });
     assert(JSON.parse(await fs.readFile(path.join(root, 'node_modules/pedding/package.json'))).version === '0.0.1');
+    assert(JSON.parse(await fs.readFile(path.join(root, 'node_modules/.pnpm/pedding@0.0.1/package.json'))).version === '0.0.1');
   });
 });

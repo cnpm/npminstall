@@ -37,7 +37,7 @@ describe('test/fix-bug-versions.test.js', () => {
     ], { cwd: tmp })
       .debug()
       .expect('code', 0)
-      .expect('stdout', /is-my-json-valid@2\.17\.1@is-my-json-valid/)
+      .expect('stdout', /is-my-json-valid@2\.17\.1/)
       .end(done);
   });
 
@@ -85,7 +85,7 @@ describe('test/fix-bug-versions.test.js', () => {
     ], { cwd: demo })
       .debug()
       .expect('code', 0)
-      .expect('stdout', /is-my-json-valid@2\.17\.1@is-my-json-valid/)
+      .expect('stdout', /is-my-json-valid@2\.17\.1/)
       .end();
 
     await coffee.fork(update, [
@@ -95,7 +95,7 @@ describe('test/fix-bug-versions.test.js', () => {
     ], { cwd: demo })
       .debug()
       .expect('code', 0)
-      .expect('stdout', /is-my-json-valid@2\.17\.1@is-my-json-valid/)
+      .expect('stdout', /is-my-json-valid@2\.17\.1/)
       .end();
   });
 
@@ -108,7 +108,7 @@ describe('test/fix-bug-versions.test.js', () => {
     ], { cwd: tmp })
       .debug()
       .expect('code', 0)
-      .expect('stdout', /is-my-json-valid@2\.16\.0@is-my-json-valid/)
+      .expect('stdout', /is-my-json-valid@2\.16\.0/)
       .end(done);
   });
 

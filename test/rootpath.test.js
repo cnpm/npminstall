@@ -14,7 +14,8 @@ describe('test/rootpath.test.js', () => {
     return coffee.fork(helper.npminstall, [ '-d' ], { cwd })
       .debug()
       .expect('code', 0)
-      .expect('stdout', /hello process\.env\.npm_rootpath is true/)
+      // .expect('stdout', /hello process\.env\.npm_rootpath is true/)
+      .expect('stdout', /hello process\.env\.npm_rootpath is false/)
       .end();
   });
 });

@@ -5,6 +5,9 @@ rm -rf ant-design
 git clone https://github.com/ant-design/ant-design.git --depth 1
 cd ant-design
 node ../bin/install.js || exit $?
+npm run lint
+npm run build
+npm run test
 cd ..
 rm -rf ant-design
 

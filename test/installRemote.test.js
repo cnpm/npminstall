@@ -33,7 +33,7 @@ describe('test/installRemote.test.js', () => {
     assert.equal(pkg.name, 'taffydb');
 
     const dirs = await fs.readdir(path.join(root, 'node_modules'));
-    assert.deepEqual(dirs.sort(), [ '.tmp', 'pedding', 'taffydb', '_pedding@1.0.0@pedding', '_taffydb@2.7.2@taffydb', '.package_versions.json' ].sort());
+    assert.deepEqual(dirs.sort(), [ '.tmp', 'pedding', 'taffydb', '.pnpm', '.package_versions.json' ].sort());
   });
 
   it('should install remote/taffydb/-/taffydb-2.7.2.tgz', async () => {

@@ -31,3 +31,4 @@ test/fixtures/high-speed-store/tmp
 .npminstall_tarball
 
 .editorconfig
+.DS_Store

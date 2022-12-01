@@ -27,10 +27,10 @@ describe('test/cleanup.test.js', () => {
     }
     assert(throwError);
 
-    let done = await utils.isInstallDone(path.join(tmp, 'node_modules/_install-error@1.0.1@install-error/package.json'));
+    let done = await utils.isInstallDone(path.join(tmp, 'node_modules/.pnpm/install-error@1.0.1/package.json'));
     assert.equal(done, false);
     const dirs = await fs.readdir(path.join(tmp, 'node_modules'));
-    assert.deepEqual(dirs, [ '_install-error@1.0.1@install-error' ]);
+    assert.deepEqual(dirs, [ '.pnpm' ]);
 
     // install again will try to download
     throwError = false;
@@ -45,7 +45,7 @@ describe('test/cleanup.test.js', () => {
       throwError = true;
     }
     assert.equal(throwError, true);
-    done = await utils.isInstallDone(path.join(tmp, 'node_modules/_install-error@1.0.1@install-error/.npminstall.done'));
+    done = await utils.isInstallDone(path.join(tmp, 'node_modules/.pnpm/install-error@1.0.1/.npminstall.done'));
     assert.equal(done, false);
   });
 
@@ -62,7 +62,7 @@ describe('test/cleanup.test.js', () => {
     }
     assert.equal(throwError, true);
 
-    let done = await utils.isInstallDone(path.join(tmp, 'node_modules/_postinstall-error@1.0.0@postinstall-error/.npminstall.done'));
+    let done = await utils.isInstallDone(path.join(tmp, 'node_modules/.pnpm/postinstall-error@1.0.0/.npminstall.done'));
     assert.equal(done, false);
 
     // install again will try to download
@@ -76,7 +76,7 @@ describe('test/cleanup.test.js', () => {
       throwError = true;
     }
     assert.equal(throwError, true);
-    done = await utils.isInstallDone(path.join(tmp, 'node_modules/_postinstall-error@1.0.0@postinstall-error/.npminstall.done'));
+    done = await utils.isInstallDone(path.join(tmp, 'node_modules/.pnpm/postinstall-error@1.0.0/.npminstall.done'));
     assert.equal(done, false);
   });
 });

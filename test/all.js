@@ -1,14 +1,7 @@
-'use strict';
-
 const path = require('path');
-const semver = require('semver');
 const spawn = require('child_process').spawn;
 const npminstall = require('./npminstall');
 const { rimraf } = require('../lib/utils');
-
-if (semver.satisfies(process.version, '< 6.0.0')) {
-  process.exit(0);
-}
 
 const names = [
   'express',
@@ -41,22 +34,9 @@ const names = [
   'cnpm',
   'pnpm',
   // 'firebase',
+  'egg',
+  // 'strongloop',
 ];
-
-const semvers = {
-  '>= 6': [
-    'egg',
-  ],
-  '<= 8': [
-    'strongloop',
-  ],
-};
-
-for (const version in semvers) {
-  if (!semver.satisfies(process.version, version)) continue;
-  const pkgs = semvers[version];
-  for (const pkg of pkgs) names.push(pkg);
-}
 
 (async () => {
   const root = path.join(__dirname, 'fixtures', 'all');

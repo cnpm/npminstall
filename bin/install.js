@@ -152,7 +152,6 @@ if (process.env.NPMINSTALL_BY_UPDATE) {
 
 const context = new Context();
 for (const name of argv._) {
-
   context.nested.update([ name ]);
   const [
     aliasPackageName,
