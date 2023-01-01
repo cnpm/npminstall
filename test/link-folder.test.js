@@ -7,7 +7,7 @@ const { rimraf, exists } = require('../lib/utils');
 const npmlink = path.join(__dirname, '../bin/link.js');
 
 describe('test/link-folder.test.js', () => {
-  const root = helper.fixtures('link-demo');
+  const root = helper.fixtures('link-folder');
 
   async function cleanup() {
     await rimraf(path.join(root, 'node_modules'));
@@ -23,7 +23,7 @@ describe('test/link-folder.test.js', () => {
       cwd: root,
     })
       .debug()
-      .expect('stderr', /npm_rootpath:.+link\-demo!!!!!/)
+      .expect('stderr', /npm_rootpath:.+link\-folder!!!!!/)
       .end();
 
     assert(await exists(path.join(root, 'node_modules/linked-package')));

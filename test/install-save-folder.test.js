@@ -7,7 +7,7 @@ const { exists } = require('../lib/utils');
 
 describe('test/install-save-folder.test.js', () => {
   const [ root, cleanup ] = helper.tmp();
-  const demo = helper.fixtures('demo');
+  const demo = helper.fixtures('demo-install-save-folder');
 
   beforeEach(cleanup);
   afterEach(cleanup);

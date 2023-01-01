@@ -8,8 +8,8 @@ describe('test/install-cache-strict.test.js', () => {
   // Fixme: mock Windows homedir
   if (process.platform === 'win32') return;
 
-  const [ homedir, cleanupTmp ] = helper.tmp('.tmp');
-  const demo = helper.fixtures('demo');
+  const [ homedir, cleanupTmp ] = helper.tmp();
+  const demo = helper.fixtures('demo-install-cache-strict');
   const cleanupModules = helper.cleanup(demo);
 
   async function cleanup() {

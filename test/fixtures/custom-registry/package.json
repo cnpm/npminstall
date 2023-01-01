@@ -1,0 +1,6 @@
+{
+  "name": "install-pedding",
+  "dependencies": {
+    "pedding": "0.0.1"
+  }
+}
