@@ -8,8 +8,8 @@ const { rimraf, existsSync } = require('../lib/utils');
 const npmlink = path.join(__dirname, '../bin/link.js');
 
 describe('test/link-module.test.js', () => {
-  const root = path.join(__dirname, 'fixtures/link-demo');
-  const globalRoot = path.join(__dirname, 'fixtures/link-demo/global');
+  const root = path.join(__dirname, 'fixtures/link-demo-module');
+  const globalRoot = path.join(__dirname, 'fixtures/link-demo-module/global');
   const globalTarget = utils.getGlobalInstallMeta(globalRoot).targetDir;
   async function cleanup() {
     await rimraf(path.join(root, 'node_modules'));

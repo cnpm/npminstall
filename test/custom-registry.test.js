@@ -5,7 +5,7 @@ const coffee = require('coffee');
 const helper = require('./helper');
 
 describe('test/custom-registry.test.js', () => {
-  const tmp = helper.fixtures('install-pedding');
+  const tmp = helper.fixtures('custom-registry');
   const cleanup = helper.cleanup(tmp);
 
   beforeEach(cleanup);
