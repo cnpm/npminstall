@@ -1,5 +1,3 @@
-'use strict';
-
 const assert = require('assert');
 const path = require('path');
 const fs = require('fs/promises');
@@ -31,8 +29,7 @@ describe('test/optionalDependencies.test.js', () => {
     const pkg = await helper.readJSON(path.join(tmp, 'node_modules/koa-redis/package.json'));
     assert(pkg.optionalDependencies.hiredis);
 
-    const dirs = await fs.readdir(path.join(tmp, 'node_modules/koa-redis/node_modules'));
-    // assert(dirs.includes('hiredis'));
+    const dirs = await fs.readdir(path.join(tmp, 'node_modules/.store/koa-redis@3.1.0/node_modules'));
     assert(dirs.includes('redis'));
   });
 
@@ -47,7 +44,7 @@ describe('test/optionalDependencies.test.js', () => {
     // less should exists
     const pkg = await helper.readJSON(path.join(root, 'node_modules/less/package.json'));
     assert(pkg.optionalDependencies.mkdirp);
-    const pkg2 = await helper.readJSON(path.join(root, 'node_modules/less/node_modules/mkdirp/package.json'));
+    const pkg2 = await helper.readJSON(path.join(root, `node_modules/.store/less@${pkg.version}/node_modules/mkdirp/package.json`));
     assert.equal(pkg2.name, 'mkdirp');
   });
 });

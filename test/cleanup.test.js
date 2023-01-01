@@ -1,5 +1,3 @@
-'use strict';
-
 const assert = require('assert');
 const path = require('path');
 const fs = require('fs/promises');
@@ -27,10 +25,10 @@ describe('test/cleanup.test.js', () => {
     }
     assert(throwError);
 
-    let done = await utils.isInstallDone(path.join(tmp, 'node_modules/.pnpm/install-error@1.0.1/package.json'));
+    let done = await utils.isInstallDone(path.join(tmp, 'node_modules/.store/install-error@1.0.1/node_modules/install-error/package.json'));
     assert.equal(done, false);
     const dirs = await fs.readdir(path.join(tmp, 'node_modules'));
-    assert.deepEqual(dirs, [ '.pnpm' ]);
+    assert.deepEqual(dirs, [ '.store' ]);
 
     // install again will try to download
     throwError = false;
@@ -45,7 +43,7 @@ describe('test/cleanup.test.js', () => {
       throwError = true;
     }
     assert.equal(throwError, true);
-    done = await utils.isInstallDone(path.join(tmp, 'node_modules/.pnpm/install-error@1.0.1/.npminstall.done'));
+    done = await utils.isInstallDone(path.join(tmp, 'node_modules/.pnpm/install-error@1.0.1/node_modules/install-error/.npminstall.done'));
     assert.equal(done, false);
   });
 
@@ -62,7 +60,7 @@ describe('test/cleanup.test.js', () => {
     }
     assert.equal(throwError, true);
 
-    let done = await utils.isInstallDone(path.join(tmp, 'node_modules/.pnpm/postinstall-error@1.0.0/.npminstall.done'));
+    let done = await utils.isInstallDone(path.join(tmp, 'node_modules/.pnpm/postinstall-error@1.0.0/node_modules/postinstall-error/.npminstall.done'));
     assert.equal(done, false);
 
     // install again will try to download
@@ -76,7 +74,7 @@ describe('test/cleanup.test.js', () => {
       throwError = true;
     }
     assert.equal(throwError, true);
-    done = await utils.isInstallDone(path.join(tmp, 'node_modules/.pnpm/postinstall-error@1.0.0/.npminstall.done'));
+    done = await utils.isInstallDone(path.join(tmp, 'node_modules/.pnpm/postinstall-error@1.0.0/node_modules/postinstall-error/.npminstall.done'));
     assert.equal(done, false);
   });
 });

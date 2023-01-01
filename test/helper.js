@@ -1,5 +1,3 @@
-'use strict';
-
 const { rimraf, mkdirp } = require('../lib/utils');
 const path = require('path');
 

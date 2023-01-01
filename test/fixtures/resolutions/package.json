@@ -1,7 +1,7 @@
 {
   "name": "resolutions",
   "dependencies": {
-    "koa": "2",
+    "koa": "2.14.1",
     "debug": "2.0.0",
     "cookies": "0.7.1",
     "@koa/cors": "2.2.3"

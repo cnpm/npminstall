@@ -1,5 +1,3 @@
-'use strict';
-
 const assert = require('assert');
 const path = require('path');
 const fs = require('fs');
@@ -35,7 +33,7 @@ describe('test/bin.test.js', () => {
     assert(pkg.name === '@bigfunger/decompress-zip');
     assert(fs.existsSync(path.join(root, 'node_modules', '.bin', 'decompress-zip')));
     const pkg2 = await readJSON(path.join(root, 'node_modules',
-      `.pnpm/@bigfunger/decompress-zip@${pkg.version}`, 'package.json'));
+      `.store/@bigfunger+decompress-zip@${pkg.version}`, 'node_modules/@bigfunger/decompress-zip/package.json'));
     assert.deepStrictEqual(pkg2, pkg);
   });
 

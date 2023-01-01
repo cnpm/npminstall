@@ -18,6 +18,9 @@ describe('test/index.test.js', () => {
       root,
     });
     assert(await isInstallDone(path.join(root, 'node_modules/utility')));
+    assert(await isInstallDone(path.join(root, 'node_modules/@babel/preset-react')));
+    assert(await exists(path.join(root, 'node_modules/.store/@babel+preset-react@7.18.6/node_modules/@babel/preset-react')));
+    assert(await exists(path.join(root, 'node_modules/.store/@babel+preset-react@7.18.6/node_modules/@babel/plugin-transform-react-jsx')));
   });
 
   it('should npminstall with options.pkgs', async () => {

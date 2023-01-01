@@ -1,5 +1,3 @@
-'use strict';
-
 const npminstall = require('..');
 const config = require('../lib/config');
 const utils = require('../lib/utils');

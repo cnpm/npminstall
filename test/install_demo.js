@@ -1,4 +1,3 @@
-require('debug').enable('npminstall:*');
 const path = require('path');
 const npminstall = require('./npminstall');
 

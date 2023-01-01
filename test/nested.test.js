@@ -1,14 +1,10 @@
-'use strict';
-
 const Nested = require('../lib/nested');
 const assert = require('assert');
-
 
 const mockPkgs = [
   'a@1.0.0',
   'b@2.0.0',
 ];
-
 
 describe('test/nested.test.js', () => {
   it('should nested success, when pkgs is Array', () => {

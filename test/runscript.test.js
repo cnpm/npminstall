@@ -1,5 +1,3 @@
-'use strict';
-
 const assert = require('assert');
 const path = require('path');
 const readJSON = require('../lib/utils').readJSON;
@@ -8,9 +6,9 @@ const helper = require('./helper');
 
 describe('test/runscript.test.js', () => {
   const root = helper.fixtures('runscript');
-  // const cleanup = helper.cleanup(root);
+  const cleanup = helper.cleanup(root);
 
-  // beforeEach(cleanup);
+  beforeEach(cleanup);
   // afterEach(cleanup);
 
   it('should run preinstall and postinstall', async () => {

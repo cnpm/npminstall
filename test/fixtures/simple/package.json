@@ -6,5 +6,8 @@
   },
   "dependencies": {
     "utility": "^1.17.0"
+  },
+  "devDependencies": {
+    "@babel/preset-react": "7.18.6"
   }
 }

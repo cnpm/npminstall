@@ -1,5 +1,3 @@
-'use strict';
-
 const assert = require('assert');
 const path = require('path');
 const fs = require('fs/promises');
@@ -21,6 +19,6 @@ describe('test/install-pedding.test.js', () => {
       ],
     });
     assert(JSON.parse(await fs.readFile(path.join(root, 'node_modules/pedding/package.json'))).version === '0.0.1');
-    assert(JSON.parse(await fs.readFile(path.join(root, 'node_modules/.pnpm/pedding@0.0.1/package.json'))).version === '0.0.1');
+    assert(JSON.parse(await fs.readFile(path.join(root, 'node_modules/.store/pedding@0.0.1/node_modules/pedding/package.json'))).version === '0.0.1');
   });
 });

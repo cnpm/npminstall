@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-'use strict';
-
 const path = require('path');
 const parseArgs = require('minimist');
 const { rimraf } = require('../lib/utils');
