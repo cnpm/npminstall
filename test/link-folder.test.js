@@ -23,7 +23,7 @@ describe('test/link-folder.test.js', () => {
       cwd: root,
     })
       .debug()
-      .expect('stderr', /npm_rootpath:.+link\-demo!!!!!/)
+      .expect('stderr', /npm_rootpath:.+link\-folder!!!!!/)
       .end();
 
     assert(await exists(path.join(root, 'node_modules/linked-package')));
