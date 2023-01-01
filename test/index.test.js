@@ -5,7 +5,7 @@ const npminstall = require('./npminstall');
 const { readJSON, rimraf, exists, isInstallDone } = require('../lib/utils');
 const helper = require('./helper');
 
-describe.only('test/index.test.js', () => {
+describe('test/index.test.js', () => {
   const [ tmp, cleanup ] = helper.tmp();
 
   beforeEach(cleanup);

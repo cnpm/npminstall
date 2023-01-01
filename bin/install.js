@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-'use strict';
-
 const debug = require('debug')('npminstall:bin:install');
 const chalk = require('chalk');
 const path = require('path');
