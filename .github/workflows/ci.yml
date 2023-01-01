@@ -5,9 +5,9 @@ name: Node CI
 
 on:
   push:
-    branches: [ master, 5.x, 4.x, 3.x ]
+    branches: [ master, 6.x, 5.x, 4.x, 3.x ]
   pull_request:
-    branches: [ master, 5.x, 4.x, 3.x ]
+    branches: [ master, 6.x, 5.x, 4.x, 3.x ]
 
 jobs:
   build:
