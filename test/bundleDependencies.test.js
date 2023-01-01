@@ -1,9 +1,6 @@
-'use strict';
-
 const assert = require('assert');
 const path = require('path');
 const fs = require('fs/promises');
-const semver = require('semver');
 const npminstall = require('./npminstall');
 const helper = require('./helper');
 const { exists } = require('../lib/utils');
@@ -26,8 +23,8 @@ describe('test/bundleDependencies.test.js', () => {
     assert.equal(pkg.version, '0.6.19');
 
     // only node-pre-gyp dir exists
-    const dirs = await fs.readdir(path.join(tmp, 'node_modules/'));
-    assert.deepEqual(dirs.sort(), [ '.bin', '_node-pre-gyp@0.6.19@node-pre-gyp', 'node-pre-gyp' ].sort());
+    const dirs = await fs.readdir(path.join(tmp, 'node_modules'));
+    assert.deepEqual(dirs.sort(), [ '.bin', '.store', 'node-pre-gyp' ].sort());
   });
 
   it('should install bundleDependencies not exist(nyc@6.4.2)', async () => {
@@ -37,26 +34,11 @@ describe('test/bundleDependencies.test.js', () => {
         { name: 'nyc', version: '6.4.2' },
       ],
     });
-    const e = await exists(path.join(tmp, 'node_modules/nyc/node_modules/foreground-child'));
+    let e = await exists(path.join(tmp, 'node_modules/nyc'));
+    assert(e);
+    e = await exists(path.join(tmp, 'node_modules/.store/nyc@6.4.2/node_modules/nyc'));
+    assert(e);
+    e = await exists(path.join(tmp, 'node_modules/.store/nyc@6.4.2/node_modules/foreground-child'));
     assert(e);
   });
-
-  if (semver.satisfies(process.version, '< 12.0.0')) {
-    it('should link bundleDependencies bin', async () => {
-      await npminstall({
-        root: tmp,
-        pkgs: [{
-          name: 'sqlite3',
-          version: '^4.0.6',
-          // version: '3.1.3',
-        }],
-      });
-      const bins = await fs.readdir(path.join(tmp, 'node_modules/sqlite3/node_modules/.bin'));
-      if (process.platform === 'win32') {
-        assert.deepEqual(bins, [ 'node-pre-gyp', 'node-pre-gyp.cmd', 'node-pre-gyp.ps1' ]);
-      } else {
-        assert.deepEqual(bins, [ 'node-pre-gyp' ]);
-      }
-    });
-  }
 });

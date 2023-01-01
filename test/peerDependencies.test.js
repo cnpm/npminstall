@@ -1,5 +1,3 @@
-'use strict';
-
 const npminstall = require('./npminstall');
 const helper = require('./helper');
 

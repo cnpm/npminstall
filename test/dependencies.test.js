@@ -1,5 +1,3 @@
-'use strict';
-
 const dependencies = require('../lib/dependencies');
 const assert = require('assert');
 const Nested = require('../lib/nested');

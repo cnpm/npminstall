@@ -1,7 +1,0 @@
-{
-  "name": "link-latest-version",
-  "dependencies": {
-    "urllib": "2.7.1",
-    "debug": "~2.2.0"
-  }
-}

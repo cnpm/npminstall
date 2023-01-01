@@ -1,5 +1,3 @@
-'use strict';
-
 const coffee = require('coffee');
 const path = require('path');
 const assert = require('assert');
@@ -8,16 +6,16 @@ const helper = require('./helper');
 const { existsSync } = require('../lib/utils');
 
 describe('test/peer.test.js', () => {
+  async function getPkg(root, subPath) {
+    return JSON.parse(await fs.readFile(path.join(root, subPath)));
+  }
+
   describe('unmet root and link', () => {
     const tmp = helper.fixtures('antd-tools-ts');
     const cleanup = helper.cleanup(tmp);
 
     beforeEach(cleanup);
-    afterEach(cleanup);
-
-    async function getPkg(subPath) {
-      return JSON.parse(await fs.readFile(path.join(tmp, subPath)));
-    }
+    // afterEach(cleanup);
 
     // will fail on Windows, ignore it
     if (process.platform !== 'win32') {
@@ -26,11 +24,21 @@ describe('test/peer.test.js', () => {
           .debug()
           .expect('code', 0)
           .end();
-        let pkg = await getPkg('node_modules/antd-tools/node_modules/tslint/node_modules/typescript/package.json');
+        let pkg = await getPkg(tmp, 'node_modules/antd-tools/package.json');
+        assert(pkg);
+        pkg = await getPkg(tmp, `node_modules/.store/antd-tools@${pkg.version}/node_modules/tslint/package.json`);
+        assert(pkg);
+        pkg = await getPkg(tmp, `node_modules/.store/tslint@${pkg.version}/node_modules/typescript/package.json`);
         assert(pkg.version === '2.1.6');
-        pkg = await getPkg('node_modules/antd-tools/node_modules/gulp-typescript/node_modules/typescript/package.json');
+
+        pkg = await getPkg(tmp, 'node_modules/antd-tools/package.json');
+        pkg = await getPkg(tmp, `node_modules/.store/antd-tools@${pkg.version}/node_modules/gulp-typescript/package.json`);
+        assert(pkg);
+        pkg = await getPkg(tmp, `node_modules/.store/gulp-typescript@${pkg.version}/node_modules/typescript/package.json`);
         assert(pkg.version === '2.1.6');
-        pkg = await getPkg('node_modules/antd-tools/node_modules/typescript/package.json');
+
+        pkg = await getPkg(tmp, 'node_modules/antd-tools/package.json');
+        pkg = await getPkg(tmp, `node_modules/.store/antd-tools@${pkg.version}/node_modules/typescript/package.json`);
         assert(pkg.version === '2.1.6');
       });
     }
@@ -40,11 +48,11 @@ describe('test/peer.test.js', () => {
         .debug()
         .expect('code', 0)
         .end();
-      let pkg = await getPkg('node_modules/react-countup/node_modules/react/package.json');
-      assert(pkg.version.startsWith('15.'));
-      pkg = await getPkg('node_modules/react-countup/package.json');
+      let pkg = await getPkg(tmp, 'node_modules/react-countup/package.json');
       assert(pkg.dependencies.react === '^15.3.2');
       assert(pkg.peerDependencies.react === '>=0.14.0');
+      pkg = await getPkg(tmp, `node_modules/.store/react-countup@${pkg.version}/node_modules/react/package.json`);
+      assert(pkg.version.startsWith('15.'));
     });
   });
 
@@ -60,7 +68,8 @@ describe('test/peer.test.js', () => {
         .debug()
         .expect('code', 0)
         .end();
-      assert(!existsSync(path.join(tmp, 'node_modules/react-dom/node_modules/react')));
+      const pkg = await getPkg(tmp, 'node_modules/react-dom/package.json');
+      assert(!existsSync(path.join(tmp, `node_modules/.store/react-dom@${pkg.version}/node_modules/react`)));
       assert(existsSync(path.join(tmp, 'node_modules/react-dom')));
       assert(existsSync(path.join(tmp, 'node_modules/react')));
     });

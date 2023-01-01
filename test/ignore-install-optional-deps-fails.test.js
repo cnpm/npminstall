@@ -1,5 +1,3 @@
-'use strict';
-
 const coffee = require('coffee');
 const helper = require('./helper');
 

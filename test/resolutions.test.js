@@ -1,5 +1,3 @@
-'use strict';
-
 const assert = require('assert');
 const path = require('path');
 const coffee = require('coffee');
@@ -69,10 +67,10 @@ describe('test/resolutions.test.js', () => {
         .end();
 
       await checkPkg('debug', '2.0.0');
-      await checkPkg('koa/node_modules/debug', '1.0.0');
-      await checkPkg('koa/node_modules/cookies', '0.7.0');
+      await checkPkg('.store/koa@2.14.1/node_modules/debug', '1.0.0');
+      await checkPkg('.store/koa@2.14.1/node_modules/cookies', '0.7.0');
       await checkPkg('cookies', '0.7.1');
-      await checkPkg('@koa/cors/node_modules/vary', '1.0.0');
+      await checkPkg('.store/@koa+cors@2.2.3/node_modules/vary', '1.0.0');
     });
   });
 
@@ -92,7 +90,8 @@ describe('test/resolutions.test.js', () => {
         .expect('code', 0)
         .end();
 
-      const pkgJSON = require(path.join(root, 'node_modules', 'object-pipeline/node_modules/lodash.has/package.json'));
+      const pkgJSON1 = require(path.join(root, 'node_modules', 'object-pipeline/package.json'));
+      const pkgJSON = require(path.join(root, 'node_modules', `.store/object-pipeline@${pkgJSON1.version}/node_modules/lodash.has/package.json`));
       assert.strictEqual(pkgJSON.name, 'lodash.get');
       assert.strictEqual(pkgJSON.version, '4.4.2');
     });

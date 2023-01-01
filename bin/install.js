@@ -1,8 +1,6 @@
 #!/usr/bin/env node
 
-'use strict';
-
-const debug = require('debug')('npminstall:bin:install');
+const debug = require('util').debuglog('npminstall:bin:install');
 const chalk = require('chalk');
 const path = require('path');
 const util = require('util');
@@ -36,8 +34,6 @@ Object.assign(argv, parseArgs(originalArgv, {
     // {"http://a.com":"http://b.com"}
     'tarball-url-mapping',
     'proxy',
-    // --high-speed-store=filepath
-    'high-speed-store',
     'dependencies-tree',
   ],
   boolean: [
@@ -135,7 +131,6 @@ Options:
   --cache-strict: use disk cache even on production env.
   --fix-bug-versions: auto fix bug version of package.
   --prune: prune unnecessary files from ./node_modules, such as markdown, typescript source files, and so on.
-  --high-speed-store: specify high speed store script to cache tgz files, and so on. Should export '* getStream(url)' function.
   --dependencies-tree: install with dependencies tree to restore the last install.
   --force-link-latest: force link latest version package to module root path.
 `
@@ -152,7 +147,6 @@ if (process.env.NPMINSTALL_BY_UPDATE) {
 
 const context = new Context();
 for (const name of argv._) {
-
   context.nested.update([ name ]);
   const [
     aliasPackageName,
@@ -315,10 +309,6 @@ debug('argv: %j, env: %j', argv, env);
   }
   if (argv['save-dependencies-tree']) {
     config.saveDependenciesTree = true;
-  }
-
-  if (argv['high-speed-store']) {
-    config.highSpeedStore = require(argv['high-speed-store']);
   }
 
   // -g install to npm's global prefix

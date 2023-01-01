@@ -1,5 +1,3 @@
-'use strict';
-
 const coffee = require('coffee');
 const path = require('path');
 const assert = require('assert');
@@ -37,7 +35,7 @@ describe('test/fix-bug-versions.test.js', () => {
     ], { cwd: tmp })
       .debug()
       .expect('code', 0)
-      .expect('stdout', /is-my-json-valid@2\.17\.1@is-my-json-valid/)
+      .expect('stdout', /is-my-json-valid@2\.17\.1/)
       .end(done);
   });
 
@@ -54,8 +52,9 @@ describe('test/fix-bug-versions.test.js', () => {
       .end();
 
     assert(getPkg('node_modules/accord/package.json').version === '0.28.0');
-    assert(getPkg('node_modules/accord/node_modules/less/package.json'));
-    assert(getPkg('node_modules/accord/node_modules/less/package.json').version.split('.')[0] === '2');
+    const pkg = getPkg('node_modules/.store/accord@0.28.0/node_modules/less/package.json');
+    assert(pkg);
+    assert(pkg.version.split('.')[0] === '2');
   });
 
   it('should use fix "scripts"', async () => {
@@ -85,7 +84,7 @@ describe('test/fix-bug-versions.test.js', () => {
     ], { cwd: demo })
       .debug()
       .expect('code', 0)
-      .expect('stdout', /is-my-json-valid@2\.17\.1@is-my-json-valid/)
+      .expect('stdout', /is-my-json-valid@2\.17\.1/)
       .end();
 
     await coffee.fork(update, [
@@ -95,7 +94,7 @@ describe('test/fix-bug-versions.test.js', () => {
     ], { cwd: demo })
       .debug()
       .expect('code', 0)
-      .expect('stdout', /is-my-json-valid@2\.17\.1@is-my-json-valid/)
+      .expect('stdout', /is-my-json-valid@2\.17\.1/)
       .end();
   });
 
@@ -108,7 +107,7 @@ describe('test/fix-bug-versions.test.js', () => {
     ], { cwd: tmp })
       .debug()
       .expect('code', 0)
-      .expect('stdout', /is-my-json-valid@2\.16\.0@is-my-json-valid/)
+      .expect('stdout', /is-my-json-valid@2\.16\.0/)
       .end(done);
   });
 

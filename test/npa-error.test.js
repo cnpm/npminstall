@@ -1,11 +1,7 @@
-'use strict';
-
-
 const coffee = require('coffee');
 const helper = require('./helper');
 
-
-describe('npa throw error', () => {
+describe('test/npa-error.test.js', () => {
   const [ tmp, cleanup ] = helper.tmp();
 
   beforeEach(cleanup);

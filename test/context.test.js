@@ -1,5 +1,3 @@
-'use strict';
-
 const Conext = require('../lib/context');
 const assert = require('assert');
 

@@ -1,0 +1,13 @@
+{
+  "name": "simple",
+  "version": "1.0.0",
+  "scripts": {
+    "postinstall": "node index.js"
+  },
+  "dependencies": {
+    "utility": "^1.17.0"
+  },
+  "devDependencies": {
+    "@babel/preset-react": "7.18.6"
+  }
+}

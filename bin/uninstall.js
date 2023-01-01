@@ -1,8 +1,6 @@
 #!/usr/bin/env node
 
-'use strict';
-
-const debug = require('debug')('npminstall:bin:uninstall');
+const debug = require('util').debuglog('npminstall:bin:uninstall');
 const npa = require('npm-package-arg');
 const path = require('path');
 const fs = require('fs/promises');

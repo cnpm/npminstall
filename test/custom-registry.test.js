@@ -1,5 +1,3 @@
-'use strict';
-
 const assert = require('assert');
 const path = require('path');
 const fs = require('fs/promises');
@@ -15,8 +13,8 @@ describe('test/custom-registry.test.js', () => {
 
   it('should install with custom registry', async () => {
     const args = [
-      '--registry=https://r.cnpmjs.org?bucket=foo',
-      '--registry=https://r.cnpmjs.org?bucket=bar',
+      '--registry=https://registry.npmmirror.com?bucket=foo',
+      '--registry=https://registry.npmmirror.com?bucket=bar',
       '-d',
     ];
     await coffee.fork(helper.npminstall, args, { cwd: tmp })

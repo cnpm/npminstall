@@ -1,11 +1,8 @@
-'use strict';
-
 const assert = require('assert');
 const fs = require('fs/promises');
 const path = require('path');
 const npminstall = require('./npminstall');
-const utils = require('../lib/utils');
-const { readJSON, rimraf, exists } = require('../lib/utils');
+const { readJSON, rimraf, exists, isInstallDone } = require('../lib/utils');
 const helper = require('./helper');
 
 describe('test/index.test.js', () => {
@@ -13,6 +10,18 @@ describe('test/index.test.js', () => {
 
   beforeEach(cleanup);
   afterEach(cleanup);
+
+  it('should install simple deps', async () => {
+    const root = helper.fixtures('simple');
+    await rimraf(path.join(root, 'node_modules'));
+    await npminstall({
+      root,
+    });
+    assert(await isInstallDone(path.join(root, 'node_modules/utility')));
+    assert(await isInstallDone(path.join(root, 'node_modules/@babel/preset-react')));
+    assert(await exists(path.join(root, 'node_modules/.store/@babel+preset-react@7.18.6/node_modules/@babel/preset-react')));
+    assert(await exists(path.join(root, 'node_modules/.store/@babel+preset-react@7.18.6/node_modules/@babel/plugin-transform-react-jsx')));
+  });
 
   it('should npminstall with options.pkgs', async () => {
     await npminstall({
@@ -24,7 +33,7 @@ describe('test/index.test.js', () => {
         { name: 'contributors' },
       ],
     });
-    assert(await utils.isInstallDone(path.join(tmp, 'node_modules/mocha')));
+    assert(await isInstallDone(path.join(tmp, 'node_modules/mocha')));
   });
 
   it('should handle @types/escodegen@0.0.2 tgz', async () => {
@@ -34,7 +43,7 @@ describe('test/index.test.js', () => {
         { name: '@types/escodegen', version: '0.0.2' },
       ],
     });
-    assert(await utils.isInstallDone(path.join(tmp, 'node_modules/@types/escodegen')));
+    assert(await isInstallDone(path.join(tmp, 'node_modules/@types/escodegen')));
     assert(await exists(path.join(tmp, 'node_modules/@types/escodegen/package.json')));
     assert(require(path.join(tmp, 'node_modules/@types/escodegen/package.json')).name === '@types/escodegen');
   });
@@ -136,7 +145,7 @@ describe('test/index.test.js', () => {
         root,
       });
       // node_modules/.debug@2.2.0 should exists
-      assert(await exists(path.join(root, 'node_modules', '_debug@2.2.0@debug')));
+      assert(await exists(path.join(root, 'node_modules', '.store/debug@2.2.0')));
 
       const debugPkg = await readJSON(path.join(root, 'node_modules', 'debug', 'package.json'));
       assert.equal(debugPkg._from, 'debug@2.2.0');

@@ -1,5 +1,3 @@
-'use strict';
-
 const mm = require('mm');
 const semver = require('semver');
 const npminstall = require('./npminstall');

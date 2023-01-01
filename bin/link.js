@@ -1,8 +1,6 @@
 #!/usr/bin/env node
 
-'use strict';
-
-const debug = require('debug')('npminstall:bin:link');
+const debug = require('util').debuglog('npminstall:bin:link');
 const npa = require('npm-package-arg');
 const semver = require('semver');
 const assert = require('assert');

@@ -1,5 +1,3 @@
-'use strict';
-
 const coffee = require('coffee');
 const path = require('path');
 const assert = require('assert');
@@ -15,7 +13,6 @@ describe('test/flatten-types.test.js', () => {
   }
 
   beforeEach(cleanup);
-  afterEach(cleanup);
 
   it('should flatten when name starts with @types/', async () => {
     await coffee.fork(helper.npminstall, [], { cwd: tmp })
@@ -24,7 +21,9 @@ describe('test/flatten-types.test.js', () => {
       .end();
     let pkg = await getPkg('node_modules/@types/react/package.json');
     assert(pkg.version === '0.14.57');
-    pkg = await getPkg('node_modules/@types/react-dom/node_modules/@types/react/package.json');
+    pkg = await getPkg('node_modules/@types/react-dom/package.json');
+    assert(pkg.version === '0.14.23');
+    pkg = await getPkg('node_modules/.store/@types+react-dom@0.14.23/node_modules/@types/react/package.json');
     assert(pkg.version === '0.14.57');
   });
 });

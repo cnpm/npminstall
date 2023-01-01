@@ -13,6 +13,8 @@
   },
   "devDependencies": {
     "co": "^4.6.0",
-    "rimraf": "2"
+    "rimraf": "2",
+    "eslint": "^8.23.1",
+    "eslint-config-egg": "^12.0.0"
   }
 }

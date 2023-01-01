@@ -1,5 +1,3 @@
-'use strict';
-
 const assert = require('assert');
 const path = require('path');
 const coffee = require('coffee');
@@ -97,7 +95,7 @@ describe('test/uninstall.test.js', () => {
       .end();
 
     assert(existsSync(path.join(root, 'node_modules/pkg')));
-    assert(existsSync(path.join(root, 'node_modules/_pkg@1.0.0@pkg')));
+    assert(existsSync(path.join(root, 'node_modules/.store/pkg@1.0.0')));
   });
 
   it('should not uninstall when name not match', async () => {
@@ -107,6 +105,9 @@ describe('test/uninstall.test.js', () => {
     })
       .end();
 
-    assert(existsSync(path.join(root, 'node_modules/_pkg@1.0.0@pkg')));
+    assert(existsSync(path.join(root, 'node_modules/pkg')));
+    assert(existsSync(path.join(root, 'node_modules/.store/pkg@1.0.0')));
+    assert(!existsSync(path.join(root, 'node_modules/pkg1')));
+    assert(!existsSync(path.join(root, 'node_modules/.store/pkg1@1.0.0')));
   });
 });
