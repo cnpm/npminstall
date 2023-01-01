@@ -1,5 +1,6 @@
-const { rimraf, mkdirp } = require('../lib/utils');
 const path = require('path');
+const { randomUUID } = require('crypto');
+const { rimraf, mkdirp } = require('../lib/utils');
 
 const fixtures = path.join(__dirname, 'fixtures');
 
@@ -14,7 +15,7 @@ exports.fixtures = name => {
 };
 
 exports.tmp = name => {
-  const dir = exports.fixtures(name || 'tmp');
+  const dir = exports.fixtures(name || `.tmp_${randomUUID()}`);
   const cleanup = async () => {
     try {
       // avoid Error: ENOTEMPTY: directory not empty, rmdir

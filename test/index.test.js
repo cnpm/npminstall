@@ -64,7 +64,7 @@ describe('test/index.test.js', () => {
   });
 
   it('should npminstall demo project', async () => {
-    const demodir = path.join(__dirname, 'fixtures', 'demo');
+    const demodir = path.join(__dirname, 'fixtures', 'demo2');
     await rimraf(path.join(demodir, 'node_modules'));
 
     await npminstall({

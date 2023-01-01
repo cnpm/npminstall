@@ -16,11 +16,12 @@
   },
   "scripts": {
     "contributor": "git-contributor",
-    "test": "npm run lint && egg-bin test -t 2000000",
-    "test-cov": "egg-bin cov -t 2000000",
-    "test-local": "npm_china=true local=true egg-bin test -t 2000000 --full-trace",
+    "test": "npm run lint && egg-bin test -t 2000000 -p",
+    "test-cov": "egg-bin cov -t 2000000 -p",
+    "test-local": "npm run clean && npm_china=true local=true egg-bin test -t 2000000 --full-trace -p",
     "lint": "eslint . --fix",
-    "ci": "npm run lint && npm run test-cov"
+    "ci": "npm run lint && npm run test-cov",
+    "clean": "rm -rf test/fixtures/.tmp*"
   },
   "dependencies": {
     "@npmcli/arborist": "^6.1.3",
