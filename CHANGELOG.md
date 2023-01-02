@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.1.0](https://github.com/cnpm/npminstall/compare/v7.0.0...v7.1.0) (2023-01-02)
+
+
+### Features
+
+* try to set authorization from ~/.npmrc ([#432](https://github.com/cnpm/npminstall/issues/432)) ([631029b](https://github.com/cnpm/npminstall/commit/631029be35e871ddad0bd284565b595dd791cfac))
+
 ## [7.0.0](https://github.com/cnpm/npminstall/compare/v6.6.2...v7.0.0) (2023-01-01)
 
 
