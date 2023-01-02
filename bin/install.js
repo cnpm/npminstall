@@ -401,14 +401,19 @@ debug('argv: %j, env: %j', argv, env);
       // install in workspaces
       for (const workspace of workspaces) {
         const workspaceRoot = path.join(root, workspace);
-        const workspaceConfig = {
-          ...rootConfig,
-          root: workspaceRoot,
-        };
-        await installLocal(workspaceConfig);
-        // link to root/node_modules
-        const linkDir = path.join(root, 'node_modules', workspaceConfig.rootPkg.name);
-        await utils.forceSymlink(workspaceRoot, linkDir);
+        const rootPkgFile = path.join(workspaceRoot, 'package.json');
+        const pkg = await utils.readJSON(rootPkgFile);
+        // ignore when package.name not exists
+        if (pkg.name) {
+          const workspaceConfig = {
+            ...rootConfig,
+            root: workspaceRoot,
+          };
+          await installLocal(workspaceConfig);
+          // link to root/node_modules
+          const linkDir = path.join(root, 'node_modules', pkg.name);
+          await utils.forceSymlink(workspaceRoot, linkDir);
+        }
       }
     }
     await installLocal(config, context);
