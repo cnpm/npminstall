@@ -319,6 +319,7 @@ debug('argv: %j, env: %j', argv, env);
     config.binDir = meta.binDir;
     await installGlobal(config, context);
   } else {
+    const workspaces = [];
     if (pkgs.length === 0) {
       if (config.production) {
         // warning when `${root}/node_modules` exists
@@ -338,6 +339,14 @@ debug('argv: %j, env: %j', argv, env);
       } else {
         // try to read npminstall config from package.json
         const pkg = await utils.readJSON(pkgFile);
+        if (Array.isArray(pkg.workspaces)) {
+          for (const workspace of pkg.workspaces) {
+            if (typeof workspace === 'string') {
+              workspaces.push(workspace);
+            }
+          }
+        }
+
         pkg.config = pkg.config || {};
         pkg.config.npminstall = pkg.config.npminstall || {};
         // {
@@ -385,6 +394,23 @@ debug('argv: %j, env: %j', argv, env);
         }
       }
     }
+    const rootConfig = { ...config };
+    // install workspaces first
+    // https://docs.npmjs.com/cli/v9/using-npm/workspaces?v=true
+    if (pkgs.length === 0 && workspaces.length > 0) {
+      // install in workspaces
+      for (const workspace of workspaces) {
+        const workspaceRoot = path.join(root, workspace);
+        const workspaceConfig = {
+          ...rootConfig,
+          root: workspaceRoot,
+        };
+        await installLocal(workspaceConfig);
+        // link to root/node_modules
+        const linkDir = path.join(root, 'node_modules', workspaceConfig.rootPkg.name);
+        await utils.forceSymlink(workspaceRoot, linkDir);
+      }
+    }
     await installLocal(config, context);
     if (pkgs.length > 0) {
       // support --save, --save-dev, --save-optional, --save-client, --save-build and --save-isomorphic
@@ -397,7 +423,7 @@ debug('argv: %j, env: %j', argv, env);
         'save-isomorphic': 'isomorphicDependencies',
       };
 
-      //    install saves any specified packages into dependencies by default.
+      // install saves any specified packages into dependencies by default.
       if (Object.keys(map).every(key => !argv[key]) && !argv['no-save']) {
         await updateDependencies(root, pkgs, map.save, argv['save-exact'], config.remoteNames);
       } else {
@@ -405,7 +431,6 @@ debug('argv: %j, env: %j', argv, env);
           if (argv[key]) await updateDependencies(root, pkgs, map[key], argv['save-exact'], config.remoteNames);
         }
       }
-
     }
   }
 

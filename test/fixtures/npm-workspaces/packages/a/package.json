@@ -1,0 +1,9 @@
+{
+  "name": "aa",
+  "scripts": {
+    "test": "node -p \"console.log(require('./index'))\""
+  },
+  "dependencies": {
+    "abbrev": "2.0.0"
+  }
+}

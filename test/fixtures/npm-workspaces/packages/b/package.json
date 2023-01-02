@@ -1,0 +1,16 @@
+{
+  "name": "b",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "abbrev": "1.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "postinstall": "npm run test",
+    "test": "node -e \"console.log(require('./index'))\""
+  },
+  "author": "",
+  "license": "ISC"
+}
