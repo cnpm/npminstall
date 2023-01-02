@@ -35,6 +35,9 @@ Object.assign(argv, parseArgs(originalArgv, {
     'tarball-url-mapping',
     'proxy',
     'dependencies-tree',
+    // npminstall foo --workspace=aa
+    // npminstall foo -w aa
+    'workspace',
   ],
   boolean: [
     'version',
@@ -72,7 +75,7 @@ Object.assign(argv, parseArgs(originalArgv, {
     optional: true,
   },
   alias: {
-    // npm install [-S|--save|-D|--save-dev|-O|--save-optional] [-E|--save-exact] [-d|--detail]
+    // npm install [-S|--save|-D|--save-dev|-O|--save-optional] [-E|--save-exact] [-d|--detail] [-w|--workspace]
     S: 'save',
     D: 'save-dev',
     O: 'save-optional',
@@ -83,6 +86,7 @@ Object.assign(argv, parseArgs(originalArgv, {
     c: 'china',
     r: 'registry',
     d: 'detail',
+    w: 'workspace',
   },
 })
 );
@@ -98,6 +102,8 @@ Usage:
 
   npminstall
   npminstall <pkg>
+  npminstall <pkg> --workspace=<workspace>
+  npminstall <pkg> -w <workspace>
   npminstall <pkg>@<tag>
   npminstall <pkg>@<version>
   npminstall <pkg>@<version range>
@@ -121,6 +127,7 @@ Options:
   -r, --registry: specify custom registry
   -c, --china: specify in china, will automatically using chinese npm registry and other binary's mirrors
   -d, --detail: show detail log of installation
+  -w, --workspace: install on workspace only, e.g.: npminstall koa -w a
   --trace: show memory and cpu usages traces of installation
   --ignore-scripts: ignore all preinstall / install and postinstall scripts during the installation
   --no-optional: ignore all optionalDependencies during the installation
@@ -167,6 +174,7 @@ if (Array.isArray(root)) {
   // use last one, e.g.: $ npminstall --root=abc --root=def
   root = root[root.length - 1];
 }
+const installWorkspace = argv.workspace;
 const production = argv.production || process.env.NODE_ENV === 'production';
 let cacheDir = argv.cache === false ? '' : null;
 if (production) {
@@ -228,6 +236,26 @@ for (const key in argv) {
 debug('argv: %j, env: %j', argv, env);
 
 (async () => {
+  if (installWorkspace) {
+    const pkgFile = path.join(root, 'package.json');
+    const pkg = await utils.readJSON(pkgFile);
+    let installWorkspaceRoot;
+    if (Array.isArray(pkg.workspaces)) {
+      for (const workspace of pkg.workspaces) {
+        const workspaceRoot = path.join(root, workspace);
+        const workspacePkg = await utils.readJSON(path.join(workspaceRoot, 'package.json'));
+        if (workspacePkg.name === installWorkspace) {
+          installWorkspaceRoot = workspaceRoot;
+          break;
+        }
+      }
+    }
+    if (!installWorkspaceRoot) {
+      throw new Error(`No workspaces found: --workspace=${installWorkspace}`);
+    }
+    root = installWorkspaceRoot;
+  }
+
   let binaryMirrors = {};
 
   if (inChina) {
@@ -397,7 +425,7 @@ debug('argv: %j, env: %j', argv, env);
     const rootConfig = { ...config };
     // install workspaces first
     // https://docs.npmjs.com/cli/v9/using-npm/workspaces?v=true
-    if (pkgs.length === 0 && workspaces.length > 0) {
+    if (!installWorkspace && pkgs.length === 0 && workspaces.length > 0) {
       // install in workspaces
       for (const workspace of workspaces) {
         const workspaceRoot = path.join(root, workspace);
@@ -413,6 +441,9 @@ debug('argv: %j, env: %j', argv, env);
           // link to root/node_modules
           const linkDir = path.join(root, 'node_modules', pkg.name);
           await utils.forceSymlink(workspaceRoot, linkDir);
+        } else {
+          console.warn(chalk.yellow('npminstall WARN: workspace(%s)\'s package.json not found or missing `name` property'),
+            workspace);
         }
       }
     }
