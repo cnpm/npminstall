@@ -2,7 +2,7 @@
 
 const path = require('path');
 const parseArgs = require('minimist');
-const { rimraf } = require('../lib/utils');
+const { rimraf, readWorkspaces } = require('../lib/utils');
 
 function help(root) {
   console.log(`
@@ -29,9 +29,12 @@ Usage:
 
   const root = argv.root || process.cwd();
   if (argv.help) return help(root);
-  const nodeModules = path.join(root, 'node_modules');
-  console.log('[npmupdate] removing %s', nodeModules);
-  await rimraf(nodeModules);
+  const { workspaceRoots } = await readWorkspaces(root);
+  for (const rootDir of [ root, ...workspaceRoots ]) {
+    const nodeModules = path.join(rootDir, 'node_modules');
+    console.log('[npmupdate] removing %s', nodeModules);
+    await rimraf(nodeModules);
+  }
   console.log('[npmupdate] reinstall on %s', root);
 
   // make sure install ignore all package names

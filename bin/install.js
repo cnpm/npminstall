@@ -7,7 +7,6 @@ const util = require('util');
 const { execSync } = require('child_process');
 const fs = require('fs/promises');
 const { writeFileSync } = require('fs');
-const globby = require('globby');
 const parseArgs = require('minimist');
 const { installLocal, installGlobal } = require('..');
 const npa = require('../lib/npa');
@@ -237,38 +236,23 @@ for (const key in argv) {
 debug('argv: %j, env: %j', argv, env);
 
 (async () => {
-  const workspaceRoots = [];
-  const workspacesMap = new Map();
-  const rootPkgFile = path.join(root, 'package.json');
-  const rootPkg = await utils.readJSON(rootPkgFile);
-  if (Array.isArray(rootPkg.workspaces) && rootPkg.workspaces.length > 0) {
-    // should contains package.json
-    const patterns = rootPkg.workspaces.map(workspace => path.join(root, workspace, 'package.json'));
-    const workspacePkgFiles = await globby(patterns, {
-      cwd: root,
-      gitignore: true,
-    });
-    for (const workspacePkgFile of workspacePkgFiles) {
-      const workspacePkg = await utils.readJSON(workspacePkgFile);
-      if (!workspacePkg.name) {
-        console.warn(chalk.yellow('npminstall WARN: workspace(%s) not found or missing `name` property'), workspacePkgFile);
-        continue;
-      }
-      const workspaceRoot = path.dirname(workspacePkgFile);
-      workspaceRoots.push(workspaceRoot);
-      workspacesMap.set(workspacePkg.name, {
-        root: workspaceRoot,
-        package: workspacePkg,
-      });
+  const { workspaceRoots, workspacesMap } = await utils.readWorkspaces(root);
+  if (workspacesMap.size > 0) {
+    for (const info of workspacesMap.values()) {
       // link to root/node_modules
-      const linkDir = path.join(root, 'node_modules', workspacePkg.name);
-      await utils.forceSymlink(workspaceRoot, linkDir);
-      debug('add workspace %s on %s', workspacePkg.name, workspaceRoot);
+      const linkDir = path.join(root, 'node_modules', info.package.name);
+      await utils.forceSymlink(info.root, linkDir);
+      debug('add workspace %s on %s', info.package.name, info.root);
     }
   }
 
   if (installWorkspace) {
-    const installWorkspaceInfo = workspacesMap.get(installWorkspace);
+    let installWorkspaceInfo = workspacesMap.get(installWorkspace);
+    if (!installWorkspaceInfo) {
+      // try to use `<workspace>/package.json`
+      const installWorkspacePkg = await utils.readJSON(path.join(root, installWorkspace, 'package.json'));
+      installWorkspaceInfo = installWorkspacePkg.name && workspacesMap.get(installWorkspacePkg.name);
+    }
     if (!installWorkspaceInfo) {
       throw new Error(`No workspaces found: --workspace=${installWorkspace}`);
     }
