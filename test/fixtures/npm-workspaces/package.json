@@ -9,7 +9,8 @@
     "packages/a",
     "packages/b",
     "packages/c",
-    "packages/d"
+    "packages/d",
+    "core/*"
   ],
   "dependencies": {
     "abbrev-range": "^1.0.0"

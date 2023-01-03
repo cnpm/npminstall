@@ -13,6 +13,8 @@ describe('test/install-workpsaces.test.js', () => {
     await cleanup();
     await rimraf(path.join(root, 'packages/a/node_modules'));
     await rimraf(path.join(root, 'packages/b/node_modules'));
+    await rimraf(path.join(root, 'core/foo/node_modules'));
+    await rimraf(path.join(root, 'core/bar/node_modules'));
     await rimraf(path.join(root, 'packages/c'));
   });
 
@@ -31,7 +33,6 @@ describe('test/install-workpsaces.test.js', () => {
     assert(pkg.name, 'abbrev');
     assert(pkg.version, '2.0.0');
     pkg = await helper.readJSON(path.join(root, 'node_modules/b/package.json'));
-    assert(pkg);
     assert.equal(pkg.name, 'b');
     pkg = await helper.readJSON(path.join(root, 'node_modules/b/node_modules/abbrev/package.json'));
     assert(pkg.name, 'abbrev');
@@ -41,6 +42,13 @@ describe('test/install-workpsaces.test.js', () => {
     assert(pkg.version, '1.1.1');
     pkg = await helper.readJSON(path.join(root, 'node_modules/abbrev-range/package.json'));
     assert(pkg.name, 'abbrev-range');
+    pkg = await helper.readJSON(path.join(root, 'node_modules/foo/package.json'));
+    assert.equal(pkg.name, 'foo');
+    pkg = await helper.readJSON(path.join(root, 'node_modules/bar/package.json'));
+    assert.equal(pkg.name, 'bar');
+    // foo don't install, it was workspace package
+    pkg = await helper.readJSON(path.join(root, 'node_modules/bar/node_modules/foo/package.json'));
+    assert.equal(pkg.name, undefined);
   });
 
   it('should install new package on one workspace', async () => {

@@ -7,6 +7,7 @@ const util = require('util');
 const { execSync } = require('child_process');
 const fs = require('fs/promises');
 const { writeFileSync } = require('fs');
+const globby = require('globby');
 const parseArgs = require('minimist');
 const { installLocal, installGlobal } = require('..');
 const npa = require('../lib/npa');
@@ -236,24 +237,42 @@ for (const key in argv) {
 debug('argv: %j, env: %j', argv, env);
 
 (async () => {
-  if (installWorkspace) {
-    const pkgFile = path.join(root, 'package.json');
-    const pkg = await utils.readJSON(pkgFile);
-    let installWorkspaceRoot;
-    if (Array.isArray(pkg.workspaces)) {
-      for (const workspace of pkg.workspaces) {
-        const workspaceRoot = path.join(root, workspace);
-        const workspacePkg = await utils.readJSON(path.join(workspaceRoot, 'package.json'));
-        if (workspacePkg.name === installWorkspace) {
-          installWorkspaceRoot = workspaceRoot;
-          break;
-        }
+  const workspaceRoots = [];
+  const workspacesMap = new Map();
+  const rootPkgFile = path.join(root, 'package.json');
+  const rootPkg = await utils.readJSON(rootPkgFile);
+  if (Array.isArray(rootPkg.workspaces) && rootPkg.workspaces.length > 0) {
+    // should contains package.json
+    const patterns = rootPkg.workspaces.map(workspace => path.join(root, workspace, 'package.json'));
+    const workspacePkgFiles = await globby(patterns, {
+      cwd: root,
+      gitignore: true,
+    });
+    for (const workspacePkgFile of workspacePkgFiles) {
+      const workspacePkg = await utils.readJSON(workspacePkgFile);
+      if (!workspacePkg.name) {
+        console.warn(chalk.yellow('npminstall WARN: workspace(%s) not found or missing `name` property'), workspacePkgFile);
+        continue;
       }
+      const workspaceRoot = path.dirname(workspacePkgFile);
+      workspaceRoots.push(workspaceRoot);
+      workspacesMap.set(workspacePkg.name, {
+        root: workspaceRoot,
+        package: workspacePkg,
+      });
+      // link to root/node_modules
+      const linkDir = path.join(root, 'node_modules', workspacePkg.name);
+      await utils.forceSymlink(workspaceRoot, linkDir);
+      debug('add workspace %s on %s', workspacePkg.name, workspaceRoot);
     }
-    if (!installWorkspaceRoot) {
+  }
+
+  if (installWorkspace) {
+    const installWorkspaceInfo = workspacesMap.get(installWorkspace);
+    if (!installWorkspaceInfo) {
       throw new Error(`No workspaces found: --workspace=${installWorkspace}`);
     }
-    root = installWorkspaceRoot;
+    root = installWorkspaceInfo.root;
   }
 
   let binaryMirrors = {};
@@ -292,6 +311,7 @@ debug('argv: %j, env: %j', argv, env);
     proxy,
     prune,
     disableDedupe: argv['disable-dedupe'],
+    workspacesMap,
   };
   config.strictSSL = getStrictSSL();
   config.ignoreScripts = argv['ignore-scripts'] || getIgnoreScripts();
@@ -422,29 +442,16 @@ debug('argv: %j, env: %j', argv, env);
         }
       }
     }
-    const rootConfig = { ...config };
     // install workspaces first
     // https://docs.npmjs.com/cli/v9/using-npm/workspaces?v=true
-    if (!installWorkspace && pkgs.length === 0 && workspaces.length > 0) {
+    if (!installWorkspace && pkgs.length === 0 && workspaceRoots.length > 0) {
       // install in workspaces
-      for (const workspace of workspaces) {
-        const workspaceRoot = path.join(root, workspace);
-        const rootPkgFile = path.join(workspaceRoot, 'package.json');
-        const pkg = await utils.readJSON(rootPkgFile);
-        // ignore when package.name not exists
-        if (pkg.name) {
-          const workspaceConfig = {
-            ...rootConfig,
-            root: workspaceRoot,
-          };
-          await installLocal(workspaceConfig);
-          // link to root/node_modules
-          const linkDir = path.join(root, 'node_modules', pkg.name);
-          await utils.forceSymlink(workspaceRoot, linkDir);
-        } else {
-          console.warn(chalk.yellow('npminstall WARN: workspace(%s)\'s package.json not found or missing `name` property'),
-            workspace);
-        }
+      for (const workspaceRoot of workspaceRoots) {
+        const workspaceConfig = {
+          ...config,
+          root: workspaceRoot,
+        };
+        await installLocal(workspaceConfig);
       }
     }
     await installLocal(config, context);
