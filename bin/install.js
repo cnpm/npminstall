@@ -511,18 +511,26 @@ async function updateDependencies(root, pkgs, propName, saveExact, remoteNames) 
     } else if (item.type === ALIAS_TYPES) {
       deps[item.name] = item.version;
     } else {
-      const pkgDir = LOCAL_TYPES.includes(item.type) ? item.version : path.join(root, 'node_modules', item.name);
-      const itemPkg = await utils.readJSON(path.join(pkgDir, 'package.json'));
-
+      let saveName;
+      let saveVersion;
+      if (item.workspacePackage) {
+        saveName = item.workspacePackage.name;
+        saveVersion = item.workspacePackage.version || item.version;
+      } else {
+        const pkgDir = LOCAL_TYPES.includes(item.type) ? item.version : path.join(root, 'node_modules', item.name);
+        const itemPkg = await utils.readJSON(path.join(pkgDir, 'package.json'));
+        saveName = itemPkg.name;
+        saveVersion = itemPkg.version;
+      }
       let saveSpec;
       // If install with `cnpm i foo`, the type is tag but rawSpec is empty string
       if (item.arg.type === 'tag' && item.arg.rawSpec) {
         saveSpec = item.arg.rawSpec;
       } else {
         const savePrefix = saveExact ? '' : getVersionSavePrefix();
-        saveSpec = `${savePrefix}${itemPkg.version}`;
+        saveSpec = `${savePrefix}${saveVersion}`;
       }
-      deps[itemPkg.name] = saveSpec;
+      deps[saveName] = saveSpec;
     }
   }
   // sort pkg[propName]

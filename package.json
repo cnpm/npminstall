@@ -17,7 +17,8 @@
   "scripts": {
     "contributor": "git-contributor",
     "test": "npm run lint && egg-bin test -t 2000000 -p",
-    "test-local": "npm run clean && npm_china=true local=true egg-bin test -t 2000000 --full-trace -p",
+    "test-local": "npm run test-local-single -- -p",
+    "test-local-single": "npm run clean && npm_china=true local=true egg-bin test -t 2000000 --full-trace",
     "cov": "egg-bin cov -t 2000000",
     "cov-debug": "cross-env NODE_DEBUG=npminstall* egg-bin cov -t 2000000",
     "lint": "eslint . --fix",

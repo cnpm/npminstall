@@ -49,6 +49,10 @@ describe('test/install-workpsaces.test.js', () => {
     // foo don't install, it was workspace package
     pkg = await helper.readJSON(path.join(root, 'node_modules/bar/node_modules/foo/package.json'));
     assert.equal(pkg.name, undefined);
+    pkg = await helper.readJSON(path.join(root, 'node_modules/@cnpm/foo/package.json'));
+    assert.equal(pkg.name, '@cnpm/foo');
+    pkg = await helper.readJSON(path.join(root, 'node_modules/@cnpm/foo/node_modules/foo/package.json'));
+    assert.equal(pkg.name, undefined);
   });
 
   it('should install new package on one workspace', async () => {
@@ -83,7 +87,94 @@ describe('test/install-workpsaces.test.js', () => {
     pkg = await helper.readJSON(pkgFile);
     assert.equal(pkg.name, 'c');
     assert.equal(pkg.dependencies.abbrev, '^1.1.0');
-    await rimraf(path.join(root, 'packages/c'));
+  });
+
+  it('should install workspace-package on one workspace', async () => {
+    const pkgDir = path.join(root, 'packages/c');
+    await fs.mkdir(pkgDir, { recursive: true });
+    const pkgFile = path.join(pkgDir, 'package.json');
+    await fs.writeFile(pkgFile, JSON.stringify({
+      name: 'c',
+    }));
+    await coffee.fork(helper.npminstall, [ 'aa', '-w', 'c' ], { cwd: root })
+      .debug()
+      .expect('code', 0)
+      .end();
+    let pkg = await helper.readJSON(pkgFile);
+    assert.equal(pkg.name, 'c');
+    assert.equal(pkg.dependencies.aa, '^1.0.0');
+    // add dependencies only
+    pkg = await helper.readJSON(path.join(root, 'node_modules/aa/package.json'));
+    assert.equal(pkg.name, 'aa');
+    pkg = await helper.readJSON(path.join(root, 'packages/c/node_modules/aa/package.json'));
+    assert.equal(pkg.name, undefined);
+    await coffee.fork(helper.npminstall, [ 'aa@1', '-w', 'c' ], { cwd: root })
+      .debug()
+      .expect('code', 0)
+      .end();
+    pkg = await helper.readJSON(pkgFile);
+    assert.equal(pkg.name, 'c');
+    assert.equal(pkg.dependencies.aa, '^1.0.0');
+    // wrong version should work
+    await coffee.fork(helper.npminstall, [ 'aa@2', '-w', 'c' ], { cwd: root })
+      .debug()
+      .expect('code', 0)
+      .end();
+    pkg = await helper.readJSON(pkgFile);
+    assert.equal(pkg.name, 'c');
+    assert.equal(pkg.dependencies.aa, '^1.0.0');
+    // scoped package work
+    await coffee.fork(helper.npminstall, [ '@cnpm/foo', '-w', 'c' ], { cwd: root })
+      .debug()
+      .expect('code', 0)
+      .end();
+    pkg = await helper.readJSON(pkgFile);
+    assert.equal(pkg.name, 'c');
+    assert.equal(pkg.dependencies['@cnpm/foo'], '^1.0.0');
+  });
+
+  it('should install workspace-package on root', async () => {
+    const pkgDir = path.join(root, 'packages/c');
+    await fs.mkdir(pkgDir, { recursive: true });
+    const pkgFile = path.join(pkgDir, 'package.json');
+    await fs.writeFile(pkgFile, JSON.stringify({
+      name: 'c',
+    }));
+    await coffee.fork(helper.npminstall, [ 'aa' ], { cwd: root })
+      .debug()
+      .expect('code', 0)
+      .end();
+    let pkg = await helper.readJSON(pkgFile);
+    assert.equal(pkg.name, 'c');
+    assert.equal(pkg.dependencies.aa, '^1.0.0');
+    // add dependencies only
+    pkg = await helper.readJSON(path.join(root, 'node_modules/aa/package.json'));
+    assert.equal(pkg.name, 'aa');
+    pkg = await helper.readJSON(path.join(root, 'packages/c/node_modules/aa/package.json'));
+    assert.equal(pkg.name, undefined);
+    await coffee.fork(helper.npminstall, [ 'aa@1', '-w', 'c' ], { cwd: root })
+      .debug()
+      .expect('code', 0)
+      .end();
+    pkg = await helper.readJSON(pkgFile);
+    assert.equal(pkg.name, 'c');
+    assert.equal(pkg.dependencies.aa, '^1.0.0');
+    // wrong version should work
+    await coffee.fork(helper.npminstall, [ 'aa@2', '-w', 'c' ], { cwd: root })
+      .debug()
+      .expect('code', 0)
+      .end();
+    pkg = await helper.readJSON(pkgFile);
+    assert.equal(pkg.name, 'c');
+    assert.equal(pkg.dependencies.aa, '^1.0.0');
+    // scoped package work
+    await coffee.fork(helper.npminstall, [ '@cnpm/foo', '-w', 'c' ], { cwd: root })
+      .debug()
+      .expect('code', 0)
+      .end();
+    pkg = await helper.readJSON(pkgFile);
+    assert.equal(pkg.name, 'c');
+    assert.equal(pkg.dependencies['@cnpm/foo'], '^1.0.0');
   });
 
   it('should throw error when workspace not exists', async () => {

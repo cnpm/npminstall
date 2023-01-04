@@ -36,5 +36,6 @@ test/fixtures/flatten/package.json
 test/fixtures/forbidden-license/package.json
 test/fixtures/initial-cnpmrc/package.json
 test/fixtures/local/package.json
+test/fixtures/npm-workspaces/packages/c/
 
 package-lock.json
