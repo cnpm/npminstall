@@ -17,10 +17,10 @@
   "scripts": {
     "contributor": "git-contributor",
     "test": "npm run lint && egg-bin test -t 2000000 -p",
-    "test-cov": "egg-bin cov -t 2000000 -p",
     "test-local": "npm run clean && npm_china=true local=true egg-bin test -t 2000000 --full-trace -p",
+    "cov": "NODE_DEBUG=npminstall* egg-bin cov -t 2000000",
     "lint": "eslint . --fix",
-    "ci": "npm run lint && npm run test-cov",
+    "ci": "npm run lint && npm run cov",
     "clean": "rm -rf test/fixtures/.tmp*"
   },
   "dependencies": {
