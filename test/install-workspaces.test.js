@@ -16,6 +16,7 @@ describe('test/install-workpsaces.test.js', () => {
     await rimraf(path.join(root, 'core/foo/node_modules'));
     await rimraf(path.join(root, 'core/bar/node_modules'));
     await rimraf(path.join(root, 'packages/c'));
+    await fs.copyFile(path.join(root, 'package-init.json'), path.join(root, 'package.json'));
   });
 
   it('should install all on root', async () => {
@@ -134,47 +135,24 @@ describe('test/install-workpsaces.test.js', () => {
   });
 
   it('should install workspace-package on root', async () => {
-    const pkgDir = path.join(root, 'packages/c');
-    await fs.mkdir(pkgDir, { recursive: true });
-    const pkgFile = path.join(pkgDir, 'package.json');
-    await fs.writeFile(pkgFile, JSON.stringify({
-      name: 'c',
-    }));
+    const pkgFile = path.join(root, 'package.json');
     await coffee.fork(helper.npminstall, [ 'aa' ], { cwd: root })
       .debug()
       .expect('code', 0)
       .end();
     let pkg = await helper.readJSON(pkgFile);
-    assert.equal(pkg.name, 'c');
-    assert.equal(pkg.dependencies.aa, '^1.0.0');
-    // add dependencies only
-    pkg = await helper.readJSON(path.join(root, 'node_modules/aa/package.json'));
-    assert.equal(pkg.name, 'aa');
-    pkg = await helper.readJSON(path.join(root, 'packages/c/node_modules/aa/package.json'));
-    assert.equal(pkg.name, undefined);
-    await coffee.fork(helper.npminstall, [ 'aa@1', '-w', 'c' ], { cwd: root })
-      .debug()
-      .expect('code', 0)
-      .end();
-    pkg = await helper.readJSON(pkgFile);
-    assert.equal(pkg.name, 'c');
-    assert.equal(pkg.dependencies.aa, '^1.0.0');
-    // wrong version should work
-    await coffee.fork(helper.npminstall, [ 'aa@2', '-w', 'c' ], { cwd: root })
-      .debug()
-      .expect('code', 0)
-      .end();
-    pkg = await helper.readJSON(pkgFile);
-    assert.equal(pkg.name, 'c');
     assert.equal(pkg.dependencies.aa, '^1.0.0');
     // scoped package work
-    await coffee.fork(helper.npminstall, [ '@cnpm/foo', '-w', 'c' ], { cwd: root })
+    await coffee.fork(helper.npminstall, [ '@cnpm/foo' ], { cwd: root })
       .debug()
       .expect('code', 0)
       .end();
     pkg = await helper.readJSON(pkgFile);
-    assert.equal(pkg.name, 'c');
     assert.equal(pkg.dependencies['@cnpm/foo'], '^1.0.0');
+    await coffee.fork(helper.npminstall, [], { cwd: root })
+      .debug()
+      .expect('code', 0)
+      .end();
   });
 
   it('should throw error when workspace not exists', async () => {

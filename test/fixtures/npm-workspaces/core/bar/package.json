@@ -6,6 +6,5 @@
   },
   "scripts": {
     "postinstall": "node -p \"require('foo')\""
-  },
-  "__npminstall_done": false
+  }
 }
