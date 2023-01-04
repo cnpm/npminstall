@@ -1,6 +1,7 @@
 const assert = require('assert');
 const path = require('path');
 const fs = require('fs/promises');
+const fse = require('fs-extra');
 const coffee = require('coffee');
 const { rimraf } = require('../lib/utils');
 const helper = require('./helper');
@@ -19,7 +20,7 @@ describe('test/install-workpsaces.test.js', () => {
     await rimraf(path.join(root, 'core/bar/node_modules'));
     await rimraf(path.join(root, 'packages/c'));
     await fs.copyFile(path.join(root, 'package-init.json'), path.join(root, 'package.json'));
-    await fs.cp(root, tmp, { force: true, recursive: true });
+    await fse.copy(root, tmp);
   });
 
   it('should install all on root', async () => {
