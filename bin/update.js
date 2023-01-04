@@ -2,7 +2,7 @@
 
 const path = require('path');
 const parseArgs = require('minimist');
-const { rimraf, readWorkspaces } = require('../lib/utils');
+const { rimraf, readWorkspaces, getWorkspaceInfo } = require('../lib/utils');
 
 function help(root) {
   console.log(`
@@ -18,19 +18,33 @@ Usage:
   const argv = parseArgs(process.argv.slice(2), {
     string: [
       'root',
+      'workspace',
     ],
     boolean: [
       'help',
     ],
     alias: {
       h: 'help',
+      w: 'workspace',
     },
   });
 
-  const root = argv.root || process.cwd();
+  let root = argv.root || process.cwd();
   if (argv.help) return help(root);
-  const { workspaceRoots } = await readWorkspaces(root);
-  for (const rootDir of [ root, ...workspaceRoots ]) {
+  const installWorkspaceName = argv.workspace;
+  const { workspaceRoots, workspacesMap } = await readWorkspaces(root);
+  let roots = [];
+  if (installWorkspaceName) {
+    const installWorkspaceInfo = await getWorkspaceInfo(root, installWorkspaceName, workspacesMap);
+    if (!installWorkspaceInfo) {
+      throw new Error(`No workspaces found: --workspace=${installWorkspaceName}`);
+    }
+    root = installWorkspaceInfo.root;
+    roots.push(root);
+  } else {
+    roots = [ root, ...workspaceRoots ];
+  }
+  for (const rootDir of roots) {
     const nodeModules = path.join(rootDir, 'node_modules');
     console.log('[npmupdate] removing %s', nodeModules);
     await rimraf(nodeModules);

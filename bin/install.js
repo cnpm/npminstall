@@ -174,7 +174,7 @@ if (Array.isArray(root)) {
   // use last one, e.g.: $ npminstall --root=abc --root=def
   root = root[root.length - 1];
 }
-const installWorkspace = argv.workspace;
+const installWorkspaceName = argv.workspace;
 const production = argv.production || process.env.NODE_ENV === 'production';
 let cacheDir = argv.cache === false ? '' : null;
 if (production) {
@@ -246,15 +246,10 @@ debug('argv: %j, env: %j', argv, env);
     }
   }
 
-  if (installWorkspace) {
-    let installWorkspaceInfo = workspacesMap.get(installWorkspace);
+  if (installWorkspaceName) {
+    const installWorkspaceInfo = await utils.getWorkspaceInfo(root, installWorkspaceName, workspacesMap);
     if (!installWorkspaceInfo) {
-      // try to use `<workspace>/package.json`
-      const installWorkspacePkg = await utils.readJSON(path.join(root, installWorkspace, 'package.json'));
-      installWorkspaceInfo = installWorkspacePkg.name && workspacesMap.get(installWorkspacePkg.name);
-    }
-    if (!installWorkspaceInfo) {
-      throw new Error(`No workspaces found: --workspace=${installWorkspace}`);
+      throw new Error(`No workspaces found: --workspace=${installWorkspaceName}`);
     }
     root = installWorkspaceInfo.root;
   }
@@ -428,7 +423,7 @@ debug('argv: %j, env: %j', argv, env);
     }
     // install workspaces first
     // https://docs.npmjs.com/cli/v9/using-npm/workspaces?v=true
-    if (!installWorkspace && pkgs.length === 0 && workspaceRoots.length > 0) {
+    if (!installWorkspaceName && pkgs.length === 0 && workspaceRoots.length > 0) {
       // install in workspaces
       for (const workspaceRoot of workspaceRoots) {
         const workspaceConfig = {
