@@ -7,16 +7,19 @@ const helper = require('./helper');
 
 describe('test/install-workpsaces.test.js', () => {
   const root = helper.fixtures('npm-workspaces');
+  const [ tmp, cleanupTmpDir ] = helper.tmp();
   const cleanup = helper.cleanup(root);
 
   beforeEach(async () => {
     await cleanup();
+    await cleanupTmpDir();
     await rimraf(path.join(root, 'packages/a/node_modules'));
     await rimraf(path.join(root, 'packages/b/node_modules'));
     await rimraf(path.join(root, 'core/foo/node_modules'));
     await rimraf(path.join(root, 'core/bar/node_modules'));
     await rimraf(path.join(root, 'packages/c'));
     await fs.copyFile(path.join(root, 'package-init.json'), path.join(root, 'package.json'));
+    await fs.cp(root, tmp, { force: true, recursive: true });
   });
 
   it('should install all on root', async () => {
@@ -90,6 +93,37 @@ describe('test/install-workpsaces.test.js', () => {
     assert.equal(pkg.dependencies.abbrev, '^1.1.0');
   });
 
+  it('should install new package on all workspaces', async () => {
+    // npm install pedding --workspaces
+    await coffee.fork(helper.npminstall, [ 'pedding', '--workspaces' ], { cwd: tmp })
+      .debug()
+      .expect('code', 0)
+      .end();
+    let pkg = await helper.readJSON(path.join(tmp, 'packages/a/package.json'));
+    assert.equal(pkg.name, 'aa');
+    assert.equal(typeof pkg.dependencies.pedding, 'string');
+    pkg = await helper.readJSON(path.join(tmp, 'packages/b/package.json'));
+    assert.equal(pkg.name, 'b');
+    assert.equal(typeof pkg.dependencies.pedding, 'string');
+    pkg = await helper.readJSON(path.join(tmp, 'core/foo/package.json'));
+    assert.equal(pkg.name, 'foo');
+    assert.equal(typeof pkg.dependencies.pedding, 'string');
+
+    await coffee.fork(helper.npminstall, [ 'pedding@1.0.0', '--workspaces', '-D' ], { cwd: tmp })
+      .debug()
+      .expect('code', 0)
+      .end();
+    pkg = await helper.readJSON(path.join(tmp, 'packages/a/package.json'));
+    assert.equal(pkg.name, 'aa');
+    assert.equal(pkg.devDependencies.pedding, '^1.0.0');
+    pkg = await helper.readJSON(path.join(tmp, 'packages/b/package.json'));
+    assert.equal(pkg.name, 'b');
+    assert.equal(pkg.devDependencies.pedding, '^1.0.0');
+    pkg = await helper.readJSON(path.join(tmp, 'core/foo/package.json'));
+    assert.equal(pkg.name, 'foo');
+    assert.equal(pkg.devDependencies.pedding, '^1.0.0');
+  });
+
   it('should install workspace-package on one workspace', async () => {
     const pkgDir = path.join(root, 'packages/c');
     await fs.mkdir(pkgDir, { recursive: true });
@@ -125,13 +159,13 @@ describe('test/install-workpsaces.test.js', () => {
     assert.equal(pkg.name, 'c');
     assert.equal(pkg.dependencies.aa, '^1.0.0');
     // scoped package work
-    await coffee.fork(helper.npminstall, [ '@cnpm/foo', '-w', 'c' ], { cwd: root })
+    await coffee.fork(helper.npminstall, [ '@cnpm/foo', '-w', 'c', '--save-dev' ], { cwd: root })
       .debug()
       .expect('code', 0)
       .end();
     pkg = await helper.readJSON(pkgFile);
     assert.equal(pkg.name, 'c');
-    assert.equal(pkg.dependencies['@cnpm/foo'], '^1.0.0');
+    assert.equal(pkg.devDependencies['@cnpm/foo'], '^1.0.0');
   });
 
   it('should install workspace-package on root', async () => {
