@@ -5,7 +5,7 @@ const coffee = require('coffee');
 const { rimraf } = require('../lib/utils');
 const helper = require('./helper');
 
-describe.only('test/install-workpsaces.test.js', () => {
+describe('test/install-workpsaces.test.js', () => {
   const root = helper.fixtures('npm-workspaces');
   const cleanup = helper.cleanup(root);
 
