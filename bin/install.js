@@ -354,7 +354,6 @@ debug('argv: %j, env: %j', argv, env);
     config.binDir = meta.binDir;
     await installGlobal(config, context);
   } else {
-    const workspaces = [];
     if (pkgs.length === 0) {
       if (config.production) {
         // warning when `${root}/node_modules` exists
@@ -374,14 +373,6 @@ debug('argv: %j, env: %j', argv, env);
       } else {
         // try to read npminstall config from package.json
         const pkg = await utils.readJSON(pkgFile);
-        if (Array.isArray(pkg.workspaces)) {
-          for (const workspace of pkg.workspaces) {
-            if (typeof workspace === 'string') {
-              workspaces.push(workspace);
-            }
-          }
-        }
-
         pkg.config = pkg.config || {};
         pkg.config.npminstall = pkg.config.npminstall || {};
         // {
