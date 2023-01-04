@@ -49,7 +49,7 @@ jobs:
       - name: Install dependencies
         run: npm i
       - name: Run CI
-        run: NODE_DEBUG=npminstall* npm run ci
+        run: npm run ci
         env:
           NODE_OPTIONS: --max_old_space_size=6144
 
