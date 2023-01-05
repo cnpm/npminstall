@@ -52,5 +52,9 @@ jobs:
         run: npm run ci
         env:
           NODE_OPTIONS: --max_old_space_size=6144
+      - name: Code Coverage
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
 
 
