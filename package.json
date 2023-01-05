@@ -60,7 +60,7 @@
   "devDependencies": {
     "coffee": "5",
     "cross-env": "^7.0.3",
-    "egg-bin": "5",
+    "egg-bin": "^5.11.2",
     "eslint": "8",
     "eslint-config-egg": "12",
     "git-contributor": "1",
