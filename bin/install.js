@@ -35,6 +35,9 @@ Object.assign(argv, parseArgs(originalArgv, {
     'tarball-url-mapping',
     'proxy',
     'dependencies-tree',
+    // npminstall foo --workspace=aa
+    // npminstall foo -w aa
+    'workspace',
   ],
   boolean: [
     'version',
@@ -67,12 +70,13 @@ Object.assign(argv, parseArgs(originalArgv, {
     'disable-dedupe',
     'save-dependencies-tree',
     'force-link-latest',
+    'workspaces',
   ],
   default: {
     optional: true,
   },
   alias: {
-    // npm install [-S|--save|-D|--save-dev|-O|--save-optional] [-E|--save-exact] [-d|--detail]
+    // npm install [-S|--save|-D|--save-dev|-O|--save-optional] [-E|--save-exact] [-d|--detail] [-w|--workspace]
     S: 'save',
     D: 'save-dev',
     O: 'save-optional',
@@ -83,6 +87,7 @@ Object.assign(argv, parseArgs(originalArgv, {
     c: 'china',
     r: 'registry',
     d: 'detail',
+    w: 'workspace',
   },
 })
 );
@@ -98,6 +103,9 @@ Usage:
 
   npminstall
   npminstall <pkg>
+  npminstall <pkg> --workspace=<workspace>
+  npminstall <pkg> -w <workspace>
+  npminstall <pkg> --workspaces
   npminstall <pkg>@<tag>
   npminstall <pkg>@<version>
   npminstall <pkg>@<version range>
@@ -121,6 +129,8 @@ Options:
   -r, --registry: specify custom registry
   -c, --china: specify in china, will automatically using chinese npm registry and other binary's mirrors
   -d, --detail: show detail log of installation
+  -w, --workspace: install on one workspace only, e.g.: npminstall koa -w a
+  --workspaces: install new package on all workspaces, e.g: npminstall foo --workspaces
   --trace: show memory and cpu usages traces of installation
   --ignore-scripts: ignore all preinstall / install and postinstall scripts during the installation
   --no-optional: ignore all optionalDependencies during the installation
@@ -167,6 +177,8 @@ if (Array.isArray(root)) {
   // use last one, e.g.: $ npminstall --root=abc --root=def
   root = root[root.length - 1];
 }
+let installOnAllWorkspaces = argv.workspaces;
+const installWorkspaceName = !installOnAllWorkspaces && argv.workspace;
 const production = argv.production || process.env.NODE_ENV === 'production';
 let cacheDir = argv.cache === false ? '' : null;
 if (production) {
@@ -228,6 +240,28 @@ for (const key in argv) {
 debug('argv: %j, env: %j', argv, env);
 
 (async () => {
+  const { workspaceRoots, workspacesMap } = await utils.readWorkspaces(root);
+  if (workspacesMap.size > 0) {
+    for (const info of workspacesMap.values()) {
+      // link to root/node_modules
+      const linkDir = path.join(root, 'node_modules', info.package.name);
+      await utils.forceSymlink(info.root, linkDir);
+      debug('add workspace %s on %s', info.package.name, info.root);
+    }
+  }
+  // ignore --workspaces if there is no any workspace
+  if (installOnAllWorkspaces && workspacesMap.size === 0) {
+    installOnAllWorkspaces = false;
+  }
+
+  if (installWorkspaceName) {
+    const installWorkspaceInfo = await utils.getWorkspaceInfo(root, installWorkspaceName, workspacesMap);
+    if (!installWorkspaceInfo) {
+      throw new Error(`No workspaces found: --workspace=${installWorkspaceName}`);
+    }
+    root = installWorkspaceInfo.root;
+  }
+
   let binaryMirrors = {};
 
   if (inChina) {
@@ -264,6 +298,7 @@ debug('argv: %j, env: %j', argv, env);
     proxy,
     prune,
     disableDedupe: argv['disable-dedupe'],
+    workspacesMap,
   };
   config.strictSSL = getStrictSSL();
   config.ignoreScripts = argv['ignore-scripts'] || getIgnoreScripts();
@@ -385,7 +420,31 @@ debug('argv: %j, env: %j', argv, env);
         }
       }
     }
-    await installLocal(config, context);
+    // install workspaces first
+    // https://docs.npmjs.com/cli/v9/using-npm/workspaces?v=true
+    if (!installWorkspaceName && pkgs.length === 0 && workspaceRoots.length > 0) {
+      // install in workspaces
+      for (const workspaceRoot of workspaceRoots) {
+        const workspaceConfig = {
+          ...config,
+          root: workspaceRoot,
+        };
+        await installLocal(workspaceConfig);
+      }
+    }
+    // install packages on all workspaces
+    if (installOnAllWorkspaces && pkgs.length > 0) {
+      for (const workspaceRoot of workspaceRoots) {
+        const workspaceConfig = {
+          ...config,
+          root: workspaceRoot,
+        };
+        await installLocal(workspaceConfig);
+      }
+    } else {
+      await installLocal(config, context);
+    }
+
     if (pkgs.length > 0) {
       // support --save, --save-dev, --save-optional, --save-client, --save-build and --save-isomorphic
       const map = {
@@ -397,15 +456,19 @@ debug('argv: %j, env: %j', argv, env);
         'save-isomorphic': 'isomorphicDependencies',
       };
 
-      //    install saves any specified packages into dependencies by default.
-      if (Object.keys(map).every(key => !argv[key]) && !argv['no-save']) {
-        await updateDependencies(root, pkgs, map.save, argv['save-exact'], config.remoteNames);
-      } else {
-        for (const key in map) {
-          if (argv[key]) await updateDependencies(root, pkgs, map[key], argv['save-exact'], config.remoteNames);
+      // install saves any specified packages into dependencies by default.
+      const saveRootDirs = installOnAllWorkspaces ? workspaceRoots : [ root ];
+      for (const saveRootDir of saveRootDirs) {
+        if (Object.keys(map).every(key => !argv[key]) && !argv['no-save']) {
+          await updateDependencies(saveRootDir, pkgs, map.save, argv['save-exact'], config.remoteNames);
+        } else {
+          for (const key in map) {
+            if (argv[key]) {
+              await updateDependencies(saveRootDir, pkgs, map[key], argv['save-exact'], config.remoteNames);
+            }
+          }
         }
       }
-
     }
   }
 
@@ -464,18 +527,26 @@ async function updateDependencies(root, pkgs, propName, saveExact, remoteNames) 
     } else if (item.type === ALIAS_TYPES) {
       deps[item.name] = item.version;
     } else {
-      const pkgDir = LOCAL_TYPES.includes(item.type) ? item.version : path.join(root, 'node_modules', item.name);
-      const itemPkg = await utils.readJSON(path.join(pkgDir, 'package.json'));
-
+      let saveName;
+      let saveVersion;
+      if (item.workspacePackage) {
+        saveName = item.workspacePackage.name;
+        saveVersion = item.workspacePackage.version || item.version;
+      } else {
+        const pkgDir = LOCAL_TYPES.includes(item.type) ? item.version : path.join(root, 'node_modules', item.name);
+        const itemPkg = await utils.readJSON(path.join(pkgDir, 'package.json'));
+        saveName = itemPkg.name;
+        saveVersion = itemPkg.version;
+      }
       let saveSpec;
       // If install with `cnpm i foo`, the type is tag but rawSpec is empty string
       if (item.arg.type === 'tag' && item.arg.rawSpec) {
         saveSpec = item.arg.rawSpec;
       } else {
         const savePrefix = saveExact ? '' : getVersionSavePrefix();
-        saveSpec = `${savePrefix}${itemPkg.version}`;
+        saveSpec = `${savePrefix}${saveVersion}`;
       }
-      deps[itemPkg.name] = saveSpec;
+      deps[saveName] = saveSpec;
     }
   }
   // sort pkg[propName]

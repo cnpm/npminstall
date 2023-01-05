@@ -17,10 +17,12 @@
   "scripts": {
     "contributor": "git-contributor",
     "test": "npm run lint && egg-bin test -t 2000000 -p",
-    "test-cov": "egg-bin cov -t 2000000 -p",
-    "test-local": "npm run clean && npm_china=true local=true egg-bin test -t 2000000 --full-trace -p",
+    "test-local": "npm run test-local-single -- -p",
+    "test-local-single": "npm run clean && npm_china=true local=true egg-bin test -t 2000000 --full-trace",
+    "cov": "egg-bin cov -t 2000000",
+    "cov-debug": "cross-env NODE_DEBUG=npminstall* egg-bin cov -t 2000000",
     "lint": "eslint . --fix",
-    "ci": "npm run lint && npm run test-cov",
+    "ci": "npm run lint && npm run cov",
     "clean": "rm -rf test/fixtures/.tmp*"
   },
   "dependencies": {
@@ -35,6 +37,7 @@
     "destroy": "^1.0.4",
     "detect-libc": "^2.0.1",
     "fs-extra": "^7.0.1",
+    "globby": "^11.1.0",
     "minimatch": "^3.0.4",
     "minimist": "^1.2.0",
     "moment": "^2.24.0",
@@ -56,6 +59,7 @@
   },
   "devDependencies": {
     "coffee": "5",
+    "cross-env": "^7.0.3",
     "egg-bin": "5",
     "eslint": "8",
     "eslint-config-egg": "12",

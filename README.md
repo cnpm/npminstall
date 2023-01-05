@@ -81,9 +81,6 @@ Options:
   --cache-strict: use disk cache even on production env
 ```
 
-
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fcnpm%2Fnpminstall.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fcnpm%2Fnpminstall?ref=badge_large)
-
 #### npmuninstall
 
 ```bash
@@ -167,6 +164,7 @@ const npminstall = require('npminstall');
 - [x] uninstall
 - [x] resolutions
 - [x] [npm alias](https://github.com/npm/rfcs/blob/latest/implemented/0001-package-aliases.md)
+- [x] [npm workspaces](https://docs.npmjs.com/cli/v9/using-npm/workspaces?v=true)
 
 ## Different with NPM
 
