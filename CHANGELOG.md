@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.2.1](https://github.com/cnpm/npminstall/compare/v7.2.0...v7.2.1) (2023-01-06)
+
+
+### Bug Fixes
+
+* auto set INIT_CWD env on install scripts ([#434](https://github.com/cnpm/npminstall/issues/434)) ([d69cf2b](https://github.com/cnpm/npminstall/commit/d69cf2b0984ca1a9238037bb1cf54d6c9acd9cdd))
+
 ## [7.2.0](https://github.com/cnpm/npminstall/compare/v7.1.0...v7.2.0) (2023-01-05)
 
 
