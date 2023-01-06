@@ -226,9 +226,6 @@ const env = {
 env.npm_node_execpath = env.NODE = process.env.NODE || process.execPath;
 env.npm_execpath = require.main.filename;
 
-// package's npm script can get root from `env.npm_rootpath`
-env.npm_rootpath = process.env.npm_rootpath || root;
-
 // npm cli will auto set options to npm_xx env.
 for (const key in argv) {
   const value = argv[key];
@@ -352,6 +349,10 @@ debug('argv: %j, env: %j', argv, env);
     const meta = utils.getGlobalInstallMeta(argv.prefix);
     config.targetDir = meta.targetDir;
     config.binDir = meta.binDir;
+
+    // package's npm script can get root from `env.npm_rootpath`
+    config.env.npm_rootpath = process.env.npm_rootpath || root;
+    config.env.INIT_CWD = process.env.INIT_CWD || root;
     await installGlobal(config, context);
   } else {
     if (pkgs.length === 0) {
@@ -429,6 +430,8 @@ debug('argv: %j, env: %j', argv, env);
           ...config,
           root: workspaceRoot,
         };
+        workspaceConfig.env.npm_rootpath = process.env.npm_rootpath || root;
+        workspaceConfig.env.INIT_CWD = process.env.INIT_CWD || root;
         await installLocal(workspaceConfig);
       }
     }
@@ -439,9 +442,13 @@ debug('argv: %j, env: %j', argv, env);
           ...config,
           root: workspaceRoot,
         };
+        workspaceConfig.env.npm_rootpath = process.env.npm_rootpath || root;
+        workspaceConfig.env.INIT_CWD = process.env.INIT_CWD || root;
         await installLocal(workspaceConfig);
       }
     } else {
+      config.env.npm_rootpath = process.env.npm_rootpath || root;
+      config.env.INIT_CWD = process.env.INIT_CWD || root;
       await installLocal(config, context);
     }
 
