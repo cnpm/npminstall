@@ -19,6 +19,7 @@ describe('test/install-workpsaces.test.js', () => {
     await rimraf(path.join(root, 'packages/b/node_modules'));
     await rimraf(path.join(root, 'core/foo/node_modules'));
     await rimraf(path.join(root, 'core/bar/node_modules'));
+    await rimraf(path.join(root, 'core/scoped/node_modules'));
     await rimraf(path.join(root, 'packages/c'));
     await fs.copyFile(path.join(root, 'package-init.json'), path.join(root, 'package.json'));
     await fse.copy(root, tmp);
@@ -29,7 +30,6 @@ describe('test/install-workpsaces.test.js', () => {
       .debug()
       .expect('code', 0)
       .end();
-
     let pkg = await helper.readJSON(path.join(root, 'node_modules/aa/package.json'));
     assert.equal(pkg.name, 'aa');
     // add peerDependencies to store
@@ -103,7 +103,7 @@ describe('test/install-workpsaces.test.js', () => {
     assert.equal(pkg.dependencies.abbrev, '^1.1.0');
   });
 
-  it('should install new package on all workspaces', async () => {
+  it('should install/uninstall a package on all workspaces', async () => {
     // npm install pedding --workspaces
     await coffee.fork(helper.npminstall, [ 'pedding', '--workspaces' ], { cwd: tmp })
       .debug()
@@ -132,6 +132,27 @@ describe('test/install-workpsaces.test.js', () => {
     pkg = await helper.readJSON(path.join(tmp, 'core/foo/package.json'));
     assert.equal(pkg.name, 'foo');
     assert.equal(pkg.devDependencies.pedding, '^1.0.0');
+    assertFile(path.join(tmp, 'core/foo/node_modules/pedding'));
+
+    // uninstall --workspaces
+    await coffee.fork(helper.npmuninstall, [ 'pedding', '--workspaces' ], { cwd: tmp })
+      .debug()
+      .expect('code', 0)
+      .end();
+    pkg = await helper.readJSON(path.join(tmp, 'packages/a/package.json'));
+    assert.equal(pkg.name, 'aa');
+    assert.equal(pkg.devDependencies.pedding, undefined);
+    pkg = await helper.readJSON(path.join(tmp, 'packages/b/package.json'));
+    assert.equal(pkg.name, 'b');
+    assert.equal(pkg.devDependencies.pedding, undefined);
+    pkg = await helper.readJSON(path.join(tmp, 'core/foo/package.json'));
+    assert.equal(pkg.name, 'foo');
+    assert.equal(pkg.devDependencies.pedding, undefined);
+    assertFile.fail(path.join(tmp, 'core/foo/node_modules/pedding'));
+    await coffee.fork(helper.npmuninstall, [ 'pedding' ], { cwd: tmp })
+      .debug()
+      .expect('code', 0)
+      .end();
   });
 
   it('should install workspace-package on one workspace', async () => {
@@ -197,6 +218,42 @@ describe('test/install-workpsaces.test.js', () => {
       .debug()
       .expect('code', 0)
       .end();
+  });
+
+  it('should throw error when workspace not exists', async () => {
+    await coffee.fork(helper.npminstall, [ 'abbrev', '--workspace', 'not-exists' ], { cwd: root })
+      .debug()
+      .expect('code', 1)
+      .expect('stderr', /No workspaces found: --workspace=not-exists/)
+      .end();
+  });
+
+  // https://docs.npmjs.com/cli/v8/commands/npm-install#workspace
+  it('should install workspace-package on path to a parent workspace directory', async () => {
+    await coffee.fork(helper.npminstall, [ 'egg', '--workspace', 'core' ], { cwd: root })
+      .debug()
+      .expect('code', 0)
+      .end();
+    let pkgFile = path.join(root, 'core/bar/node_modules/egg/package.json');
+    assertFile(pkgFile);
+    let pkg = await helper.readJSON(path.join(root, 'core/bar/package.json'));
+    assert.equal(typeof pkg.dependencies.egg, 'string');
+    pkgFile = path.join(root, 'core/foo/node_modules/egg/package.json');
+    assertFile(pkgFile);
+    pkg = await helper.readJSON(path.join(root, 'core/foo/package.json'));
+    assert.equal(typeof pkg.dependencies.egg, 'string');
+    pkgFile = path.join(root, 'core/scoped/node_modules/egg/package.json');
+    assertFile(pkgFile);
+    pkg = await helper.readJSON(path.join(root, 'core/scoped/package.json'));
+    assert.equal(typeof pkg.dependencies.egg, 'string');
+    // uninstall should work
+    await coffee.fork(helper.npmuninstall, [ 'egg', '--save', '--workspace', 'core' ], { cwd: root })
+      .debug()
+      .expect('code', 0)
+      .end();
+    assertFile.fail(path.join(root, 'core/foo/node_modules/egg/package.json'));
+    pkg = await helper.readJSON(path.join(root, 'core/bar/package.json'));
+    assert.equal(pkg.dependencies.egg, undefined);
   });
 
   it('should throw error when workspace not exists', async () => {

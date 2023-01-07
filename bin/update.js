@@ -2,7 +2,7 @@
 
 const path = require('path');
 const parseArgs = require('minimist');
-const { rimraf, readWorkspaces, getWorkspaceInfo } = require('../lib/utils');
+const { rimraf, readWorkspaces, getWorkspaceInfos, formatWorkspaceNames } = require('../lib/utils');
 
 function help(root) {
   console.log(`
@@ -30,22 +30,21 @@ Usage:
     },
   });
 
-  let root = argv.root || process.cwd();
+  const root = argv.root || process.cwd();
   if (argv.help) return help(root);
-  const installWorkspaceName = argv.workspace;
+  const installWorkspaceNames = formatWorkspaceNames(argv);
   const { workspaceRoots, workspacesMap } = await readWorkspaces(root);
-  let roots = [];
-  if (installWorkspaceName) {
-    const installWorkspaceInfo = await getWorkspaceInfo(root, installWorkspaceName, workspacesMap);
-    if (!installWorkspaceInfo) {
-      throw new Error(`No workspaces found: --workspace=${installWorkspaceName}`);
+  let cleanRoots = [];
+  if (installWorkspaceNames.length > 0) {
+    const installWorkspaceInfos = await getWorkspaceInfos(root, installWorkspaceNames, workspacesMap);
+    if (installWorkspaceInfos.length === 0) {
+      throw new Error(`No workspaces found: --workspace=${installWorkspaceNames.join(',')}`);
     }
-    root = installWorkspaceInfo.root;
-    roots.push(root);
+    cleanRoots = [ root, ...installWorkspaceInfos.map(info => info.root) ];
   } else {
-    roots = [ root, ...workspaceRoots ];
+    cleanRoots = [ root, ...workspaceRoots ];
   }
-  for (const rootDir of roots) {
+  for (const rootDir of cleanRoots) {
     const nodeModules = path.join(rootDir, 'node_modules');
     console.log('[npmupdate] removing %s', nodeModules);
     await rimraf(nodeModules);

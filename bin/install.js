@@ -178,7 +178,7 @@ if (Array.isArray(root)) {
   root = root[root.length - 1];
 }
 let installOnAllWorkspaces = argv.workspaces;
-const installWorkspaceName = !installOnAllWorkspaces && argv.workspace;
+let installWorkspaceNames = utils.formatWorkspaceNames(argv);
 const production = argv.production || process.env.NODE_ENV === 'production';
 let cacheDir = argv.cache === false ? '' : null;
 if (production) {
@@ -246,17 +246,11 @@ debug('argv: %j, env: %j', argv, env);
       debug('add workspace %s on %s', info.package.name, info.root);
     }
   }
-  // ignore --workspaces if there is no any workspace
-  if (installOnAllWorkspaces && workspacesMap.size === 0) {
+  // don't enable workspace on global install
+  const enableWorkspace = !argv.global && workspacesMap.size > 0;
+  if (!enableWorkspace) {
     installOnAllWorkspaces = false;
-  }
-
-  if (installWorkspaceName) {
-    const installWorkspaceInfo = await utils.getWorkspaceInfo(root, installWorkspaceName, workspacesMap);
-    if (!installWorkspaceInfo) {
-      throw new Error(`No workspaces found: --workspace=${installWorkspaceName}`);
-    }
-    root = installWorkspaceInfo.root;
+    installWorkspaceNames = [];
   }
 
   let binaryMirrors = {};
@@ -281,8 +275,6 @@ debug('argv: %j, env: %j', argv, env);
     }
   }
 
-  // don't enable workspace on global install
-  const enableWorkspace = !argv.global && workspacesMap.size > 0;
   const config = {
     root,
     registry,
@@ -352,6 +344,12 @@ debug('argv: %j, env: %j', argv, env);
     config.saveDependenciesTree = true;
   }
 
+  process.on('exit', code => {
+    if (code !== 0) {
+      writeFileSync(path.join(root, 'npminstall-debug.log'), util.inspect(config, { depth: 2 }));
+    }
+  });
+
   // -g install to npm's global prefix
   if (argv.global) {
     // support custom prefix for global install
@@ -363,140 +361,156 @@ debug('argv: %j, env: %j', argv, env);
     config.env.npm_rootpath = process.env.npm_rootpath || root;
     config.env.INIT_CWD = process.env.INIT_CWD || root;
     await installGlobal(config, context);
-  } else {
-    if (pkgs.length === 0) {
-      if (config.production) {
-        // warning when `${root}/node_modules` exists
-        const nodeModulesDir = path.join(root, 'node_modules');
-        if (await utils.exists(nodeModulesDir)) {
-          const dirs = await fs.readdir(nodeModulesDir);
-          // ignore [ '.bin', 'node' ], it will install first by https://github.com/cnpm/nodeinstall
-          if (!(dirs.length === 2 && dirs.indexOf('.bin') >= 0 && dirs.indexOf('node') >= 0)) {
-            console.error(chalk.yellow(`npminstall WARN node_modules exists: ${nodeModulesDir}, contains ${dirs.length} dirs`));
-          }
+    return;
+  }
+
+  if (pkgs.length === 0) {
+    if (config.production) {
+      // warning when `${root}/node_modules` exists
+      const nodeModulesDir = path.join(root, 'node_modules');
+      if (await utils.exists(nodeModulesDir)) {
+        const dirs = await fs.readdir(nodeModulesDir);
+        // ignore [ '.bin', 'node' ], it will install first by https://github.com/cnpm/nodeinstall
+        if (!(dirs.length === 2 && dirs.indexOf('.bin') >= 0 && dirs.indexOf('node') >= 0)) {
+          console.error(chalk.yellow(`npminstall WARN node_modules exists: ${nodeModulesDir}, contains ${dirs.length} dirs`));
         }
       }
-      const pkgFile = path.join(root, 'package.json');
-      const exists = await utils.exists(pkgFile);
-      if (!exists) {
-        console.warn(chalk.yellow(`npminstall WARN package.json not exists: ${pkgFile}`));
-      } else {
-        // try to read npminstall config from package.json
-        const pkg = await utils.readJSON(pkgFile);
-        pkg.config = pkg.config || {};
-        pkg.config.npminstall = pkg.config.npminstall || {};
-        // {
-        //   "config": {
-        //     "npminstall": {
-        //       "prune": true
-        //     }
-        //   }
-        // }
-        if (pkg.config.npminstall.prune === true) {
+    }
+    const pkgFile = path.join(root, 'package.json');
+    const exists = await utils.exists(pkgFile);
+    if (!exists) {
+      console.warn(chalk.yellow(`npminstall WARN package.json not exists: ${pkgFile}`));
+    } else {
+      // try to read npminstall config from package.json
+      const pkg = await utils.readJSON(pkgFile);
+      pkg.config = pkg.config || {};
+      pkg.config.npminstall = pkg.config.npminstall || {};
+      // {
+      //   "config": {
+      //     "npminstall": {
+      //       "prune": true
+      //     }
+      //   }
+      // }
+      if (pkg.config.npminstall.prune === true) {
+        config.prune = true;
+      }
+      if (pkg.config.npminstall.disableDedupe === true) {
+        config.disableDedupe = true;
+      }
+      // env config
+      // {
+      //   "config": {
+      //     "npminstall": {
+      //       "env:production": {
+      //         "disableDedupe": true
+      //       }
+      //     }
+      //   }
+      // }
+      // production
+      if (config.production && pkg.config.npminstall['env:production']) {
+        const envConfig = pkg.config.npminstall['env:production'];
+        if (envConfig.prune === true) {
           config.prune = true;
         }
-        if (pkg.config.npminstall.disableDedupe === true) {
+        if (envConfig.disableDedupe === true) {
           config.disableDedupe = true;
         }
-        // env config
-        // {
-        //   "config": {
-        //     "npminstall": {
-        //       "env:production": {
-        //         "disableDedupe": true
-        //       }
-        //     }
-        //   }
-        // }
-        // production
-        if (config.production && pkg.config.npminstall['env:production']) {
-          const envConfig = pkg.config.npminstall['env:production'];
-          if (envConfig.prune === true) {
-            config.prune = true;
-          }
-          if (envConfig.disableDedupe === true) {
-            config.disableDedupe = true;
-          }
+      }
+      // development
+      if (!config.production && pkg.config.npminstall['env:development']) {
+        const envConfig = pkg.config.npminstall['env:development'];
+        if (envConfig.prune === true) {
+          config.prune = true;
         }
-        // development
-        if (!config.production && pkg.config.npminstall['env:development']) {
-          const envConfig = pkg.config.npminstall['env:development'];
-          if (envConfig.prune === true) {
-            config.prune = true;
-          }
-          if (envConfig.disableDedupe === true) {
-            config.disableDedupe = true;
-          }
-        }
-      }
-    }
-    // install workspaces first
-    // https://docs.npmjs.com/cli/v9/using-npm/workspaces?v=true
-    if (!installWorkspaceName && pkgs.length === 0 && config.enableWorkspace) {
-      // install in workspaces
-      for (const workspacePackageRoot of workspaceRoots) {
-        const workspaceConfig = {
-          ...config,
-          root: workspacePackageRoot,
-          isWorkspaceRoot: false,
-          isWorkspacePackage: true,
-        };
-        workspaceConfig.env.npm_rootpath = process.env.npm_rootpath || root;
-        workspaceConfig.env.INIT_CWD = process.env.INIT_CWD || root;
-        await installLocal(workspaceConfig);
-      }
-    }
-    // install packages on all workspaces
-    if (installOnAllWorkspaces && pkgs.length > 0) {
-      for (const workspaceRoot of workspaceRoots) {
-        const workspaceConfig = {
-          ...config,
-          root: workspaceRoot,
-          isWorkspaceRoot: false,
-          isWorkspacePackage: true,
-        };
-        workspaceConfig.env.npm_rootpath = process.env.npm_rootpath || root;
-        workspaceConfig.env.INIT_CWD = process.env.INIT_CWD || root;
-        await installLocal(workspaceConfig);
-      }
-    } else {
-      config.env.npm_rootpath = process.env.npm_rootpath || root;
-      config.env.INIT_CWD = process.env.INIT_CWD || root;
-      await installLocal(config, context);
-    }
-
-    if (pkgs.length > 0) {
-      // support --save, --save-dev, --save-optional, --save-client, --save-build and --save-isomorphic
-      const map = {
-        save: 'dependencies',
-        'save-dev': 'devDependencies',
-        'save-optional': 'optionalDependencies',
-        'save-client': 'clientDependencies',
-        'save-build': 'buildDependencies',
-        'save-isomorphic': 'isomorphicDependencies',
-      };
-
-      // install saves any specified packages into dependencies by default.
-      const saveRootDirs = installOnAllWorkspaces ? workspaceRoots : [ root ];
-      for (const saveRootDir of saveRootDirs) {
-        if (Object.keys(map).every(key => !argv[key]) && !argv['no-save']) {
-          await updateDependencies(saveRootDir, pkgs, map.save, argv['save-exact'], config.remoteNames);
-        } else {
-          for (const key in map) {
-            if (argv[key]) {
-              await updateDependencies(saveRootDir, pkgs, map[key], argv['save-exact'], config.remoteNames);
-            }
-          }
+        if (envConfig.disableDedupe === true) {
+          config.disableDedupe = true;
         }
       }
     }
   }
 
-  process.on('exit', code => {
-    if (code !== 0) {
-      writeFileSync(path.join(root, 'npminstall-debug.log'), util.inspect(config, { depth: 2 }));
+  const installRootConfigs = [];
+  if (config.enableWorkspace) {
+    if (installOnAllWorkspaces) {
+      // npm i --workspaces
+      for (const workspaceRoot of workspaceRoots) {
+        installRootConfigs.push({
+          ...config,
+          root: workspaceRoot,
+          isWorkspaceRoot: false,
+          isWorkspacePackage: true,
+        });
+      }
+    } else if (installWorkspaceNames.length > 0) {
+      // npm i --w foo
+      const installWorkspaceInfos = await utils.getWorkspaceInfos(root, installWorkspaceNames, workspacesMap);
+      if (installWorkspaceInfos.length === 0) {
+        throw new Error(`No workspaces found: --workspace=${installWorkspaceNames.join(',')}`);
+      }
+      for (const { root: workspaceRoot } of installWorkspaceInfos) {
+        installRootConfigs.push({
+          ...config,
+          root: workspaceRoot,
+          isWorkspaceRoot: false,
+          isWorkspacePackage: true,
+        });
+      }
+    } else {
+      if (pkgs.length === 0) {
+        // npm i
+        for (const workspaceRoot of workspaceRoots) {
+          installRootConfigs.push({
+            ...config,
+            root: workspaceRoot,
+            isWorkspaceRoot: false,
+            isWorkspacePackage: true,
+          });
+        }
+      }
+      // npm i
+      // npm i <name>
+      installRootConfigs.push({
+        ...config,
+        root,
+        isWorkspaceRoot: true,
+        isWorkspacePackage: false,
+      });
     }
-  });
+  }
+
+  for (const installConfig of installRootConfigs) {
+    installConfig.env.npm_rootpath = process.env.npm_rootpath || installConfig.root;
+    installConfig.env.INIT_CWD = process.env.INIT_CWD || installConfig.root;
+    await installLocal(installConfig, context);
+  }
+
+  if (pkgs.length > 0) {
+    // support --save, --save-dev, --save-optional, --save-client, --save-build and --save-isomorphic
+    const map = {
+      save: 'dependencies',
+      'save-dev': 'devDependencies',
+      'save-optional': 'optionalDependencies',
+      'save-client': 'clientDependencies',
+      'save-build': 'buildDependencies',
+      'save-isomorphic': 'isomorphicDependencies',
+    };
+
+    // install saves any specified packages into dependencies by default.
+    const saveRootDirs = installRootConfigs.map(info => info.root);
+    for (const saveRootDir of saveRootDirs) {
+      if (Object.keys(map).every(key => !argv[key]) && !argv['no-save']) {
+        await updateDependencies(saveRootDir, pkgs, map.save, argv['save-exact'], config.remoteNames);
+      } else {
+        for (const key in map) {
+          if (argv[key]) {
+            await updateDependencies(saveRootDir, pkgs, map[key], argv['save-exact'], config.remoteNames);
+          }
+        }
+      }
+    }
+  }
 })().catch(err => {
   console.error(chalk.red(err.stack));
   console.error(chalk.yellow('npminstall version: %s'), require('../package.json').version);
