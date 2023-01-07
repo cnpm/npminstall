@@ -493,28 +493,25 @@ debug('argv: %j, env: %j', argv, env);
     installConfig.env.npm_rootpath = process.env.npm_rootpath || installConfig.root;
     installConfig.env.INIT_CWD = process.env.INIT_CWD || installConfig.root;
     await installLocal(installConfig, context);
-  }
+    console.log('');
 
-  if (pkgs.length > 0) {
-    // support --save, --save-dev, --save-optional, --save-client, --save-build and --save-isomorphic
-    const map = {
-      save: 'dependencies',
-      'save-dev': 'devDependencies',
-      'save-optional': 'optionalDependencies',
-      'save-client': 'clientDependencies',
-      'save-build': 'buildDependencies',
-      'save-isomorphic': 'isomorphicDependencies',
-    };
-
-    // install saves any specified packages into dependencies by default.
-    const saveRootDirs = installRootConfigs.map(info => info.root);
-    for (const saveRootDir of saveRootDirs) {
+    if (pkgs.length > 0) {
+      // support --save, --save-dev, --save-optional, --save-client, --save-build and --save-isomorphic
+      const map = {
+        save: 'dependencies',
+        'save-dev': 'devDependencies',
+        'save-optional': 'optionalDependencies',
+        'save-client': 'clientDependencies',
+        'save-build': 'buildDependencies',
+        'save-isomorphic': 'isomorphicDependencies',
+      };
+      // install saves any specified packages into dependencies by default.
       if (Object.keys(map).every(key => !argv[key]) && !argv['no-save']) {
-        await updateDependencies(saveRootDir, pkgs, map.save, argv['save-exact'], config.remoteNames);
+        await updateDependencies(installConfig.root, pkgs, map.save, argv['save-exact'], config.remoteNames);
       } else {
         for (const key in map) {
           if (argv[key]) {
-            await updateDependencies(saveRootDir, pkgs, map[key], argv['save-exact'], config.remoteNames);
+            await updateDependencies(installConfig.root, pkgs, map[key], argv['save-exact'], config.remoteNames);
           }
         }
       }
@@ -560,7 +557,10 @@ async function updateDependencies(root, pkgs, propName, saveExact, remoteNames) 
   const pkgFile = path.join(root, 'package.json');
   const pkg = await utils.readJSON(pkgFile);
   const deps = pkg[propName] = pkg[propName] || {};
+  console.log('%s:', chalk.cyanBright(propName));
   for (const item of pkgs) {
+    let saveName;
+    let saveSpec;
     if (REMOTE_TYPES.includes(item.type)) {
       // if install from remote or git and don't specified name
       // get package's name from `remoteNames`
@@ -570,7 +570,6 @@ async function updateDependencies(root, pkgs, propName, saveExact, remoteNames) 
     } else if (item.type === ALIAS_TYPES) {
       deps[item.name] = item.version;
     } else {
-      let saveName;
       let saveVersion;
       if (item.workspacePackage) {
         saveName = item.workspacePackage.name;
@@ -581,7 +580,6 @@ async function updateDependencies(root, pkgs, propName, saveExact, remoteNames) 
         saveName = itemPkg.name;
         saveVersion = itemPkg.version;
       }
-      let saveSpec;
       // If install with `cnpm i foo`, the type is tag but rawSpec is empty string
       if (item.arg.type === 'tag' && item.arg.rawSpec) {
         saveSpec = item.arg.rawSpec;
@@ -591,7 +589,9 @@ async function updateDependencies(root, pkgs, propName, saveExact, remoteNames) 
       }
       deps[saveName] = saveSpec;
     }
+    console.log('%s %s %s', chalk.green('+'), chalk.bold(saveName), chalk.gray(saveSpec));
   }
+  console.log('');
   // sort pkg[propName]
   const newDeps = {};
   for (const key of Object.keys(deps).sort()) {
