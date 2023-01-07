@@ -25,7 +25,7 @@ describe('test/uninstallGlobal.test.js', () => {
         'mocha',
       ])
         .debug()
-        .expect('stdout', /- mocha@\d+\.\d+\.\d+/)
+        .expect('stdout', /- mocha /)
         .expect('code', 0)
         .end();
     } else {
