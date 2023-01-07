@@ -361,6 +361,7 @@ debug('argv: %j, env: %j', argv, env);
     config.env.npm_rootpath = process.env.npm_rootpath || root;
     config.env.INIT_CWD = process.env.INIT_CWD || root;
     await installGlobal(config, context);
+    console.log('');
     return;
   }
 
@@ -521,13 +522,17 @@ debug('argv: %j, env: %j', argv, env);
   utils.exitWithError('npminstall', err);
 });
 
+let _versionSavePrefix = null;
 function getVersionSavePrefix() {
-  try {
-    return execSync('npm config get save-prefix').toString().trim();
-  } catch (err) {
-    debug(`exec npm config get save-prefix ERROR: ${err.message}`);
-    return '^';
+  if (_versionSavePrefix === null) {
+    try {
+      _versionSavePrefix = execSync('npm config get save-prefix').toString().trim();
+    } catch (err) {
+      debug(`exec npm config get save-prefix ERROR: ${err.message}`);
+      _versionSavePrefix = '^';
+    }
   }
+  return _versionSavePrefix;
 }
 
 function getStrictSSL() {
