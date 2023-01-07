@@ -194,6 +194,7 @@ if (process.platform !== 'win32') {
       ], {
         cwd: tmp,
       })
+        .debug()
         .expect('code', 0)
         .end(err => {
           assert(!err, err && err.message);

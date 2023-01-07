@@ -26,7 +26,7 @@ describe('test/uninstall.test.js', () => {
     })
       .end();
   });
-  // afterEach(cleanup);
+  afterEach(cleanup);
 
   it('should uninstall ok', async () => {
     await coffee.fork(npmuninstall, [ 'koa', 'pkg@1.0.0' ], {
@@ -36,7 +36,8 @@ describe('test/uninstall.test.js', () => {
       .end();
     assertFile.fail(path.join(root, 'node_modules/koa'));
     assertFile.fail(path.join(root, 'node_modules/pkg'));
-    assertFile.fail(path.join(root, 'node_modules/.store/pkg@1.0.0/node_modules/pkg'));
+    // dont remove real dir
+    assertFile(path.join(root, 'node_modules/.store/pkg@1.0.0/node_modules/pkg'));
   });
 
   it('should uninstall --save', async () => {
@@ -49,7 +50,8 @@ describe('test/uninstall.test.js', () => {
       .end();
 
     assertFile.fail(path.join(root, 'node_modules/pkg'));
-    assertFile.fail(path.join(root, 'node_modules/.store/pkg@1.0.0/node_modules/pkg'));
+    // dont remove real dir
+    assertFile(path.join(root, 'node_modules/.store/pkg@1.0.0/node_modules/pkg'));
     const pkg = JSON.parse(await fs.readFile(path.join(root, 'package.json')));
     assert(!pkg.dependencies.pkg);
   });

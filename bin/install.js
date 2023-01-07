@@ -507,11 +507,11 @@ debug('argv: %j, env: %j', argv, env);
       };
       // install saves any specified packages into dependencies by default.
       if (Object.keys(map).every(key => !argv[key]) && !argv['no-save']) {
-        await updateDependencies(installConfig.root, pkgs, map.save, argv['save-exact'], config.remoteNames);
+        await updateDependencies(installConfig.root, pkgs, map.save, argv['save-exact'], installConfig.remoteNames);
       } else {
         for (const key in map) {
           if (argv[key]) {
-            await updateDependencies(installConfig.root, pkgs, map[key], argv['save-exact'], config.remoteNames);
+            await updateDependencies(installConfig.root, pkgs, map[key], argv['save-exact'], installConfig.remoteNames);
           }
         }
       }
@@ -564,11 +564,16 @@ async function updateDependencies(root, pkgs, propName, saveExact, remoteNames) 
     if (REMOTE_TYPES.includes(item.type)) {
       // if install from remote or git and don't specified name
       // get package's name from `remoteNames`
-      item.name
-        ? deps[item.name] = item.version
-        : deps[remoteNames[item.version]] = item.version;
+      if (item.name) {
+        saveName = item.name;
+        saveSpec = item.version;
+      } else {
+        saveName = remoteNames[item.version];
+        saveSpec = item.version;
+      }
     } else if (item.type === ALIAS_TYPES) {
-      deps[item.name] = item.version;
+      saveName = item.name;
+      saveSpec = item.version;
     } else {
       let saveVersion;
       if (item.workspacePackage) {
@@ -587,8 +592,8 @@ async function updateDependencies(root, pkgs, propName, saveExact, remoteNames) 
         const savePrefix = saveExact ? '' : getVersionSavePrefix();
         saveSpec = `${savePrefix}${saveVersion}`;
       }
-      deps[saveName] = saveSpec;
     }
+    deps[saveName] = saveSpec;
     console.log('%s %s %s', chalk.green('+'), chalk.bold(saveName), chalk.gray(saveSpec));
   }
   console.log('');
