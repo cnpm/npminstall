@@ -58,6 +58,7 @@
     "utility": "^1.16.1"
   },
   "devDependencies": {
+    "assert-file": "^1.0.0",
     "coffee": "5",
     "cross-env": "^7.0.3",
     "egg-bin": "^5.11.2",

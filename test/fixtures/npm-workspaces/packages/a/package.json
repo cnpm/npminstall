@@ -5,6 +5,10 @@
     "test": "node -p \"console.log(require('./index'))\""
   },
   "dependencies": {
+    "egg": "3",
     "abbrev": "2.0.0"
+  },
+  "devDependencies": {
+    "egg-mock": "^5.7.1"
   }
 }

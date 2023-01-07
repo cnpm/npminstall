@@ -3,6 +3,7 @@ const path = require('path');
 const fs = require('fs/promises');
 const fse = require('fs-extra');
 const coffee = require('coffee');
+const assertFile = require('assert-file');
 const { rimraf } = require('../lib/utils');
 const helper = require('./helper');
 
@@ -31,6 +32,12 @@ describe('test/install-workpsaces.test.js', () => {
 
     let pkg = await helper.readJSON(path.join(root, 'node_modules/aa/package.json'));
     assert.equal(pkg.name, 'aa');
+    // add peerDependencies to store
+    assertFile(path.join(root, 'packages/a/node_modules/egg/package.json'));
+    assertFile(path.join(root, 'packages/a/node_modules/egg-mock/package.json'));
+    pkg = await helper.readJSON(path.join(root, 'packages/a/node_modules/egg-mock/package.json'));
+    assert.equal(pkg.name, 'egg-mock');
+    assertFile(path.join(root, `node_modules/.store/egg-mock@${pkg.version}/node_modules/egg/package.json`));
     pkg = await helper.readJSON(path.join(root, 'node_modules/aa/node_modules/abbrev/package.json'));
     assert.equal(pkg.name, 'abbrev');
     assert.equal(pkg.version, '2.0.0');
@@ -52,12 +59,10 @@ describe('test/install-workpsaces.test.js', () => {
     pkg = await helper.readJSON(path.join(root, 'node_modules/bar/package.json'));
     assert.equal(pkg.name, 'bar');
     // foo don't install, it was workspace package
-    pkg = await helper.readJSON(path.join(root, 'node_modules/bar/node_modules/foo/package.json'));
-    assert.equal(pkg.name, undefined);
+    assertFile.fail(path.join(root, 'node_modules/bar/node_modules/foo/package.json'));
     pkg = await helper.readJSON(path.join(root, 'node_modules/@cnpm/foo/package.json'));
     assert.equal(pkg.name, '@cnpm/foo');
-    pkg = await helper.readJSON(path.join(root, 'node_modules/@cnpm/foo/node_modules/foo/package.json'));
-    assert.equal(pkg.name, undefined);
+    assertFile.fail(path.join(root, 'node_modules/@cnpm/foo/node_modules/foo/package.json'));
   });
 
   it('should install new package on one workspace', async () => {
@@ -225,8 +230,7 @@ describe('test/install-workpsaces.test.js', () => {
     assert.equal(pkg.name, 'abbrev');
     assert.equal(pkg.version, '2.0.0');
     // dont install b deps
-    pkg = await helper.readJSON(path.join(root, 'node_modules/b/node_modules/abbrev/package.json'));
-    assert.equal(pkg.name, undefined);
+    assertFile.fail(path.join(root, 'node_modules/b/node_modules/abbrev/package.json'));
 
     // support workpsace-path
     await coffee.fork(helper.npmupdate, [ '-w', 'packages/a' ], { cwd: root })
