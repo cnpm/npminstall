@@ -2,7 +2,9 @@
 
 const path = require('path');
 const parseArgs = require('minimist');
-const { rimraf, readWorkspaces, getWorkspaceInfos, formatWorkspaceNames } = require('../lib/utils');
+const {
+  rimraf, readWorkspaces, getWorkspaceInfos, formatWorkspaceNames, exitWithError,
+} = require('../lib/utils');
 
 function help(root) {
   console.log(`
@@ -49,13 +51,15 @@ Usage:
     console.log('[npmupdate] removing %s', nodeModules);
     await rimraf(nodeModules);
   }
-  if (argv['clean-only']) return;
+  if (argv['clean-only']) {
+    console.log('');
+    return;
+  }
 
   console.log('[npmupdate] reinstall on %s', root);
   // make sure install ignore all package names
   process.env.NPMINSTALL_BY_UPDATE = 'true';
   require('./install');
 })().catch(err => {
-  console.error(err);
-  process.exit(-1);
+  exitWithError('npmupdate', err);
 });

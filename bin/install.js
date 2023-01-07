@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
 const debug = require('util').debuglog('npminstall:bin:install');
-const chalk = require('chalk');
 const path = require('path');
 const util = require('util');
 const { execSync } = require('child_process');
 const fs = require('fs/promises');
 const { writeFileSync } = require('fs');
+const chalk = require('chalk');
 const parseArgs = require('minimist');
 const { installLocal, installGlobal } = require('..');
 const npa = require('../lib/npa');
@@ -518,10 +518,7 @@ debug('argv: %j, env: %j', argv, env);
     }
   }
 })().catch(err => {
-  console.error(chalk.red(err.stack));
-  console.error(chalk.yellow('npminstall version: %s'), require('../package.json').version);
-  console.error(chalk.yellow('npminstall args: %s'), process.argv.join(' '));
-  process.exit(1);
+  utils.exitWithError('npminstall', err);
 });
 
 function getVersionSavePrefix() {

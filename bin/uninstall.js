@@ -4,7 +4,6 @@ const debug = require('util').debuglog('npminstall:bin:uninstall');
 const path = require('path');
 const npa = require('npm-package-arg');
 const parseArgs = require('minimist');
-const chalk = require('chalk');
 const utils = require('../lib/utils');
 const uninstall = require('../lib/uninstall');
 
@@ -72,15 +71,23 @@ if (!pkgs.length) help();
   const enableWorkspace = workspacesMap.size > 0;
   if (enableWorkspace) {
     if (installWorkspaceNames.length > 0) {
+      // uninstall <pkg> -w <name>
       const installWorkspaceInfos = await utils.getWorkspaceInfos(root, installWorkspaceNames, workspacesMap);
       if (installWorkspaceInfos.length === 0) {
         throw new Error(`No workspaces found: --workspace=${installWorkspaceNames.join(',')}`);
       }
       uninstallRoots = installWorkspaceInfos.map(info => info.root);
     } else {
-      uninstallRoots = workspaceRoots;
+      if (argv.workspaces) {
+        // uninstall <pkg> --workspaces
+        uninstallRoots = workspaceRoots;
+      } else {
+        // uninstall <pkg>
+        uninstallRoots = [ root ];
+      }
     }
   } else {
+    // uninstall <pkg>
     uninstallRoots = [ root ];
   }
 
@@ -96,10 +103,9 @@ if (!pkgs.length) help();
     debug('uninstall in %s with pkg: %j, config: %j', uninstallRoot, pkgs, unsinstallRootConfig);
     await uninstall(unsinstallRootConfig);
   }
+  console.log('');
 })().catch(err => {
-  console.error(chalk.red(err));
-  console.error(chalk.red(err.stack));
-  process.exit(1);
+  utils.exitWithError('npmuninstall', err);
 });
 
 function help() {
