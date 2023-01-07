@@ -296,6 +296,9 @@ debug('argv: %j, env: %j', argv, env);
     prune,
     disableDedupe: argv['disable-dedupe'],
     workspacesMap,
+    // don't enable workspace on global install
+    enableWorkspace: !argv.global && workspacesMap.size > 0,
+    workspaceRoot: root,
   };
   config.strictSSL = getStrictSSL();
   config.ignoreScripts = argv['ignore-scripts'] || getIgnoreScripts();
@@ -423,7 +426,7 @@ debug('argv: %j, env: %j', argv, env);
     }
     // install workspaces first
     // https://docs.npmjs.com/cli/v9/using-npm/workspaces?v=true
-    if (!installWorkspaceName && pkgs.length === 0 && workspaceRoots.length > 0) {
+    if (!installWorkspaceName && pkgs.length === 0 && config.enableWorkspace) {
       // install in workspaces
       for (const workspaceRoot of workspaceRoots) {
         const workspaceConfig = {
