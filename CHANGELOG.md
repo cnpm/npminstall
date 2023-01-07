@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.2.2](https://github.com/cnpm/npminstall/compare/v7.2.1...v7.2.2) (2023-01-07)
+
+
+### Bug Fixes
+
+* store packages on workspace root node_modules ([#435](https://github.com/cnpm/npminstall/issues/435)) ([b86b545](https://github.com/cnpm/npminstall/commit/b86b545e3df9e9917c0464f607caec821cafda53))
+
 ## [7.2.1](https://github.com/cnpm/npminstall/compare/v7.2.0...v7.2.1) (2023-01-06)
 
 
