@@ -459,7 +459,7 @@ debug('argv: %j, env: %j', argv, env);
       }
     } else {
       if (pkgs.length === 0) {
-        // npm i
+        // workspace: npm i
         for (const workspaceRoot of workspaceRoots) {
           installRootConfigs.push({
             ...config,
@@ -469,8 +469,8 @@ debug('argv: %j, env: %j', argv, env);
           });
         }
       }
-      // npm i
-      // npm i <name>
+      // workspace: npm i
+      // workspace: npm i <name>
       installRootConfigs.push({
         ...config,
         root,
@@ -478,6 +478,15 @@ debug('argv: %j, env: %j', argv, env);
         isWorkspacePackage: false,
       });
     }
+  } else {
+    // normal: npm i
+    // normal: npm i <name>
+    installRootConfigs.push({
+      ...config,
+      root,
+      isWorkspaceRoot: true,
+      isWorkspacePackage: false,
+    });
   }
 
   for (const installConfig of installRootConfigs) {

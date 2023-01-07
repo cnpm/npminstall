@@ -61,7 +61,7 @@ if (!pkgs.length) help();
     const meta = utils.getGlobalInstallMeta(argv.prefix);
     config.targetDir = meta.targetDir;
     config.binDir = meta.binDir;
-    debug('uninstall global package in %s with pkg: $j, config: %j', root, pkgs, config);
+    debug('uninstall global package in %s with pkg: %j, config: %j', root, pkgs, config);
     await uninstall(config);
     return;
   }
@@ -89,10 +89,11 @@ if (!pkgs.length) help();
       ...config,
       root: uninstallRoot,
       targetDir: uninstallRoot,
+      binDir: path.join(uninstallRoot, 'node_modules/.bin'),
       enableWorkspace,
       workspaceRoot: root,
     };
-    debug('uninstall in %s with pkg: $j, config: %j', uninstallRoot, pkgs, unsinstallRootConfig);
+    debug('uninstall in %s with pkg: %j, config: %j', uninstallRoot, pkgs, unsinstallRootConfig);
     await uninstall(unsinstallRootConfig);
   }
 })().catch(err => {

@@ -9,8 +9,9 @@ describe('test/seperate-dependencies.test.js', () => {
   const cleanup = helper.cleanup(cwd);
 
   async function checkPkg(name, version) {
-    const pkg = await readJSON(path.join(cwd, 'node_modules', name, 'package.json'));
-    assert(pkg.version === version);
+    const pkgFile = path.join(cwd, 'node_modules', name, 'package.json');
+    const pkg = await readJSON(pkgFile);
+    assert.equal(pkg.version, version);
   }
 
   beforeEach(cleanup);
@@ -20,6 +21,8 @@ describe('test/seperate-dependencies.test.js', () => {
     await coffee.fork(helper.npminstall, [], {
       cwd,
     })
+      .debug()
+      .expect('code', 0)
       .end();
     await checkPkg('koa', '1.0.0');
     await checkPkg('mocha', '3.0.0');
