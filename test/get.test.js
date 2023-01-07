@@ -1,10 +1,12 @@
 const fs = require('fs');
 const assert = require('assert');
-const mm = require('mm');
 const path = require('path');
+const assertFile = require('assert-file');
+const mm = require('mm');
+
 const mockCnpmrc = path.join(__dirname, './fixtures/auth/');
-if (!fs.existsSync(mockCnpmrc + '.cnpmrc')) {
-  fs.writeFileSync(mockCnpmrc + '.cnpmrc', 'registry=https://registry-mock.org/\n//registry-mock.org/:always-auth=true\n//registry-mock.org/:_password="bW9jaw=="\n//registry-mock.org/:username=hyj19911120');
+if (!fs.existsSync(path.join(mockCnpmrc, '.cnpmrc'))) {
+  fs.writeFileSync(path.join(mockCnpmrc, '.cnpmrc'), 'registry=https://registry-mock.org/\n//registry-mock.org/:always-auth=true\n//registry-mock.org/:_password="bW9jaw=="\n//registry-mock.org/:username=hyj19911120');
 }
 mm(process.env, 'HOME', mockCnpmrc);
 mm(process.env, 'USERPROFILE', mockCnpmrc);
@@ -18,14 +20,14 @@ describe('test/get.test.js', () => {
   it('should retry on JSON parse error', async () => {
     const logger = {
       warn(msg) {
-        assert(msg.includes('[npminstall:get] retry GET'));
+        assert(msg.includes('[npminstall:get] retry GET') || msg.includes('[npminstall:get:error] GET'));
       },
     };
     try {
       await get('https://cnpmjs.org', { dataType: 'json' }, { console: logger });
       assert(false, 'should not run this');
     } catch (err) {
-      assert(err.name === 'JSONResponseFormatError');
+      assert.equal(err.name, 'JSONResponseFormatError');
       assert(err.res.requestUrls.length > 0);
     }
   });
@@ -33,11 +35,11 @@ describe('test/get.test.js', () => {
   it('should set auth info into header', async () => {
     const logger = {
       warn(msg) {
-        assert(msg.includes('[npminstall:get] retry GET'));
+        assert(msg.includes('[npminstall:get] retry GET') || msg.includes('[npminstall:get:error] GET'));
       },
     };
     const options = { dataType: 'json' };
-    assert(fs.existsSync(mockCnpmrc + '.cnpmrc'));
+    assertFile(path.join(mockCnpmrc, '.cnpmrc'));
     try {
       await get('https://registry-mock.org/mock', options, { console: logger });
       assert(false, 'should not run this');

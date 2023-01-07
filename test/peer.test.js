@@ -1,9 +1,9 @@
-const coffee = require('coffee');
 const path = require('path');
 const assert = require('assert');
 const fs = require('fs/promises');
+const coffee = require('coffee');
+const assertFile = require('assert-file');
 const helper = require('./helper');
-const { existsSync } = require('../lib/utils');
 
 describe('test/peer.test.js', () => {
   async function getPkg(root, subPath) {
@@ -15,7 +15,6 @@ describe('test/peer.test.js', () => {
     const cleanup = helper.cleanup(tmp);
 
     beforeEach(cleanup);
-    // afterEach(cleanup);
 
     // will fail on Windows, ignore it
     if (process.platform !== 'win32') {
@@ -59,19 +58,17 @@ describe('test/peer.test.js', () => {
   describe('match root', () => {
     const tmp = helper.fixtures('react-and-react-dom');
     const cleanup = helper.cleanup(tmp);
-
     beforeEach(cleanup);
-    afterEach(cleanup);
 
-    it('should ignore peerDependency match with root', async () => {
+    it('should link peerDependency match with root too', async () => {
       await coffee.fork(helper.npminstall, [], { cwd: tmp })
         .debug()
         .expect('code', 0)
         .end();
       const pkg = await getPkg(tmp, 'node_modules/react-dom/package.json');
-      assert(!existsSync(path.join(tmp, `node_modules/.store/react-dom@${pkg.version}/node_modules/react`)));
-      assert(existsSync(path.join(tmp, 'node_modules/react-dom')));
-      assert(existsSync(path.join(tmp, 'node_modules/react')));
+      assertFile(path.join(tmp, `node_modules/.store/react-dom@${pkg.version}/node_modules/react`));
+      assertFile(path.join(tmp, 'node_modules/react-dom'));
+      assertFile(path.join(tmp, 'node_modules/react'));
     });
   });
 });
