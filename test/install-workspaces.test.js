@@ -38,6 +38,10 @@ describe('test/install-workpsaces.test.js', () => {
     pkg = await helper.readJSON(path.join(root, 'packages/a/node_modules/egg-mock/package.json'));
     assert.equal(pkg.name, 'egg-mock');
     assertFile(path.join(root, `node_modules/.store/egg-mock@${pkg.version}/node_modules/egg/package.json`));
+    // should link workspace package deps to workspace root node_modules
+    assertFile(path.join(root, 'node_modules/egg-mock/package.json'));
+    assertFile(path.join(root, 'node_modules/egg/package.json'));
+    assertFile(path.join(root, 'node_modules/abbrev/package.json'));
     pkg = await helper.readJSON(path.join(root, 'node_modules/aa/node_modules/abbrev/package.json'));
     assert.equal(pkg.name, 'abbrev');
     assert.equal(pkg.version, '2.0.0');

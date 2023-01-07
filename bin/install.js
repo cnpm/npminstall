@@ -281,6 +281,8 @@ debug('argv: %j, env: %j', argv, env);
     }
   }
 
+  // don't enable workspace on global install
+  const enableWorkspace = !argv.global && workspacesMap.size > 0
   const config = {
     root,
     registry,
@@ -297,8 +299,12 @@ debug('argv: %j, env: %j', argv, env);
     disableDedupe: argv['disable-dedupe'],
     workspacesMap,
     // don't enable workspace on global install
-    enableWorkspace: !argv.global && workspacesMap.size > 0,
+    enableWorkspace,
     workspaceRoot: root,
+    // install on workspaces root
+    isWorkspaceRoot: true,
+    // install on one workspace package
+    isWorkspacePackage: false,
   };
   config.strictSSL = getStrictSSL();
   config.ignoreScripts = argv['ignore-scripts'] || getIgnoreScripts();
@@ -428,10 +434,12 @@ debug('argv: %j, env: %j', argv, env);
     // https://docs.npmjs.com/cli/v9/using-npm/workspaces?v=true
     if (!installWorkspaceName && pkgs.length === 0 && config.enableWorkspace) {
       // install in workspaces
-      for (const workspaceRoot of workspaceRoots) {
+      for (const workspacePackageRoot of workspaceRoots) {
         const workspaceConfig = {
           ...config,
-          root: workspaceRoot,
+          root: workspacePackageRoot,
+          isWorkspaceRoot: false,
+          isWorkspacePackage: true,
         };
         workspaceConfig.env.npm_rootpath = process.env.npm_rootpath || root;
         workspaceConfig.env.INIT_CWD = process.env.INIT_CWD || root;
@@ -444,6 +452,8 @@ debug('argv: %j, env: %j', argv, env);
         const workspaceConfig = {
           ...config,
           root: workspaceRoot,
+          isWorkspaceRoot: false,
+          isWorkspacePackage: true,
         };
         workspaceConfig.env.npm_rootpath = process.env.npm_rootpath || root;
         workspaceConfig.env.INIT_CWD = process.env.INIT_CWD || root;

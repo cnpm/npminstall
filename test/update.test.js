@@ -1,8 +1,7 @@
-const assert = require('assert');
 const path = require('path');
 const coffee = require('coffee');
+const assertFile = require('assert-file');
 const helper = require('./helper');
-const { exists } = require('../lib/utils');
 
 describe('test/update.test.js', () => {
   const npmupdate = path.join(__dirname, '../bin/update.js');
@@ -27,8 +26,19 @@ describe('test/update.test.js', () => {
     })
       .debug()
       .end();
-    assert(await exists(path.join(cwd, 'node_modules/pedding')));
-    assert(await exists(path.join(cwd, 'node_modules/pkg')));
+    assertFile(path.join(cwd, 'node_modules/pedding'));
+    assertFile(path.join(cwd, 'node_modules/pkg'));
+  });
+
+  it('should update --clean-only', async () => {
+    await coffee.fork(npmupdate, [ '--clean-only' ], {
+      cwd,
+      stdio: 'pipe',
+    })
+      .debug()
+      .end();
+    assertFile.fail(path.join(cwd, 'node_modules/pedding'));
+    assertFile.fail(path.join(cwd, 'node_modules/pkg'));
   });
 
   it('should update pedding ok', async () => {
@@ -38,7 +48,7 @@ describe('test/update.test.js', () => {
     })
       .debug()
       .end();
-    assert(await exists(path.join(cwd, 'node_modules/pedding')));
-    assert(await exists(path.join(cwd, 'node_modules/pkg')));
+    assertFile(path.join(cwd, 'node_modules/pedding'));
+    assertFile(path.join(cwd, 'node_modules/pkg'));
   });
 });

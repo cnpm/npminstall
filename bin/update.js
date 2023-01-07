@@ -22,6 +22,7 @@ Usage:
     ],
     boolean: [
       'help',
+      'clean-only',
     ],
     alias: {
       h: 'help',
@@ -49,8 +50,9 @@ Usage:
     console.log('[npmupdate] removing %s', nodeModules);
     await rimraf(nodeModules);
   }
-  console.log('[npmupdate] reinstall on %s', root);
+  if (argv['clean-only']) return;
 
+  console.log('[npmupdate] reinstall on %s', root);
   // make sure install ignore all package names
   process.env.NPMINSTALL_BY_UPDATE = 'true';
   require('./install');
