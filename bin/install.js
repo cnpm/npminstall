@@ -282,7 +282,7 @@ debug('argv: %j, env: %j', argv, env);
   }
 
   // don't enable workspace on global install
-  const enableWorkspace = !argv.global && workspacesMap.size > 0
+  const enableWorkspace = !argv.global && workspacesMap.size > 0;
   const config = {
     root,
     registry,
