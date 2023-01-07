@@ -29,6 +29,7 @@ exports.tmp = name => {
 };
 
 exports.npminstall = path.join(__dirname, '..', 'bin', 'install.js');
+exports.npmuninstall = path.join(__dirname, '..', 'bin', 'uninstall.js');
 exports.npmupdate = path.join(__dirname, '..', 'bin', 'update.js');
 
 exports.readJSON = require('../lib/utils').readJSON;

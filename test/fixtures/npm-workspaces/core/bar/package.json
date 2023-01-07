@@ -2,9 +2,10 @@
   "name": "bar",
   "version": "1.0.0",
   "dependencies": {
+    "abbrev": "2.0.0",
     "foo": "1.0.0"
   },
   "scripts": {
-    "postinstall": "node -p \"require('foo')\""
+    "postinstall": "node -p \"require('foo')\" && node -p \"require('foo').has('abbrev')\""
   }
 }

@@ -160,8 +160,5 @@ const folders = argv._.map(name => utils.formatPath(name));
     await bin(root, pkg, linkDir, { console });
   }
 })().catch(err => {
-  console.error(chalk.red(err.stack));
-  console.error(chalk.yellow('npmlink version: %s'), require('../package.json').version);
-  console.error(chalk.yellow('npmlink args: %s'), process.argv.join(' '));
-  process.exit(1);
+  utils.exitWithError('npmlink', err);
 });

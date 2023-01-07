@@ -1,13 +1,9 @@
 #!/usr/bin/env node
 
 const debug = require('util').debuglog('npminstall:bin:uninstall');
-const npa = require('npm-package-arg');
 const path = require('path');
-const fs = require('fs/promises');
+const npa = require('npm-package-arg');
 const parseArgs = require('minimist');
-const chalk = require('chalk');
-const execSync = require('child_process').execSync;
-
 const utils = require('../lib/utils');
 const uninstall = require('../lib/uninstall');
 
@@ -15,23 +11,20 @@ const argv = parseArgs(process.argv.slice(2), {
   string: [
     'root',
     'prefix',
+    'workspace',
   ],
   boolean: [
     'version',
     'help',
     'global',
-    'save',
-    'save-dev',
-    'save-optional',
     'ignore-scripts',
+    'workspaces',
   ],
   alias: {
     v: 'version',
     h: 'help',
     g: 'global',
-    S: 'save',
-    D: 'save-dev',
-    O: 'save-optional',
+    w: 'workspace',
   },
 });
 
@@ -63,46 +56,57 @@ if (!pkgs.length) help();
 
   if (argv.global) {
     // support custom prefix for global install
-    const npmPrefix = argv.prefix || getPrefix();
-    if (process.platform === 'win32') {
-      config.targetDir = npmPrefix;
-      config.binDir = npmPrefix;
+    // support custom prefix for global install
+    const meta = utils.getGlobalInstallMeta(argv.prefix);
+    config.targetDir = meta.targetDir;
+    config.binDir = meta.binDir;
+    debug('uninstall global package in %s with pkg: %j, config: %j', root, pkgs, config);
+    await uninstall(config);
+    return;
+  }
+
+  const installWorkspaceNames = utils.formatWorkspaceNames(argv);
+  const { workspaceRoots, workspacesMap } = await utils.readWorkspaces(root);
+  let uninstallRoots = [];
+  const enableWorkspace = workspacesMap.size > 0;
+  if (enableWorkspace) {
+    if (installWorkspaceNames.length > 0) {
+      // uninstall <pkg> -w <name>
+      const installWorkspaceInfos = await utils.getWorkspaceInfos(root, installWorkspaceNames, workspacesMap);
+      if (installWorkspaceInfos.length === 0) {
+        throw new Error(`No workspaces found: --workspace=${installWorkspaceNames.join(',')}`);
+      }
+      uninstallRoots = installWorkspaceInfos.map(info => info.root);
     } else {
-      config.targetDir = path.join(npmPrefix, 'lib');
-      config.binDir = path.join(npmPrefix, 'bin');
+      if (argv.workspaces) {
+        // uninstall <pkg> --workspaces
+        uninstallRoots = workspaceRoots;
+      } else {
+        // uninstall <pkg>
+        uninstallRoots = [ root ];
+      }
     }
+  } else {
+    // uninstall <pkg>
+    uninstallRoots = [ root ];
   }
-  debug('uninstall in %s with pkg: $j, config: %j', root, pkgs, config);
-  const uninstalled = await uninstall(config);
-  if (uninstalled.length > 0) {
-    // support --save, --save-dev and --save-optional
-    if (argv.save) {
-      await updateDependencies(root, pkgs, 'dependencies');
-    } else if (argv['save-dev']) {
-      await updateDependencies(root, pkgs, 'devDependencies');
-    } else if (argv['save-optional']) {
-      await updateDependencies(root, pkgs, 'optionalDependencies');
-    }
+
+  for (const uninstallRoot of uninstallRoots) {
+    const unsinstallRootConfig = {
+      ...config,
+      root: uninstallRoot,
+      targetDir: uninstallRoot,
+      binDir: path.join(uninstallRoot, 'node_modules/.bin'),
+      enableWorkspace,
+      workspaceRoot: root,
+    };
+    debug('uninstall in %s with pkg: %j, config: %j', uninstallRoot, pkgs, unsinstallRootConfig);
+    await uninstall(unsinstallRootConfig);
   }
-  await updateDependencies(root, uninstalled);
+  console.log('');
 })().catch(err => {
-  console.error(chalk.red(err));
-  console.error(chalk.red(err.stack));
-  process.exit(1);
+  utils.exitWithError('npmuninstall', err);
 });
-
-async function updateDependencies(root, pkgs, propName) {
-  const pkgFile = path.join(root, 'package.json');
-  const pkg = await utils.readJSON(pkgFile);
-  const deps = pkg[propName];
-  if (!deps) return;
-
-  for (const pkg of pkgs) {
-    delete deps[pkg.name];
-  }
-
-  await fs.writeFile(pkgFile, JSON.stringify(pkg, null, 2));
-}
 
 function help() {
   console.log(`
@@ -114,12 +118,4 @@ Usage:
 `
   );
   process.exit(0);
-}
-
-function getPrefix() {
-  try {
-    return execSync('npm config get prefix').toString().trim();
-  } catch (err) {
-    throw new Error(`exec npm config get prefix ERROR: ${err.message}`);
-  }
 }
