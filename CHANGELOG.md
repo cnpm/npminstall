@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.3.0](https://github.com/cnpm/npminstall/compare/v7.2.2...v7.3.0) (2023-01-08)
+
+
+### Features
+
+* support peerDependenciesMeta ([#437](https://github.com/cnpm/npminstall/issues/437)) ([add0061](https://github.com/cnpm/npminstall/commit/add006158f848fb7e298bc933f4947f0e4088556))
+* support peerDependenciesMeta ([#437](https://github.com/cnpm/npminstall/issues/437)) ([848f6fc](https://github.com/cnpm/npminstall/commit/848f6fc1225412a1ad4c64c9285fb8aa55224f83))
+
 ## [7.2.2](https://github.com/cnpm/npminstall/compare/v7.2.1...v7.2.2) (2023-01-07)
 
 
