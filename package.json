@@ -59,13 +59,13 @@
   },
   "devDependencies": {
     "assert-file": "^1.0.0",
-    "coffee": "5",
+    "coffee": "^5.5.0",
     "cross-env": "^7.0.3",
     "egg-bin": "^5.11.2",
-    "eslint": "8",
-    "eslint-config-egg": "12",
-    "git-contributor": "1",
-    "mm": "3"
+    "eslint": "^8.31.0",
+    "eslint-config-egg": "^12.1.0",
+    "git-contributor": "^2.0.0",
+    "mm": "^3.2.1"
   },
   "homepage": "https://github.com/cnpm/npminstall",
   "repository": {
