@@ -139,7 +139,7 @@ Options:
   --flatten: flatten dependencies by matching ancestors' dependencies
   --registry-only: make sure all packages install from registry. Any package is installed from remote(e.g.: git, remote url) cause install fail.
   --cache-strict: use disk cache even on production env.
-  --fix-bug-versions: auto fix bug version of package.
+  --fix-bug-versions: automatically fix bug version of packages.
   --prune: prune unnecessary files from ./node_modules, such as markdown, typescript source files, and so on.
   --dependencies-tree: install with dependencies tree to restore the last install.
   --force-link-latest: force link latest version package to module root path.
@@ -288,6 +288,7 @@ debug('argv: %j, env: %j', argv, env);
     flatten,
     proxy,
     prune,
+    // FIXME: ignored by following process, see lib/local_install.js
     disableDedupe: argv['disable-dedupe'],
     workspacesMap,
     // don't enable workspace on global install
@@ -299,6 +300,9 @@ debug('argv: %j, env: %j', argv, env);
     isWorkspacePackage: false,
   };
   config.strictSSL = getStrictSSL();
+  // when ignore-scripts is set to `false` by user, npminstall will still
+  // get config from npm settings instead of following user's specification,
+  // should migrate to ?? or typeof.
   config.ignoreScripts = argv['ignore-scripts'] || getIgnoreScripts();
   config.ignoreOptionalDependencies = !argv.optional;
   config.detail = argv.detail;
@@ -490,6 +494,7 @@ debug('argv: %j, env: %j', argv, env);
     });
   }
 
+  // main installation logic
   for (const installConfig of installRootConfigs) {
     installConfig.env.npm_rootpath = process.env.npm_rootpath || installConfig.root;
     installConfig.env.INIT_CWD = process.env.INIT_CWD || installConfig.root;
