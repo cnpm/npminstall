@@ -1,5 +1,6 @@
 const assert = require('assert');
 const path = require('path');
+const fs = require('fs/promises');
 const runScript = require('runscript');
 const readJSON = require('../lib/utils').readJSON;
 const npminstall = require('./npminstall');
@@ -10,14 +11,14 @@ describe('test/runscript-with-mocha.test.js', () => {
   const cleanup = helper.cleanup(root);
 
   beforeEach(cleanup);
-  afterEach(cleanup);
+  // afterEach(cleanup);
 
   it('should runscript with mocha.cmd', async () => {
     await npminstall({
       root,
     });
     const pkg = await readJSON(path.join(root, 'node_modules', 'mocha', 'package.json'));
-    assert(pkg.name === 'mocha');
+    assert.equal(pkg.name, 'mocha');
 
     let mochaBin = path.join(root, 'node_modules', '.bin', 'mocha');
     if (process.platform === 'win32') {
@@ -25,5 +26,13 @@ describe('test/runscript-with-mocha.test.js', () => {
     }
     const stdio = await runScript(`${mochaBin} -V`, { stdio: 'pipe' });
     assert(stdio.stdout.toString().trim() === '3.5.3');
+    const names = await fs.readdir(path.join(root, 'node_modules', '.bin'));
+    console.log(names);
+    assert(names.includes('mocha'));
+    assert(names.includes('mocha.cmd') || names.includes('mocha.CMD'));
+    assert(names.includes('mocha.ps1'));
+    assert(names.includes('_mocha'));
+    assert(names.includes('_mocha.cmd') || names.includes('_mocha.CMD'));
+    assert(names.includes('_mocha.ps1'));
   });
 });
