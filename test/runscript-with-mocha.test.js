@@ -29,7 +29,10 @@ describe('test/runscript-with-mocha.test.js', () => {
     const names = await fs.readdir(path.join(root, 'node_modules', '.bin'));
     console.log(names);
     assert(names.includes('mocha'));
-    assert(names.includes('mocha.cmd'));
+    assert(names.includes('mocha.cmd') || names.includes('mocha.CMD'));
     assert(names.includes('mocha.ps1'));
+    assert(names.includes('_mocha'));
+    assert(names.includes('_mocha.cmd') || names.includes('_mocha.CMD'));
+    assert(names.includes('_mocha.ps1'));
   });
 });
