@@ -77,7 +77,7 @@ Options:
   --forbidden-licenses: forbit install packages which used these licenses
   --engine-strict: refuse to install (or even consider installing) any package that claims to not be compatible with the current Node.js version.
   --flatten: flatten dependencies by matching ancestors dependencies
-  --registry-only: make sure all packages install from registry. Any package is installed from remote(e.g.: git, remote url) cause install fail.
+  --registry-only: make sure that all packages are installed from registry. Any package that is installed from remote(e.g.: git, remote url) will lead to a failure of installation.
   --cache-strict: use disk cache even on production env
 ```
 
