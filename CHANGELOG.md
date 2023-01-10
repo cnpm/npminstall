@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.3.1](https://github.com/cnpm/npminstall/compare/v7.3.0...v7.3.1) (2023-01-10)
+
+
+### Bug Fixes
+
+* add NODE_PATH on shim bin ([#440](https://github.com/cnpm/npminstall/issues/440)) ([93309ef](https://github.com/cnpm/npminstall/commit/93309ef178edb67f4ee2677359885a0e1fc726ba))
+
 ## [7.3.0](https://github.com/cnpm/npminstall/compare/v7.2.2...v7.3.0) (2023-01-08)
 
 
