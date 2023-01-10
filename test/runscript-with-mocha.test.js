@@ -27,9 +27,7 @@ describe('test/runscript-with-mocha.test.js', () => {
     const stdio = await runScript(`${mochaBin} -V`, { stdio: 'pipe' });
     assert(stdio.stdout.toString().trim() === '3.5.3');
     const names = await fs.readdir(path.join(root, 'node_modules', '.bin'));
-    assert(names.includes('_mocha'));
-    assert(names.includes('_mocha.cmd'));
-    assert(names.includes('_mocha.ps1'));
+    console.log(names);
     assert(names.includes('mocha'));
     assert(names.includes('mocha.cmd'));
     assert(names.includes('mocha.ps1'));

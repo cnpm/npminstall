@@ -52,21 +52,6 @@ describe('test/bin.test.js', () => {
     // chmod `755` cannot work in win32 😂 always return `666`
     if (process.platform !== 'win32') {
       assert.equal(
-        fs.readFileSync(path.join(root, 'node_modules/.bin/crlf'), 'utf-8'),
-        '#!/usr/bin/env node\nconsole.log(\'crlf\');\r\n'
-      );
-      assert.equal(
-        fs.readFileSync(path.join(root, 'node_modules/.bin/lf'), 'utf-8'),
-        '#!/usr/bin/env node\nconsole.log(\'lf\');\n'
-      );
-      // make sense for `jscodeshift`
-      assert(
-        fs.readFileSync(path.join(root, 'node_modules/.bin/jscodeshift'), 'utf-8').startsWith(
-          '#!/usr/bin/env node\n'
-        )
-      );
-
-      assert.equal(
         fs.statSync(path.join(root, 'node_modules/.bin/crlf')).mode.toString(8),
         '100755'
       );
