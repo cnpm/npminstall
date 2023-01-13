@@ -195,7 +195,7 @@ forbiddenLicenses = forbiddenLicenses ? forbiddenLicenses.split(',') : null;
 const flatten = argv.flatten;
 const prune = argv.prune;
 
-// if in china, will automatic using chines registry and mirros.
+// if in china, will automatic using chinese registry and mirror.
 const inChina = argv.china || !!process.env.npm_china;
 // if exists, override default china mirror url
 const customChinaMirrorUrl = argv['custom-china-mirror-url'];

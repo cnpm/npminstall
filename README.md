@@ -262,7 +262,7 @@ both the same version: 1.1.2
 
 support [selective version resolutions](https://yarnpkg.com/en/docs/selective-version-resolutions) like yarn. which lets you define custom package versions inside your dependencies through the resolutions field in your `package.json` file.
 
-resolutions also supports [npm alias)(https://docs.npmjs.com/cli/v7/commands/npm-install). It's a workaround feature to fix some archived/inactive/ package by uploading your own bug-fixed version to npm registry.
+resolutions also supports [npm alias](https://docs.npmjs.com/cli/v7/commands/npm-install). It's a workaround feature to fix some archived/inactive/ package by uploading your own bug-fixed version to npm registry.
 
 see use case at [unittest package.json](./test/fixtures/resolutions-alias/package.json).
 
