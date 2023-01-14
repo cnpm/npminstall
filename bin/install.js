@@ -65,9 +65,8 @@ Object.assign(argv, parseArgs(originalArgv, {
     'cache-strict',
     'fix-bug-versions',
     'prune',
-    // disable dedupe mode https://docs.npmjs.com/cli/dedupe, back to npm@2 mode
-    // please don't use on frontend project
-    'disable-dedupe',
+    // don't link latest version to <root>/node_modules/.store/node_modules
+    'disable-fallback-store',
     'save-dependencies-tree',
     'force-link-latest',
     'workspaces',
@@ -288,8 +287,7 @@ debug('argv: %j, env: %j', argv, env);
     flatten,
     proxy,
     prune,
-    // FIXME: ignored by following process, see lib/local_install.js
-    disableDedupe: argv['disable-dedupe'],
+    disableFallbackStore: argv['disable-fallback-store'],
     workspacesMap,
     // don't enable workspace on global install
     enableWorkspace,
@@ -400,27 +398,11 @@ debug('argv: %j, env: %j', argv, env);
       if (pkg.config.npminstall.prune === true) {
         config.prune = true;
       }
-      if (pkg.config.npminstall.disableDedupe === true) {
-        config.disableDedupe = true;
-      }
-      // env config
-      // {
-      //   "config": {
-      //     "npminstall": {
-      //       "env:production": {
-      //         "disableDedupe": true
-      //       }
-      //     }
-      //   }
-      // }
       // production
       if (config.production && pkg.config.npminstall['env:production']) {
         const envConfig = pkg.config.npminstall['env:production'];
         if (envConfig.prune === true) {
           config.prune = true;
-        }
-        if (envConfig.disableDedupe === true) {
-          config.disableDedupe = true;
         }
       }
       // development
@@ -428,9 +410,6 @@ debug('argv: %j, env: %j', argv, env);
         const envConfig = pkg.config.npminstall['env:development'];
         if (envConfig.prune === true) {
           config.prune = true;
-        }
-        if (envConfig.disableDedupe === true) {
-          config.disableDedupe = true;
         }
       }
     }

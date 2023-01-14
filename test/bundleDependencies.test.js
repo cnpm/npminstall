@@ -1,9 +1,9 @@
 const assert = require('assert');
 const path = require('path');
 const fs = require('fs/promises');
+const assertFile = require('assert-file');
 const npminstall = require('./npminstall');
 const helper = require('./helper');
-const { exists } = require('../lib/utils');
 
 describe('test/bundleDependencies.test.js', () => {
   const [ tmp, cleanup ] = helper.tmp();
@@ -34,11 +34,11 @@ describe('test/bundleDependencies.test.js', () => {
         { name: 'nyc', version: '6.4.2' },
       ],
     });
-    let e = await exists(path.join(tmp, 'node_modules/nyc'));
-    assert(e);
-    e = await exists(path.join(tmp, 'node_modules/.store/nyc@6.4.2/node_modules/nyc'));
-    assert(e);
-    e = await exists(path.join(tmp, 'node_modules/.store/nyc@6.4.2/node_modules/foreground-child'));
-    assert(e);
+    assertFile(path.join(tmp, 'node_modules/nyc'));
+    assertFile.fail(path.join(tmp, 'node_modules/.store/node_modules/nyc'));
+    assertFile(path.join(tmp, 'node_modules/.store/nyc@6.4.2/node_modules/nyc'));
+    assertFile(path.join(tmp, 'node_modules/.store/nyc@6.4.2/node_modules/foreground-child'));
+    assertFile(path.join(tmp, 'node_modules/.store/node_modules'));
+    assertFile(path.join(tmp, 'node_modules/.store/node_modules/glob'));
   });
 });

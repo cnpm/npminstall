@@ -1,0 +1,6 @@
+{
+  "name": "install-disable-fallback-store",
+  "dependencies": {
+    "urllib": "3"
+  }
+}
