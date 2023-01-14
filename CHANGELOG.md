@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.4.0](https://github.com/cnpm/npminstall/compare/v7.3.1...v7.4.0) (2023-01-14)
+
+
+### Features
+
+* store all latest version packages to .store/node_modules ([#443](https://github.com/cnpm/npminstall/issues/443)) ([71fd1e6](https://github.com/cnpm/npminstall/commit/71fd1e683cbee9c60c3b2c1d21c27d3365ff5573))
+
 ## [7.3.1](https://github.com/cnpm/npminstall/compare/v7.3.0...v7.3.1) (2023-01-10)
 
 
