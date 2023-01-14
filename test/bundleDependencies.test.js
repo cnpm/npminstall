@@ -35,8 +35,10 @@ describe('test/bundleDependencies.test.js', () => {
       ],
     });
     assertFile(path.join(tmp, 'node_modules/nyc'));
-    assertFile(path.join(tmp, 'node_modules/.store/node_modules/nyc'));
+    assertFile.fail(path.join(tmp, 'node_modules/.store/node_modules/nyc'));
     assertFile(path.join(tmp, 'node_modules/.store/nyc@6.4.2/node_modules/nyc'));
     assertFile(path.join(tmp, 'node_modules/.store/nyc@6.4.2/node_modules/foreground-child'));
+    assertFile(path.join(tmp, 'node_modules/.store/node_modules'));
+    assertFile(path.join(tmp, 'node_modules/.store/node_modules/glob'));
   });
 });
