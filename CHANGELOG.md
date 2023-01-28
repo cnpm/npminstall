@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.4.1](https://github.com/cnpm/npminstall/compare/v7.4.0...v7.4.1) (2023-01-28)
+
+
+### Bug Fixes
+
+* ignore anti semver tips on `<name>@*` deps ([#446](https://github.com/cnpm/npminstall/issues/446)) ([317bcbb](https://github.com/cnpm/npminstall/commit/317bcbb481c814db47cb14ded4792ea41382c108))
+
 ## [7.4.0](https://github.com/cnpm/npminstall/compare/v7.3.1...v7.4.0) (2023-01-14)
 
 
