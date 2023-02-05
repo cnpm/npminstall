@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.4.2](https://github.com/cnpm/npminstall/compare/v7.4.1...v7.4.2) (2023-02-05)
+
+
+### Bug Fixes
+
+* show warn message when bin file not exists ([#447](https://github.com/cnpm/npminstall/issues/447)) ([0e3741a](https://github.com/cnpm/npminstall/commit/0e3741a94605389a120267f3dc946ccca285f325))
+
 ## [7.4.1](https://github.com/cnpm/npminstall/compare/v7.4.0...v7.4.1) (2023-01-28)
 
 
