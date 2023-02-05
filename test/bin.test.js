@@ -22,6 +22,18 @@ describe('test/bin.test.js', () => {
     assert(fs.existsSync(path.join(root, 'node_modules', '.bin', 'yo')));
   });
 
+  it('should show warn log if bin file not exists', async () => {
+    await npminstall({
+      root,
+      pkgs: [
+        { name: '@artus-cli/plugin-version', version: '1.0.0' },
+      ],
+    });
+    const pkg = await readJSON(path.join(root, 'node_modules', '@artus-cli/plugin-version', 'package.json'));
+    assert.equal(pkg.name, '@artus-cli/plugin-version');
+    assert.equal(pkg.version, '1.0.0');
+  });
+
   it('should create bin folders for scoped pkg', async () => {
     await npminstall({
       root,
