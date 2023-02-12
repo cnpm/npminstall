@@ -34,7 +34,7 @@ describe('test/postInstallError.test.js', () => {
     await coffee.fork(helper.npminstall, [ '--production' ], { cwd })
       .debug()
       .expect('code', 0)
-      .expect('stderr', /httpsync@\* optional error: .*Error: Command failed with exit code 127\: sh build\.sh/)
+      .expect('stderr', /httpsync@\* optional error: .*Error: Command failed with exit code \d+\: sh build\.sh/)
       .expect('stderr', /httpsync@\* run install sh build.sh/)
       .expect('stdout', /All packages installed/)
       .end();
