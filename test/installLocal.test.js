@@ -18,7 +18,7 @@ describe('test/installLocal.test.js', () => {
     await npminstall({
       root,
       pkgs: [
-        { name: null, version: 'file:pkg' },
+        { name: 'test', version: 'file:pkg' },
       ],
     });
     const pkg = await helper.readJSON(path.join(root, 'node_modules/pkg/package.json'));
@@ -30,7 +30,7 @@ describe('test/installLocal.test.js', () => {
     await npminstall({
       root,
       pkgs: [
-        { name: null, version: 'file:pkg' },
+        { name: 'test', version: 'file:pkg' },
       ],
     });
     const pkg = await helper.readJSON(path.join(root, 'node_modules/pkg/package.json'));
@@ -41,7 +41,7 @@ describe('test/installLocal.test.js', () => {
     await npminstall({
       root,
       pkgs: [
-        { name: null, version: './pkg' },
+        { name: 'test', version: './pkg' },
       ],
     });
     const pkg = await helper.readJSON(path.join(root, 'node_modules/pkg/package.json'));
@@ -55,7 +55,7 @@ describe('test/installLocal.test.js', () => {
     await npminstall({
       root,
       pkgs: [
-        { name: null, version: 'file:pkg-link' },
+        { name: 'test', version: 'file:pkg-link' },
       ],
     });
     const pkg = await helper.readJSON(path.join(root, 'node_modules/pkg/package.json'));
@@ -212,7 +212,7 @@ describe('test/installLocal.test.js', () => {
       await npminstall({
         root,
         pkgs: [
-          { name: null, version: 'file:pkg' },
+          { name: 'test', version: 'file:pkg' },
         ],
       });
       let pkg = await helper.readJSON(path.join(root, 'node_modules/pkg/package.json'));

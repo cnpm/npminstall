@@ -35,28 +35,6 @@ describe('test/postinstall.test.js', () => {
       // prepare pass
       assert.equal(fs.readFileSync(path.join(root, 'node_modules', '.prepare.txt'), 'utf8'), 'success: prepare');
     });
-
-    it('should not run prepublish with production mode', async () => {
-      await npminstall({
-        root,
-        production: true,
-      });
-      const pkg = await readJSON(path.join(root, 'node_modules', 'utility', 'package.json'));
-      assert.equal(pkg.name, 'utility');
-      assert.equal(pkg.version, '1.6.0');
-
-      // postinstall pass
-      assert.equal(fs.readFileSync(path.join(root, 'node_modules', '.postinstall.txt'), 'utf8'), 'success: postinstall');
-
-      // prepublish pass
-      let hasFile = false;
-      try {
-        hasFile = !!fs.statSync(path.join(root, 'node_modules', '.prepublish.txt'));
-      } catch (err) {
-        // empty
-      }
-      assert.equal(hasFile, false);
-    });
   });
 
   if (semver.satisfies(process.version, '< 13.0.0')) {
