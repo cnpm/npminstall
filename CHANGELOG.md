@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.5.0](https://github.com/cnpm/npminstall/compare/v7.4.2...v7.5.0) (2023-02-13)
+
+
+### Features
+
+* installation lifecycle scripts ([#448](https://github.com/cnpm/npminstall/issues/448)) ([f48e7e3](https://github.com/cnpm/npminstall/commit/f48e7e3cb81d5e29904feaea26d5b128beab630d))
+
 ## [7.4.2](https://github.com/cnpm/npminstall/compare/v7.4.1...v7.4.2) (2023-02-05)
 
 
