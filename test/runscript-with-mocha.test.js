@@ -1,7 +1,7 @@
 const assert = require('assert');
 const path = require('path');
 const fs = require('fs/promises');
-const runScript = require('runscript');
+const { command } = require('execa');
 const readJSON = require('../lib/utils').readJSON;
 const npminstall = require('./npminstall');
 const helper = require('./helper');
@@ -24,7 +24,7 @@ describe('test/runscript-with-mocha.test.js', () => {
     if (process.platform === 'win32') {
       mochaBin = `${mochaBin}.cmd`;
     }
-    const stdio = await runScript(`${mochaBin} -V`, { stdio: 'pipe' });
+    const stdio = await command(`${mochaBin} -V`, { stdio: 'pipe' });
     assert(stdio.stdout.toString().trim() === '3.5.3');
     const names = await fs.readdir(path.join(root, 'node_modules', '.bin'));
     console.log(names);

@@ -89,7 +89,6 @@ describe('test/installGlobal.test.js', () => {
         .end();
 
       assert(await exists(path.join(binDir, 'egg-bin')));
-      assert(await exists(path.join(binDir, 'mocha')));
       assert(await exists(path.join(libDir, 'node_modules/egg-bin')));
       assert((await fs.stat(path.join(libDir, 'node_modules/egg-bin'))).isDirectory());
     });

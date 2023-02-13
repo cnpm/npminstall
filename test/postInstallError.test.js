@@ -21,7 +21,7 @@ describe('test/postInstallError.test.js', () => {
         ],
       });
     } catch (err) {
-      assert(err.message.indexOf('post install error, please remove node_modules before retry!') >= 0);
+      assert(err.message.indexOf('run postinstall error, please remove node_modules before retry!') >= 0);
       throwError = true;
     }
     assert.equal(throwError, true);
@@ -34,8 +34,8 @@ describe('test/postInstallError.test.js', () => {
     await coffee.fork(helper.npminstall, [ '--production' ], { cwd })
       .debug()
       .expect('code', 0)
-      .expect('stderr', /httpsync@\* optional error: .*Error: Run ".*?build\.sh" error/)
-      .expect('stderr', /scripts.install httpsync@\* run "sh build.sh"/)
+      .expect('stderr', /httpsync@\* optional error: .*Error: Command failed with exit code \d+\: sh build\.sh/)
+      .expect('stderr', /httpsync@\* run install sh build.sh/)
       .expect('stdout', /All packages installed/)
       .end();
   });

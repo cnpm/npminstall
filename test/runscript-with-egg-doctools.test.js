@@ -1,6 +1,6 @@
 const assert = require('assert');
 const path = require('path');
-const runScript = require('runscript');
+const { command } = require('execa');
 const readJSON = require('../lib/utils').readJSON;
 const npminstall = require('./npminstall');
 const helper = require('./helper');
@@ -20,7 +20,7 @@ describe('test/runscript-with-egg-doctools.test.js', () => {
     assert(pkg.name === 'egg-doctools');
 
     const bin = path.join(root, 'node_modules', '.bin', 'doctools');
-    const stdio = await runScript(`${bin} -V`, { stdio: 'pipe' });
+    const stdio = await command(`${bin} -V`, { stdio: 'pipe' });
     assert(stdio.stdout.toString().trim() === '2.9.0');
   });
 });
