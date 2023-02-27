@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.5.1](https://github.com/cnpm/npminstall/compare/v7.5.0...v7.5.1) (2023-02-27)
+
+
+### Bug Fixes
+
+* link public hoist package to `<workspaceRoot>/node_modules` ([#450](https://github.com/cnpm/npminstall/issues/450)) ([ad7528f](https://github.com/cnpm/npminstall/commit/ad7528f6cab49ac21b2391e1490a54d229821fc6))
+
 ## [7.5.0](https://github.com/cnpm/npminstall/compare/v7.4.2...v7.5.0) (2023-02-13)
 
 
