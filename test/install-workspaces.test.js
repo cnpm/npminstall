@@ -67,6 +67,10 @@ describe('test/install-workpsaces.test.js', () => {
     pkg = await helper.readJSON(path.join(root, 'node_modules/@cnpm/foo/package.json'));
     assert.equal(pkg.name, '@cnpm/foo');
     assertFile.fail(path.join(root, 'node_modules/@cnpm/foo/node_modules/foo/package.json'));
+
+    // match publicHoistPattern pick eslint* modules to root node_modules
+    assertFile(path.join(root, 'node_modules/eslint-config-egg/package.json'));
+    assertFile(path.join(root, 'node_modules/eslint-plugin-eggache/package.json'));
   });
 
   it('should install new package on one workspace', async () => {
