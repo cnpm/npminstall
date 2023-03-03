@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.5.2](https://github.com/cnpm/npminstall/compare/v7.5.1...v7.5.2) (2023-03-03)
+
+
+### Bug Fixes
+
+* should not run prepare in a production or global package ([#451](https://github.com/cnpm/npminstall/issues/451)) ([8c5520d](https://github.com/cnpm/npminstall/commit/8c5520dfe1776d2eaaf897ffb5d45932c3610d82))
+
 ## [7.5.1](https://github.com/cnpm/npminstall/compare/v7.5.0...v7.5.1) (2023-02-27)
 
 
