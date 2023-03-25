@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('node:path');
 const coffee = require('coffee');
 const { rimraf } = require('../lib/utils');
 const helper = require('./helper');

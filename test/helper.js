@@ -1,5 +1,5 @@
-const path = require('path');
-const { randomUUID } = require('crypto');
+const path = require('node:path');
+const { randomUUID } = require('node:crypto');
 const { rimraf, mkdirp } = require('../lib/utils');
 
 const fixtures = path.join(__dirname, 'fixtures');

@@ -1,4 +1,4 @@
-const assert = require('assert');
+const assert = require('node:assert');
 const npminstall = require('./npminstall');
 const helper = require('./helper');
 const { exists } = require('../lib/utils');

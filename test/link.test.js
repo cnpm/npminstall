@@ -1,6 +1,6 @@
-const assert = require('assert');
-const path = require('path');
-const fs = require('fs/promises');
+const assert = require('node:assert');
+const path = require('node:path');
+const fs = require('node:fs/promises');
 const link = require('../lib/link');
 const { mkdirp } = require('../lib/utils');
 const helper = require('./helper');

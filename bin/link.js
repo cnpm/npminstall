@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-const debug = require('util').debuglog('npminstall:bin:link');
+const debug = require('node:util').debuglog('npminstall:bin:link');
+const assert = require('node:assert');
+const path = require('node:path');
 const npa = require('npm-package-arg');
 const semver = require('semver');
-const assert = require('assert');
 const chalk = require('chalk');
-const path = require('path');
 const parseArgs = require('minimist');
 const utils = require('../lib/utils');
 const bin = require('../lib/bin');

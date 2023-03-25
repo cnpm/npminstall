@@ -1,5 +1,5 @@
-const assert = require('assert');
-const path = require('path');
+const assert = require('node:assert');
+const path = require('node:path');
 const npminstall = require('./npminstall');
 const helper = require('./helper');
 const { existsSync } = require('../lib/utils');

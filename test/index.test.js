@@ -1,6 +1,6 @@
-const assert = require('assert');
-const fs = require('fs/promises');
-const path = require('path');
+const assert = require('node:assert');
+const fs = require('node:fs/promises');
+const path = require('node:path');
 const npminstall = require('./npminstall');
 const { readJSON, rimraf, exists, isInstallDone } = require('../lib/utils');
 const helper = require('./helper');

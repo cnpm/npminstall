@@ -1,6 +1,6 @@
-const assert = require('assert');
+const assert = require('node:assert');
 const mm = require('mm');
-const path = require('path');
+const path = require('node:path');
 const coffee = require('coffee');
 const urllib = require('urllib');
 const { MockAgent, setGlobalDispatcher, getGlobalDispatcher } = require('urllib');

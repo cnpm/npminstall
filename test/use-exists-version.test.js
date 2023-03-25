@@ -1,6 +1,6 @@
 const coffee = require('coffee');
-const path = require('path');
-const assert = require('assert');
+const path = require('node:path');
+const assert = require('node:assert');
 const helper = require('./helper');
 
 describe('test/use-exists-version.test.js', () => {

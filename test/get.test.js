@@ -1,6 +1,6 @@
-const fs = require('fs');
-const assert = require('assert');
-const path = require('path');
+const fs = require('node:fs');
+const assert = require('node:assert');
+const path = require('node:path');
 const assertFile = require('assert-file');
 const mm = require('mm');
 

@@ -1,7 +1,7 @@
 const coffee = require('coffee');
-const path = require('path');
-const assert = require('assert');
-const fs = require('fs');
+const path = require('node:path');
+const assert = require('node:assert');
+const fs = require('node:fs');
 const helper = require('./helper');
 
 const bin = helper.npminstall;

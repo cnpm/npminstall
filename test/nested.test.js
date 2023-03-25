@@ -1,5 +1,5 @@
 const Nested = require('../lib/nested');
-const assert = require('assert');
+const assert = require('node:assert');
 
 const mockPkgs = [
   'a@1.0.0',

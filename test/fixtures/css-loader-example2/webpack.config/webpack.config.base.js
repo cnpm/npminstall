@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('node:path');
 const postcssNested = require('postcss-nested');
 const autoprefixer = require('autoprefixer');
 

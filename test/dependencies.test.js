@@ -1,5 +1,5 @@
 const dependencies = require('../lib/dependencies');
-const assert = require('assert');
+const assert = require('node:assert');
 const Nested = require('../lib/nested');
 
 describe('test/dependencies.test.js', () => {

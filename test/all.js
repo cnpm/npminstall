@@ -1,5 +1,5 @@
-const path = require('path');
-const spawn = require('child_process').spawn;
+const path = require('node:path');
+const spawn = require('node:child_process').spawn;
 const npminstall = require('./npminstall');
 const { rimraf } = require('../lib/utils');
 
