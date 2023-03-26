@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.6.0](https://github.com/cnpm/npminstall/compare/v7.5.2...v7.6.0) (2023-03-26)
+
+
+### Features
+
+* enforce "node:" prefix on require module ([#452](https://github.com/cnpm/npminstall/issues/452)) ([cb7a3b7](https://github.com/cnpm/npminstall/commit/cb7a3b75ee1a2a827cd35e10f5ba8fbd143237da))
+
 ## [7.5.2](https://github.com/cnpm/npminstall/compare/v7.5.1...v7.5.2) (2023-03-03)
 
 
