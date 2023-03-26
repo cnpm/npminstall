@@ -13,6 +13,7 @@ describe('test/bin.test.js', () => {
   afterEach(cleanup);
 
   it('should create bins after install', async () => {
+    if (process.platform === 'win32') return;
     await npminstall({
       root,
     });

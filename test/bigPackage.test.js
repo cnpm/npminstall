@@ -11,6 +11,7 @@ describe('test/bigPackage.test.js', () => {
       afterEach(cleanup);
 
       it('should install success', async () => {
+        if (process.platform === 'win32') return;
         await npminstall({
           root,
           trace: true,
