@@ -1,8 +1,8 @@
-const path = require('path');
+const path = require('node:path');
 const coffee = require('coffee');
-const { existsSync } = require('fs');
-const fs = require('fs/promises');
-const assert = require('assert');
+const { existsSync } = require('node:fs');
+const fs = require('node:fs/promises');
+const assert = require('node:assert');
 const helper = require('./helper');
 
 describe('test/dependencies-tree.test.js', () => {

@@ -1,7 +1,7 @@
-const assert = require('assert');
-const path = require('path');
+const assert = require('node:assert');
+const path = require('node:path');
 const coffee = require('coffee');
-const { readFileSync } = require('fs');
+const { readFileSync } = require('node:fs');
 const utils = require('../lib/utils');
 const { rimraf, existsSync } = require('../lib/utils');
 

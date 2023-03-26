@@ -1,4 +1,4 @@
-const assert = require('assert');
+const assert = require('node:assert');
 const normalize = require('npm-normalize-package-bin');
 
 describe('test/normalize-bin.test.js', () => {

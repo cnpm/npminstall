@@ -1,5 +1,5 @@
 const Conext = require('../lib/context');
-const assert = require('assert');
+const assert = require('node:assert');
 
 describe('test/context.test.js', () => {
   it('should context work', () => {

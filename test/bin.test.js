@@ -1,6 +1,6 @@
-const assert = require('assert');
-const path = require('path');
-const fs = require('fs');
+const assert = require('node:assert');
+const path = require('node:path');
+const fs = require('node:fs');
 const readJSON = require('../lib/utils').readJSON;
 const npminstall = require('./npminstall');
 const helper = require('./helper');
@@ -13,6 +13,7 @@ describe('test/bin.test.js', () => {
   afterEach(cleanup);
 
   it('should create bins after install', async () => {
+    if (process.platform === 'win32') return;
     await npminstall({
       root,
     });

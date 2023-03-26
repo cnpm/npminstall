@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-const debug = require('util').debuglog('npminstall:bin:install');
-const path = require('path');
-const util = require('util');
-const { execSync } = require('child_process');
-const fs = require('fs/promises');
-const { writeFileSync } = require('fs');
+const debug = require('node:util').debuglog('npminstall:bin:install');
+const path = require('node:path');
+const util = require('node:util');
+const { execSync } = require('node:child_process');
+const fs = require('node:fs/promises');
+const { writeFileSync } = require('node:fs');
 const chalk = require('chalk');
 const parseArgs = require('minimist');
 const { installLocal, installGlobal } = require('..');

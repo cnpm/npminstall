@@ -1,5 +1,5 @@
-const assert = require('assert');
-const path = require('path');
+const assert = require('node:assert');
+const path = require('node:path');
 const { command } = require('execa');
 const readJSON = require('../lib/utils').readJSON;
 const npminstall = require('./npminstall');

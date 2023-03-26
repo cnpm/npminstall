@@ -2,7 +2,7 @@
 
 // https://github.com/nodejs/node/blob/master/test/addons/hello-world/test.js
 
-const assert = require('assert');
+const assert = require('node:assert');
 const binding = require('./build/Release/binding');
 
 assert.equal('world', binding.hello());

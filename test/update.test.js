@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('node:path');
 const coffee = require('coffee');
 const assertFile = require('assert-file');
 const helper = require('./helper');

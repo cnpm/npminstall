@@ -1,7 +1,7 @@
-const path = require('path');
+const path = require('node:path');
 const coffee = require('coffee');
-const fs = require('fs/promises');
-const assert = require('assert');
+const fs = require('node:fs/promises');
+const assert = require('node:assert');
 const helper = require('./helper');
 
 describe('test/install-vscode.test.js', () => {

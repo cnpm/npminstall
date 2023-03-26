@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const path = require('path');
+const path = require('node:path');
 const parseArgs = require('minimist');
 const {
   rimraf, readWorkspaces, getWorkspaceInfos, formatWorkspaceNames, exitWithError,

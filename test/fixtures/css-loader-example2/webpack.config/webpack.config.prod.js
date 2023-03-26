@@ -1,5 +1,5 @@
-const { join } = require('path');
-const os = require('os');
+const { join } = require('node:path');
+const os = require('node:os');
 const webpack = require('webpack');
 const AssetsPlugin = require('assets-webpack-plugin');
 const HappyPack = require('happypack');
