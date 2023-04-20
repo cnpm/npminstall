@@ -1,0 +1,11 @@
+{
+  "name": "hotfix-emotion-react",
+  "version": "1.0.0",
+  "scripts": {
+    "postinstall": "node index.js"
+  },
+  "dependencies": {
+    "@emotion/react": "latest",
+    "react": "latest"
+  }
+}

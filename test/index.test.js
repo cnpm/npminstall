@@ -23,6 +23,16 @@ describe('test/index.test.js', () => {
     assert(await exists(path.join(root, 'node_modules/.store/@babel+preset-react@7.18.6/node_modules/@babel/plugin-transform-react-jsx')));
   });
 
+  it('should install @emotion/react with react, fix link pear deps bug', async () => {
+    const root = helper.fixtures('hotfix-emotion-react');
+    await rimraf(path.join(root, 'node_modules'));
+    await npminstall({
+      root,
+    });
+    assert(await isInstallDone(path.join(root, 'node_modules/@emotion/react')));
+    assert.equal(require(path.join(root, 'node_modules/@emotion/react/package.json')).name, '@emotion/react');
+  });
+
   it('should npminstall with options.pkgs', async () => {
     await npminstall({
       root: tmp,
