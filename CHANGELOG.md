@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.6.1](https://github.com/cnpm/npminstall/compare/v7.6.0...v7.6.1) (2023-04-20)
+
+
+### Bug Fixes
+
+* link peer deps should handle scope package path ([#454](https://github.com/cnpm/npminstall/issues/454)) ([8176d5d](https://github.com/cnpm/npminstall/commit/8176d5d5b646a2cd911bf7adb376f4d1729f94d8))
+
 ## [7.6.0](https://github.com/cnpm/npminstall/compare/v7.5.2...v7.6.0) (2023-03-26)
 
 
