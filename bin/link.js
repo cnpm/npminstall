@@ -4,7 +4,6 @@ const debug = require('node:util').debuglog('npminstall:bin:link');
 const assert = require('node:assert');
 const path = require('node:path');
 const npa = require('npm-package-arg');
-const semver = require('semver');
 const chalk = require('chalk');
 const parseArgs = require('minimist');
 const utils = require('../lib/utils');
@@ -117,7 +116,8 @@ const folders = argv._.map(name => utils.formatPath(name));
       const pkgNotExist = !pkg.name;
       const specIsTag = pkgInfo.type === 'tag' && !!pkgInfo.rawSpec;
       const specNotSemver = !REGISTRY_TYPES.includes(pkgInfo.type);
-      const specNotSatisfies = (pkgInfo.type === 'range' || pkgInfo.type === 'version') && !semver.satisfies(pkg.version, pkgInfo.spec);
+      const specNotSatisfies = (pkgInfo.type === 'range' || pkgInfo.type === 'version')
+        && !utils.fastSemverSatisfies(pkg.version, pkgInfo.spec);
 
       if (pkgNotExist || specIsTag || specNotSemver || specNotSatisfies) {
         debug('%s not satisfies with requirement, try to install %s from npm', folder, pkgInfo.raw);

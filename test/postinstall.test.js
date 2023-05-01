@@ -2,8 +2,7 @@ const assert = require('node:assert');
 const path = require('node:path');
 const fs = require('node:fs');
 const coffee = require('coffee');
-const semver = require('semver');
-const { rimraf, readJSON } = require('../lib/utils');
+const { rimraf, readJSON, fastSemverSatisfies } = require('../lib/utils');
 const npminstall = require('./npminstall');
 const helper = require('./helper');
 
@@ -37,7 +36,7 @@ describe('test/postinstall.test.js', () => {
     });
   });
 
-  if (semver.satisfies(process.version, '< 13.0.0')) {
+  if (fastSemverSatisfies(process.version, '< 13.0.0')) {
     describe('node-gyp', () => {
       const root = helper.fixtures('node-gyp-hello');
 
