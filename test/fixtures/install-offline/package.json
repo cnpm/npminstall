@@ -1,0 +1,14 @@
+{
+  "name": "install-offline",
+  "version": "1.0.0",
+  "scripts": {
+    "postinstall": "node index.js"
+  },
+  "dependencies": {
+    "debug": "~2.2.0",
+    "koa": "^1.1.2"
+  },
+  "devDependencies": {
+    "co": "^4.6.0"
+  }
+}
