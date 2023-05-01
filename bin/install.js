@@ -143,7 +143,7 @@ Options:
   --prune: prune unnecessary files from ./node_modules, such as markdown, typescript source files, and so on.
   --dependencies-tree: install with dependencies tree to restore the last install.
   --force-link-latest: force link latest version package to module root path.
-  --offline: only packages already available in the store. If a package won't be found locally, the installation will fail.
+  --offline: offline mode. If a package won't be found locally, the installation will fail.
 `
   );
   process.exit(0);
