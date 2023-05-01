@@ -3,9 +3,6 @@ const coffee = require('coffee');
 const helper = require('./helper');
 
 describe('test/install-offline.test.js', () => {
-  // Fixme: mock Windows homedir
-  if (process.platform === 'win32') return;
-
   const [ homedir, cleanupTmp ] = helper.tmp();
   const demo = helper.fixtures('install-offline');
   const cleanupModules = helper.cleanup(demo);
@@ -22,7 +19,6 @@ describe('test/install-offline.test.js', () => {
     await coffee.fork(helper.npminstall, [ '--offline' ], {
       cwd: demo,
       env: Object.assign({}, process.env, {
-        HOME: homedir,
         npm_config_cache: path.join(homedir, 'foocache/.npminstall_tarball'),
       }),
     })
@@ -36,7 +32,6 @@ describe('test/install-offline.test.js', () => {
     await coffee.fork(helper.npminstall, [ '-d' ], {
       cwd: demo,
       env: Object.assign({}, process.env, {
-        HOME: homedir,
         npm_config_cache: path.join(homedir, 'foocache/.npminstall_tarball'),
       }),
     })
@@ -49,7 +44,6 @@ describe('test/install-offline.test.js', () => {
     await coffee.fork(helper.npminstall, [ '-d', '--offline' ], {
       cwd: demo,
       env: Object.assign({}, process.env, {
-        HOME: homedir,
         npm_config_cache: path.join(homedir, 'foocache/.npminstall_tarball'),
       }),
     })
