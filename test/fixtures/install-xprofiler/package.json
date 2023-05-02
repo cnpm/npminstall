@@ -1,0 +1,6 @@
+{
+  "name": "install-xprofiler",
+  "dependencies": {
+    "xprofiler": "^2.5.1"
+  }
+}

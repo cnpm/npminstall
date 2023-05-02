@@ -31,6 +31,7 @@
     "await-event": "^2.1.0",
     "bin-links": "^2.3.0",
     "binary-mirror-config": "^1.19.0",
+    "bug-versions": "^1.90.0",
     "bytes": "^3.1.0",
     "cacheable-lookup": "^6.1.0",
     "chalk": "^2.4.2",
