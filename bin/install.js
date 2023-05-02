@@ -4,6 +4,7 @@ const debug = require('node:util').debuglog('npminstall:bin:install');
 const path = require('node:path');
 const util = require('node:util');
 const { execSync } = require('node:child_process');
+const os = require('node:os');
 const fs = require('node:fs/promises');
 const { writeFileSync } = require('node:fs');
 const chalk = require('chalk');
@@ -181,13 +182,11 @@ if (Array.isArray(root)) {
 let installOnAllWorkspaces = argv.workspaces;
 let installWorkspaceNames = utils.formatWorkspaceNames(argv);
 const production = argv.production || process.env.NODE_ENV === 'production';
-let cacheDir = argv.cache === false ? '' : null;
-if (production) {
-  cacheDir = '';
-}
+const cacheStrict = argv['cache-strict'];
 // support npm_config_cache to change default cache dir
-if (cacheDir === null && process.env.npm_config_cache) {
-  cacheDir = process.env.npm_config_cache;
+let cacheDir = process.env.npm_config_cache || path.join(os.homedir(), '.npminstall_tarball');
+if (!cacheStrict && (production || argv.cache === false)) {
+  cacheDir = '';
 }
 
 let forbiddenLicenses = argv['forbidden-licenses'];
@@ -210,6 +209,7 @@ if (inChina) {
 registry = registry || 'https://registry.npmjs.com';
 
 const proxy = argv.proxy || process.env.npm_proxy || process.env.npm_config_proxy;
+const offline = !!argv.offline;
 
 const env = {
   npm_config_registry: registry,
@@ -257,7 +257,7 @@ debug('argv: %j, env: %j', argv, env);
   let binaryMirrors = {};
 
   if (inChina) {
-    binaryMirrors = await utils.getBinaryMirrors(registry, { proxy });
+    binaryMirrors = await utils.getBinaryMirrors(registry, { proxy, offline, cacheDir });
     if (customChinaMirrorUrl) {
       for (const key in binaryMirrors) {
         const item = binaryMirrors[key];
@@ -298,6 +298,7 @@ debug('argv: %j, env: %j', argv, env);
     isWorkspaceRoot: true,
     // install on one workspace package
     isWorkspacePackage: false,
+    offline,
   };
   config.strictSSL = getStrictSSL();
   // when ignore-scripts is set to `false` by user, npminstall will still
@@ -315,11 +316,10 @@ debug('argv: %j, env: %j', argv, env);
     config.detail = true;
   }
   config.client = argv.client;
-  config.offline = !!argv.offline;
 
   if (argv['tarball-url-mapping']) {
     const tarballUrlMapping = JSON.parse(argv['tarball-url-mapping']);
-    config.formatNpmTarbalUrl = function formatNpmTarbalUrl(url) {
+    config.formatNpmTarballUrl = function formatNpmTarballUrl(url) {
       for (const fromUrl in tarballUrlMapping) {
         const toUrl = tarballUrlMapping[fromUrl];
         url = url.replace(fromUrl, toUrl);
@@ -329,7 +329,7 @@ debug('argv: %j, env: %j', argv, env);
   }
 
   if (argv['fix-bug-versions']) {
-    const packageVersionMapping = await utils.getBugVersions(registry, { proxy });
+    const packageVersionMapping = await utils.getBugVersions(registry, { proxy, offline, cacheDir });
     config.autoFixVersion = function autoFixVersion(name, version) {
       const fixVersions = packageVersionMapping[name];
       return fixVersions && fixVersions[version] || null;

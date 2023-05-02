@@ -14,7 +14,10 @@ describe('test/node-sass.test.js', () => {
     // ignore windows
     if (process.platform === 'win32') return;
     mm(process.env, 'npm_config_cache', undefined);
-    const sassVersion = semver.satisfies(process.version, '>= 16.0.0') ? '6' : '4';
+    let sassVersion = semver.satisfies(process.version, '>= 16.0.0') ? '6' : '4';
+    if (semver.satisfies(process.version, '>= 18.0.0')) {
+      sassVersion = '8';
+    }
     await npminstall({
       root: tmp,
       pkgs: [
