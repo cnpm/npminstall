@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.7.0](https://github.com/cnpm/npminstall/compare/v7.6.1...v7.7.0) (2023-05-02)
+
+
+### Features
+
+* support offline mode ([#457](https://github.com/cnpm/npminstall/issues/457)) ([d7c52ee](https://github.com/cnpm/npminstall/commit/d7c52eec9a7f65d7ab3b83964bd0018c51162dac))
+
 ## [7.6.1](https://github.com/cnpm/npminstall/compare/v7.6.0...v7.6.1) (2023-04-20)
 
 
