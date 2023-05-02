@@ -225,7 +225,7 @@ const env = {
   npm_config_user_agent: globalConfig.userAgent,
   // https://github.com/sass/node-sass/blob/master/lib/extensions.js#L270
   // make sure npm_config_cache env exists
-  npm_config_cache: cacheDir || defaultCacheDir,
+  npm_config_cache: defaultCacheDir,
 };
 // https://github.com/npm/npm/blob/2005f4ce11f6cdf142f8a77f4f7ee4996000fb57/lib/utils/lifecycle.js#L67
 env.npm_node_execpath = env.NODE = process.env.NODE || process.execPath;
