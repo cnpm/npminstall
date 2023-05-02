@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.8.0](https://github.com/cnpm/npminstall/compare/v7.7.0...v7.8.0) (2023-05-02)
+
+
+### Features
+
+* faster semver satisfies ([#455](https://github.com/cnpm/npminstall/issues/455)) ([6f3d601](https://github.com/cnpm/npminstall/commit/6f3d6011468978566036ade98e2412f24a7e3752))
+
 ## [7.7.0](https://github.com/cnpm/npminstall/compare/v7.6.1...v7.7.0) (2023-05-02)
 
 
