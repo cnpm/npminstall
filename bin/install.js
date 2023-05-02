@@ -70,6 +70,7 @@ Object.assign(argv, parseArgs(originalArgv, {
     'save-dependencies-tree',
     'force-link-latest',
     'workspaces',
+    'offline',
   ],
   default: {
     optional: true,
@@ -142,6 +143,7 @@ Options:
   --prune: prune unnecessary files from ./node_modules, such as markdown, typescript source files, and so on.
   --dependencies-tree: install with dependencies tree to restore the last install.
   --force-link-latest: force link latest version package to module root path.
+  --offline: offline mode. If a package won't be found locally, the installation will fail.
 `
   );
   process.exit(0);
@@ -313,6 +315,7 @@ debug('argv: %j, env: %j', argv, env);
     config.detail = true;
   }
   config.client = argv.client;
+  config.offline = !!argv.offline;
 
   if (argv['tarball-url-mapping']) {
     const tarballUrlMapping = JSON.parse(argv['tarball-url-mapping']);
@@ -351,6 +354,10 @@ debug('argv: %j, env: %j', argv, env);
       writeFileSync(path.join(root, 'npminstall-debug.log'), util.inspect(config, { depth: 2 }));
     }
   });
+
+  if (config.offline) {
+    console.warn(chalk.yellow('npminstall WARN running on offline mode'));
+  }
 
   // -g install to npm's global prefix
   if (argv.global) {
