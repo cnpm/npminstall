@@ -18,6 +18,35 @@ describe('test/postinstall.test.js', () => {
       await coffee.fork(helper.npminstall, [], { cwd: root })
         .debug()
         .expect('code', 0)
+        // should run deps scripts on background by default
+        .notExpect('stdout', /run on postinstall-hello/)
+        .notExpect('stdout', /postinstall-hello@1.0.0 postinstall/)
+        .expect('stdout', /node index.js preinstall/)
+        .end();
+      const pkg = await readJSON(path.join(root, 'node_modules', 'utility', 'package.json'));
+      assert.equal(pkg.name, 'utility');
+      assert.equal(pkg.version, '1.6.0');
+
+      // preinstall pass
+      assert.equal(fs.readFileSync(path.join(root, '.preinstall.txt'), 'utf8'), 'success: preinstall');
+      // install pass
+      assert.equal(fs.readFileSync(path.join(root, 'node_modules', '.install.txt'), 'utf8'), 'success: install');
+      // postinstall pass
+      assert.equal(fs.readFileSync(path.join(root, 'node_modules', '.postinstall.txt'), 'utf8'), 'success: postinstall');
+      // prepublish pass
+      assert.equal(fs.readFileSync(path.join(root, 'node_modules', '.prepublish.txt'), 'utf8'), 'success: prepublish');
+      // prepare pass
+      assert.equal(fs.readFileSync(path.join(root, 'node_modules', '.prepare.txt'), 'utf8'), 'success: prepare');
+    });
+
+    it('should run preinstall, install, postinstall and prepublish --foreground-scripts', async () => {
+      await coffee.fork(helper.npminstall, [ '--foreground-scripts' ], { cwd: root })
+        .debug()
+        .expect('code', 0)
+        // should run deps scripts on foreground
+        .expect('stdout', /run on postinstall-hello/)
+        .expect('stdout', /postinstall-hello@1.0.0 postinstall/)
+        .expect('stdout', /node index.js preinstall/)
         .end();
       const pkg = await readJSON(path.join(root, 'node_modules', 'utility', 'package.json'));
       assert.equal(pkg.name, 'utility');
