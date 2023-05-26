@@ -9,7 +9,7 @@ describe('test/runscript.test.js', () => {
   const cleanup = helper.cleanup(root);
 
   beforeEach(cleanup);
-  // afterEach(cleanup);
+  afterEach(cleanup);
 
   it('should run preinstall and postinstall', async () => {
     // ignore windows

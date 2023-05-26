@@ -56,6 +56,8 @@ Object.assign(argv, parseArgs(originalArgv, {
     'save-exact',
     'china',
     'ignore-scripts',
+    // run scripts on foreground, default is background
+    'foreground-scripts',
     // install ignore optionalDependencies
     'optional',
     'detail',
@@ -134,8 +136,9 @@ Options:
   --workspaces: install new package on all workspaces, e.g: npminstall foo --workspaces
   --trace: show memory and cpu usages traces of installation
   --ignore-scripts: ignore all preinstall / install and postinstall scripts during the installation
+  --foreground-scripts: scripts run in the background by default, to see the output, run with: --foreground-scripts
   --no-optional: ignore all optionalDependencies during the installation
-  --forbidden-licenses: forbit install packages which used these licenses
+  --forbidden-licenses: forbidden install packages which used these licenses
   --engine-strict: refuse to install (or even consider installing) any package that claims to not be compatible with the current Node.js version.
   --flatten: flatten dependencies by matching ancestors' dependencies
   --registry-only: make sure all packages install from registry. Any package is installed from remote(e.g.: git, remote url) cause install fail.
@@ -309,6 +312,7 @@ debug('argv: %j, env: %j', argv, env);
   // get config from npm settings instead of following user's specification,
   // should migrate to ?? or typeof.
   config.ignoreScripts = argv['ignore-scripts'] || getIgnoreScripts();
+  config.foregroundScripts = argv['foreground-scripts'];
   config.ignoreOptionalDependencies = !argv.optional;
   config.detail = argv.detail;
   config.forceLinkLatest = !!argv['force-link-latest'];
