@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.9.0](https://github.com/cnpm/npminstall/compare/v7.8.0...v7.9.0) (2023-05-26)
+
+
+### Features
+
+* run scripts on background by default ([#459](https://github.com/cnpm/npminstall/issues/459)) ([18d9b9f](https://github.com/cnpm/npminstall/commit/18d9b9f8e9f1446771e6b5887e76e1c3a907a7ab))
+
 ## [7.8.0](https://github.com/cnpm/npminstall/compare/v7.7.0...v7.8.0) (2023-05-02)
 
 
