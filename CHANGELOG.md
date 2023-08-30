@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.10.0](https://github.com/cnpm/npminstall/compare/v7.9.0...v7.10.0) (2023-08-30)
+
+
+### Features
+
+* print yesterday update packages ([#461](https://github.com/cnpm/npminstall/issues/461)) ([87c5d33](https://github.com/cnpm/npminstall/commit/87c5d33f2b89d5c30116b87dcd495b611f3b4e7d))
+
 ## [7.9.0](https://github.com/cnpm/npminstall/compare/v7.8.0...v7.9.0) (2023-05-26)
 
 
