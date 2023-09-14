@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "lodash.has": "4.0.0",
+    "lodash.get": "3",
+    "lodash._baseget": "3.7.1",
+    "lodash._baseslice": "^3.0.1",
+    "lodash.has3": "npm:lodash.has@3"
+  }
+}

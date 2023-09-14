@@ -20,6 +20,7 @@ const {
   ALIAS_TYPES,
 } = require('../lib/npa_types');
 const Context = require('../lib/context');
+const { lockfileConverter } = require('../lib/lockfile_resolver');
 
 const originalArgv = process.argv.slice(2);
 
@@ -39,6 +40,18 @@ Object.assign(argv, parseArgs(originalArgv, {
     // npminstall foo --workspace=aa
     // npminstall foo -w aa
     'workspace',
+    /**
+     * set package-lock.json path
+     *
+     * 1. only support package lock v2 and v3.
+     * 2. npminstall doesn't inspect <cwd>/package-lock.json by default.
+     * 3. because arborist doesn't support client/build/isomorphic dependencies,
+     *    these kinds of dependencies will all be ignored.
+     * 4. this option doesn't do extra check for the equivalence of package-lock.json and package.json
+     *    simply behaves like `npm ci` but doesn't remove the node_modules in advance.
+     * 5. you're not supposed to install extra dependencies along with a lockfile.
+     */
+    'lockfile-path',
   ],
   boolean: [
     'version',
@@ -118,6 +131,7 @@ Usage:
   npminstall <git:// url>
   npminstall <github username>/<github project>
   npminstall --proxy=http://localhost:8080
+  npminstall --lockfile-path=</path/to/package-lock.json>
 
 Can specify one or more: npminstall ./foo.tgz bar@stable /some/folder
 If no argument is supplied, installs dependencies from ./package.json.
@@ -342,6 +356,16 @@ debug('argv: %j, env: %j', argv, env);
       const fixVersions = packageVersionMapping[name];
       return fixVersions && fixVersions[version] || null;
     };
+  }
+
+  const lockfilePath = argv['lockfile-path'];
+  if (lockfilePath) {
+    try {
+      const lockfileData = await fs.readFile(lockfilePath, 'utf8');
+      config.dependenciesTree = lockfileConverter(JSON.parse(lockfileData));
+    } catch (error) {
+      console.warn(chalk.yellow('npminstall WARN load lockfile from %s error :%s'), lockfilePath, error.message);
+    }
   }
 
   const dependenciesTree = argv['dependencies-tree'];
