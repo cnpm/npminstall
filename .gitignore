@@ -41,3 +41,4 @@ test/fixtures/npm-workspaces/package.json
 test/fixtures/uninstall/package.json
 
 package-lock.json
+!test/fixtures/lockfile/package-lock.json
