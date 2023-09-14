@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.11.0](https://github.com/cnpm/npminstall/compare/v7.10.0...v7.11.0) (2023-09-14)
+
+
+### Features
+
+* add npm package-lock.json support ([#462](https://github.com/cnpm/npminstall/issues/462)) ([76f4130](https://github.com/cnpm/npminstall/commit/76f4130dd41dd98df5d0e45c859ca9899e37e67a))
+
 ## [7.10.0](https://github.com/cnpm/npminstall/compare/v7.9.0...v7.10.0) (2023-08-30)
 
 
