@@ -29,11 +29,12 @@ describe('test/install-with-lockfile.test.js', () => {
         .end();
       assert.strictEqual(
         await fs.readlink(path.join(cwd, 'node_modules', 'lodash.has3'), 'utf8'),
-        '.store/lodash.has@3.2.1/node_modules/lodash.has'
+        '_lodash.has@3.2.1@lodash.has'
       );
+
       assert.strictEqual(
         await fs.readlink(path.join(cwd, 'node_modules', 'lodash.has'), 'utf8'),
-        '.store/lodash.has@4.0.0/node_modules/lodash.has'
+        '_lodash.has@4.0.0@lodash.has'
       );
     });
 
