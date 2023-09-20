@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.11.1](https://github.com/cnpm/npminstall/compare/v7.11.0...v7.11.1) (2023-09-20)
+
+
+### Bug Fixes
+
+* lockfile convert option ([#466](https://github.com/cnpm/npminstall/issues/466)) ([dee32a1](https://github.com/cnpm/npminstall/commit/dee32a1d3e77cf7c7faf5ac1112211c40dde82b8)), closes [#465](https://github.com/cnpm/npminstall/issues/465)
+
 ## [7.11.0](https://github.com/cnpm/npminstall/compare/v7.10.0...v7.11.0) (2023-09-14)
 
 
