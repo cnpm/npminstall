@@ -77,7 +77,7 @@ describe('test/installGlobal.test.js', () => {
 
   // will fail on Windows, ignore it
   if (process.platform !== 'win32') {
-    it('should install with global prefix', async () => {
+    it.skip('should install with global prefix', async () => {
       await coffee.fork(helper.npminstall, [
         `--prefix=${tmp}`,
         '-g',

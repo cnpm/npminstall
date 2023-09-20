@@ -26,6 +26,7 @@ describe('test/install-with-lockfile.test.js', () => {
         ], { cwd })
         .debug()
         .expect('code', 0)
+        .notExpect('stdout', 'TypeError: Cannot read properties of undefined (reading \'ignoreOptionalDependencies\')')
         .end();
       assert.strictEqual(
         await fs.readlink(path.join(cwd, 'node_modules', 'lodash.has3'), 'utf8'),
@@ -43,7 +44,7 @@ describe('test/install-with-lockfile.test.js', () => {
         ignoreOptionalDependencies: true,
       }, nested);
 
-      assert.strictEqual(Object.keys(dependenciesTree).length, 12);
+      assert.strictEqual(Object.keys(dependenciesTree).length, 29);
     });
   }
 });
