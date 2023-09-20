@@ -362,7 +362,9 @@ debug('argv: %j, env: %j', argv, env);
   if (lockfilePath) {
     try {
       const lockfileData = await fs.readFile(lockfilePath, 'utf8');
-      config.dependenciesTree = lockfileConverter(JSON.parse(lockfileData));
+      config.dependenciesTree = lockfileConverter(JSON.parse(lockfileData), {
+        ignoreOptionalDependencies: true,
+      });
     } catch (error) {
       console.warn(chalk.yellow('npminstall WARN load lockfile from %s error :%s'), lockfilePath, error.message);
     }
