@@ -196,6 +196,9 @@ if (production) {
 if (cacheDir === null && process.env.npm_config_cache) {
   cacheDir = process.env.npm_config_cache;
 }
+if (process.env.npminstall_cache) {
+  cacheDir = process.env.npminstall_cache;
+}
 
 let forbiddenLicenses = argv['forbidden-licenses'];
 forbiddenLicenses = forbiddenLicenses ? forbiddenLicenses.split(',') : null;
