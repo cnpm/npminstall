@@ -206,6 +206,9 @@ let cacheDir = defaultCacheDir;
 if (!cacheStrict && (production || argv.cache === false)) {
   cacheDir = '';
 }
+if (process.env.npminstall_cache) {
+  cacheDir = process.env.npminstall_cache;
+}
 
 let forbiddenLicenses = argv['forbidden-licenses'];
 forbiddenLicenses = forbiddenLicenses ? forbiddenLicenses.split(',') : null;
