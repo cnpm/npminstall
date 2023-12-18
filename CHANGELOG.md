@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.12.0](https://github.com/cnpm/npminstall/compare/v7.11.1...v7.12.0) (2023-12-18)
+
+
+### Features
+
+* add support for process.env.npminstall_cache (cherry-pick [#471](https://github.com/cnpm/npminstall/issues/471)) ([#472](https://github.com/cnpm/npminstall/issues/472)) ([4c2cc3b](https://github.com/cnpm/npminstall/commit/4c2cc3bc937bf01e39963e4f06d5b55bfd91826c))
+
 ## [7.11.1](https://github.com/cnpm/npminstall/compare/v7.11.0...v7.11.1) (2023-09-20)
 
 
