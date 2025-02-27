@@ -152,6 +152,8 @@ Options:
   --high-speed-store: specify high speed store script to cache tgz files, and so on. Should export '* getStream(url)' function.
   --dependencies-tree: install with dependencies tree to restore the last install.
   --force-link-latest: force link latest version package to module root path.
+  --concurrency: install concurrency, default is 10
+  --retry: retry count, default is 3
 `
   );
   process.exit(0);
