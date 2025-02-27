@@ -1,0 +1,6 @@
+{
+  "name": "options-concurrency",
+  "dependencies": {
+    "lodash": "*"
+  }
+}
