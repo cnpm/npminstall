@@ -55,7 +55,7 @@
     "rc": "^1.2.8",
     "semver": "^7.0.0",
     "tar": "^6.0.0",
-    "urllib": "^3.0.3"
+    "urllib": "^4.0.0"
   },
   "devDependencies": {
     "assert-file": "^1.0.0",
