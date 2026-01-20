@@ -15,7 +15,6 @@
     "npmupdate": "bin/update.js"
   },
   "scripts": {
-    "contributor": "git-contributor",
     "test": "npm run lint && egg-bin test -t 2000000 -p",
     "test-local": "npm run test-local-single -- -p",
     "test-local-single": "npm run clean && npm_china=true local=true egg-bin test -t 2000000",
@@ -55,7 +54,7 @@
     "rc": "^1.2.8",
     "semver": "^7.0.0",
     "tar": "^7.5.3",
-    "urllib": "^3.0.3"
+    "urllib": "^4.9.0"
   },
   "devDependencies": {
     "assert-file": "^1.0.0",
@@ -64,7 +63,6 @@
     "egg-bin": "^6.13.0",
     "eslint": "^8.31.0",
     "eslint-config-egg": "^12.1.0",
-    "git-contributor": "^2.0.0",
     "mm": "^3.2.1"
   },
   "homepage": "https://github.com/cnpm/npminstall",

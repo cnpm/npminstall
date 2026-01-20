@@ -47,7 +47,7 @@ describe('test/get.test.js', () => {
       console.error(err);
       const headers = options.headers;
       assert(headers.Authorization);
-      assert(err.message.includes('ENOTFOUND') || err.message.includes('Connect Timeout Error'));
+      assert(err.message.includes('ENOTFOUND') || err.message.includes('Connect Timeout Error'), err.message);
       assert(err.res.requestUrls.length > 0);
     }
   });
