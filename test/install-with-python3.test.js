@@ -22,19 +22,22 @@ if (process.platform !== 'win32') {
       });
     }
 
-    describe('xprofiler', () => {
-      const cwd = helper.fixtures('install-xprofiler');
-      const cleanup = helper.cleanup(cwd);
+    // xprofiler@2 doesn't have prebuilt binaries for Node.js 22+ and native build may fail
+    if (semver.satisfies(process.version, '< 22.0.0')) {
+      describe('xprofiler', () => {
+        const cwd = helper.fixtures('install-xprofiler');
+        const cleanup = helper.cleanup(cwd);
 
-      beforeEach(cleanup);
-      afterEach(cleanup);
+        beforeEach(cleanup);
+        afterEach(cleanup);
 
-      it('should install xprofiler with python3', async () => {
-        await coffee.fork(helper.npminstall, [ '-d' ], { cwd })
-          .debug()
-          .expect('code', 0)
-          .end();
+        it('should install xprofiler with python3', async () => {
+          await coffee.fork(helper.npminstall, [ '-d' ], { cwd })
+            .debug()
+            .expect('code', 0)
+            .end();
+        });
       });
-    });
+    }
   });
 }
