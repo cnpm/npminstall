@@ -45,7 +45,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Set Windows environment
         if: matrix.os == 'windows-latest'
-        uses: microsoft/setup-msbuild@v1.0.3
+        uses: microsoft/setup-msbuild@v1.3.3
         with:
           vs-version: ${{ matrix.vs-version }}
       - name: Install dependencies
