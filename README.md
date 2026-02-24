@@ -8,13 +8,13 @@
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fcnpm%2Fnpminstall.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fcnpm%2Fnpminstall?ref=badge_shield)
 
 [npm-image]: https://img.shields.io/npm/v/npminstall.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/npminstall
+[npm-url]: https://npmx.dev/package/npminstall
 [codecov-image]: https://codecov.io/gh/cnpm/npminstall/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/cnpm/npminstall
 [snyk-image]: https://snyk.io/test/npm/npminstall/badge.svg?style=flat-square
 [snyk-url]: https://snyk.io/test/npm/npminstall
 [download-image]: https://img.shields.io/npm/dm/npminstall.svg?style=flat-square
-[download-url]: https://npmjs.org/package/npminstall
+[download-url]: https://npmx.dev/package/npminstall
 
 Make `npm install` fast and handy.
 
