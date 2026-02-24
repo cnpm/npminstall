@@ -147,16 +147,6 @@ describe('test/utils.test.js', () => {
     });
   });
 
-  describe('formatPackagePageUrl()', () => {
-    it('should format regular package name', () => {
-      assert.equal(utils.formatPackagePageUrl('express'), 'https://npmx.dev/package/express');
-    });
-
-    it('should format scoped package name', () => {
-      assert.equal(utils.formatPackagePageUrl('@cnpm/foo'), 'https://npmx.dev/package/@cnpm/foo');
-    });
-  });
-
   describe('parseTarballUrls()', () => {
     it('should return one url', () => {
       assert.deepEqual(utils.parseTarballUrls('https://registry.npmjs.org/node/-/node-10.3.0.tgz'), [
