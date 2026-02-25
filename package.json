@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@npmcli/arborist": "^9.1.9",
-    "@zkochan/cmd-shim": "^5.4.0",
+    "@zkochan/cmd-shim": "^8.0.0",
     "await-event": "^2.1.0",
     "bin-links": "^2.3.0",
     "binary-mirror-config": "^1.19.0",
