@@ -63,7 +63,7 @@
     "egg-bin": "^6.13.0",
     "eslint": "^8.31.0",
     "eslint-config-egg": "^12.1.0",
-    "mm": "^3.2.1"
+    "mm": "^4.0.0"
   },
   "homepage": "https://github.com/cnpm/npminstall",
   "repository": {
