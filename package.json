@@ -62,7 +62,7 @@
     "cross-env": "^7.0.3",
     "egg-bin": "^6.13.0",
     "eslint": "^8.31.0",
-    "eslint-config-egg": "^12.1.0",
+    "eslint-config-egg": "^14.0.0",
     "mm": "^3.2.1"
   },
   "homepage": "https://github.com/cnpm/npminstall",
