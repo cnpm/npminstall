@@ -29,7 +29,7 @@
     "@zkochan/cmd-shim": "^5.4.0",
     "await-event": "^2.1.0",
     "bin-links": "^2.3.0",
-    "binary-mirror-config": "^1.19.0",
+    "binary-mirror-config": "^2.0.0",
     "bug-versions": "^1.90.0",
     "bytes": "^3.1.0",
     "cacheable-lookup": "^6.1.0",
