@@ -1,5 +1,6 @@
 const mm = require('mm');
 const assert = require('node:assert');
+const fs = require('node:fs/promises');
 const path = require('node:path');
 const coffee = require('coffee');
 const semver = require('semver');
@@ -26,7 +27,7 @@ describe('test/installLocal.test.js', () => {
   });
 
   it('should install local folder with copy ok', async () => {
-    mm.error(utils, 'exec');
+    mm.error(utils, 'execFile');
     await npminstall({
       root,
       pkgs: [
@@ -47,6 +48,42 @@ describe('test/installLocal.test.js', () => {
     const pkg = await helper.readJSON(path.join(root, 'node_modules/pkg/package.json'));
     assert.equal(pkg.name, 'pkg');
   });
+
+  if (process.platform !== 'win32') {
+    it('should not execute shell metacharacters from the install root path', async () => {
+      const [ tmpRoot, cleanupTmp ] = helper.tmp();
+      await cleanupTmp();
+
+      const exploitRoot = path.join(tmpRoot, 'exploit; touch SUCCESS; echo');
+      const subPkgRoot = path.join(exploitRoot, 'sub-pkg');
+      const markerFile = path.join(subPkgRoot, 'SUCCESS');
+
+      try {
+        await utils.mkdirp(subPkgRoot);
+        await fs.writeFile(
+          path.join(exploitRoot, 'package.json'),
+          JSON.stringify({ name: 'root-pkg', version: '1.0.0' }),
+        );
+        await fs.writeFile(
+          path.join(subPkgRoot, 'package.json'),
+          JSON.stringify({ name: 'sub-pkg', version: '1.0.0' }),
+        );
+
+        await npminstall({
+          root: exploitRoot,
+          pkgs: [
+            { name: 'sub-pkg', version: './sub-pkg' },
+          ],
+        });
+
+        const pkg = await helper.readJSON(path.join(exploitRoot, 'node_modules/sub-pkg/package.json'));
+        assert.equal(pkg.name, 'sub-pkg');
+        assert.equal(await utils.exists(markerFile), false);
+      } finally {
+        await utils.rimraf(tmpRoot);
+      }
+    });
+  }
 
   it('should install local link folder ok', async () => {
     if (process.platform === 'win32') {
